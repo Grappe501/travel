@@ -2,6 +2,7 @@ import { APP_NAME, APP_TAGLINE } from '@mileage-copilot/shared';
 import { InstallAppPrompt } from '@/components/pwa/InstallAppPrompt';
 import { ButtonLink } from '@/components/ui';
 import { APP_RELEASE } from '@/lib/app-release';
+import { isPublicBetaMode } from '@/lib/auth/beta';
 import { env } from '@/lib/env';
 
 const FEATURES = [
@@ -14,6 +15,7 @@ const FEATURES = [
 
 export default function HomePage() {
   const appName = env.NEXT_PUBLIC_APP_NAME || APP_NAME;
+  const betaMode = isPublicBetaMode();
 
   return (
     <main className="app-shell-bg hero-mesh flex min-h-screen flex-col">
@@ -44,12 +46,25 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="/login" size="lg">
-              Log in
-            </ButtonLink>
-            <ButtonLink href="/signup" variant="secondary" size="lg">
-              Sign up
-            </ButtonLink>
+            {betaMode ? (
+              <>
+                <ButtonLink href="/beta/login" size="lg">
+                  Join field test
+                </ButtonLink>
+                <ButtonLink href="/login" variant="secondary" size="lg">
+                  Admin login
+                </ButtonLink>
+              </>
+            ) : (
+              <>
+                <ButtonLink href="/login" size="lg">
+                  Log in
+                </ButtonLink>
+                <ButtonLink href="/signup" variant="secondary" size="lg">
+                  Sign up
+                </ButtonLink>
+              </>
+            )}
           </div>
         </div>
 

@@ -55,6 +55,9 @@ export function AdminUserSearch() {
 export function AdminNavLinks() {
   return (
     <div className="flex flex-wrap gap-3">
+      <Link href="/admin/field-test" className="text-body font-medium text-primary hover:underline">
+        Field test dashboard
+      </Link>
       <Link href="/admin/health" className="text-body font-medium text-primary hover:underline">
         System health
       </Link>

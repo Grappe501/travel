@@ -13,6 +13,23 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.13.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.13.0 (STEP-072)**
+
+Field test beta — shared access code with individual tester accounts and admin dashboard.
+
+### Added
+- **Field test login** (`/beta/login`) — email + shared access code; auto-provisions accounts
+- **Admin field test dashboard** — per-tester activity table, aggregates, CSV export
+- **Beta mode env** — `BETA_MODE`, `BETA_SHARED_PASSWORD`, `NEXT_PUBLIC_BETA_MODE`
+
+### Changed
+- Open signup blocked when beta mode is enabled
+- Home and login pages link to field test flow when `NEXT_PUBLIC_BETA_MODE=1`
+
+---
+
 ## [1.12.0] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.12.0 (STEP-071)**

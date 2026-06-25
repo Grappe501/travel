@@ -14,6 +14,11 @@ export default function AdminPage() {
       <Alert variant="info">
         Admin access is read-only. Lookups are recorded in the audit log.
       </Alert>
+      <div className="flex flex-wrap gap-3">
+        <a href="/admin/field-test" className="text-body font-medium text-primary hover:underline">
+          Field test dashboard →
+        </a>
+      </div>
       <AdminUserSearch />
       <AdminNavLinks />
     </DashboardShell>

@@ -6,6 +6,9 @@ export type GpsTrackingDefault = z.infer<typeof gpsTrackingDefaultSchema>;
 export const appPrefsSchema = z.object({
   gpsTrackingDefault: gpsTrackingDefaultSchema.default('ask'),
   gpsHighAccuracy: z.boolean().default(false),
+  betaTester: z.boolean().optional(),
+  betaJoinedAt: z.string().datetime().optional(),
+  fieldTestLabel: z.string().max(100).optional(),
 });
 
 export type AppPrefs = z.infer<typeof appPrefsSchema>;

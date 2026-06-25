@@ -14,6 +14,7 @@ export * from './search';
 export * from './restore';
 export * from './settings';
 export * from './gps';
+export * from './beta';
 
 export const businessCreateSchema = z.object({
   name: z.string().min(1).max(100),

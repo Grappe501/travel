@@ -17,7 +17,7 @@ export const PROTECTED_ROUTE_PREFIXES = [
   '/notifications',
 ] as const;
 
-export const AUTH_ROUTES = ['/login', '/signup'] as const;
+export const AUTH_ROUTES = ['/login', '/signup', '/beta/login'] as const;
 
 /** Auth helper routes — not redirected away when logged in (handled per-route). */
 export const AUTH_FLOW_ROUTES = [

@@ -1,12 +1,15 @@
 'use server';
 
-import { loginSchema, signupSchema, type LoginInput, type SignupInput } from '@mileage-copilot/shared';
+import { loginSchema, signupSchema, betaLoginSchema, type LoginInput, type SignupInput, type BetaLoginInput } from '@mileage-copilot/shared';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { resolvePostAuthPath } from '@/lib/auth/guards';
+import { isBetaLoginConfigured, verifyBetaPassword } from '@/lib/auth/beta';
 import { createClient } from '@/lib/supabase/server';
 import { getPublicSupabaseConfig } from '@/lib/supabase/config';
+import { getSupabaseAdminAuth } from '@/lib/supabase/admin-auth';
 import { ensureUserProfile } from '@/server/services/auth.service';
+import { markBetaTester } from '@/server/services/app-prefs.service';
 
 export type AuthActionResult =
   | { error: string }
@@ -94,7 +97,82 @@ export async function signInAction(
   return finishAuthRedirect(redirectTo);
 }
 
+export async function betaSignInAction(
+  input: BetaLoginInput,
+  redirectTo?: string | null
+): Promise<AuthActionResult> {
+  if (!getPublicSupabaseConfig().isConfigured) {
+    return authNotConfiguredError();
+  }
+
+  if (!isBetaLoginConfigured()) {
+    return { error: 'Field test login is not enabled on this environment.' };
+  }
+
+  const parsed = betaLoginSchema.safeParse(input);
+  if (!parsed.success) {
+    return { error: parsed.error.errors[0]?.message ?? 'Invalid input' };
+  }
+
+  if (!verifyBetaPassword(parsed.data.betaPassword)) {
+    return { error: 'Invalid field test access code.' };
+  }
+
+  const email = parsed.data.email.trim().toLowerCase();
+  const password = parsed.data.betaPassword;
+  const supabase = await createClient();
+
+  let { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (signInError) {
+    const admin = getSupabaseAdminAuth();
+    if (!admin) {
+      return {
+        error:
+          'Could not create your tester account. Set SUPABASE_SERVICE_ROLE_KEY for auto-provisioning.',
+      };
+    }
+
+    const { error: createError } = await admin.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true,
+    });
+
+    if (createError && !createError.message.toLowerCase().includes('already')) {
+      return { error: createError.message };
+    }
+
+    const retry = await supabase.auth.signInWithPassword({ email, password });
+    signInError = retry.error;
+  }
+
+  if (signInError) {
+    return {
+      error:
+        'Could not sign in. If you previously used a different password, contact the field test coordinator.',
+    };
+  }
+
+  try {
+    const profile = await syncProfileFromSession();
+    await markBetaTester(profile.id, parsed.data.fieldTestLabel);
+  } catch {
+    return {
+      error: 'Signed in but could not sync profile. Check DATABASE_URL and run migrations.',
+    };
+  }
+
+  return finishAuthRedirect(redirectTo);
+}
+
 export async function signUpAction(input: SignupInput): Promise<AuthActionResult> {
+  if (process.env.BETA_MODE === '1' || process.env.BETA_MODE === 'true') {
+    return {
+      error: 'Open signup is disabled during field testing. Use the field test login page instead.',
+    };
+  }
+
   if (!getPublicSupabaseConfig().isConfigured) {
     return authNotConfiguredError();
   }

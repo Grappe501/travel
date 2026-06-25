@@ -18,6 +18,7 @@ type DashboardShellProps = {
   eyebrow?: string;
   children: ReactNode;
   className?: string;
+  wide?: boolean;
 };
 
 export function DashboardShell({
@@ -28,13 +29,14 @@ export function DashboardShell({
   eyebrow,
   children,
   className,
+  wide = false,
 }: DashboardShellProps) {
   return (
     <ToastProvider>
       <div className="app-shell-bg">
         <SkipLink />
         <AppTopNav />
-        <div className="mx-auto max-w-4xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8">
+        <div className={`mx-auto px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8 ${wide ? 'max-w-7xl' : 'max-w-4xl'}`}>
           <ConditionalMobileQuickNav />
           <ConditionalGlobalSearchBar />
           <PageHeader

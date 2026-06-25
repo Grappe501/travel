@@ -28,3 +28,28 @@ export async function updateAppPrefs(userId: string, input: AppPrefsUpdateInput)
 
   return parseAppPrefs(profile.appPrefs);
 }
+
+export async function markBetaTester(userId: string, fieldTestLabel?: string) {
+  const profile = await prisma.userProfile.findUniqueOrThrow({
+    where: { id: userId },
+    select: { appPrefs: true, displayName: true },
+  });
+
+  const current = parseAppPrefs(profile.appPrefs);
+  const next = {
+    ...current,
+    betaTester: true,
+    betaJoinedAt: current.betaJoinedAt ?? new Date().toISOString(),
+    ...(fieldTestLabel ? { fieldTestLabel } : {}),
+  };
+
+  await prisma.userProfile.update({
+    where: { id: userId },
+    data: {
+      appPrefs: next as Prisma.InputJsonValue,
+      ...(fieldTestLabel && !profile.displayName ? { displayName: fieldTestLabel } : {}),
+    },
+  });
+
+  return next;
+}

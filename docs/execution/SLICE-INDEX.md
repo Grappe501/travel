@@ -43,7 +43,8 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S037 | PWA install & offline | — | WAVE-003 ext | MOB | STEP-069 | ☑ Complete |
 | MEC-V1-S038 | GPS trip tracking | — | WAVE-003 ext | LOC, FR-301, FR-500 | STEP-070 | ☑ Complete |
 | MEC-V1-S039 | Design & UX v3 | — | WAVE-001 ext | — | STEP-071 | ☑ Complete |
+| MEC-V1-S040 | Field test beta login | — | WAVE-001 ext | ADM | STEP-072 | ☑ Complete |
 
-**Post-V1.12 backlog:** help center · team access · expense categories
+**Post-V1.13 backlog:** help center · team access · expense categories
 
 Prompts: [slices/](slices/)
