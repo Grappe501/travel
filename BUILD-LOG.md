@@ -59,7 +59,6 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-052 | 2026-06-25 | H | MEC-V1-S020 — GA gates, catalog audit, v1.0.0 | `5e6d99c` | [STEP-052](docs/build-steps/STEP-052-mec-v1-s020-launch-ga.md) |
 | STEP-053 | 2026-06-25 | B | MEC-V1-S021 — Offline sync queue (trips + receipts) | `1db24a5` | [STEP-053](docs/build-steps/STEP-053-mec-v1-s021-offline-sync.md) |
 | STEP-054 | 2026-06-25 | B | MEC-V1-S022 — AI duplicate receipt detection | `0dd3661` | [STEP-054](docs/build-steps/STEP-054-mec-v1-s022-duplicate-detection.md) |
-
 | STEP-055 | 2026-06-25 | B | MEC-V1-S023 — AI category suggestions on receipt review | `af9d59a` | [STEP-055](docs/build-steps/STEP-055-mec-v1-s023-category-suggestions.md) |
 | STEP-056 | 2026-06-25 | B | MEC-V1-S024 — Client & project modules | `2842037` | [STEP-056](docs/build-steps/STEP-056-mec-v1-s024-client-projects.md) |
 | STEP-057 | 2026-06-25 | B | MEC-V1-S025 — AI feedback & history (V1.2) | `6dcb196` | [STEP-057](docs/build-steps/STEP-057-mec-v1-s025-ai-feedback.md) |
@@ -72,7 +71,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 |--------|-------|
 | Steps completed | 57 |
 | Current phase | **V1.2 complete** |
-| Latest tag | `v1.0.0` |
+| Latest tag | `v1.2.0` |
 
 ---
 
