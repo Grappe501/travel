@@ -5,7 +5,7 @@
 | **Step ID** | STEP-007 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | *(pending)* |
+| **Commit** | [`edf84cc`](https://github.com/Grappe501/travel/commit/edf84cc) |
 | **Status** | complete |
 
 ## Objective
