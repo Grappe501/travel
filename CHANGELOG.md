@@ -53,6 +53,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Version 1 Execution Package** — locked stack, scope, 10 build slices, Cursor prompts, go/no-go — STEP-032
 - **Application scaffold (MEC-V1-S001)** — Next.js 15 monorepo, Tailwind, route shells, `/health`, CI — STEP-033
 - **Database foundation (MEC-V1-S002)** — Prisma schema, initial migration, shared Zod schemas — STEP-034
+- **Authentication (MEC-V1-S003)** — Supabase Auth SSR, login/signup, protected dashboard, UserProfile upsert — STEP-035
 
 ## [0.0.0] — 2026-06-24
 

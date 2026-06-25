@@ -39,6 +39,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-032 | 2026-06-24 | Execution | Version 1 Execution Package — 10 slices, locked stack, Burt prompts | `7f6d89d` | [STEP-032](docs/build-steps/STEP-032-version-1-execution-package.md) |
 | STEP-033 | 2026-06-24 | A | MEC-V1-S001 — Next.js 15 monorepo scaffold, route shells, CI | `c82b31e` | [STEP-033](docs/build-steps/STEP-033-mec-v1-s001-scaffold.md) |
 | STEP-034 | 2026-06-24 | A | MEC-V1-S002 — Prisma schema, initial migration, Zod schemas | `ff83d90` | [STEP-034](docs/build-steps/STEP-034-mec-v1-s002-database.md) |
+| STEP-035 | 2026-06-24 | A | MEC-V1-S003 — Supabase Auth, protected dashboard, UserProfile upsert | _(pending)_ | [STEP-035](docs/build-steps/STEP-035-mec-v1-s003-auth.md) |
 
 ---
 
@@ -46,8 +47,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 34 |
-| Current phase | **Implementation** — MEC-V1-S003 auth next (STEP-035) |
+| Steps completed | 35 |
+| Current phase | **Implementation** — MEC-V1-S004 design system next (STEP-036) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---
