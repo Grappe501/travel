@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { getSupabasePublishableKey } from '../../src/lib/supabase/config';
 
 const stateFile = path.join(__dirname, '../.auth/e2e-state.json');
 
@@ -8,7 +9,7 @@ export function e2eEnvConfigured(): boolean {
   if (process.env.SKIP_E2E_TESTS === '1') return false;
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
+  const supabaseKey = getSupabasePublishableKey() ?? '';
 
   return (
     Boolean(process.env.DATABASE_URL) &&

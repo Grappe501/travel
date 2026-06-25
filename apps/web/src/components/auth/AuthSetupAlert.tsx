@@ -9,7 +9,7 @@ export function AuthSetupAlert() {
 
   if (!supabase.isConfigured) {
     issues.push(
-      'Supabase auth is not configured in this deploy. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Netlify and redeploy (NEXT_PUBLIC_* values are baked in at build time).'
+      'Supabase auth is not configured in this deploy. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY) in Netlify and redeploy (NEXT_PUBLIC_* values are baked in at build time).'
     );
   }
 

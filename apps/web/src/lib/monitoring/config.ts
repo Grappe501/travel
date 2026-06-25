@@ -1,3 +1,5 @@
+import { getSupabasePublishableKey } from '@/lib/supabase/config';
+
 function isPlaceholder(value: string | undefined): boolean {
   if (!value) return true;
   return (
@@ -49,15 +51,17 @@ export type DependencyFlags = {
 export function getDependencyFlags(): DependencyFlags {
   const databaseUrl = process.env.DATABASE_URL;
   const directUrl = process.env.DIRECT_URL;
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabasePublishableKey = getSupabasePublishableKey();
 
   return {
     databaseConfigured: Boolean(databaseUrl && !isCiBuildDatabaseUrl(databaseUrl)),
     directDatabaseConfigured: Boolean(directUrl && !isPlaceholder(directUrl)),
     supabaseConfigured: Boolean(
-      process.env.NEXT_PUBLIC_SUPABASE_URL &&
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-        !isPlaceholder(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
-        !isPlaceholder(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+      supabaseUrl &&
+        supabasePublishableKey &&
+        !isPlaceholder(supabaseUrl) &&
+        !isPlaceholder(supabasePublishableKey)
     ),
     storageConfigured: Boolean(
       process.env.SUPABASE_SERVICE_ROLE_KEY &&

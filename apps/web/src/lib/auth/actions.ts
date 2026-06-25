@@ -12,7 +12,7 @@ export type AuthActionResult = { error: string } | { message: string };
 function authNotConfiguredError(): AuthActionResult {
   return {
     error:
-      'Authentication is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Netlify, then redeploy.',
+      'Authentication is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY) in Netlify, then redeploy.',
   };
 }
 
