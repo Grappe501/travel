@@ -18,3 +18,4 @@ export { ToastProvider, useToast } from './ToastProvider';
 export { PageHeader } from './PageHeader';
 export { RemoveEntryButton } from './RemoveEntryButton';
 export { Select } from './Select';
+export { StatCard, QuickActionGrid } from './StatCard';

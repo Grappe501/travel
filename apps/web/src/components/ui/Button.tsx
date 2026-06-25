@@ -4,19 +4,20 @@ import { cn } from '@/lib/utils/cn';
 
 const variantStyles = {
   primary:
-    'bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active disabled:pointer-events-none disabled:opacity-40',
+    'bg-primary text-primary-foreground shadow-primary hover:bg-primary-hover active:bg-primary-active active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40',
   secondary:
-    'border border-border bg-surface text-foreground hover:bg-hover active:bg-selected disabled:pointer-events-none disabled:opacity-40',
+    'border border-border bg-surface text-foreground shadow-sm hover:bg-hover active:bg-selected active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40',
   destructive:
-    'bg-danger text-danger-foreground hover:opacity-90 active:opacity-80 disabled:pointer-events-none disabled:opacity-40',
-  ghost: 'text-foreground hover:bg-hover active:bg-selected disabled:pointer-events-none disabled:opacity-40',
+    'bg-danger text-danger-foreground shadow-sm hover:opacity-90 active:opacity-80 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40',
+  ghost:
+    'text-foreground hover:bg-hover active:bg-selected disabled:pointer-events-none disabled:opacity-40',
   link: 'text-primary underline-offset-4 hover:underline disabled:pointer-events-none disabled:opacity-40',
 } as const;
 
 const sizeStyles = {
-  sm: 'h-8 px-3 text-caption',
-  md: 'h-10 px-4 text-body',
-  lg: 'h-12 px-6 text-body-lg',
+  sm: 'h-9 px-3.5 text-caption rounded-lg',
+  md: 'h-11 px-5 text-body rounded-xl',
+  lg: 'h-12 px-6 text-body-lg rounded-xl',
 } as const;
 
 export type ButtonVariant = keyof typeof variantStyles;
@@ -42,7 +43,7 @@ export function Button({
     <button
       type={type}
       className={cn(
-        'inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none',
+        'inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none',
         variantStyles[variant],
         sizeStyles[size],
         fullWidth && 'w-full',
@@ -76,7 +77,7 @@ export function ButtonLink({
     <Link
       href={href}
       className={cn(
-        'inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none',
+        'inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none',
         variantStyles[variant],
         sizeStyles[size],
         fullWidth && 'w-full',

@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils/cn';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -11,7 +11,7 @@ export function Input({ label, error, hint, id, className, ...props }: InputProp
   const inputId = id ?? props.name;
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
       {label ? (
         <label htmlFor={inputId} className="block text-subheading text-foreground">
           {label}
@@ -20,11 +20,8 @@ export function Input({ label, error, hint, id, className, ...props }: InputProp
       <input
         id={inputId}
         className={cn(
-          'w-full rounded-lg border border-border bg-surface px-3 py-2 text-body text-foreground',
-          'placeholder:text-muted',
-          'focus-visible:border-primary focus-visible:outline-none',
-          'disabled:cursor-not-allowed disabled:opacity-40',
-          error && 'border-danger focus-visible:border-danger',
+          'input-field',
+          error && 'border-danger focus-visible:border-danger focus-visible:ring-danger/20',
           className
         )}
         aria-invalid={error ? true : undefined}
@@ -54,7 +51,7 @@ export function Textarea({ label, error, id, className, ...props }: TextareaProp
   const inputId = id ?? props.name;
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
       {label ? (
         <label htmlFor={inputId} className="block text-subheading text-foreground">
           {label}
@@ -63,17 +60,16 @@ export function Textarea({ label, error, id, className, ...props }: TextareaProp
       <textarea
         id={inputId}
         className={cn(
-          'min-h-24 w-full rounded-lg border border-border bg-surface px-3 py-2 text-body text-foreground',
-          'placeholder:text-muted focus-visible:border-primary focus-visible:outline-none',
-          'disabled:cursor-not-allowed disabled:opacity-40',
-          error && 'border-danger',
+          'input-field min-h-[6rem] resize-y',
+          error && 'border-danger focus-visible:border-danger focus-visible:ring-danger/20',
           className
         )}
         aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${inputId}-error` : undefined}
         {...props}
       />
       {error ? (
-        <p className="text-caption text-danger" role="alert">
+        <p id={`${inputId}-error`} className="text-caption text-danger" role="alert">
           {error}
         </p>
       ) : null}
@@ -81,6 +77,27 @@ export function Textarea({ label, error, id, className, ...props }: TextareaProp
   );
 }
 
-export function FormField({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn('space-y-1', className)}>{children}</div>;
+type FormFieldProps = {
+  label: string;
+  htmlFor: string;
+  children: React.ReactNode;
+  hint?: string;
+  error?: string;
+};
+
+export function FormField({ label, htmlFor, children, hint, error }: FormFieldProps) {
+  return (
+    <div className="space-y-1.5">
+      <label htmlFor={htmlFor} className="block text-subheading text-foreground">
+        {label}
+      </label>
+      {children}
+      {hint && !error ? <p className="text-caption text-muted">{hint}</p> : null}
+      {error ? (
+        <p className="text-caption text-danger" role="alert">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
 }

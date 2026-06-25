@@ -11,9 +11,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  QuickActionGrid,
+  StatCard,
 } from '@/components/ui';
 import { isV12SchemaReady } from '@/lib/db/schema-health';
 import { requireAuthenticatedUser } from '@/lib/auth/guards';
+import { APP_RELEASE } from '@/lib/app-release';
 import { UsageSummaryCard } from '@/components/billing/UsageMeter';
 import { getUserProfile } from '@/server/services/auth.service';
 import * as dashboardService from '@/server/services/dashboard.service';
@@ -24,14 +27,14 @@ import type { SerializedTrip } from '@/server/services/trip.service';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const QUICK_LINKS = [
-  { href: '/search', title: 'Search', description: 'Find trips, receipts, and clients' },
-  { href: '/trips/start', title: 'Start trip', description: 'Log business mileage' },
-  { href: '/receipts/upload', title: 'Upload receipt', description: 'Scan and categorize' },
-  { href: '/expenses/new', title: 'Add expense', description: 'Manual entry' },
-  { href: '/clients', title: 'Clients', description: 'Clients & projects' },
-  { href: '/reports', title: 'Reports', description: 'Export for taxes' },
-  { href: '/ai/history', title: 'AI history', description: 'OCR & suggestions' },
+const QUICK_ACTIONS = [
+  { href: '/search', title: 'Search', description: 'Find trips, receipts, and clients', icon: '🔍' },
+  { href: '/trips/start', title: 'Start trip', description: 'Log business mileage', icon: '🚗' },
+  { href: '/receipts/upload', title: 'Upload receipt', description: 'Scan and categorize', icon: '📄' },
+  { href: '/expenses/new', title: 'Add expense', description: 'Manual entry', icon: '💵' },
+  { href: '/clients', title: 'Clients', description: 'Clients & projects', icon: '👥' },
+  { href: '/reports', title: 'Reports', description: 'Export for taxes', icon: '📊' },
+  { href: '/ai/history', title: 'AI history', description: 'OCR & suggestions', icon: '✨' },
 ] as const;
 
 function formatMiles(miles: number) {
@@ -86,7 +89,8 @@ export default async function DashboardPage() {
     <DashboardShell
       title="Dashboard"
       description="Track trips, receipts, and expenses in one place."
-      badge={<Badge variant="primary">V1.6</Badge>}
+      eyebrow="Overview"
+      badge={<Badge variant="outline">v{APP_RELEASE.version}</Badge>}
       actions={<LogoutButton />}
     >
       {dbError ? <Alert variant="error">{dbError}</Alert> : null}
@@ -104,7 +108,7 @@ export default async function DashboardPage() {
       {activeTrip ? <ActiveTripBanner trip={activeTrip} /> : null}
 
       {showSetupPrompt ? (
-        <Card>
+        <Card interactive>
           <CardHeader>
             <CardTitle>Finish setting up</CardTitle>
             <CardDescription>
@@ -136,34 +140,19 @@ export default async function DashboardPage() {
       {schemaReady && !dbError && !statsError && summary ? (
         <>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <Card className="text-center">
-              <CardContent className="space-y-1 py-4">
-                <p className="text-2xl font-semibold tabular-nums">{formatMiles(summary.todayMiles)}</p>
-                <p className="text-caption text-muted">Today&apos;s miles</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center">
-              <CardContent className="space-y-1 py-4">
-                <p className="text-2xl font-semibold tabular-nums">{formatMiles(summary.monthMiles)}</p>
-                <p className="text-caption text-muted">Month miles</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center">
-              <CardContent className="space-y-1 py-4">
-                <p className="text-2xl font-semibold tabular-nums">{formatUsd(summary.monthExpenses)}</p>
-                <p className="text-caption text-muted">Month expenses</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center">
-              <CardContent className="space-y-1 py-4">
-                <p className="text-2xl font-semibold tabular-nums">{formatUsd(summary.monthReimbursement)}</p>
-                <p className="text-caption text-muted">Month mileage $</p>
-              </CardContent>
-            </Card>
+            <StatCard label="Today's miles" value={formatMiles(summary.todayMiles)} icon="🛣️" tone="primary" />
+            <StatCard label="Month miles" value={formatMiles(summary.monthMiles)} icon="📍" />
+            <StatCard label="Month expenses" value={formatUsd(summary.monthExpenses)} icon="💳" tone="accent" />
+            <StatCard
+              label="Month mileage $"
+              value={formatUsd(summary.monthReimbursement)}
+              icon="💰"
+              tone="primary"
+            />
           </div>
 
           {attentionCount > 0 || summary.recentTripsWithoutExpenses > 0 ? (
-            <Card className="border-warning/40">
+            <Card className="border-warning/30 bg-warning/5">
               <CardHeader>
                 <CardTitle>Needs attention</CardTitle>
                 <CardDescription>Items to review before your next report.</CardDescription>
@@ -211,24 +200,13 @@ export default async function DashboardPage() {
         </>
       ) : null}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Quick actions</CardTitle>
-          <CardDescription>Jump to common tasks.</CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3 pt-0 sm:grid-cols-2">
-          {QUICK_LINKS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-lg border border-border bg-surface px-4 py-3 transition-colors hover:border-primary/40 hover:bg-surface-elevated"
-            >
-              <p className="font-medium text-foreground">{item.title}</p>
-              <p className="text-caption text-muted">{item.description}</p>
-            </Link>
-          ))}
-        </CardContent>
-      </Card>
+      <section className="space-y-4">
+        <div>
+          <h2 className="text-section-title text-foreground">Quick actions</h2>
+          <p className="text-caption text-muted">Jump to common tasks.</p>
+        </div>
+        <QuickActionGrid actions={[...QUICK_ACTIONS]} />
+      </section>
 
       <Card>
         <CardHeader>

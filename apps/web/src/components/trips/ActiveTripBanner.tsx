@@ -8,14 +8,15 @@ export function ActiveTripBanner({ trip }: { trip: SerializedTrip }) {
   const addExpenseHref = `/expenses/new?tripId=${trip.id}`;
 
   return (
-    <Card className="border-primary/30 bg-selected">
-      <CardContent className="space-y-4 pt-4">
+    <Card className="overflow-hidden border-primary/25 bg-gradient-to-br from-primary/10 via-surface to-surface">
+      <CardContent className="space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Badge variant="primary">Active trip</Badge>
-              <span className="text-card-title text-foreground">{trip.purpose}</span>
+              <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary" aria-hidden />
             </div>
+            <p className="text-card-title text-foreground">{trip.purpose}</p>
             <p className="text-caption text-muted">
               {trip.vehicleNickname} · {trip.businessName}
               {trip.clientName ? ` · ${trip.clientName}` : ''}
@@ -25,9 +26,6 @@ export function ActiveTripBanner({ trip }: { trip: SerializedTrip }) {
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
-          <ButtonLink href="/dashboard" variant="secondary" size="sm">
-            Home
-          </ButtonLink>
           <ButtonLink href={`/trips/${trip.id}`} size="sm">
             View trip
           </ButtonLink>

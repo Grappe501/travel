@@ -25,3 +25,41 @@
     }
   }
 }
+
+@layer components {
+  .app-shell-bg {
+    background: var(--app-gradient);
+    min-height: 100vh;
+  }
+
+  .glass-nav {
+    @apply border-border/80 bg-surface/85 backdrop-blur-md supports-[backdrop-filter]:bg-surface/75;
+  }
+
+  .surface-card {
+    @apply rounded-xl border border-border/80 bg-surface shadow-sm;
+  }
+
+  .surface-card-interactive {
+    @apply surface-card transition-all duration-200 hover:border-primary/25 hover:shadow-md;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-border bg-surface px-3.5 py-2.5 text-body text-foreground shadow-sm;
+    @apply placeholder:text-muted;
+    @apply focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20;
+    @apply disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .stat-value {
+    @apply text-2xl font-semibold tabular-nums tracking-tight text-foreground;
+  }
+
+  .quick-action-tile {
+    @apply surface-card-interactive flex gap-3 p-4;
+  }
+
+  .auth-panel {
+    @apply surface-card mx-auto w-full max-w-md p-6 shadow-md md:p-8;
+  }
+}

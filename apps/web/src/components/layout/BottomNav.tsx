@@ -22,10 +22,10 @@ export function BottomNav() {
   return (
     <>
       <nav
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface pb-[env(safe-area-inset-bottom)] md:hidden"
+        className="glass-nav fixed inset-x-0 bottom-0 z-40 border-t pb-[env(safe-area-inset-bottom)] md:hidden"
         aria-label="Primary navigation"
       >
-        <ul className="mx-auto grid max-w-lg grid-cols-5 items-stretch">
+        <ul className="mx-auto grid max-w-lg grid-cols-5 items-stretch px-1">
           {BOTTOM_NAV_ITEMS.map((item) => {
             if (item.kind === 'action') {
               return (
@@ -69,13 +69,19 @@ function NavLinkButton({ item, pathname }: { item: AppNavLinkItem; pathname: str
     <Link
       href={item.href}
       className={cn(
-        'flex min-h-14 flex-col items-center justify-center gap-0.5 px-1 text-micro transition-colors focus-visible:outline-none',
+        'flex min-h-[3.75rem] flex-col items-center justify-center gap-1 px-1 text-micro transition-colors focus-visible:outline-none',
         active ? 'text-primary' : 'text-muted hover:text-foreground'
       )}
       aria-current={active ? 'page' : undefined}
       title={item.label}
     >
-      <span className="text-base leading-none" aria-hidden>
+      <span
+        className={cn(
+          'flex h-8 w-8 items-center justify-center rounded-xl text-base leading-none transition-colors',
+          active ? 'bg-primary/12' : 'bg-transparent'
+        )}
+        aria-hidden
+      >
         {item.icon}
       </span>
       <span className="truncate">{label}</span>
@@ -100,26 +106,24 @@ function NavActionButton({
       type="button"
       onClick={onClick}
       className={cn(
-        'flex min-h-14 w-full flex-col items-center justify-center gap-0.5 px-1 text-micro transition-colors focus-visible:outline-none',
-        isAdd
-          ? 'text-primary-foreground'
-          : active
-            ? 'text-primary'
-            : 'text-muted hover:text-foreground'
+        'flex min-h-[3.75rem] w-full flex-col items-center justify-center gap-1 px-1 text-micro transition-colors focus-visible:outline-none',
+        isAdd ? 'text-primary' : active ? 'text-primary' : 'text-muted hover:text-foreground'
       )}
       aria-label={item.label}
       aria-haspopup="dialog"
     >
       <span
         className={cn(
-          'flex h-8 w-8 items-center justify-center text-lg leading-none',
-          isAdd && 'rounded-full bg-primary font-semibold shadow-sm'
+          'flex items-center justify-center text-lg leading-none transition-transform active:scale-95',
+          isAdd
+            ? '-mt-3 h-12 w-12 rounded-full bg-primary text-xl font-semibold text-primary-foreground shadow-primary'
+            : 'h-8 w-8 rounded-xl'
         )}
         aria-hidden
       >
         {item.icon}
       </span>
-      <span className="truncate">{label}</span>
+      <span className={cn('truncate', isAdd && '-mt-0.5')}>{label}</span>
     </button>
   );
 }

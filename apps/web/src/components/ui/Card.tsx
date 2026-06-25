@@ -4,13 +4,20 @@ import { cn } from '@/lib/utils/cn';
 type CardProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
   padding?: 'none' | 'sm' | 'md';
+  interactive?: boolean;
 };
 
-export function Card({ children, className, padding = 'md', ...props }: CardProps) {
+export function Card({
+  children,
+  className,
+  padding = 'md',
+  interactive = false,
+  ...props
+}: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-lg border border-border bg-surface shadow-sm',
+        interactive ? 'surface-card-interactive' : 'surface-card',
         padding === 'sm' && 'p-3',
         padding === 'md' && 'p-4',
         className

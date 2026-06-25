@@ -70,6 +70,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-063 | 2026-06-25 | B | MEC-V1-S031 — Navigation IA v2 (V1.8) | — | [STEP-063](docs/build-steps/STEP-063-nav-ia-v2.md) |
 | STEP-064 | 2026-06-25 | B | MEC-V1-S032 — Delete UX v2 (V1.8.1) | — | [STEP-064](docs/build-steps/STEP-064-delete-ux-v2.md) |
 | STEP-065 | 2026-06-25 | B | MEC-V1-S033 — Production hardening (V1.8.2) | — | [STEP-065](docs/build-steps/STEP-065-production-hardening.md) |
+| STEP-066 | 2026-06-25 | B | MEC-V1-S034 — Design & UX v2 (V1.9.0) | — | [STEP-066](docs/build-steps/STEP-066-design-ux-v2.md) |
 
 ---
 

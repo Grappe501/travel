@@ -13,6 +13,25 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.9.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.9.0 (STEP-066)**
+
+Design & UX v2 — visual refresh, typography, and shell polish.
+
+### Added
+- **Design system v2** — Teal primary palette, gradient backgrounds, glass navigation, Plus Jakarta Sans
+- **StatCard & QuickActionGrid** — Dashboard metrics and action tiles with icons
+- **Auth panel** — Elevated card layout for login and signup
+
+### Changed
+- **UI components** — Button, Card, Input, PageHeader, EmptyState restyled with v2 tokens
+- **Navigation** — Bottom nav FAB, active tab pills, desktop logo mark
+- **Home page** — Marketing hero with feature bullets and CTAs
+- **Dashboard** — Stat grid, quick actions, live version badge from `APP_RELEASE`
+
+---
+
 ## [1.8.2] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.8.2 (STEP-065)**

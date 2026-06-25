@@ -15,6 +15,7 @@ type DashboardShellProps = {
   description?: string;
   badge?: ReactNode;
   actions?: ReactNode;
+  eyebrow?: string;
   children: ReactNode;
   className?: string;
 };
@@ -24,31 +25,38 @@ export function DashboardShell({
   description,
   badge,
   actions,
+  eyebrow,
   children,
   className,
 }: DashboardShellProps) {
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-background">
-      <SkipLink />
-      <AppTopNav />
-      <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8">
-        <ConditionalMobileQuickNav />
-        <ConditionalGlobalSearchBar />
-        <PageHeader title={title} description={description} badge={badge} actions={actions} />
-        <OfflineBanner />
-        <main
-          id="main-content"
-          tabIndex={-1}
-          aria-label={title}
-          className={cn('mt-8 space-y-6 outline-none', className)}
-        >
-          {children}
-        </main>
-        <AppFooter />
+      <div className="app-shell-bg">
+        <SkipLink />
+        <AppTopNav />
+        <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8">
+          <ConditionalMobileQuickNav />
+          <ConditionalGlobalSearchBar />
+          <PageHeader
+            title={title}
+            description={description}
+            badge={badge}
+            actions={actions}
+            eyebrow={eyebrow}
+          />
+          <OfflineBanner />
+          <main
+            id="main-content"
+            tabIndex={-1}
+            aria-label={title}
+            className={cn('mt-8 space-y-6 outline-none', className)}
+          >
+            {children}
+          </main>
+          <AppFooter />
+        </div>
+        <BottomNav />
       </div>
-      <BottomNav />
-    </div>
     </ToastProvider>
   );
 }

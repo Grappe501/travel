@@ -6,7 +6,12 @@ import { LoadingState } from '@/components/ui';
 
 export default function LoginPage() {
   return (
-    <ShellPage title="Log in" description="Sign in to manage trips and receipts.">
+    <ShellPage
+      title="Log in"
+      description="Sign in to manage trips and receipts."
+      eyebrow="Welcome back"
+      auth
+    >
       <AuthSetupAlert />
       <Suspense fallback={<LoadingState label="Loading form…" size="sm" />}>
         <LoginForm />
