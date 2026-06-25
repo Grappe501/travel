@@ -8,9 +8,11 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Blueprint + MEI + MRMS + DRS complete** — sign off → build
+**Design complete — implementation starts now**
 
-**25 volumes** (0–24) + **[MEI](docs/MASTER-EXECUTION-INDEX.md)** (schedule) + **[MRMS](docs/requirements/MRMS.md)** (requirements) + **[DRS](docs/requirements/MRMS-2-DRS.md)** (domain namespace). Build: [Volume 21](docs/blueprint/21-construction-manual.md) WAVE-001 after sign-off (**STEP-032**).
+**Control stack:** [MEI](docs/MASTER-EXECUTION-INDEX.md) · [MRMS](docs/requirements/MRMS.md) · [DRS](docs/requirements/MRMS-2-DRS.md) · **[V1 Execution Package](docs/execution/VERSION_1_EXECUTION_PACKAGE.md)**
+
+**Next:** [Go/No-Go](docs/execution/GO-NO-GO-CHECKLIST.md) → **[MEC-V1-S001](docs/execution/slices/MEC-V1-S001-scaffold.md)** (STEP-033)
 
 ---
 
@@ -32,7 +34,8 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 |----------|---------|
 | [Master Execution Index (MEI)](docs/MASTER-EXECUTION-INDEX.md) | **Construction schedule** — open this while building |
 | [MRMS — Requirements System](docs/requirements/MRMS.md) | **Requirements backbone** — every MRID |
-| [DRS — Domain Registration](docs/requirements/MRMS-2-DRS.md) | **Domain namespace** — NASA-level traceability |
+| [V1 Execution Package](docs/execution/VERSION_1_EXECUTION_PACKAGE.md) | **Start coding here** — 10 slices + prompts |
+| [Go/No-Go Checklist](docs/execution/GO-NO-GO-CHECKLIST.md) | Sign-off before S001 |
 | [Volume 24 — Product Constitution](docs/blueprint/24-product-constitution.md) | **Permanent identity** — design DNA |
 | [Blueprint Index](docs/blueprint/README.md) | All planning volumes (0–24) |
 | [Volume 21 — Construction Manual](docs/blueprint/21-construction-manual.md) | **First build** — waves, AI protocol |

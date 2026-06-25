@@ -27,9 +27,9 @@
 19. **Volume 24** is the *Product Constitution* — DNA-IDs, design language, permanent identity.
 20. **[Master Execution Index (MEI)](../MASTER-EXECUTION-INDEX.md)** is the *construction schedule*.
 21. **[MRMS](../requirements/MRMS.md)** is the *requirements backbone*.
-22. **[DRS (MRMS-2)](../requirements/MRMS-2-DRS.md)** is the *domain namespace* — every artifact has a permanent home.
+22. **[V1 Execution Package](../execution/VERSION_1_EXECUTION_PACKAGE.md)** is the *first build instructions* — start coding after Go/No-Go.
 
-**Blueprint status:** Volumes 0–24 + MEI + MRMS + DRS complete. Sign off → WAVE-001 (**STEP-032**).
+**Status:** Design complete. **Code:** [MEC-V1-S001](../execution/slices/MEC-V1-S001-scaffold.md) → STEP-033.
 
 ---
 
@@ -94,7 +94,7 @@
 | [MASTER-EXECUTION-INDEX.md](../MASTER-EXECUTION-INDEX.md) | **Construction schedule** |
 | [requirements/MRMS.md](../requirements/MRMS.md) | **Requirements backbone (MRMS)** |
 | [requirements/MRMS-2-DRS.md](../requirements/MRMS-2-DRS.md) | **Domain namespace (DRS)** |
-| [domains/DRS-INDEX.md](../domains/DRS-INDEX.md) | Permanent domain registry |
+| [execution/VERSION_1_EXECUTION_PACKAGE.md](../execution/VERSION_1_EXECUTION_PACKAGE.md) | **V1 build packet** — code starts here |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
 | [Root README](../../README.md) | Project overview and quick start |
 

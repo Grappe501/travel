@@ -16,6 +16,7 @@
 | **This document (MEI)** | **Schedule** — what to build, in what order, status |
 | [MRMS](requirements/MRMS.md) | **Requirements** — every MRID, test, release |
 | [MRMS-2 DRS](requirements/MRMS-2-DRS.md) | **Domain namespace** — NASA-level traceability |
+| [V1 Execution Package](execution/VERSION_1_EXECUTION_PACKAGE.md) | **Build packet** — stack, slices, Burt prompts |
 | [BUILD-LOG.md](../BUILD-LOG.md) | **Ledger** — every STEP with commit SHA |
 
 **Owner:** Product + Engineering · **Update:** Every BUILD slice + every STEP  
@@ -102,7 +103,7 @@ Nothing out of sequence. Maps to [WAVE-INDEX](construction/WAVE-INDEX.md).
 | **13** | Testing — full pyramid + UAT | BUILD-014 | ☐ |
 | **14** | Launch — Alpha → GA | BUILD-014 | ☐ |
 
-**Next:** BUILD-001 → **STEP-032** (Phase 1 / WAVE-001)
+**Next:** [MEC-V1-S001](execution/slices/MEC-V1-S001-scaffold.md) → **STEP-033** (first code)
 
 ---
 
@@ -342,7 +343,7 @@ CEO / founder dashboard — update weekly.
 
 **[mei/MEI-KANBAN.md](mei/MEI-KANBAN.md)** — Backlog · Ready · Building · Testing · Complete
 
-Current: All BUILD slices in **Backlog** until STEP-032.
+Current: **MEC-V1-S001 Ready** — [Go/No-Go](execution/GO-NO-GO-CHECKLIST.md) then STEP-033.
 
 ---
 
@@ -373,7 +374,8 @@ Current: All BUILD slices in **Backlog** until STEP-032.
 | Milestone | Target | Gate |
 |-----------|--------|------|
 | Blueprint + MEI + MRMS + DRS complete | ☑ 2026-06-24 | Volumes 0–24 + MEI + MRMS + DRS |
-| Implementation start | STEP-032 | Sign-off |
+| Blueprint + packet complete | ☑ 2026-06-24 | Volumes 0–24 + MEI + MRMS + DRS + V1 packet |
+| **First code (MEC-V1-S001)** | **STEP-033** | Go/No-Go sign-off |
 | Internal Alpha | TBD | WAVE-001–006 |
 | Private Beta | TBD | WAVE-001–008 |
 | Public Beta | TBD | WAVE-001–009 |
@@ -449,16 +451,14 @@ The MEI eliminates uncertainty. Any engineer or AI agent can answer within minut
 
 | Question | Answer location |
 |----------|-----------------|
-| What am I building? | BUILD-INDEX · MRID |
+| What am I building? | [SLICE-INDEX](execution/SLICE-INDEX.md) · BUILD-INDEX · MRID |
 | Why? | Blueprint vol · MRID text |
 | What does it depend on? | §5 |
 | How will I know it's finished? | BLD-DOD-001 · MRID status ☑ |
 | What comes next? | §4 · Kanban |
 
-**Sign-off** → **STEP-032** → **BUILD-001** → WAVE-001
+**Sign-off** → **[Go/No-Go](execution/GO-NO-GO-CHECKLIST.md)** → **STEP-033** → **MEC-V1-S001**
 
 ---
 
-*Build ledger: [BUILD-LOG.md](../BUILD-LOG.md) · Legacy alias: [MASTER-BUILD-INDEX.md](MASTER-BUILD-INDEX.md)*
-
-*MEI v2.0 — STEP-029 — Blueprint complete; implementation ready*
+*MEI v2.1 — STEP-032 — V1 Execution Package complete; code starts STEP-033*

@@ -42,4 +42,4 @@ Add **MRMS-2 — Domain Registration System (DRS)** — permanent hierarchical n
 
 ## Next step
 
-Sign-off → **STEP-032** — BUILD-001 / WAVE-001 (repository scaffold)
+Sign-off → **STEP-032 V1 packet** → **STEP-033 MEC-V1-S001**
