@@ -737,4 +737,4 @@ Publish at `/roadmap` — under-promise, over-deliver.
 
 ---
 
-*Previous: [Volume 6 — Technical Architecture & Production Infrastructure](06-technical-architecture.md) | Next: [Volume 8 — Security](08-security.md)*
+*Previous: [Volume 6 — Technical Architecture & Production Infrastructure](06-technical-architecture.md) | Next: [Volume 8 — Security, Privacy & Trust Architecture](08-security.md)*

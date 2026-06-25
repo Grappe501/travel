@@ -280,4 +280,4 @@ A feature is done when:
 
 ---
 
-*Previous: [Volume 8 — Security](08-security.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 8 — Security, Privacy & Trust Architecture](08-security.md) | Return to [Blueprint Index](README.md)*
