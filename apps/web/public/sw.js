@@ -1,5 +1,5 @@
 /* Mileage & Expense Copilot — PWA service worker (STEP-069) */
-const CACHE_VERSION = 'mec-pwa-v1';
+const CACHE_VERSION = 'mec-pwa-v2';
 const PRECACHE_URLS = [
   '/offline.html',
   '/manifest.webmanifest',

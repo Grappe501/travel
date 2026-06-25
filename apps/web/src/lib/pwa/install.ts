@@ -1,6 +1,7 @@
 import { APP_RELEASE } from '@/lib/app-release';
 
 export const PWA_SW_PATH = '/sw.js';
+/** Bumped in sw.js CACHE_VERSION when offline shell changes. */
 export const PWA_CACHE_BUST = APP_RELEASE.version;
 
 export type BeforeInstallPromptEvent = Event & {
@@ -22,6 +23,11 @@ export function isIosSafari(): boolean {
   return /iPad|iPhone|iPod/.test(ua) && !(window as Window & { MSStream?: unknown }).MSStream;
 }
 
+export function isAndroidDevice(): boolean {
+  if (typeof window === 'undefined') return false;
+  return /Android/i.test(window.navigator.userAgent);
+}
+
 export function canRegisterServiceWorker(): boolean {
   return typeof window !== 'undefined' && 'serviceWorker' in navigator;
 }
@@ -30,7 +36,10 @@ export async function registerServiceWorker(): Promise<ServiceWorkerRegistration
   if (!canRegisterServiceWorker()) return null;
 
   try {
-    return await navigator.serviceWorker.register(`${PWA_SW_PATH}?v=${PWA_CACHE_BUST}`, { scope: '/' });
+    return await navigator.serviceWorker.register(PWA_SW_PATH, {
+      scope: '/',
+      updateViaCache: 'none',
+    });
   } catch (error) {
     console.warn('Service worker registration failed:', error);
     return null;

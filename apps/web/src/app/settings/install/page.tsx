@@ -40,7 +40,10 @@ export default async function InstallAppPage() {
       <Card>
         <CardHeader>
           <CardTitle>Android / Chrome</CardTitle>
-          <CardDescription>Tap Install app above when prompted, or use the browser menu.</CardDescription>
+          <CardDescription>
+            Tap Install app when Chrome offers it, or use the ⋮ menu → Install app / Add to Home
+            screen.
+          </CardDescription>
         </CardHeader>
       </Card>
 

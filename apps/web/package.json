@@ -12,7 +12,8 @@
     "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:e2e": "playwright test",
     "test:e2e:smoke": "playwright test --grep @smoke",
-    "test:e2e:a11y": "playwright test --grep @a11y"
+    "test:e2e:a11y": "playwright test --grep @a11y",
+    "icons:pwa": "node scripts/generate-pwa-icons.mjs"
   },
   "dependencies": {
     "@mileage-copilot/shared": "workspace:*",
@@ -42,6 +43,7 @@
     "eslint": "^9.17.0",
     "eslint-config-next": "^15.1.3",
     "postcss": "^8.4.49",
+    "sharp": "^0.35.2",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "vitest": "^3.0.5"

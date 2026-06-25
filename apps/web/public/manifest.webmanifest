@@ -1,10 +1,12 @@
 {
+  "id": "/",
   "name": "Mileage & Expense Copilot",
   "short_name": "MEC",
   "description": "Every mile. Every receipt. Every deduction.",
   "start_url": "/dashboard",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "browser"],
   "orientation": "portrait-primary",
   "background_color": "#f0f7f6",
   "theme_color": "#2d8f7f",
@@ -29,6 +31,5 @@
       "purpose": "maskable"
     }
   ],
-  "screenshots": [],
   "prefer_related_applications": false
 }

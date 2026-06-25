@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils/cn';
 import {
+  isAndroidDevice,
   isIosSafari,
   isStandaloneDisplay,
   subscribeToInstallPrompt,
@@ -21,8 +22,11 @@ export function InstallAppPrompt({ variant = 'card', className }: InstallAppProm
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [installed, setInstalled] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  const [showIosHint, setShowIosHint] = useState(false);
+  const [showManualHint, setShowManualHint] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+
+  const ios = isIosSafari();
+  const android = isAndroidDevice();
 
   useEffect(() => {
     setInstalled(isStandaloneDisplay());
@@ -37,31 +41,50 @@ export function InstallAppPrompt({ variant = 'card', className }: InstallAppProm
     return null;
   }
 
-  const ios = isIosSafari();
-  const canInstall = Boolean(installEvent) || ios;
-
-  if (!canInstall) {
+  const canShow = Boolean(installEvent) || ios || android;
+  if (!canShow) {
     return null;
   }
 
   async function handleInstall() {
-    if (ios && !installEvent) {
-      setShowIosHint((value) => !value);
+    if (installEvent) {
+      const outcome = await triggerInstallPrompt(installEvent);
+      setInstallEvent(null);
+
+      if (outcome === 'accepted') {
+        setInstalled(true);
+        setMessage('App installed — open it from your home screen.');
+        return;
+      }
+
+      if (outcome === 'dismissed') {
+        setMessage('Install dismissed. Use the steps below or try again from Settings.');
+      } else {
+        setMessage('Install could not start. Use the manual steps below.');
+      }
+      setShowManualHint(true);
       return;
     }
 
-    if (!installEvent) return;
-
-    const outcome = await triggerInstallPrompt(installEvent);
-    setInstallEvent(null);
-
-    if (outcome === 'accepted') {
-      setInstalled(true);
-      setMessage('App installed — open it from your home screen.');
-    } else if (outcome === 'dismissed') {
-      setMessage('Install dismissed. You can add the app anytime from Settings.');
-    }
+    setShowManualHint((value) => !value);
   }
+
+  const manualHint = ios ? (
+    <p className="rounded-xl bg-primary/10 px-3 py-2 text-caption text-foreground">
+      Tap <strong>Share</strong> in Safari, then <strong>Add to Home Screen</strong>.
+    </p>
+  ) : android ? (
+    <div className="space-y-2 rounded-xl bg-primary/10 px-3 py-2 text-caption text-foreground">
+      <p>
+        In Chrome, tap the <strong>⋮</strong> menu (top right), then choose{' '}
+        <strong>Install app</strong> or <strong>Add to Home screen</strong>.
+      </p>
+      <p className="text-muted">
+        If you do not see Install, visit this site again after signing in — Chrome needs a short
+        visit before offering install.
+      </p>
+    </div>
+  ) : null;
 
   const content = (
     <>
@@ -84,16 +107,17 @@ export function InstallAppPrompt({ variant = 'card', className }: InstallAppProm
 
       {message ? <p className="text-caption text-primary">{message}</p> : null}
 
-      {showIosHint ? (
-        <p className="rounded-xl bg-primary/10 px-3 py-2 text-caption text-foreground">
-          Tap <strong>Share</strong> in Safari, then <strong>Add to Home Screen</strong>.
-        </p>
-      ) : null}
+      {showManualHint ? manualHint : null}
 
       <div className="flex flex-wrap gap-2">
         <Button type="button" size="sm" onClick={() => void handleInstall()}>
-          {ios && !installEvent ? 'How to install' : 'Install app'}
+          {installEvent ? 'Install app' : ios || android ? 'How to install' : 'Install app'}
         </Button>
+        {!showManualHint && (ios || android) && !installEvent ? (
+          <Button type="button" size="sm" variant="secondary" onClick={() => setShowManualHint(true)}>
+            Show steps
+          </Button>
+        ) : null}
         {variant === 'banner' ? (
           <Button type="button" size="sm" variant="ghost" onClick={() => setDismissed(true)}>
             Not now
