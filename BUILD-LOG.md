@@ -45,7 +45,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-038 | 2026-06-24 | A | MEC-V1-S006 — Trip engine start/end/history, mileage calc, audit | `34cb52c` | [STEP-038](docs/build-steps/STEP-038-mec-v1-s006-trip-engine.md) |
 | STEP-039 | 2026-06-24 | A | MEC-V1-S007 — Receipt upload, private storage, FileAsset, status workflow | `2fedd86` | [STEP-039](docs/build-steps/STEP-039-mec-v1-s007-receipt-upload.md) |
 | STEP-040 | 2026-06-24 | A | MEC-V1-S008 — OpenAI Vision OCR, review UI, approve → expense | `bb8d4ff` | [STEP-040](docs/build-steps/STEP-040-mec-v1-s008-ocr-review.md) |
-| STEP-041 | 2026-06-25 | A | MEC-V1-S009 — Report builder, PDF/CSV/Excel export, Report rows | _(pending)_ | [STEP-041](docs/build-steps/STEP-041-mec-v1-s009-reports.md) |
+| STEP-041 | 2026-06-25 | A | MEC-V1-S009 — Report builder, PDF/CSV/Excel export, Report rows | `019cd13` | [STEP-041](docs/build-steps/STEP-041-mec-v1-s009-reports.md) |
 
 ---
 
