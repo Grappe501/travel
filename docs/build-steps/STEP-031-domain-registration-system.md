@@ -5,7 +5,7 @@
 | **Step ID** | STEP-031 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | *(filled after commit)* |
+| **Commit** | `6cdaf75` |
 | **Status** | complete |
 
 ## Objective

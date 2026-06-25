@@ -35,7 +35,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-028 | 2026-06-24 | Blueprint | Volume 24 — Product constitution (DNA registry) | `c5bf163` | [STEP-028](docs/build-steps/STEP-028-volume-24-constitution.md) |
 | STEP-029 | 2026-06-24 | Blueprint | Master Execution Index (MEI) v2.0 — MRID, BUILD slices, control tower | `bb00470` | [STEP-029](docs/build-steps/STEP-029-master-execution-index.md) |
 | STEP-030 | 2026-06-24 | Blueprint | Master Requirements Management System (MRMS) — domain MRIDs, registry | `49ec4c1` | [STEP-030](docs/build-steps/STEP-030-master-requirements-management.md) |
-| STEP-031 | 2026-06-24 | Blueprint | MRMS-2 Domain Registration System (DRS) — hierarchical namespace | *(pending)* | [STEP-031](docs/build-steps/STEP-031-domain-registration-system.md) |
+| STEP-031 | 2026-06-24 | Blueprint | MRMS-2 Domain Registration System (DRS) — hierarchical namespace | `6cdaf75` | [STEP-031](docs/build-steps/STEP-031-domain-registration-system.md) |
 
 ---
 

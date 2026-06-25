@@ -42,4 +42,4 @@ Establish the **Master Requirements Management System (MRMS)** — enterprise-gr
 
 ## Next step
 
-Sign-off → **STEP-031** — BUILD-001 / WAVE-001 (repository scaffold)
+Sign-off → **STEP-031 DRS** → **STEP-032** BUILD-001 / WAVE-001

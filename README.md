@@ -31,9 +31,10 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 | Document | Purpose |
 |----------|---------|
 | [Master Execution Index (MEI)](docs/MASTER-EXECUTION-INDEX.md) | **Construction schedule** — open this while building |
-| [MRMS — Requirements System](docs/requirements/MRMS.md) | **Requirements backbone** — every MRID, test, release |
-| [Blueprint Index](docs/blueprint/README.md) | All 23 planning documents (Volumes 0–22) |
-| [Volume 0 — Product Doctrine](docs/blueprint/00-product-doctrine.md) | Design constitution — read first |
+| [MRMS — Requirements System](docs/requirements/MRMS.md) | **Requirements backbone** — every MRID |
+| [DRS — Domain Registration](docs/requirements/MRMS-2-DRS.md) | **Domain namespace** — NASA-level traceability |
+| [Volume 24 — Product Constitution](docs/blueprint/24-product-constitution.md) | **Permanent identity** — design DNA |
+| [Blueprint Index](docs/blueprint/README.md) | All planning volumes (0–24) |
 | [Volume 21 — Construction Manual](docs/blueprint/21-construction-manual.md) | **First build** — waves, AI protocol |
 | [Volume 23 — Product Factory](docs/blueprint/23-product-factory.md) | **Factory OS** — every feature lifecycle |
 | [Volume 22 — Platform Architecture](docs/blueprint/22-platform-architecture.md) | Platform constitution — 10-year evolution |
