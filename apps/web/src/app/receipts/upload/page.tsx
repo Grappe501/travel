@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { ContextualHelpLink } from '@/components/help/ContextualHelpLink';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { ShellNavActions } from '@/components/layout/ShellNavActions';
 import { ReceiptUploadForm } from '@/components/receipts/ReceiptManager';
@@ -55,6 +56,7 @@ export default async function ReceiptUploadPage({ searchParams }: PageProps) {
         defaultBusinessId={businessIdFromQuery ?? linkedTrip?.businessId}
         lockTrip={lockedToTrip}
       />
+      <ContextualHelpLink href="/help/scan-receipts" label="How to scan and review receipts" />
     </DashboardShell>
   );
 }

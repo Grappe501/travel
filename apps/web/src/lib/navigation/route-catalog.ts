@@ -9,6 +9,7 @@ import {
 import {
   SETTINGS_ACCOUNT_GROUP,
   SETTINGS_PREFERENCES_GROUP,
+  SETTINGS_SUPPORT_GROUP,
   SETTINGS_WORKSPACE_GROUP,
 } from '@/components/settings/SettingsNavList';
 
@@ -49,6 +50,7 @@ export const STATIC_APP_ROUTES = [
   '/legal/privacy',
   '/legal/terms',
   '/legal/refunds',
+  '/help',
   '/auth/forgot-password',
   '/auth/reset-password',
   '/auth/verify-email',
@@ -88,6 +90,7 @@ export function collectNavHrefs(): string[] {
   for (const item of [
     ...SETTINGS_ACCOUNT_GROUP,
     ...SETTINGS_PREFERENCES_GROUP,
+    ...SETTINGS_SUPPORT_GROUP,
     ...SETTINGS_WORKSPACE_GROUP,
   ]) {
     hrefs.add(item.href);

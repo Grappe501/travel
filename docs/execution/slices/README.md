@@ -35,3 +35,9 @@ See [ROADMAP-043-052.md](../ROADMAP-043-052.md).
 | 20 | Launch gates & GA | 052 | [MEC-V1-S020-launch-ga.md](MEC-V1-S020-launch-ga.md) |
 
 **Next:** S015 / STEP-047 — E2E critical journeys.
+
+## V2 program (STEP-073)
+
+See [slices/v2/](v2/) · [V2-SLICE-INDEX.md](../V2-SLICE-INDEX.md).
+
+**Next implementation:** MEC-V2-S001 after GO-NO-GO-V2 section A ☑.

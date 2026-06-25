@@ -59,7 +59,7 @@ Update **Dev Status** and **QA Status** columns as screens ship.
 | SCR-048 | Appearance | `/settings/appearance` | `/settings/appearance` | 7 | ☑ | ☐ |
 | SCR-049 | Security | `/settings/security` | `/settings/security` | 7 | ☑ | ☐ |
 | SCR-050 | Data & Privacy | `/settings/privacy` | `/settings/privacy` | 7 | ☑ | ☐ |
-| SCR-051 | Help Center | `/help` | — | 7 | ☐ | ☐ |
+| SCR-051 | Help Center | `/help` | `/help` | 7 | ☑ | ◐ |
 | SCR-052 | Contact Support | `/help/contact` | — | 7 | ☐ | ☐ |
 | SCR-053 | Admin Dashboard | `/admin` | `/admin` | 7 | ☑ | ☐ |
 | SCR-054 | User Detail (Admin) | `/admin/users/[id]` | `/admin/users/[id]` | 7 | ☑ | ☐ |

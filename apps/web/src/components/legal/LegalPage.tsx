@@ -29,6 +29,9 @@ export function LegalFooter() {
         <Link href="/legal/refunds" className="hover:text-foreground hover:underline">
           Refunds
         </Link>
+        <Link href="/help" className="hover:text-foreground hover:underline">
+          Help
+        </Link>
         <Link href="/login" className="hover:text-foreground hover:underline">
           Log in
         </Link>

@@ -45,6 +45,8 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S039 | Design & UX v3 | — | WAVE-001 ext | — | STEP-071 | ☑ Complete |
 | MEC-V1-S040 | Field test beta login | — | WAVE-001 ext | ADM | STEP-072 | ☑ Complete |
 
-**Post-V1.13 backlog:** help center · team access · expense categories
+**V2 program (ROAD-VER-2.0):** [V2-SLICE-INDEX.md](V2-SLICE-INDEX.md) · [VERSION_2_EXECUTION_PACKET.md](VERSION_2_EXECUTION_PACKET.md) · STEP-073 planning ☑
+
+**Post-V1.13 backlog (→ V2 bridge):** help center · team access · expense categories → MEC-V2-S001–S003
 
 Prompts: [slices/](slices/)

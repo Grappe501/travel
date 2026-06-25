@@ -4,6 +4,7 @@ import { DashboardShell } from '@/components/layout/DashboardShell';
 import {
   SETTINGS_ACCOUNT_GROUP,
   SETTINGS_PREFERENCES_GROUP,
+  SETTINGS_SUPPORT_GROUP,
   SETTINGS_WORKSPACE_GROUP,
   SettingsNavList,
 } from '@/components/settings/SettingsNavList';
@@ -34,6 +35,11 @@ export default async function SettingsPage() {
       <section className="space-y-3">
         <SectionHeader title="Preferences" />
         <SettingsNavList items={SETTINGS_PREFERENCES_GROUP} />
+      </section>
+
+      <section className="space-y-3">
+        <SectionHeader title="Support" />
+        <SettingsNavList items={SETTINGS_SUPPORT_GROUP} />
       </section>
 
       <section className="space-y-3">

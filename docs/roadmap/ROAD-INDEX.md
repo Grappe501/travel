@@ -47,4 +47,6 @@ Canonical spec: [Volume 20 — Product Evolution](../blueprint/20-product-evolut
 
 Auto trip detection · Teams · Public API · Native apps · Enterprise SSO · International · Hardware OBD
 
+→ **V2 execution packet:** [VERSION_2_EXECUTION_PACKET.md](../execution/VERSION_2_EXECUTION_PACKET.md) · STEP-073 · [DEC-004](../decisions/DEC-004-v2-scope-lock.md)
+
 PR convention: `ROAD-IDs: ROAD-VER-1.0, ROAD-CAT-REL`

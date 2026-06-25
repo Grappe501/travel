@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { ContextualHelpLink } from '@/components/help/ContextualHelpLink';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { TripStartForm } from '@/components/trips/TripManager';
 import { ButtonLink } from '@/components/ui';
@@ -32,6 +33,7 @@ export default async function TripStartPage() {
         vehicles={vehicles}
         activeTrip={activeTrip}
       />
+      <ContextualHelpLink href="/help/start-and-end-trips" label="How to start and end trips" />
     </DashboardShell>
   );
 }

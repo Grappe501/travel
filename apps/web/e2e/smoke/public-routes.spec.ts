@@ -9,6 +9,9 @@ const PUBLIC_ROUTES = [
   '/legal/privacy',
   '/legal/terms',
   '/legal/refunds',
+  '/help',
+  '/help/getting-started',
+  '/beta/login',
   '/auth/forgot-password',
 ];
 

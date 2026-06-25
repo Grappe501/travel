@@ -37,6 +37,15 @@ export function SettingsNavList({ items }: { items: SettingsNavItem[] }) {
   );
 }
 
+export const SETTINGS_SUPPORT_GROUP: SettingsNavItem[] = [
+  {
+    href: '/help',
+    title: 'Help center',
+    description: 'Guides for trips, receipts, GPS, and reports',
+    icon: '❓',
+  },
+];
+
 export const SETTINGS_ACCOUNT_GROUP: SettingsNavItem[] = [
   {
     href: '/settings/account',

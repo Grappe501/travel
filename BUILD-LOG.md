@@ -76,7 +76,9 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-069 | 2026-06-25 | B | MEC-V1-S037 — PWA install & offline app (V1.10.0) | — | [STEP-069](docs/build-steps/STEP-069-pwa-install.md) |
 | STEP-070 | 2026-06-25 | B | MEC-V1-S038 — GPS trip tracking (V1.11.0) | — | [STEP-070](docs/build-steps/STEP-070-gps-trip-tracking.md) |
 | STEP-071 | 2026-06-25 | B | MEC-V1-S039 — Design & UX v3 (V1.12.0) | — | [STEP-071](docs/build-steps/STEP-071-design-ux-v3.md) |
-| STEP-072 | 2026-06-25 | B | MEC-V1-S040 — Field test beta login (V1.13.0) | — | [STEP-072](docs/build-steps/STEP-072-field-test-beta.md) |
+| STEP-073 | 2026-06-25 | Planning | ROAD-VER-2.0 — Version 2 execution packet | — | [STEP-073](docs/build-steps/STEP-073-v2-execution-packet.md) |
+| STEP-074 | 2026-06-25 | B | MEC-V2-S001 — Help center (V1.14.0) | — | [STEP-074](docs/build-steps/STEP-074-help-center.md) |
+| STEP-073 | 2026-06-25 | Planning | ROAD-VER-2.0 — Version 2 execution packet (16 slices) | — | [STEP-073](docs/build-steps/STEP-073-v2-execution-packet.md) |
 
 ---
 

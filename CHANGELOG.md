@@ -13,6 +13,25 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.14.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.14.0 (STEP-074)**
+
+Help center — self-service guides for field testers and GA users.
+
+### Added
+- **Help center** (`/help`) — searchable articles for trips, GPS, receipts, reports, billing, privacy, field test FAQ
+- **Settings → Support** — Help center link
+- **Contextual help** — links on trip start and receipt upload flows
+
+### Fixed
+- **Auth continue** — hardened post-login routing for Netlify (STEP post-074 deploy includes prior fix)
+
+### Planning
+- **STEP-073 / ROAD-VER-2.0** — Version 2 execution packet (16 slices, DEC-004, GO-NO-GO-V2)
+
+---
+
 ## [1.13.0] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.13.0 (STEP-072)**

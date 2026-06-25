@@ -17,6 +17,7 @@
 | [MRMS](requirements/MRMS.md) | **Requirements** — every MRID, test, release |
 | [MRMS-2 DRS](requirements/MRMS-2-DRS.md) | **Domain namespace** — NASA-level traceability |
 | [V1 Execution Package](execution/VERSION_1_EXECUTION_PACKAGE.md) | **Build packet** — stack, slices, Burt prompts |
+| [V2 Execution Packet](execution/VERSION_2_EXECUTION_PACKET.md) | **V2 build packet** — bridge + ROAD-VER-2.0 slices |
 | [BUILD-LOG.md](../BUILD-LOG.md) | **Ledger** — every STEP with commit SHA |
 
 **Owner:** Product + Engineering · **Update:** Every BUILD slice + every STEP  
