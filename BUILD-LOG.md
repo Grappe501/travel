@@ -6,8 +6,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Step | Date | Phase | Summary | Commit | Detail |
 |------|------|-------|---------|--------|--------|
-| STEP-001 | 2026-06-24 | Blueprint | Master build blueprint v1.0 (Volumes 0–9), H: drive filesystem, Netlify skeleton | *pending first push* | [STEP-001](docs/build-steps/STEP-001-master-blueprint.md) |
-| STEP-002 | — | A | Git traceability protocol + GitHub remote init | — | [STEP-002](docs/build-steps/STEP-002-git-traceability.md) |
+| STEP-001 | 2026-06-24 | Blueprint | Master build blueprint v1.0 (Volumes 0–9), H: drive filesystem, Netlify skeleton | `a2d36c1` | [STEP-001](docs/build-steps/STEP-001-master-blueprint.md) |
+| STEP-002 | 2026-06-24 | A | Git traceability protocol + GitHub remote init | `a2d36c1` | [STEP-002](docs/build-steps/STEP-002-git-traceability.md) |
 
 ---
 
@@ -15,9 +15,9 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 1 (STEP-002 in progress) |
+| Steps completed | 2 |
 | Current phase | Blueprint complete → Phase A next |
-| Latest tag | — |
+| Latest tag | `v0.0.0` (after push) |
 
 ---
 

@@ -5,7 +5,7 @@
 | **Step ID** | STEP-001 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | *(updated after first push to GitHub)* |
+| **Commit** | [`a2d36c1`](https://github.com/Grappe501/travel/commit/a2d36c1) |
 | **Status** | complete |
 
 ## Objective
@@ -50,7 +50,7 @@ Establish the complete Version 1 design constitution before writing application 
 - [x] All 10 blueprint volumes written
 - [x] `setup-h-drive.ps1` creates directories on H:
 - [x] Path verification passes when H: env vars active
-- [ ] GitHub push *(STEP-002)*
+- [x] GitHub push *(STEP-002)*
 
 ## Next step
 

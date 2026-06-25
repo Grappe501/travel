@@ -5,7 +5,7 @@
 | **Step ID** | STEP-002 |
 | **Phase** | A (foundation) |
 | **Date** | 2026-06-24 |
-| **Commit** | *(updated after commit)* |
+| **Commit** | [`a2d36c1`](https://github.com/Grappe501/travel/commit/a2d36c1) |
 | **Status** | complete |
 
 ## Objective
