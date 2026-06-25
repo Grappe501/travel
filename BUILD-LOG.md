@@ -57,6 +57,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-050 | 2026-06-25 | B | MEC-V1-S018 — Sentry, /health deps, production checklist | `bf1a1f5` | [STEP-050](docs/build-steps/STEP-050-mec-v1-s018-production-ops.md) |
 | STEP-051 | 2026-06-25 | B | MEC-V1-S019 — AdminOS minimum customer lookup + health | `cbc3d09` | [STEP-051](docs/build-steps/STEP-051-mec-v1-s019-admin-minimum.md) |
 | STEP-052 | 2026-06-25 | H | MEC-V1-S020 — GA gates, catalog audit, v1.0.0 | `5e6d99c` | [STEP-052](docs/build-steps/STEP-052-mec-v1-s020-launch-ga.md) |
+| STEP-053 | 2026-06-25 | B | MEC-V1-S021 — Offline sync queue (trips + receipts) | — | [STEP-053](docs/build-steps/STEP-053-mec-v1-s021-offline-sync.md) |
 
 ---
 
@@ -64,8 +65,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 52 |
-| Current phase | **GA (Phase H)** — V1.0.0 tagged; V1.1 backlog next |
+| Steps completed | 53 |
+| Current phase | **V1.1** — BUILD-012 AI duplicate detection next |
 | Latest tag | `v1.0.0` |
 
 ---

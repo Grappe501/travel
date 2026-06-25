@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OfflineProvider } from '@/components/offline/OfflineProvider';
 import { SentryInit } from '@/components/monitoring/SentryInit';
 import { env } from '@/lib/env';
 import './globals.css';
@@ -13,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <SentryInit />
-        {children}
+        <OfflineProvider>{children}</OfflineProvider>
       </body>
     </html>
   );

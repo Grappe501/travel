@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { SyncStatusPanel } from '@/components/offline/SyncStatusPanel';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
@@ -14,6 +15,8 @@ export default async function SettingsPage() {
 
   return (
     <DashboardShell title="Settings" description="Account and app preferences.">
+      <SyncStatusPanel />
+
       <Card>
         <CardHeader>
           <CardTitle>Mileage</CardTitle>

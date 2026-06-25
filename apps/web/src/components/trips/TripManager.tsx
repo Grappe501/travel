@@ -3,7 +3,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useOffline } from '@/components/offline/OfflineProvider';
 import { Alert, Badge, Button, ButtonLink, Card, CardContent, Input, Select } from '@/components/ui';
+import { enqueueOfflineTripStart } from '@/lib/offline/queue';
+import { isBrowserOnline } from '@/lib/offline/connectivity';
 import type { SerializedBusiness, SerializedTrip, SerializedVehicle } from '@/lib/types/core';
 
 export function ActiveTripBanner({ trip }: { trip: SerializedTrip }) {
@@ -34,6 +37,7 @@ type TripStartFormProps = {
 
 export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStartFormProps) {
   const router = useRouter();
+  const { refresh, syncNow, localActiveTrip } = useOffline();
   const defaultBusiness = businesses.find((b) => b.isDefault)?.id ?? businesses[0]?.id ?? '';
   const defaultVehicle = vehicles.find((v) => v.isDefault)?.id ?? vehicles[0]?.id ?? '';
 
@@ -60,6 +64,24 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
       ...(startOdometer ? { startOdometer: Number(startOdometer) } : {}),
     };
 
+    if (!isBrowserOnline()) {
+      try {
+        const business = businesses.find((b) => b.id === businessId);
+        const vehicle = vehicles.find((v) => v.id === vehicleId);
+        await enqueueOfflineTripStart(payload, {
+          businessName: business?.name ?? 'Business',
+          vehicleNickname: vehicle?.nickname ?? 'Vehicle',
+        });
+        await refresh();
+        router.push('/trips');
+        router.refresh();
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Could not save trip offline');
+        setLoading(false);
+      }
+      return;
+    }
+
     const response = await fetch('/api/trips/start', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -74,6 +96,8 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
       return;
     }
 
+    await refresh();
+    await syncNow();
     router.push('/trips');
     router.refresh();
   }
@@ -94,7 +118,7 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
     );
   }
 
-  if (hasActiveTrip) {
+  if (hasActiveTrip || localActiveTrip) {
     return (
       <Alert variant="info">
         You already have an active trip. End it before starting another.

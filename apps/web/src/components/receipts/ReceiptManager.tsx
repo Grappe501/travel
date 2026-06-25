@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
+import { useOffline } from '@/components/offline/OfflineProvider';
 import { Alert, Badge, Button, ButtonLink, Card, CardContent, Select } from '@/components/ui';
 import { nativeFieldClassName } from '@/lib/a11y/form-styles';
+import { isBrowserOnline } from '@/lib/offline/connectivity';
+import { enqueueOfflineReceiptUpload } from '@/lib/offline/queue';
 import { cn } from '@/lib/utils/cn';
 import { MAX_RECEIPT_FILE_BYTES } from '@/lib/receipts/constants';
 import type { SerializedBusiness, SerializedReceipt, SerializedTrip } from '@/lib/types/core';
@@ -40,6 +43,7 @@ type ReceiptUploadFormProps = {
 
 export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps) {
   const router = useRouter();
+  const { refresh, syncNow } = useOffline();
   const inputRef = useRef<HTMLInputElement>(null);
   const [businessId, setBusinessId] = useState('');
   const [tripId, setTripId] = useState('');
@@ -77,6 +81,22 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
     setLoading(true);
     setError(null);
 
+    if (!isBrowserOnline()) {
+      try {
+        await enqueueOfflineReceiptUpload(selectedFile, {
+          ...(businessId ? { businessId } : {}),
+          ...(tripId ? { tripId } : {}),
+        });
+        await refresh();
+        router.push('/receipts');
+        router.refresh();
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Could not save receipt offline');
+        setLoading(false);
+      }
+      return;
+    }
+
     const formData = new FormData();
     formData.append('file', selectedFile);
     if (businessId) formData.append('businessId', businessId);
@@ -96,6 +116,8 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
       return;
     }
 
+    await refresh();
+    await syncNow();
     router.push(`/receipts/${result.data.id}/review`);
     router.refresh();
   }

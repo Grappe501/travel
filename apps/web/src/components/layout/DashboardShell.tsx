@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { SkipLink } from '@/components/a11y/SkipLink';
 import { BottomNav } from '@/components/layout/BottomNav';
+import { OfflineBanner } from '@/components/offline/OfflineBanner';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { cn } from '@/lib/utils/cn';
 
@@ -26,6 +27,7 @@ export function DashboardShell({
       <SkipLink />
       <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-10">
         <PageHeader title={title} description={description} badge={badge} actions={actions} />
+        <OfflineBanner />
         <main
           id="main-content"
           tabIndex={-1}
