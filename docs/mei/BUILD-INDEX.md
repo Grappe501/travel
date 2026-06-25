@@ -4,7 +4,7 @@
 
 | BUILD-ID | MEC-V1 | Name | WAVE | MRIDs | STEP | Status |
 |----------|--------|------|------|-------|------|--------|
-| BUILD-001 | S001–S002 | Scaffold + database | WAVE-001 | — | STEP-033–034 | Ready |
+| MEC-V1-S001 | S001–S002 | Scaffold + database | WAVE-001 | — | STEP-033–034 | S001 ☑ |
 | BUILD-002 | S003 | Auth + profile | WAVE-001 | MRID-000001 | STEP-035 | Backlog |
 | BUILD-003 | S004 | Design system | WAVE-001 | — | STEP-036 | Backlog |
 | BUILD-004 | S005 | Businesses + vehicles | WAVE-002 | 000002–000003 | STEP-037 | Backlog |

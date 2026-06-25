@@ -51,6 +51,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Master Requirements Management System (MRMS) v1.0** — domain MRIDs, master registry, lifecycle, coverage — STEP-030
 - **MRMS-2 Domain Registration System (DRS) v1.0** — hierarchical namespace, 58 domains, traceability chains — STEP-031
 - **Version 1 Execution Package** — locked stack, scope, 10 build slices, Cursor prompts, go/no-go — STEP-032
+- **Application scaffold (MEC-V1-S001)** — Next.js 15 monorepo, Tailwind, route shells, `/health`, CI — STEP-033
 
 ## [0.0.0] — 2026-06-24
 

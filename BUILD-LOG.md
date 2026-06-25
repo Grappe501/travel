@@ -37,6 +37,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-030 | 2026-06-24 | Blueprint | Master Requirements Management System (MRMS) — domain MRIDs, registry | `49ec4c1` | [STEP-030](docs/build-steps/STEP-030-master-requirements-management.md) |
 | STEP-031 | 2026-06-24 | Blueprint | MRMS-2 Domain Registration System (DRS) — hierarchical namespace | `6cdaf75` | [STEP-031](docs/build-steps/STEP-031-domain-registration-system.md) |
 | STEP-032 | 2026-06-24 | Execution | Version 1 Execution Package — 10 slices, locked stack, Burt prompts | `7f6d89d` | [STEP-032](docs/build-steps/STEP-032-version-1-execution-package.md) |
+| STEP-033 | 2026-06-24 | A | MEC-V1-S001 — Next.js 15 monorepo scaffold, route shells, CI | *(pending)* | [STEP-033](docs/build-steps/STEP-033-mec-v1-s001-scaffold.md) |
 
 ---
 
@@ -44,8 +45,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 32 |
-| Current phase | **V1 packet complete** → Go/No-Go → **MEC-V1-S001** (**STEP-033**) |
+| Steps completed | 33 |
+| Current phase | **Implementation** — MEC-V1-S002 database next (STEP-034) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---

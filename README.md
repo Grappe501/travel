@@ -8,11 +8,34 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Design complete — implementation starts now**
+**Implementation in progress** — MEC-V1-S001 complete
 
-**Control stack:** [MEI](docs/MASTER-EXECUTION-INDEX.md) · [MRMS](docs/requirements/MRMS.md) · [DRS](docs/requirements/MRMS-2-DRS.md) · **[V1 Execution Package](docs/execution/VERSION_1_EXECUTION_PACKAGE.md)**
+**Control stack:** [MEI](docs/MASTER-EXECUTION-INDEX.md) · [V1 Execution Package](docs/execution/VERSION_1_EXECUTION_PACKAGE.md)
 
-**Next:** [Go/No-Go](docs/execution/GO-NO-GO-CHECKLIST.md) → **[MEC-V1-S001](docs/execution/slices/MEC-V1-S001-scaffold.md)** (STEP-033)
+**Next:** [MEC-V1-S002 — Database](docs/execution/slices/MEC-V1-S002-database.md) (STEP-034)
+
+---
+
+## Local development
+
+Prerequisites: Node.js 22+, pnpm 9+, repo on `H:/Travel-Expense/`
+
+```powershell
+cd H:\Travel-Expense
+pnpm install
+copy .env.example .env.local   # edit placeholders as needed for later slices
+pnpm dev                       # http://localhost:3000
+```
+
+Validation:
+
+```powershell
+pnpm lint
+pnpm typecheck
+pnpm build
+```
+
+Health check: [http://localhost:3000/health](http://localhost:3000/health) → `{ "status": "ok" }`
 
 ---
 
@@ -66,16 +89,16 @@ A user can:
 
 ---
 
-## Repository Layout (Planned)
+## Repository Layout
 
 ```
-H:/Travel-Expense/          ← Git repo root (this folder)
-├── apps/web/               ← Next.js PWA (Netlify deploy target)
-├── packages/shared/        ← Shared types, validators, constants
-├── supabase/               ← Migrations, Edge Functions, seed data
-├── docs/blueprint/         ← Master build plan (current phase)
-├── scripts/                ← H: drive setup, local dev helpers
-└── .github/workflows/      ← CI → Netlify deploy
+H:/Travel-Expense/
+├── apps/web/               ← Next.js 15 (deploy target)
+├── packages/shared/        ← Shared types and constants
+├── prisma/                 ← Schema (Slice 002)
+├── docs/                   ← Blueprint + execution packet
+├── tests/                  ← unit / integration / e2e
+└── scripts/                ← H: drive setup
 ```
 
 See [PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md) for the full filesystem specification.
