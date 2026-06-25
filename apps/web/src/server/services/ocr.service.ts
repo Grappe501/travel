@@ -8,6 +8,7 @@ import { getReceiptDisplayStatus } from '@/lib/receipts/constants';
 import { prisma } from '@/lib/db/prisma';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { createExpenseFromReceipt } from '@/server/services/expense.service';
+import { assertNoBlockingDuplicates, resolveDuplicateSuggestion } from '@/server/services/duplicate-detection.service';
 import { getOwnedReceipt, getReceiptSignedUrl } from '@/server/services/receipt.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
@@ -278,6 +279,12 @@ export async function approveReceipt(userId: string, receiptId: string, input: R
 
   const currency = data.currency ?? receipt.currency ?? 'USD';
 
+  await assertNoBlockingDuplicates(userId, receiptId, {
+    merchant: data.merchant,
+    total: data.total,
+    receiptDate: data.receiptDate,
+  }, data.acknowledgeDuplicate);
+
   const result = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     const updatedReceipt = await tx.receipt.update({
       where: { id: receiptId },
@@ -328,6 +335,10 @@ export async function approveReceipt(userId: string, receiptId: string, input: R
 
     return { receipt: updatedReceipt, expenseId: expense.id };
   });
+
+  if (!data.acknowledgeDuplicate) {
+    await resolveDuplicateSuggestion(userId, receiptId, 'dismissed');
+  }
 
   return {
     ...serializeReceiptWithOcr(result.receipt),

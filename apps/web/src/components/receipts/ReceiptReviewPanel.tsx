@@ -1,8 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { Alert, Badge, Button, Card, CardContent, Input, Select } from '@/components/ui';
+import { formatDuplicateMessage, type DuplicateMatch } from '@/lib/ai/duplicate-detection';
 import { getExpenseCategoryOptions } from '@/lib/receipts/categories';
 import type { SerializedBusiness, SerializedReceiptWithOcr } from '@/lib/types/core';
 
@@ -19,6 +21,9 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [current, setCurrent] = useState(receipt);
+  const [duplicates, setDuplicates] = useState<DuplicateMatch[]>([]);
+  const [duplicateLoading, setDuplicateLoading] = useState(false);
+  const [acknowledgeDuplicate, setAcknowledgeDuplicate] = useState(false);
 
   const [merchant, setMerchant] = useState(receipt.merchant ?? receipt.ocrResult?.merchant ?? '');
   const [receiptDate, setReceiptDate] = useState(
@@ -82,6 +87,54 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
     }
   }, [current, isApproved, ocrError, ocrRunning, runOcr]);
 
+  useEffect(() => {
+    if (isApproved) return;
+
+    void fetch(`/api/receipts/${current.id}/check-duplicate`)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.data?.duplicates?.length) {
+          setDuplicates(result.data.duplicates as DuplicateMatch[]);
+        }
+      });
+  }, [current.id, isApproved]);
+
+  const checkDuplicates = useCallback(async () => {
+    if (isApproved) return;
+
+    const totalNum = Number(total);
+    if (!merchant.trim() || !receiptDate || !Number.isFinite(totalNum) || totalNum <= 0) {
+      setDuplicates([]);
+      return;
+    }
+
+    setDuplicateLoading(true);
+    const response = await fetch(`/api/receipts/${current.id}/check-duplicate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        merchant: merchant.trim(),
+        receiptDate,
+        total: totalNum,
+      }),
+    });
+    const result = await response.json();
+    setDuplicateLoading(false);
+
+    if (response.ok) {
+      setDuplicates((result.data?.duplicates ?? []) as DuplicateMatch[]);
+      setAcknowledgeDuplicate(false);
+    }
+  }, [current.id, isApproved, merchant, receiptDate, total]);
+
+  useEffect(() => {
+    if (isApproved) return;
+    const timer = window.setTimeout(() => {
+      void checkDuplicates();
+    }, 400);
+    return () => window.clearTimeout(timer);
+  }, [checkDuplicates, isApproved]);
+
   async function handleApprove(e: React.FormEvent) {
     e.preventDefault();
     setSubmitError(null);
@@ -112,13 +165,19 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
         businessId,
         tripId: current.tripId ?? undefined,
         currency: current.currency,
+        ...(acknowledgeDuplicate ? { acknowledgeDuplicate: true } : {}),
       }),
     });
 
     const result = await response.json();
 
     if (!response.ok) {
-      setSubmitError(result.error ?? 'Approval failed');
+      if (response.status === 409 && result.code === 'DUPLICATE_RECEIPT_DETECTED') {
+        setDuplicates((result.duplicates ?? []) as DuplicateMatch[]);
+        setSubmitError('Possible duplicate detected — review matches or save anyway.');
+      } else {
+        setSubmitError(result.error ?? 'Approval failed');
+      }
       setSubmitting(false);
       return;
     }
@@ -154,6 +213,30 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
       {ocrRunning || current.uploadStatus === 'processing' ? (
         <Alert variant="info">Scanning receipt with AI…</Alert>
       ) : null}
+
+      {duplicates.length > 0 && !isApproved ? (
+        <Alert variant="warning" title="Possible duplicate receipt">
+          {formatDuplicateMessage(duplicates[0])}
+          <div className="mt-2 flex flex-wrap gap-3">
+            <Link href={`/receipts/${duplicates[0].receiptId}`} className="font-medium underline">
+              View existing receipt
+            </Link>
+            {!acknowledgeDuplicate ? (
+              <button
+                type="button"
+                className="font-medium underline"
+                onClick={() => setAcknowledgeDuplicate(true)}
+              >
+                Save anyway
+              </button>
+            ) : (
+              <span className="text-caption">You chose to save anyway.</span>
+            )}
+          </div>
+        </Alert>
+      ) : null}
+
+      {duplicateLoading ? <Alert variant="info">Checking for duplicates…</Alert> : null}
 
       <div className="grid gap-6 lg:grid-cols-2">
         {signedUrl && isImage ? (
@@ -277,8 +360,20 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
 
               {!isApproved ? (
                 <div className="flex flex-wrap gap-3">
-                  <Button type="submit" disabled={submitting || ocrRunning || !businesses.length}>
-                    {submitting ? 'Approving…' : 'Approve & create expense'}
+                  <Button
+                    type="submit"
+                    disabled={
+                      submitting ||
+                      ocrRunning ||
+                      !businesses.length ||
+                      (duplicates.length > 0 && !acknowledgeDuplicate)
+                    }
+                  >
+                    {submitting
+                      ? 'Approving…'
+                      : acknowledgeDuplicate
+                        ? 'Confirm save anyway'
+                        : 'Approve & create expense'}
                   </Button>
                   {current.mimeType?.startsWith('image/') ? (
                     <Button

@@ -70,7 +70,7 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 | API-NOT-003 | Preferences | PATCH | profiles | — | notification | user | ☐ | ☐ | ☑ |
 | API-SRH-001 | Unified Search | GET | search | — | search | user | ☐ | ☐ | ☑ |
 | API-AI-001 | Category Suggestion | POST | suggest-category | — | ai | user | ☐ | ☐ | ☑ |
-| API-AI-002 | Duplicate Detection | POST | check-duplicate | — | ai | user | ☐ | ☐ | ☑ |
+| API-AI-002 | Duplicate Detection | POST | check-duplicate | `POST /api/receipts/[id]/check-duplicate` | ai | user | ☑ | ☑ | ☑ |
 | API-AI-003 | AI Feedback | POST | ai_interaction_log | — | ai | user | ☐ | ☐ | ☑ |
 | API-EXP-010 | Account Export | POST | export-account | — | export | user | ☐ | ☐ | ☑ |
 | API-FIL-001 | Signed URL | POST | storage | `GET /api/receipts/[id]/file` | file | user | ☑ | ◐ | ☑ |

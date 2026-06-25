@@ -15,7 +15,7 @@
 | BUILD-009 | S011 | Expense engine | WAVE-005 | 000010–000011 | STEP-043 | ☑ Complete |
 | BUILD-010 | S009 | Reports + export | WAVE-006 | 000012–000013 | STEP-041 | ☑ Complete |
 | BUILD-011 | S010 | Stripe billing | WAVE-007 | 000014–000015 | STEP-042 | ☑ Complete |
-| BUILD-012 | — | AI dup | WAVE-008 | 000018–000019 | post-GA | Backlog |
+| BUILD-012 | S022 | AI duplicate detection | WAVE-008 | 000019 | STEP-054 | ☑ Complete |
 | BUILD-013 | S019 | AdminOS min | WAVE-009 | 000020 | STEP-051 | Complete |
 | BUILD-014 | S013–S017, S020 | Launch hardening | WAVE-010 | all V1 | STEP-045–049, 052 | ☑ Complete (WAVE-010 closed) |
 

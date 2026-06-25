@@ -17,6 +17,7 @@ import {
   assertCanUploadReceipt,
   incrementReceiptUsage,
 } from '@/server/services/usage.service';
+import { checkDuplicatesAfterUpload } from '@/server/services/duplicate-detection.service';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
@@ -199,6 +200,8 @@ export async function uploadReceipt(
 
       return created;
     });
+
+    await checkDuplicatesAfterUpload(userId, receiptId).catch(() => undefined);
 
     return serializeReceipt(receipt);
   } catch (error) {

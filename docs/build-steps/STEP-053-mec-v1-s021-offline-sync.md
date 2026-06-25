@@ -36,4 +36,4 @@ pnpm test            # pass
 
 ## Next step
 
-**STEP-054** — BUILD-012 AI duplicate detection (TBD)
+**STEP-054** — BUILD-012 AI duplicate detection

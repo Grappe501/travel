@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import type { DuplicateMatch } from '@/lib/ai/duplicate-detection';
 
 export class AppError extends Error {
   constructor(
@@ -49,7 +50,26 @@ export class ValidationError extends AppError {
   }
 }
 
+export class DuplicateReceiptDetectedError extends AppError {
+  readonly code = 'DUPLICATE_RECEIPT_DETECTED';
+
+  constructor(public duplicates: DuplicateMatch[]) {
+    super('Possible duplicate receipt detected', 409);
+  }
+}
+
 export function jsonError(error: unknown) {
+  if (error instanceof DuplicateReceiptDetectedError) {
+    return NextResponse.json(
+      {
+        error: error.message,
+        code: error.code,
+        duplicates: error.duplicates,
+      },
+      { status: error.status }
+    );
+  }
+
   if (error instanceof AppError) {
     const body: { error: string; code?: string } = { error: error.message };
     if (error instanceof SubscriptionLimitError) {

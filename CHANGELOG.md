@@ -12,8 +12,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 ## [Unreleased]
 
 ### Added
-- Post-GA backlog: AI duplicate detection (BUILD-012)
-- **Offline sync (MEC-V1-S021)** — IndexedDB queue, offline trip start/end, receipt capture, reconnect sync — STEP-053
+- Post-GA backlog: category AI suggestions (MRID-000018), client/project modules
 
 ---
 

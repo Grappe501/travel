@@ -43,6 +43,7 @@ export const receiptApproveSchema = z.object({
   businessId: z.string().uuid(),
   tripId: z.string().uuid().optional(),
   currency: z.string().length(3).optional(),
+  acknowledgeDuplicate: z.boolean().optional(),
 });
 
 export type ReceiptApproveInput = z.infer<typeof receiptApproveSchema>;
