@@ -34,6 +34,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Volume 14 added as **Analytics & Business Intelligence** with EVT registry (21 sections) — STEP-017
 - Volume 15 added as **Communication & Engagement Engine** with MSG registry (34 chapters) — STEP-018
 - Volume 16 added as **AI Operating System** with ENG/PRM registry (33 chapters) — STEP-019
+- Volume 17 added as **Administration, Operations & Company OS (AdminOS)** with ADM registry (34 chapters) — STEP-020
 
 ## [0.0.0] — 2026-06-24
 

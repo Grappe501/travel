@@ -494,7 +494,7 @@ Implement via `packages/shared/src/analytics/track.ts` — single track function
 
 **V1 tooling:** PostHog (product) · Stripe (revenue) · Supabase/Sentry (ops) · Internal SQL (MRR, North Star)
 
-SCR-053 Admin Dashboard surfaces ops subset.
+SCR-053 Admin Dashboard surfaces ops subset. Full spec: **Volume 17** (ADM-DASH, ADM-EXEC, ADM-PRODUCT).
 
 ---
 

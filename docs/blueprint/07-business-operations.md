@@ -540,7 +540,7 @@ When native wrapper ships (V1.2+):
 
 # Chapter 21 — Business Operations Dashboard
 
-Internal admin (Volume 6 Ch. 19) should surface:
+Internal admin (**Volume 17 AdminOS** — ADM-DASH, ADM-EXEC) should surface:
 
 Active users · New signups · Paid users · MRR · Churn · Free users near limit (80%+) · OCR failure rate · Report failures · Open support tickets · Stripe webhook health · Failed payments · Feature usage top 10
 

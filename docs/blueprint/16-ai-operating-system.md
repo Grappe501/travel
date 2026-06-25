@@ -628,4 +628,4 @@ AI is a **force multiplier**, not a dependency. Trustworthy, maintainable, valua
 
 ---
 
-*Previous: [Volume 15 — Communication Engine](15-communication-engine.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 15 — Communication Engine](15-communication-engine.md) | Next: [Volume 17 — AdminOS](17-admin-operating-system.md) | [Blueprint Index](README.md)*
