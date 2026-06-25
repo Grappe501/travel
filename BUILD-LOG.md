@@ -54,7 +54,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-047 | 2026-06-25 | B | MEC-V1-S015 — Playwright E2E journeys E2E-01–07, smoke CI | `8a9c334` | [STEP-047](docs/build-steps/STEP-047-mec-v1-s015-e2e-journeys.md) |
 | STEP-048 | 2026-06-25 | B | MEC-V1-S016 — Security audit, CSP/HSTS, rate limits, SEC tests | `23b1895` | [STEP-048](docs/build-steps/STEP-048-mec-v1-s016-security-hardening.md) |
 | STEP-049 | 2026-06-25 | B | MEC-V1-S017 — Perf/a11y pass, Lighthouse baseline, axe e2e | `d06cf27` | [STEP-049](docs/build-steps/STEP-049-mec-v1-s017-perf-a11y.md) |
-| STEP-050 | 2026-06-25 | B | MEC-V1-S018 — Sentry, /health deps, production checklist | — | [STEP-050](docs/build-steps/STEP-050-mec-v1-s018-production-ops.md) |
+| STEP-050 | 2026-06-25 | B | MEC-V1-S018 — Sentry, /health deps, production checklist | `bf1a1f5` | [STEP-050](docs/build-steps/STEP-050-mec-v1-s018-production-ops.md) |
 
 ---
 
