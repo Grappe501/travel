@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { ensureUserProfile } from '@/server/services/auth.service';
 import { getOnboardingStatus } from '@/server/services/onboarding.service';
+import type { OnboardingStatus } from '@/lib/types/core';
 
 type GuardOptions = {
   /** Allow access when onboarding is not finished (e.g. /onboarding). */
@@ -17,6 +18,40 @@ function safeRedirectPath(redirectTo: string | null | undefined, fallback: strin
   return fallback;
 }
 
+const defaultOnboardingStatus: OnboardingStatus = {
+  onboardingCompleted: false,
+  hasBusiness: false,
+  hasVehicle: false,
+  needsOnboarding: true,
+  currentStep: 'business',
+};
+
+async function syncProfileSafe(user: {
+  id: string;
+  email?: string | null;
+  email_confirmed_at?: string | null;
+}) {
+  if (!user.email) return;
+  try {
+    await ensureUserProfile({
+      id: user.id,
+      email: user.email,
+      emailVerified: Boolean(user.email_confirmed_at),
+    });
+  } catch (error) {
+    console.error('[auth] profile sync failed', error);
+  }
+}
+
+async function readOnboardingSafe(userId: string): Promise<OnboardingStatus> {
+  try {
+    return await getOnboardingStatus(userId);
+  } catch (error) {
+    console.error('[auth] onboarding status failed', error);
+    return defaultOnboardingStatus;
+  }
+}
+
 export async function requireAuthenticatedUser(options: GuardOptions = {}) {
   const supabase = await createClient();
   const {
@@ -27,17 +62,13 @@ export async function requireAuthenticatedUser(options: GuardOptions = {}) {
     redirect('/login');
   }
 
-  await ensureUserProfile({
-    id: user.id,
-    email: user.email,
-    emailVerified: Boolean(user.email_confirmed_at),
-  });
+  await syncProfileSafe(user);
 
   if (!options.allowUnverifiedEmail && !user.email_confirmed_at) {
     redirect('/auth/verify-email');
   }
 
-  const onboarding = await getOnboardingStatus(user.id);
+  const onboarding = await readOnboardingSafe(user.id);
 
   if (!options.allowIncompleteOnboarding && onboarding.needsOnboarding) {
     redirect('/onboarding');
@@ -56,17 +87,13 @@ export async function requireOnboardingAccess() {
     redirect('/login');
   }
 
-  await ensureUserProfile({
-    id: user.id,
-    email: user.email,
-    emailVerified: Boolean(user.email_confirmed_at),
-  });
+  await syncProfileSafe(user);
 
   if (!user.email_confirmed_at) {
     redirect('/auth/verify-email');
   }
 
-  const onboarding = await getOnboardingStatus(user.id);
+  const onboarding = await readOnboardingSafe(user.id);
 
   if (!onboarding.needsOnboarding) {
     redirect('/dashboard');
@@ -86,28 +113,15 @@ export async function resolvePostAuthPath(redirectTo?: string | null) {
       return '/login';
     }
 
-    try {
-      await ensureUserProfile({
-        id: user.id,
-        email: user.email,
-        emailVerified: Boolean(user.email_confirmed_at),
-      });
-    } catch {
-      // Profile sync failed (often DATABASE_URL) — still route authenticated users forward.
-      return safeRedirectPath(redirectTo, '/dashboard');
-    }
+    await syncProfileSafe(user);
 
     if (!user.email_confirmed_at) {
       return '/auth/verify-email';
     }
 
-    try {
-      const onboarding = await getOnboardingStatus(user.id);
-      if (onboarding.needsOnboarding) {
-        return '/onboarding';
-      }
-    } catch {
-      return safeRedirectPath(redirectTo, '/dashboard');
+    const onboarding = await readOnboardingSafe(user.id);
+    if (onboarding.needsOnboarding) {
+      return '/onboarding';
     }
 
     return safeRedirectPath(redirectTo, '/dashboard');

@@ -13,6 +13,17 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.14.1] — 2026-06-25
+
+**Hotfix — reliable login session on Netlify**
+
+### Fixed
+- **Login session** — browser client establishes Supabase cookies first, then server finalizes via `/auth/continue`
+- **Middleware** — session refresh cookies preserved on auth redirects
+- **Dashboard guards** — DB profile/onboarding errors no longer crash protected pages
+
+---
+
 ## [1.14.0] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.14.0 (STEP-074)**

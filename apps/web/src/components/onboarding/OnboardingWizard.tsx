@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { BusinessForm } from '@/components/businesses/BusinessManager';
-import { navigateAfterAuth } from '@/lib/auth/navigate-after-auth';
+import { navigateAfterOnboarding } from '@/lib/auth/navigate-after-auth';
 import { MileageSettingsForm } from '@/components/settings/MileageSettingsForm';
 import { VehicleForm } from '@/components/vehicles/VehicleManager';
 import { Alert, Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
@@ -70,7 +70,7 @@ export function OnboardingWizard({
       setError(result.error ?? 'Could not finish onboarding');
       return false;
     }
-    navigateAfterAuth('/dashboard');
+    navigateAfterOnboarding();
     return true;
   }
 
@@ -84,7 +84,7 @@ export function OnboardingWizard({
       setSkipping(false);
       return;
     }
-    navigateAfterAuth('/dashboard');
+    navigateAfterOnboarding();
   }
 
   return (

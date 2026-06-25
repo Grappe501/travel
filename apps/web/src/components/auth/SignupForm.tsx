@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { signUpAction } from '@/lib/auth/actions';
-import { navigateAfterAuth } from '@/lib/auth/navigate-after-auth';
+import { isRedirectError } from '@/lib/auth/is-redirect-error';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function SignupForm() {
@@ -29,16 +29,14 @@ export function SignupForm() {
         return;
       }
 
-      if ('redirectTo' in result) {
-        navigateAfterAuth(result.redirectTo);
-        return;
-      }
-
       if ('message' in result) {
         setMessage(result.message);
         setLoading(false);
       }
-    } catch {
+    } catch (caught) {
+      if (isRedirectError(caught)) {
+        throw caught;
+      }
       setError('Sign up failed unexpectedly. Please try again.');
       setLoading(false);
     }

@@ -5,6 +5,13 @@ import { getPublicSupabaseConfig } from './config';
 
 type CookieToSet = { name: string; value: string; options: CookieOptions };
 
+function withSessionCookies(source: NextResponse, target: NextResponse) {
+  source.cookies.getAll().forEach((cookie) => {
+    target.cookies.set(cookie.name, cookie.value);
+  });
+  return target;
+}
+
 export async function updateSession(request: NextRequest) {
   const { url, anonKey } = getPublicSupabaseConfig();
 
@@ -26,6 +33,7 @@ export async function updateSession(request: NextRequest) {
       },
     },
   });
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -36,7 +44,7 @@ export async function updateSession(request: NextRequest) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = '/login';
     loginUrl.searchParams.set('redirect', pathname);
-    return NextResponse.redirect(loginUrl);
+    return withSessionCookies(supabaseResponse, NextResponse.redirect(loginUrl));
   }
 
   if (isAuthPath(pathname) && user) {
@@ -48,7 +56,7 @@ export async function updateSession(request: NextRequest) {
     } else {
       continueUrl.searchParams.delete('redirect');
     }
-    return NextResponse.redirect(continueUrl);
+    return withSessionCookies(supabaseResponse, NextResponse.redirect(continueUrl));
   }
 
   if (
@@ -62,7 +70,7 @@ export async function updateSession(request: NextRequest) {
     if (pathname === '/auth/reset-password') {
       loginUrl.searchParams.set('error', 'reset_session_required');
     }
-    return NextResponse.redirect(loginUrl);
+    return withSessionCookies(supabaseResponse, NextResponse.redirect(loginUrl));
   }
 
   return supabaseResponse;

@@ -4,16 +4,20 @@ import { type LoginInput } from '@mileage-copilot/shared';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { signInAction } from '@/lib/auth/actions';
-import { navigateAfterAuth } from '@/lib/auth/navigate-after-auth';
+import { finalizeSignInAction } from '@/lib/auth/actions';
+import { signInOnClient } from '@/lib/auth/client-sign-in';
+import { isRedirectError } from '@/lib/auth/is-redirect-error';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function LoginForm() {
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirect') ?? '/dashboard';
+  const sessionError = searchParams.get('error') === 'session_missing';
 
   const [form, setForm] = useState<LoginInput>({ email: '', password: '' });
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(
+    sessionError ? 'Your session was not saved. Please sign in again.' : null
+  );
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -22,19 +26,18 @@ export function LoginForm() {
     setLoading(true);
 
     try {
-      const result = await signInAction(form, redirectTo);
-
-      if ('error' in result) {
-        setError(result.error);
+      const signIn = await signInOnClient(form.email, form.password);
+      if ('error' in signIn) {
+        setError(signIn.error);
         setLoading(false);
         return;
       }
 
-      if ('redirectTo' in result) {
-        navigateAfterAuth(result.redirectTo);
-        return;
+      await finalizeSignInAction(redirectTo);
+    } catch (caught) {
+      if (isRedirectError(caught)) {
+        throw caught;
       }
-    } catch {
       setError('Sign in failed unexpectedly. Please try again.');
       setLoading(false);
     }

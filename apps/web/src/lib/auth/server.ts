@@ -20,11 +20,15 @@ export async function requireSessionUser() {
     return null;
   }
 
-  await ensureUserProfile({
-    id: user.id,
-    email: user.email,
-    emailVerified: Boolean(user.email_confirmed_at),
-  });
+  try {
+    await ensureUserProfile({
+      id: user.id,
+      email: user.email,
+      emailVerified: Boolean(user.email_confirmed_at),
+    });
+  } catch (error) {
+    console.error('[auth] profile sync failed', error);
+  }
 
   return user;
 }

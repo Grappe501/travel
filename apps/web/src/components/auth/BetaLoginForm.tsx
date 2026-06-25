@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { betaSignInAction } from '@/lib/auth/actions';
-import { navigateAfterAuth } from '@/lib/auth/navigate-after-auth';
+import { finalizeSignInAction, prepareBetaTesterAction } from '@/lib/auth/actions';
+import { signInOnClient } from '@/lib/auth/client-sign-in';
+import { isRedirectError } from '@/lib/auth/is-redirect-error';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function BetaLoginForm() {
@@ -22,27 +23,37 @@ export function BetaLoginForm() {
     setError(null);
     setLoading(true);
 
+    const label = fieldTestLabel.trim();
+    const payload = {
+      email,
+      betaPassword,
+      ...(label ? { fieldTestLabel: label } : {}),
+    };
+
     try {
-      const result = await betaSignInAction(
-        {
-          email,
-          betaPassword,
-          ...(fieldTestLabel.trim() ? { fieldTestLabel: fieldTestLabel.trim() } : {}),
-        },
-        redirectTo
-      );
+      let signIn = await signInOnClient(email, betaPassword);
 
-      if ('error' in result) {
-        setError(result.error);
-        setLoading(false);
-        return;
+      if ('error' in signIn) {
+        const prepared = await prepareBetaTesterAction(payload);
+        if ('error' in prepared) {
+          setError(prepared.error);
+          setLoading(false);
+          return;
+        }
+
+        signIn = await signInOnClient(email, betaPassword);
+        if ('error' in signIn) {
+          setError(signIn.error);
+          setLoading(false);
+          return;
+        }
       }
 
-      if ('redirectTo' in result) {
-        navigateAfterAuth(result.redirectTo);
-        return;
+      await finalizeSignInAction(redirectTo, label || null);
+    } catch (caught) {
+      if (isRedirectError(caught)) {
+        throw caught;
       }
-    } catch {
       setError('Sign in failed unexpectedly. Please try again.');
       setLoading(false);
     }

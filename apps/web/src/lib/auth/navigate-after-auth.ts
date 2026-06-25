@@ -1,6 +1,16 @@
 'use client';
 
-/** Full navigation so auth cookies from server actions are applied reliably on Netlify. */
-export function navigateAfterAuth(path: string) {
-  window.location.assign(path);
+import { finalizeSignInAction } from '@/lib/auth/actions';
+import { isRedirectError } from '@/lib/auth/is-redirect-error';
+
+/** After onboarding completes, re-sync session and route through auth/continue. */
+export async function navigateAfterOnboarding() {
+  try {
+    await finalizeSignInAction('/dashboard');
+  } catch (error) {
+    if (isRedirectError(error)) {
+      throw error;
+    }
+    window.location.assign('/dashboard');
+  }
 }
