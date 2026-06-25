@@ -4,7 +4,7 @@ import { loginSchema, type LoginInput } from '@mileage-copilot/shared';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { syncUserProfileAfterAuth } from '@/lib/auth/actions';
+import { syncUserProfileAfterAuth, getPostAuthRedirect } from '@/lib/auth/actions';
 import { createClient } from '@/lib/supabase/client';
 import { Alert, Button, Input } from '@/components/ui';
 
@@ -48,7 +48,8 @@ export function LoginForm() {
       return;
     }
 
-    router.push(redirectTo);
+    const destination = await getPostAuthRedirect(redirectTo);
+    router.push(destination);
     router.refresh();
   }
 
@@ -75,6 +76,12 @@ export function LoginForm() {
         value={form.password}
         onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
       />
+
+      <p className="text-right text-caption">
+        <Link href="/auth/forgot-password" className="font-medium text-primary hover:underline">
+          Forgot password?
+        </Link>
+      </p>
 
       <Button type="submit" fullWidth disabled={loading}>
         {loading ? 'Signing in…' : 'Log in'}

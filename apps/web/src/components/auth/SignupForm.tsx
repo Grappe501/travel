@@ -4,7 +4,7 @@ import { signupSchema } from '@mileage-copilot/shared';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { syncUserProfileAfterAuth } from '@/lib/auth/actions';
+import { syncUserProfileAfterAuth, getPostAuthRedirect } from '@/lib/auth/actions';
 import { createClient } from '@/lib/supabase/client';
 import { Alert, Button, Input } from '@/components/ui';
 
@@ -49,12 +49,13 @@ export function SignupForm() {
         setLoading(false);
         return;
       }
-      router.push('/dashboard');
+      const destination = await getPostAuthRedirect();
+      router.push(destination);
       router.refresh();
       return;
     }
 
-    setMessage('Check your email to confirm your account, then log in.');
+    setMessage('Check your email to confirm your account, then continue from the link in the email.');
     setLoading(false);
   }
 

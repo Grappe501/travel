@@ -17,7 +17,9 @@ export const config = {
     '/billing/:path*',
     '/settings/:path*',
     '/admin/:path*',
+    '/onboarding/:path*',
     '/login',
     '/signup',
+    '/auth/:path*',
   ],
 };

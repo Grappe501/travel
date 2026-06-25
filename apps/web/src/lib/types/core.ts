@@ -1,3 +1,13 @@
+export type OnboardingStep = 'business' | 'vehicle' | 'rate' | 'complete';
+
+export type OnboardingStatus = {
+  onboardingCompleted: boolean;
+  hasBusiness: boolean;
+  hasVehicle: boolean;
+  needsOnboarding: boolean;
+  currentStep: OnboardingStep;
+};
+
 export type SerializedBusiness = {
   id: string;
   name: string;

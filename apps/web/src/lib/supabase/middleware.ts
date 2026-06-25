@@ -1,6 +1,6 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
-import { isAuthPath, isProtectedPath } from '@/lib/auth/constants';
+import { isAuthFlowPath, isAuthPath, isProtectedPath } from '@/lib/auth/constants';
 import { getPublicSupabaseConfig } from './config';
 
 type CookieToSet = { name: string; value: string; options: CookieOptions };
@@ -40,7 +40,21 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (isAuthPath(pathname) && user) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    return NextResponse.redirect(new URL('/auth/continue', request.url));
+  }
+
+  if (
+    isAuthFlowPath(pathname) &&
+    !user &&
+    pathname !== '/auth/forgot-password' &&
+    pathname !== '/auth/callback'
+  ) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = '/login';
+    if (pathname === '/auth/reset-password') {
+      loginUrl.searchParams.set('error', 'reset_session_required');
+    }
+    return NextResponse.redirect(loginUrl);
   }
 
   return supabaseResponse;

@@ -2,6 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { resolvePostAuthPath } from '@/lib/auth/guards';
 import { ensureUserProfile } from '@/server/services/auth.service';
 
 export async function syncUserProfileAfterAuth() {
@@ -19,6 +20,10 @@ export async function syncUserProfileAfterAuth() {
     email: user.email,
     emailVerified: Boolean(user.email_confirmed_at),
   });
+}
+
+export async function getPostAuthRedirect(redirectTo?: string | null) {
+  return resolvePostAuthPath(redirectTo);
 }
 
 export async function signOut() {

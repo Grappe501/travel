@@ -1,38 +1,37 @@
-import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { LogoutButton } from '@/components/auth/LogoutButton';
 import { DashboardShell } from '@/components/layout/DashboardShell';
-import { Alert, Badge, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
-import { createClient } from '@/lib/supabase/server';
-import { ensureUserProfile, getUserProfile } from '@/server/services/auth.service';
+import {
+  Alert,
+  Badge,
+  ButtonLink,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui';
+import { requireAuthenticatedUser } from '@/lib/auth/guards';
+import { getUserProfile } from '@/server/services/auth.service';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 export default async function DashboardPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user?.email) {
-    redirect('/login');
-  }
-
+  const { user, onboarding } = await requireAuthenticatedUser();
   let profile = null;
   let dbError: string | null = null;
 
   try {
-    await ensureUserProfile({
-      id: user.id,
-      email: user.email,
-      emailVerified: Boolean(user.email_confirmed_at),
-    });
     profile = await getUserProfile(user.id);
   } catch (error) {
-    console.error('Dashboard profile sync failed:', error);
+    console.error('Dashboard profile load failed:', error);
     dbError =
-      'Could not sync your profile with the database. Set DATABASE_URL in Netlify and run migrations.';
+      'Could not load your profile from the database. Set DATABASE_URL in Netlify and run migrations.';
   }
+
+  const showSetupPrompt =
+    onboarding.needsOnboarding || !onboarding.hasBusiness || !onboarding.hasVehicle;
 
   return (
     <DashboardShell
@@ -42,6 +41,25 @@ export default async function DashboardPage() {
       actions={<LogoutButton />}
     >
       {dbError ? <Alert variant="error">{dbError}</Alert> : null}
+
+      {showSetupPrompt ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Finish setting up</CardTitle>
+            <CardDescription>
+              Add a business and vehicle so you can log trips and expenses.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 pt-0">
+            <ul className="list-inside list-disc text-caption text-muted">
+              {!onboarding.hasBusiness ? <li>Create a business profile</li> : null}
+              {!onboarding.hasVehicle ? <li>Add a vehicle</li> : null}
+              {onboarding.needsOnboarding ? <li>Confirm your mileage rate</li> : null}
+            </ul>
+            <ButtonLink href="/onboarding">Continue setup</ButtonLink>
+          </CardContent>
+        </Card>
+      ) : null}
 
       <Card>
         <CardHeader>
@@ -59,6 +77,13 @@ export default async function DashboardPage() {
               Profile ID: <code className="font-mono text-micro">{profile.id}</code>
             </p>
           ) : null}
+          <p className="text-caption text-muted">
+            Manage businesses and vehicles in{' '}
+            <Link href="/businesses" className="text-primary hover:underline">
+              settings
+            </Link>
+            .
+          </p>
         </CardContent>
       </Card>
     </DashboardShell>
