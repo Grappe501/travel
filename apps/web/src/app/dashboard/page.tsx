@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { LogoutButton } from '@/components/auth/LogoutButton';
 import { DashboardShell } from '@/components/layout/DashboardShell';
-import { ActiveTripBanner } from '@/components/trips/TripManager';
+import { ActiveTripBanner } from '@/components/trips/ActiveTripBanner';
 import {
   Alert,
   Badge,
@@ -12,11 +12,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui';
+import { isV12SchemaReady } from '@/lib/db/schema-health';
 import { requireAuthenticatedUser } from '@/lib/auth/guards';
 import { getUserProfile } from '@/server/services/auth.service';
 import * as expenseService from '@/server/services/expense.service';
 import * as receiptService from '@/server/services/receipt.service';
 import * as tripService from '@/server/services/trip.service';
+import type { SerializedExpense } from '@/server/services/expense.service';
+import type { SerializedReceipt } from '@/server/services/receipt.service';
+import type { SerializedTrip } from '@/server/services/trip.service';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -43,14 +47,26 @@ export default async function DashboardPage() {
       'Could not load your profile from the database. Set DATABASE_URL in Netlify and run migrations.';
   }
 
-  const [trips, receipts, expenses, activeTrip] = dbError
-    ? [[], [], [], null]
-    : await Promise.all([
+  const schemaReady = dbError ? false : await isV12SchemaReady();
+  let trips: SerializedTrip[] = [];
+  let receipts: SerializedReceipt[] = [];
+  let expenses: SerializedExpense[] = [];
+  let activeTrip: SerializedTrip | null = null;
+  let statsError: string | null = null;
+
+  if (!dbError && schemaReady) {
+    try {
+      [trips, receipts, expenses, activeTrip] = await Promise.all([
         tripService.listTrips(user.id),
         receiptService.listReceipts(user.id),
         expenseService.listExpenses(user.id),
         tripService.getActiveTrip(user.id),
       ]);
+    } catch (error) {
+      console.error('Dashboard stats load failed:', error);
+      statsError = 'Could not load trip, receipt, or expense counts.';
+    }
+  }
 
   const completedTrips = trips.filter((trip) => trip.status === 'completed').length;
   const showSetupPrompt =
@@ -64,6 +80,16 @@ export default async function DashboardPage() {
       actions={<LogoutButton />}
     >
       {dbError ? <Alert variant="error">{dbError}</Alert> : null}
+
+      {!schemaReady && !dbError ? (
+        <Alert variant="error">
+          Database migrations are pending for v1.2 (clients, projects, AI history). Redeploy after
+          setting <code className="font-mono text-micro">DIRECT_URL</code> in Netlify, or run{' '}
+          <code className="font-mono text-micro">pnpm db:migrate:deploy</code> against production.
+        </Alert>
+      ) : null}
+
+      {statsError ? <Alert variant="error">{statsError}</Alert> : null}
 
       {activeTrip ? <ActiveTripBanner trip={activeTrip} /> : null}
 
@@ -86,7 +112,7 @@ export default async function DashboardPage() {
         </Card>
       ) : null}
 
-      {!dbError ? (
+      {schemaReady && !dbError && !statsError ? (
         <div className="grid grid-cols-3 gap-3">
           <Card className="text-center">
             <CardContent className="space-y-1 py-4">

@@ -6,7 +6,7 @@
 # STRIPE_*, OPENAI_API_KEY (OCR), SENTRY_DSN + NEXT_PUBLIC_SENTRY_DSN (optional)
 
 [build]
-  command = "pnpm install && pnpm db:generate && pnpm build"
+  command = "pnpm install && pnpm db:generate && pnpm db:migrate:deploy && pnpm build"
   publish = "apps/web/.next"
 
 [build.environment]
