@@ -56,6 +56,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-049 | 2026-06-25 | B | MEC-V1-S017 — Perf/a11y pass, Lighthouse baseline, axe e2e | `d06cf27` | [STEP-049](docs/build-steps/STEP-049-mec-v1-s017-perf-a11y.md) |
 | STEP-050 | 2026-06-25 | B | MEC-V1-S018 — Sentry, /health deps, production checklist | `bf1a1f5` | [STEP-050](docs/build-steps/STEP-050-mec-v1-s018-production-ops.md) |
 | STEP-051 | 2026-06-25 | B | MEC-V1-S019 — AdminOS minimum customer lookup + health | `cbc3d09` | [STEP-051](docs/build-steps/STEP-051-mec-v1-s019-admin-minimum.md) |
+| STEP-052 | 2026-06-25 | H | MEC-V1-S020 — GA gates, catalog audit, v1.0.0 | — | [STEP-052](docs/build-steps/STEP-052-mec-v1-s020-launch-ga.md) |
 
 ---
 
@@ -63,9 +64,9 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 51 |
-| Current phase | **Implementation** — MEC-V1-S020 Launch GA next (STEP-052) |
-| Latest tag | `v0.0.0` (after push) |
+| Steps completed | 52 |
+| Current phase | **GA (Phase H)** — V1.0.0 tagged; V1.1 backlog next |
+| Latest tag | `v1.0.0` |
 
 ---
 
