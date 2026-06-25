@@ -3,6 +3,7 @@ import { HSTS_HEADER, SECURITY_HEADERS } from './src/lib/security/headers';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   transpilePackages: ['@mileage-copilot/shared'],
   serverExternalPackages: ['@prisma/client', 'prisma'],
   async headers() {

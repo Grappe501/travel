@@ -77,6 +77,17 @@ projects.push({
   ...(authConfigured ? { dependencies: ['setup'] } : {}),
 });
 
+if (authConfigured) {
+  projects.push({
+    name: 'a11y-authenticated',
+    testMatch: /a11y\/.*\.spec\.ts/,
+    use: {
+      ...authenticatedUse,
+    },
+    dependencies: ['setup'],
+  });
+}
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: false,

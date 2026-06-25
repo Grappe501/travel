@@ -67,6 +67,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Integration tests (MEC-V1-S014)** — Service-level DB tests for trips, usage, expenses, reports — STEP-046
 - **E2E critical journeys (MEC-V1-S015)** — Playwright E2E-01–07, mobile viewport, smoke CI — STEP-047
 - **Security hardening (MEC-V1-S016)** — CSP/HSTS, rate limits, magic-byte upload validation, SEC tests — STEP-048
+- **Performance & a11y (MEC-V1-S017)** — Skip links, axe scans, Lighthouse baseline, report perf — STEP-049
 
 ## [0.0.0] — 2026-06-24
 

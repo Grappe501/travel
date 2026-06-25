@@ -23,6 +23,7 @@ pnpm test:e2e          # full suite (skips when E2E_TEST is unset)
 E2E_TEST=1 pnpm test:e2e
 
 pnpm test:e2e:smoke    # E2E-01 + E2E-03 only (@smoke tag)
+pnpm test:e2e:a11y     # axe scans on primary authenticated pages (@a11y tag)
 ```
 
 Playwright loads env from `.env.test`, then `.env.local`, then `.env` (first wins for each key).

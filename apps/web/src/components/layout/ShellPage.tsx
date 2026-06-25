@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { SkipLink } from '@/components/a11y/SkipLink';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { cn } from '@/lib/utils/cn';
 
@@ -21,9 +22,17 @@ export function ShellPage({
   className,
 }: ShellPageProps) {
   return (
-    <main className="mx-auto min-h-screen max-w-lg bg-background px-4 py-10 md:px-6 md:py-12">
-      <PageHeader title={title} description={description} badge={badge} actions={actions} />
-      {children ? <div className={cn('mt-8', className)}>{children}</div> : null}
-    </main>
+    <>
+      <SkipLink />
+      <main
+        id="main-content"
+        tabIndex={-1}
+        aria-label={title}
+        className="mx-auto min-h-screen max-w-lg bg-background px-4 py-10 outline-none md:px-6 md:py-12"
+      >
+        <PageHeader title={title} description={description} badge={badge} actions={actions} />
+        {children ? <div className={cn('mt-8', className)}>{children}</div> : null}
+      </main>
+    </>
   );
 }

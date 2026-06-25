@@ -8,8 +8,8 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     service: 'mileage-expense-copilot',
-    slice: 'MEC-V1-S016',
-    step: 'STEP-048',
+    slice: 'MEC-V1-S017',
+    step: 'STEP-049',
     build: process.env.NETLIFY ? 'netlify' : 'local',
     ...(isProduction
       ? {}

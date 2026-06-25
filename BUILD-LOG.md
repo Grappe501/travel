@@ -53,6 +53,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-046 | 2026-06-25 | A | MEC-V1-S014 — Service integration tests, Postgres CI job | `bb3ab71` | [STEP-046](docs/build-steps/STEP-046-mec-v1-s014-integration-tests.md) |
 | STEP-047 | 2026-06-25 | B | MEC-V1-S015 — Playwright E2E journeys E2E-01–07, smoke CI | `8a9c334` | [STEP-047](docs/build-steps/STEP-047-mec-v1-s015-e2e-journeys.md) |
 | STEP-048 | 2026-06-25 | B | MEC-V1-S016 — Security audit, CSP/HSTS, rate limits, SEC tests | `23b1895` | [STEP-048](docs/build-steps/STEP-048-mec-v1-s016-security-hardening.md) |
+| STEP-049 | 2026-06-25 | B | MEC-V1-S017 — Perf/a11y pass, Lighthouse baseline, axe e2e | — | [STEP-049](docs/build-steps/STEP-049-mec-v1-s017-perf-a11y.md) |
 
 ---
 
@@ -60,8 +61,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 48 |
-| Current phase | **Implementation** — MEC-V1-S017 Performance & a11y next (STEP-049) |
+| Steps completed | 49 |
+| Current phase | **Implementation** — MEC-V1-S018 Production ops next (STEP-050) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---

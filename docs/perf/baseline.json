@@ -1,0 +1,75 @@
+{
+  "capturedAt": "2026-06-25",
+  "environment": "local production build (Next.js 15)",
+  "device": "desktop",
+  "budgets": {
+    "lcpMs": 2500,
+    "fcpMs": 1800,
+    "cls": 0.1,
+    "reportGen30DayTimeoutMs": 30000
+  },
+  "publicRoutes": [
+    {
+      "path": "/login",
+      "performance": 0.92,
+      "accessibility": 0.96,
+      "bestPractices": 0.96,
+      "seo": 0.91,
+      "metrics": {
+        "fcpMs": 820,
+        "lcpMs": 1180,
+        "cls": 0,
+        "ttiMs": 1420
+      }
+    },
+    {
+      "path": "/",
+      "performance": 0.94,
+      "accessibility": 0.95,
+      "bestPractices": 0.96,
+      "seo": 0.92,
+      "metrics": {
+        "fcpMs": 760,
+        "lcpMs": 1050,
+        "cls": 0,
+        "ttiMs": 1280
+      }
+    },
+    {
+      "path": "/signup",
+      "performance": 0.91,
+      "accessibility": 0.96,
+      "bestPractices": 0.96,
+      "seo": 0.9,
+      "metrics": {
+        "fcpMs": 840,
+        "lcpMs": 1210,
+        "cls": 0,
+        "ttiMs": 1480
+      }
+    }
+  ],
+  "authenticatedRoutesNote": "Dashboard, /trips, and /receipts/upload require a Supabase session. Run `pnpm test:e2e --grep @a11y` with E2E credentials for axe scans; Lighthouse on authenticated routes uses saved cookies manually (see STEP-049-baseline.md).",
+  "authenticatedRoutesEstimate": [
+    {
+      "path": "/dashboard",
+      "lcpMsTarget": 2500,
+      "notes": "Primary shell with bottom nav; LCP typically page title + first card"
+    },
+    {
+      "path": "/trips",
+      "lcpMsTarget": 2500,
+      "notes": "List + active trip banner"
+    },
+    {
+      "path": "/receipts/upload",
+      "lcpMsTarget": 2500,
+      "notes": "Form-heavy; file input is LCP candidate on mobile"
+    }
+  ],
+  "knownGaps": [
+    "CSP still allows unsafe-inline for Next.js hydration (STEP-048 deferred)",
+    "Authenticated Lighthouse scores require manual cookie export",
+    "Distributed rate limits not measured under load"
+  ]
+}

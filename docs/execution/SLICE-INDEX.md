@@ -20,7 +20,7 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S014 | Integration tests | BUILD-014 §2 | WAVE-010 | 000004–000015 | STEP-046 | ☑ Complete |
 | MEC-V1-S015 | E2E critical journeys | BUILD-014 §3 | WAVE-010 | 000001–000015 | STEP-047 | ☑ Complete |
 | MEC-V1-S016 | Security hardening | BUILD-014 §4 | WAVE-010 | — | STEP-048 | ☑ Complete |
-| MEC-V1-S017 | Performance & a11y | BUILD-014 §5 | WAVE-010 | — | STEP-049 | Backlog |
+| MEC-V1-S017 | Performance & a11y | BUILD-014 §5 | WAVE-010 | — | STEP-049 | ☑ Complete |
 | MEC-V1-S018 | Production ops & monitoring | — | WAVE-010 | — | STEP-050 | Backlog |
 | MEC-V1-S019 | AdminOS minimum | BUILD-013 | WAVE-009 | 000020 | STEP-051 | Backlog |
 | MEC-V1-S020 | Launch gates & GA | BUILD-014 close | WAVE-010 | V1 all | STEP-052 | Backlog |

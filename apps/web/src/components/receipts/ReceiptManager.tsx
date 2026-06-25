@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { Alert, Badge, Button, ButtonLink, Card, CardContent, Select } from '@/components/ui';
+import { nativeFieldClassName } from '@/lib/a11y/form-styles';
+import { cn } from '@/lib/utils/cn';
 import { MAX_RECEIPT_FILE_BYTES } from '@/lib/receipts/constants';
 import type { SerializedBusiness, SerializedReceipt, SerializedTrip } from '@/lib/types/core';
 
@@ -116,10 +118,14 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
               type="file"
               accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf"
               capture="environment"
-              className="block w-full text-body text-foreground file:mr-4 file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-2 file:text-primary-foreground"
+              aria-describedby="receipt-file-hint"
+              className={cn(
+                nativeFieldClassName,
+                'file:mr-4 file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-2 file:text-primary-foreground'
+              )}
               onChange={(e) => handleFileChange(e.target.files?.[0] ?? null)}
             />
-            <p className="text-caption text-muted">
+            <p id="receipt-file-hint" className="text-caption text-muted">
               JPEG, PNG, WebP, HEIC, or PDF · max 10 MB · stored privately
             </p>
           </div>

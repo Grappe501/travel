@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Alert, Badge, Button, Card, CardContent, Select } from '@/components/ui';
+import { nativeFieldClassName } from '@/lib/a11y/form-styles';
 import type { SerializedBusiness, SerializedReport, SerializedVehicle } from '@/lib/types/core';
 
 const REPORT_TYPES = [
@@ -120,7 +121,8 @@ export function ReportBuilder({ businesses, vehicles }: ReportBuilderProps) {
                 required
                 value={dateRangeStart}
                 onChange={(e) => setDateRangeStart(e.target.value)}
-                className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-body"
+                aria-describedby="report-range-hint"
+                className={nativeFieldClassName}
               />
             </div>
             <div className="space-y-1">
@@ -133,11 +135,12 @@ export function ReportBuilder({ businesses, vehicles }: ReportBuilderProps) {
                 required
                 value={dateRangeEnd}
                 onChange={(e) => setDateRangeEnd(e.target.value)}
-                className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-body"
+                aria-describedby="report-range-hint"
+                className={nativeFieldClassName}
               />
             </div>
           </div>
-          <p className="text-caption text-muted">Maximum range: 366 days</p>
+          <p id="report-range-hint" className="text-caption text-muted">Maximum range: 366 days</p>
 
           {businesses.length > 0 ? (
             <Select
