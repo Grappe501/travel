@@ -80,3 +80,25 @@ export type SerializedReceipt = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type SerializedOcrResult = {
+  id: string;
+  merchant: string | null;
+  receiptDate: string | null;
+  subtotal: number | null;
+  tax: number | null;
+  total: number | null;
+  suggestedCategorySlug: string | null;
+  confidenceScores: Record<string, number> | null;
+  processingEngine: string | null;
+  modelVersion: string | null;
+  processedAt: string | null;
+};
+
+export type SerializedReceiptWithOcr = SerializedReceipt & {
+  subtotal: number | null;
+  tax: number | null;
+  ocrConfidence: number | null;
+  ocrResult: SerializedOcrResult | null;
+  expenseId: string | null;
+};

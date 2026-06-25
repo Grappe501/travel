@@ -6,8 +6,11 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     service: 'mileage-expense-copilot',
-    slice: 'MEC-V1-S007',
-    step: 'STEP-039',
+    slice: 'MEC-V1-S008',
+    step: 'STEP-040',
+    openAiConfigured: Boolean(
+      process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.includes('...')
+    ),
     storageConfigured: Boolean(
       process.env.SUPABASE_SERVICE_ROLE_KEY &&
         process.env.NEXT_PUBLIC_SUPABASE_URL &&

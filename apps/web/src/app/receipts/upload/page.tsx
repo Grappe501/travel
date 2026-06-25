@@ -23,7 +23,7 @@ export default async function ReceiptUploadPage() {
   return (
     <DashboardShell
       title="Upload receipt"
-      description="Choose a photo or PDF. OCR review arrives in the next slice."
+      description="Choose a photo or PDF. You will review AI-extracted fields before approval."
       actions={<ButtonLink href="/receipts" variant="secondary" size="sm">Back</ButtonLink>}
     >
       <ReceiptUploadForm businesses={businesses} trips={trips} />

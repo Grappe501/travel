@@ -39,4 +39,4 @@ Requires `DATABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
 
 ## Next step
 
-**STEP-040** — [MEC-V1-S008 AI OCR review](../execution/slices/MEC-V1-S008-ocr-review.md)
+**STEP-041** — [MEC-V1-S009 Reports](../execution/slices/MEC-V1-S009-reports.md)

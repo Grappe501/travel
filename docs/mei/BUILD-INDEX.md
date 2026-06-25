@@ -11,7 +11,7 @@
 | BUILD-005 | S006 | Trip engine | WAVE-003 | 000004–000006 | STEP-038 | ☑ Complete |
 | BUILD-006 | — | Offline sync | WAVE-003 | 000016–000017 | post-V1 | Backlog |
 | BUILD-007 | S007 | Receipt capture | WAVE-004 | 000007 | STEP-039 | ☑ Complete |
-| BUILD-008 | S008 | OCR + review | WAVE-004 | 000008–000009 | STEP-040 | Backlog |
+| BUILD-008 | S008 | OCR + review | WAVE-004 | 000008–000009 | STEP-040 | ☑ Complete |
 | BUILD-009 | — | Expense engine | WAVE-005 | 000010–000011 | folded in S008 | Backlog |
 | BUILD-010 | S009 | Reports + export | WAVE-006 | 000012–000013 | STEP-041 | Backlog |
 | BUILD-011 | S010 | Stripe billing | WAVE-007 | 000014–000015 | STEP-042 | Backlog |

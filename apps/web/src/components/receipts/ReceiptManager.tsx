@@ -94,7 +94,7 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
       return;
     }
 
-    router.push(`/receipts/${result.data.id}`);
+    router.push(`/receipts/${result.data.id}/review`);
     router.refresh();
   }
 
@@ -197,9 +197,16 @@ export function ReceiptList({ receipts }: ReceiptListProps) {
                 {receipt.mimeType ? ` · ${receipt.mimeType}` : ''}
               </p>
             </div>
-            <ButtonLink href={`/receipts/${receipt.id}`} variant="secondary" size="sm">
-              View
-            </ButtonLink>
+            <div className="flex flex-wrap gap-2">
+              {receipt.reviewStatus !== 'confirmed' ? (
+                <ButtonLink href={`/receipts/${receipt.id}/review`} size="sm">
+                  Review
+                </ButtonLink>
+              ) : null}
+              <ButtonLink href={`/receipts/${receipt.id}`} variant="secondary" size="sm">
+                View
+              </ButtonLink>
+            </div>
           </CardContent>
         </Card>
       ))}
@@ -208,7 +215,11 @@ export function ReceiptList({ receipts }: ReceiptListProps) {
 }
 
 type ReceiptDetailProps = {
-  receipt: SerializedReceipt;
+  receipt: SerializedReceipt & {
+    subtotal?: number | null;
+    tax?: number | null;
+    expenseId?: string | null;
+  };
   signedUrl: string | null;
 };
 
@@ -253,6 +264,12 @@ export function ReceiptDetailCard({ receipt, signedUrl }: ReceiptDetailProps) {
                 <dd>
                   {receipt.currency} {receipt.total.toFixed(2)}
                 </dd>
+              </div>
+            ) : null}
+            {'expenseId' in receipt && receipt.expenseId ? (
+              <div>
+                <dt className="text-caption text-muted">Expense</dt>
+                <dd className="font-mono text-caption">{receipt.expenseId}</dd>
               </div>
             ) : null}
           </dl>

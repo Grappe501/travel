@@ -3,6 +3,7 @@ import { DashboardShell } from '@/components/layout/DashboardShell';
 import { ReceiptDetailCard } from '@/components/receipts/ReceiptManager';
 import { ButtonLink } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
+import * as ocrService from '@/server/services/ocr.service';
 import * as receiptService from '@/server/services/receipt.service';
 
 export const dynamic = 'force-dynamic';
@@ -20,7 +21,7 @@ export default async function ReceiptDetailPage({ params }: PageProps) {
 
   let receipt;
   try {
-    receipt = receiptService.serializeReceipt(await receiptService.getOwnedReceipt(user.id, id));
+    receipt = await ocrService.getReceiptForReview(user.id, id);
   } catch {
     notFound();
   }
@@ -37,7 +38,18 @@ export default async function ReceiptDetailPage({ params }: PageProps) {
     <DashboardShell
       title="Receipt detail"
       description={receipt.merchant ?? 'Uploaded receipt'}
-      actions={<ButtonLink href="/receipts" variant="secondary" size="sm">Back</ButtonLink>}
+      actions={
+        <div className="flex flex-wrap gap-2">
+          {receipt.reviewStatus !== 'confirmed' ? (
+            <ButtonLink href={`/receipts/${receipt.id}/review`} size="sm">
+              Review
+            </ButtonLink>
+          ) : null}
+          <ButtonLink href="/receipts" variant="secondary" size="sm">
+            Back
+          </ButtonLink>
+        </div>
+      }
     >
       <ReceiptDetailCard receipt={receipt} signedUrl={signedUrl} />
     </DashboardShell>

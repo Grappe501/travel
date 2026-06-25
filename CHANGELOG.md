@@ -58,6 +58,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Business & vehicle setup (MEC-V1-S005)** — CRUD businesses/vehicles, mileage rate settings — STEP-037
 - **Trip engine (MEC-V1-S006)** — Start/end flow, history, mileage calc, audit on edits — STEP-038
 - **Receipt upload (MEC-V1-S007)** — Private Supabase Storage upload, FileAsset rows, list/detail UI, audit on upload — STEP-039
+- **AI OCR review (MEC-V1-S008)** — OpenAI Vision extraction, review screen, user approve → expense row — STEP-040
 
 ## [0.0.0] — 2026-06-24
 
