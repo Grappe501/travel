@@ -4,7 +4,6 @@ import { AppTopNav } from '@/components/layout/AppTopNav';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { ConditionalMobileQuickNav } from '@/components/layout/ConditionalMobileQuickNav';
 import { ConditionalGlobalSearchBar } from '@/components/search/ConditionalGlobalSearchBar';
-import { NotificationBellLink } from '@/components/notifications/NotificationManager';
 import { OfflineBanner } from '@/components/offline/OfflineBanner';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { AppFooter } from '@/components/layout/AppFooter';
@@ -34,9 +33,6 @@ export function DashboardShell({
       <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8">
         <ConditionalMobileQuickNav />
         <ConditionalGlobalSearchBar />
-        <div className="mb-2 flex justify-end md:hidden">
-          <NotificationBellLink />
-        </div>
         <PageHeader title={title} description={description} badge={badge} actions={actions} />
         <OfflineBanner />
         <main

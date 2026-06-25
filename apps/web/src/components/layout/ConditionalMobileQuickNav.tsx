@@ -2,19 +2,12 @@
 
 import { usePathname } from 'next/navigation';
 import { MobileQuickNav } from '@/components/layout/MobileQuickNav';
-
-function isTripScopedRoute(pathname: string): boolean {
-  return (
-    pathname.startsWith('/trips') ||
-    pathname.startsWith('/expenses') ||
-    pathname === '/receipts/upload'
-  );
-}
+import { getContextualQuickNav } from '@/lib/navigation/app-nav';
 
 export function ConditionalMobileQuickNav() {
   const pathname = usePathname();
 
-  if (!isTripScopedRoute(pathname)) {
+  if (getContextualQuickNav(pathname).length === 0) {
     return null;
   }
 

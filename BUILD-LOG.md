@@ -67,6 +67,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-060 | 2026-06-25 | B | MEC-V1-S028 — Global search (V1.5) | — | [STEP-060](docs/build-steps/STEP-060-global-search.md) |
 | STEP-061 | 2026-06-25 | B | MEC-V1-S029 — Monetization & trust (V1.6) | — | [STEP-061](docs/build-steps/STEP-061-monetization-trust.md) |
 | STEP-062 | 2026-06-25 | B | MEC-V1-S030 — Search filters (V1.7) | — | [STEP-062](docs/build-steps/STEP-062-search-filters.md) |
+| STEP-063 | 2026-06-25 | B | MEC-V1-S031 — Navigation IA v2 (V1.8) | — | [STEP-063](docs/build-steps/STEP-063-nav-ia-v2.md) |
 
 ---
 

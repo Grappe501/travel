@@ -13,6 +13,24 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.8.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.8 (STEP-063)**
+
+Navigation information architecture v2 — five-tab mobile shell with Add/More sheets.
+
+### Added
+- **Five-tab bottom nav** — Home, Trips, Add (FAB), Reports, More (drawer)
+- **Add sheet** — Start trip, upload receipt, add expense quick actions
+- **More drawer** — Receipts, expenses, clients, search, notifications, settings, billing
+- **Desktop nav** — Search in primary bar; Add/More sheets; notification bell retained
+- **Contextual quick actions** — Trip-focused mobile shortcuts on detail and list flows
+
+### Fixed
+- **CI workflow** — E2E smoke tests skip when secrets are unset (GitHub Actions `if:` restriction)
+
+---
+
 ## [1.7.0] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.7 (STEP-062)**

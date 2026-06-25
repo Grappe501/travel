@@ -34,7 +34,8 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S028 | Global search | — | WAVE-003 ext | FR-1000 | STEP-060 | ☑ Complete |
 | MEC-V1-S029 | Monetization & trust | — | WAVE-007 ext | FR-003, FR-1600 | STEP-061 | ☑ Complete |
 | MEC-V1-S030 | Search filters | — | WAVE-003 ext | FR-1000 | STEP-062 | ☑ Complete |
+| MEC-V1-S031 | Navigation IA v2 | — | WAVE-002 ext | — | STEP-063 | ☑ Complete |
 
-**Post-V1.7 backlog:** team access · accountant role · report templates
+**Post-V1.8 backlog:** delete UX v2 · production hardening · help center
 
 Prompts: [slices/](slices/)

@@ -171,7 +171,6 @@ jobs:
         run: pnpm build
 
       - name: E2E smoke tests
-        if: ${{ secrets.E2E_USER_EMAIL != '' }}
         env:
           E2E_TEST: '1'
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
@@ -181,4 +180,9 @@ jobs:
           E2E_USER_EMAIL: ${{ secrets.E2E_USER_EMAIL }}
           E2E_USER_PASSWORD: ${{ secrets.E2E_USER_PASSWORD }}
           E2E_SIGNUP_ENABLED: '1'
-        run: pnpm test:e2e:smoke
+        run: |
+          if [ -z "$E2E_USER_EMAIL" ]; then
+            echo "Skipping E2E smoke tests — E2E_USER_EMAIL not configured"
+            exit 0
+          fi
+          pnpm test:e2e:smoke
