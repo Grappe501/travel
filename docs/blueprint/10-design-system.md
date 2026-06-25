@@ -1079,8 +1079,8 @@ Phase A scaffold initializes shadcn with Volume 10 tokens before any feature scr
 | AI behavior | [Volume 5](05-ai-design.md) |
 | File structure | [Volume 6 Ch. 4](06-technical-architecture.md) |
 | Accessibility QA | [Volume 9 Ch. 11](09-testing-quality.md) |
-| V1 screen list | [Volume 2 Ch. 3](02-user-experience.md) |
+| V1 screen list | [Volume 11 SCR-INDEX](../screen-catalog/SCR-INDEX.md) |
 
 ---
 
-*Previous: [Volume 9 — Quality Assurance & Release Engineering](09-testing-quality.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 9 — Quality Assurance & Release Engineering](09-testing-quality.md) | Next: [Volume 11 — Complete Screen Bible](11-screen-bible.md)*

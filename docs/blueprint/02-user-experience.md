@@ -10,7 +10,7 @@
 
 ## Who This Document Is For
 
-Volume 2 is the **complete interaction blueprint** for Mileage & Expense Copilot. No production UI code is written until every screen, journey, state, and micro-interaction in this document is reviewed.
+Volume 2 is the **journey and navigation blueprint**. Per-screen specifications live in **[Volume 11 — Screen Bible](11-screen-bible.md)** (SCR-IDs).
 
 | Role | Use this volume to… |
 |------|---------------------|
@@ -135,7 +135,7 @@ If a trip is **active**, sheet highlights "Scan Receipt" and "Add Expense" first
 
 # Chapter 3 — Complete Screen Inventory
 
-Every screen is listed with **route**, **purpose**, and **V1 status**. Routes are implementation targets — finalize during Phase A scaffold.
+Every screen is listed with **route**, **purpose**, and **V1 status**. **Canonical specs:** [Volume 11 SCR catalog](11-screen-bible.md#screen-id-catalog). Routes are implementation targets — finalize during Phase A scaffold.
 
 ## Authentication
 
@@ -834,6 +834,7 @@ Queued items: trips, expenses, receipt images. Never block capture.
 | AI / OCR behavior | [Volume 5](05-ai-design.md) |
 | Test plan | [Volume 9](09-testing-quality.md) |
 | Design system | [Volume 10](10-design-system.md) |
+| Screen specs (SCR-IDs) | [Volume 11](11-screen-bible.md) |
 
 ---
 
