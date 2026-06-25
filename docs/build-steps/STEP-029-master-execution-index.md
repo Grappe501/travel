@@ -40,4 +40,4 @@ Establish the **Master Execution Index (MEI)** as the single construction contro
 
 ## Next step
 
-Sign-off → **STEP-030** — Phase 1 / WAVE-001 (repository scaffold, CI/CD, env)
+Sign-off → **STEP-030 MRMS** → **STEP-031 Phase A / WAVE-001**

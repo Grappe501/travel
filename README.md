@@ -8,9 +8,9 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Phase: Blueprint complete (Volumes 0–24) — sign off → build**
+**Blueprint + MEI + MRMS complete** — sign off → build
 
-**25 planning documents** (Volumes 0–24) + **[Master Execution Index](docs/MASTER-EXECUTION-INDEX.md)** (the construction schedule). Identity: [Volume 24](docs/blueprint/24-product-constitution.md). Build: [Volume 21](docs/blueprint/21-construction-manual.md) WAVE-001 after sign-off (**STEP-030**).
+**25 planning volumes** (0–24) + **[MEI](docs/MASTER-EXECUTION-INDEX.md)** (schedule) + **[MRMS](docs/requirements/MRMS.md)** (requirements backbone). Identity: [Volume 24](docs/blueprint/24-product-constitution.md). Build: [Volume 21](docs/blueprint/21-construction-manual.md) WAVE-001 after sign-off (**STEP-031**).
 
 ---
 
@@ -31,7 +31,7 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 | Document | Purpose |
 |----------|---------|
 | [Master Execution Index (MEI)](docs/MASTER-EXECUTION-INDEX.md) | **Construction schedule** — open this while building |
-| [Volume 24 — Product Constitution](docs/blueprint/24-product-constitution.md) | **Permanent identity** — design DNA |
+| [MRMS — Requirements System](docs/requirements/MRMS.md) | **Requirements backbone** — every MRID, test, release |
 | [Blueprint Index](docs/blueprint/README.md) | All 23 planning documents (Volumes 0–22) |
 | [Volume 0 — Product Doctrine](docs/blueprint/00-product-doctrine.md) | Design constitution — read first |
 | [Volume 21 — Construction Manual](docs/blueprint/21-construction-manual.md) | **First build** — waves, AI protocol |

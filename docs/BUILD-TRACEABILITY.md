@@ -12,7 +12,8 @@ Every change to this project is recorded so anyone can reconstruct *what* was do
 | Layer | File / location | Purpose |
 |-------|-----------------|---------|
 | **Ledger** | [`BUILD-LOG.md`](../BUILD-LOG.md) | Chronological index of every build step with commit SHA |
-| **Schedule** | [`MASTER-EXECUTION-INDEX.md`](MASTER-EXECUTION-INDEX.md) | Control tower — what to build, status, MRIDs |
+| **Schedule** | [`MASTER-EXECUTION-INDEX.md`](MASTER-EXECUTION-INDEX.md) | Control tower — what to build, status, BUILD slices |
+| **Requirements** | [`requirements/MRMS.md`](requirements/MRMS.md) | MRMS — every MRID, lifecycle, traceability |
 | **Detail** | [`docs/build-steps/`](build-steps/) | One markdown file per step — context, decisions, verification |
 | **Releases** | [`CHANGELOG.md`](../CHANGELOG.md) | User-facing version history ( semver ) |
 

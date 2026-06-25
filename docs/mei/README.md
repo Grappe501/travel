@@ -4,7 +4,9 @@
 
 | Document | MEI § | Purpose |
 |----------|-------|---------|
-| [MRID-INDEX.md](MRID-INDEX.md) | 22 | Master Requirement IDs |
+| [MRMS.md](../requirements/MRMS.md) | 22 | **Requirements constitution** (MRMS) |
+| [MRID-REGISTRY.md](../requirements/MRID-REGISTRY.md) | 22 | Master registry |
+| [MRID-INDEX.md](MRID-INDEX.md) | 22 | MEI summary table |
 | [MEI-TRACEABILITY.md](MEI-TRACEABILITY.md) | 22 | Full traceability matrix |
 | [BUILD-INDEX.md](BUILD-INDEX.md) | 12 | BUILD-001–014 slices |
 | [BUILD-SLICE-TEMPLATE.md](BUILD-SLICE-TEMPLATE.md) | 12 | Per-slice template |

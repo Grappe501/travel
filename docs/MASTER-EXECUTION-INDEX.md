@@ -14,6 +14,7 @@
 |----------|------|
 | Volumes 0–24 | **Library** — what, why, how it should feel |
 | **This document (MEI)** | **Schedule** — what to build, in what order, status |
+| [MRMS](requirements/MRMS.md) | **Requirements** — every MRID, test, release |
 | [BUILD-LOG.md](../BUILD-LOG.md) | **Ledger** — every STEP with commit SHA |
 
 **Owner:** Product + Engineering · **Update:** Every BUILD slice + every STEP  
@@ -27,7 +28,7 @@ The Master Execution Index answers five questions:
 
 | # | Question | MEI section |
 |---|----------|-------------|
-| 1 | What are we building? | §2, §6–11, [MRID-INDEX](mei/MRID-INDEX.md) |
+| 1 | What are we building? | §2, §6–11, [MRMS](requirements/MRMS.md) · [MRID-REGISTRY](requirements/MRID-REGISTRY.md) |
 | 2 | What depends on what? | §5, §4 |
 | 3 | What has been completed? | §3, §25 |
 | 4 | What is currently being built? | §21 [Kanban](mei/MEI-KANBAN.md) |
@@ -100,7 +101,7 @@ Nothing out of sequence. Maps to [WAVE-INDEX](construction/WAVE-INDEX.md).
 | **13** | Testing — full pyramid + UAT | BUILD-014 | ☐ |
 | **14** | Launch — Alpha → GA | BUILD-014 | ☐ |
 
-**Next:** BUILD-001 → **STEP-030** (Phase 1 / WAVE-001)
+**Next:** BUILD-001 → **STEP-031** (Phase 1 / WAVE-001)
 
 ---
 
@@ -323,7 +324,7 @@ CEO / founder dashboard — update weekly.
 
 | Metric | Current | Target V1 |
 |--------|---------|-----------|
-| Features complete (MRID) | 0 / 20 | 20 |
+| Features complete (MRID) | 0 / 20 bootstrap (~4,405 V1) | Critical path |
 | Tests passing | — | 100% CI |
 | Documentation (INDEX rows) | Blueprint only | 100% shipped |
 | Coverage (critical paths) | — | ≥80% |
@@ -340,7 +341,7 @@ CEO / founder dashboard — update weekly.
 
 **[mei/MEI-KANBAN.md](mei/MEI-KANBAN.md)** — Backlog · Ready · Building · Testing · Complete
 
-Current: All BUILD slices in **Backlog** until STEP-030.
+Current: All BUILD slices in **Backlog** until STEP-031.
 
 ---
 
@@ -350,8 +351,11 @@ Current: All BUILD slices in **Backlog** until STEP-030.
 
 | Artifact | Registry |
 |----------|----------|
-| Requirements | [mei/MRID-INDEX.md](mei/MRID-INDEX.md) |
+| **MRMS Constitution** | [requirements/MRMS.md](requirements/MRMS.md) |
+| Master registry | [requirements/MRID-REGISTRY.md](requirements/MRID-REGISTRY.md) |
+| MEI summary | [mei/MRID-INDEX.md](mei/MRID-INDEX.md) |
 | Full matrix | [mei/MEI-TRACEABILITY.md](mei/MEI-TRACEABILITY.md) |
+| Coverage gaps | [requirements/MRID-COVERAGE.md](requirements/MRID-COVERAGE.md) |
 | FR ↔ SCR ↔ API | [construction/TRACEABILITY-MATRIX.md](construction/TRACEABILITY-MATRIX.md) |
 
 **Flow:** Blueprint chapter → MRID → SCR → API → TBL → AI → EVT → Test → Doc
@@ -364,8 +368,8 @@ Current: All BUILD slices in **Backlog** until STEP-030.
 
 | Milestone | Target | Gate |
 |-----------|--------|------|
-| Blueprint complete | ☑ 2026-06-24 | Volumes 0–24 + MEI v2 |
-| Implementation start | STEP-030 | Sign-off |
+| Blueprint + MEI + MRMS complete | ☑ 2026-06-24 | Volumes 0–24 + MEI v2 + MRMS v1 |
+| Implementation start | STEP-031 | Sign-off |
 | Internal Alpha | TBD | WAVE-001–006 |
 | Private Beta | TBD | WAVE-001–008 |
 | Public Beta | TBD | WAVE-001–009 |
@@ -447,7 +451,7 @@ The MEI eliminates uncertainty. Any engineer or AI agent can answer within minut
 | How will I know it's finished? | BLD-DOD-001 · MRID status ☑ |
 | What comes next? | §4 · Kanban |
 
-**Sign-off** → **STEP-030** → **BUILD-001** → WAVE-001
+**Sign-off** → **STEP-031** → **BUILD-001** → WAVE-001
 
 ---
 

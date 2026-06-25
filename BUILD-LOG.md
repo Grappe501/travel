@@ -34,6 +34,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-027 | 2026-06-24 | Blueprint | Volume 23 — Product factory (FCT registry) | `fa2f4ef` | [STEP-027](docs/build-steps/STEP-027-volume-23-factory.md) |
 | STEP-028 | 2026-06-24 | Blueprint | Volume 24 — Product constitution (DNA registry) | `c5bf163` | [STEP-028](docs/build-steps/STEP-028-volume-24-constitution.md) |
 | STEP-029 | 2026-06-24 | Blueprint | Master Execution Index (MEI) v2.0 — MRID, BUILD slices, control tower | `bb00470` | [STEP-029](docs/build-steps/STEP-029-master-execution-index.md) |
+| STEP-030 | 2026-06-24 | Blueprint | Master Requirements Management System (MRMS) — domain MRIDs, registry | *(pending)* | [STEP-030](docs/build-steps/STEP-030-master-requirements-management.md) |
 
 ---
 
@@ -41,8 +42,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 29 |
-| Current phase | **Blueprint + MEI complete** → sign-off → WAVE-001 (**STEP-030**) |
+| Steps completed | 30 |
+| Current phase | **Blueprint + MEI + MRMS complete** → sign-off → WAVE-001 (**STEP-031**) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---
