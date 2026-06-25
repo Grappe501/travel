@@ -418,6 +418,8 @@ Export includes: trips · expenses · receipts metadata · reports list · busin
 
 # Chapter 16 — Analytics & Business Metrics
 
+> **Canonical specification:** [Volume 14 — Analytics, Metrics & Business Intelligence](14-analytics.md)
+
 ## Tooling
 
 | Layer | Tool |

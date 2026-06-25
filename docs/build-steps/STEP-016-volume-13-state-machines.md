@@ -38,4 +38,4 @@ Add **Volume 13 — Component State Machines & Workflow Logic** — explicit SM-
 
 ## Next step
 
-Blueprint sign-off → **STEP-017 Phase A: Repo scaffold**
+Blueprint sign-off → **STEP-018 Phase A: Repo scaffold**

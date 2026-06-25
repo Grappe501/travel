@@ -39,6 +39,7 @@
 | **11** | [Complete Screen Bible & Experience Atlas](11-screen-bible.md) | 60 SCR-IDs — every screen specified before development |
 | **12** | [API Architecture & Integration Specification](12-api-architecture.md) | 70+ API-IDs — response envelope, error registry, API Constitution |
 | **13** | [Component State Machines & Workflow Logic](13-state-machines.md) | SM-IDs — trips, receipts, OCR, sync, billing, screen states |
+| **14** | [Analytics, Metrics & Business Intelligence](14-analytics.md) | EVT-IDs, North Star, funnels, dashboards, privacy rules |
 
 ---
 
@@ -50,6 +51,7 @@
 | [SCR-INDEX.md](../screen-catalog/SCR-INDEX.md) | Screen implementation tracker (Volume 11) |
 | [API-INDEX.md](../api-catalog/API-INDEX.md) | API implementation tracker (Volume 12) |
 | [SM-INDEX.md](../state-machines/SM-INDEX.md) | State machine tracker (Volume 13) |
+| [EVENT-REGISTRY.md](../analytics/EVENT-REGISTRY.md) | Analytics event registry (Volume 14) |
 | [Root README](../../README.md) | Project overview and quick start |
 
 ---

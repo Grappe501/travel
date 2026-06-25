@@ -642,8 +642,7 @@ If any screen leaves one unanswered, the state machine specification is **incomp
 | Volume 5 | AI vs user-approved separation |
 | Volume 11 | SCR screen state maps (Ch. 5) |
 | Volume 12 | API triggers events (Ch. 8, 25) |
-| Volume 9 | QA path coverage (Ch. 10) |
-| Volume 10 | Button/loading/error components |
+| Volume 14 | EVT-IDs, dashboards, privacy (Ch. 15) |
 
 ---
 
@@ -658,4 +657,4 @@ If any screen leaves one unanswered, the state machine specification is **incomp
 
 ---
 
-*Previous: [Volume 12 — API Architecture](12-api-architecture.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 13 — State Machines](13-state-machines.md) | Next: [Volume 14 — Analytics](14-analytics.md)*
