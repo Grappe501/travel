@@ -5,7 +5,7 @@
 | **Step ID** | STEP-006 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | *(pending)* |
+| **Commit** | [`2d2e310`](https://github.com/Grappe501/travel/commit/2d2e310) |
 | **Status** | complete |
 
 ## Objective
