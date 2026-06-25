@@ -16,7 +16,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-009 | 2026-06-24 | Blueprint | Volume 6 rewrite — Technical Architecture (33 chapters) | `e7a1a19` | [STEP-009](docs/build-steps/STEP-009-volume-6-technical.md) |
 | STEP-010 | 2026-06-24 | Blueprint | Volume 7 rewrite — Business Operations & GTM (30 chapters) | `fe217f9` | [STEP-010](docs/build-steps/STEP-010-volume-7-business.md) |
 | STEP-011 | 2026-06-24 | Blueprint | Volume 8 rewrite — Security & Trust Architecture (34 chapters) | `f5f06f6` | [STEP-011](docs/build-steps/STEP-011-volume-8-security.md) |
-| STEP-012 | 2026-06-24 | Blueprint | Volume 9 rewrite — QA & Release Engineering (33 chapters) | *pending* | [STEP-012](docs/build-steps/STEP-012-volume-9-qa.md) |
+| STEP-012 | 2026-06-24 | Blueprint | Volume 9 rewrite — QA & Release Engineering (33 chapters) | `529c5a6` | [STEP-012](docs/build-steps/STEP-012-volume-9-qa.md) |
 
 ---
 
