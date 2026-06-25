@@ -10,7 +10,7 @@
 
 ## Who This Document Is For
 
-Volume 2 is the **journey and navigation blueprint**. Per-screen specifications live in **[Volume 11 — Screen Bible](11-screen-bible.md)** (SCR-IDs).
+Volume 2 is the **journey and navigation blueprint**. Per-screen specifications live in **[Volume 11 — Screen Bible](11-screen-bible.md)** (SCR-IDs). **Mobile and field behavior** is canonical in **[Volume 18 — Mobile Field Experience](18-mobile-field-experience.md)**.
 
 | Role | Use this volume to… |
 |------|---------------------|

@@ -18,10 +18,11 @@
 10. **Volume 15** is the *Communication Engine* — every MSG-ID, channel, and timing rule.
 11. **Volume 16** is the *AI Operating System* — engines, PRM-IDs, and the AI Constitution.
 12. **Volume 17** is *AdminOS* — the company operating system: roles, dashboards, runbooks, and internal workflows.
+13. **Volume 18** is the *Mobile Field Experience* — offline-first PWA, camera, thumb-zone UX, and the Field Productivity Standard.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–17 complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–18 complete (v1.0). Ready for sign-off → Phase A.
 
 ---
 
@@ -47,6 +48,7 @@
 | **15** | [Communication & Engagement Engine](15-communication-engine.md) | MSG-IDs, channels, timing, lifecycle, non-negotiables |
 | **16** | [AI Operating System & Prompt Registry](16-ai-operating-system.md) | ENG/PRM-IDs, golden set, maturity roadmap, AI Constitution |
 | **17** | [Administration, Operations & Company OS (AdminOS)](17-admin-operating-system.md) | ADM-IDs, roles, dashboards, runbooks, incident response, launch checklist |
+| **18** | [Mobile Experience, Offline & Field Productivity](18-mobile-field-experience.md) | MOB-IDs, offline queue, camera, field workflows, device matrix, Field Productivity Standard |
 
 ---
 
@@ -62,6 +64,8 @@
 | [MSG-INDEX.md](../communications/MSG-INDEX.md) | Communication template registry (Volume 15) |
 | [PROMPT-INDEX.md](../ai-catalog/PROMPT-INDEX.md) | AI prompt registry (Volume 16) |
 | [ADM-INDEX.md](../admin-os/ADM-INDEX.md) | AdminOS module registry (Volume 17) |
+| [MOB-INDEX.md](../mobile/MOB-INDEX.md) | Mobile & field workflow registry (Volume 18) |
+| [DEVICE-MATRIX.md](../mobile/DEVICE-MATRIX.md) | Device compatibility matrix (Volume 18 Ch. 36) |
 | [docs/runbooks/](../runbooks/) | Operational runbooks (Volume 17 Ch. 26) |
 | [Root README](../../README.md) | Project overview and quick start |
 

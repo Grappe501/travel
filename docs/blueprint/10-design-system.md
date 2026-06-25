@@ -427,9 +427,11 @@ Used in reports, trip lists (desktop), employee lists (V1.1).
 
 # Chapter 15 — Navigation
 
+> **Mobile tab order and FAB:** canonical spec in **[Volume 18 Ch. 6](18-mobile-field-experience.md)** (Dashboard, Trips, Receipts, Reports, Settings + Start Trip FAB).
+
 | Component | Mobile | Desktop (≥768px) |
 |-----------|--------|------------------|
-| `BottomNav` | 5 tabs: Dashboard, Trips, Add, Reports, More | Hidden |
+| `BottomNav` | 5 tabs per Volume 18 | Hidden |
 | `SidebarNav` | Hidden | Dashboard, Trips, Reports, More |
 | `TopBar` | Business selector, offline badge | Same + Add button |
 | `ActiveTripBanner` | Sticky below top bar | Same |

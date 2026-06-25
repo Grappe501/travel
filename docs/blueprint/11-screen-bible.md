@@ -137,7 +137,7 @@ Every screen follows:
 | Standard | Rule |
 |----------|------|
 | Header | `TopBar` — back button on sub-screens; business selector on Dashboard/Trips |
-| Navigation | `BottomNav` (mobile) / `SidebarNav` (≥768px) except auth & onboarding |
+| Navigation | `BottomNav` (mobile) per **Volume 18** / `SidebarNav` (≥768px) except auth & onboarding |
 | Spacing | Volume 10 spacing scale only |
 | Primary action | **One** per screen; bottom-fixed on mobile forms |
 | Responsive | Document all three layouts per screen |

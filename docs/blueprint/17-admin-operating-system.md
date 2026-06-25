@@ -676,4 +676,4 @@ When Volume 17 is complete, you've designed not just the software, but the **ope
 
 ---
 
-*Previous: [Volume 16 — AI Operating System](16-ai-operating-system.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 16 — AI Operating System](16-ai-operating-system.md) | Next: [Volume 18 — Mobile Field Experience](18-mobile-field-experience.md) | [Blueprint Index](README.md)*

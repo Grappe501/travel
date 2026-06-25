@@ -76,6 +76,17 @@ PR convention: `EVT-IDs: EVT-004, EVT-011`
 | EVT-061 | `sync_conflict_shown` | — |
 | EVT-062 | `offline_save` | — |
 
+## Mobile & field (Volume 18)
+
+| EVT-ID | Event | SCR |
+|--------|-------|-----|
+| EVT-MOB-001 | `camera_launch_ms` | SCR-031 |
+| EVT-MOB-002 | `receipt_capture_complete` | SCR-031 |
+| EVT-MOB-003 | `offline_session_start` | — |
+| EVT-MOB-004 | `resume_after_interrupt` | — |
+| EVT-MOB-005 | `start_trip_duration_ms` | SCR-022 |
+| EVT-MOB-006 | `sync_queue_depth` | SCR-052 |
+
 ## Screen views
 
 | EVT-ID | Event | Properties |
