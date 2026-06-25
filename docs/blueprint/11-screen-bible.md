@@ -1173,7 +1173,7 @@ Each modal inherits global standards (Ch. 2) and Volume 10 Ch. 16.
 | Volume 10 | Component → SCR usage in Ch. 42 |
 | Volume 2 | Journeys → SCR sequence |
 
-When Volume 12+ are added (API docs, analytics), they **must** use SCR-IDs.
+When Volume 13+ are added (analytics), they **must** use SCR-IDs and API-IDs.
 
 ---
 
