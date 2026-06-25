@@ -38,7 +38,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-031 | 2026-06-24 | Blueprint | MRMS-2 Domain Registration System (DRS) — hierarchical namespace | `6cdaf75` | [STEP-031](docs/build-steps/STEP-031-domain-registration-system.md) |
 | STEP-032 | 2026-06-24 | Execution | Version 1 Execution Package — 10 slices, locked stack, Burt prompts | `7f6d89d` | [STEP-032](docs/build-steps/STEP-032-version-1-execution-package.md) |
 | STEP-033 | 2026-06-24 | A | MEC-V1-S001 — Next.js 15 monorepo scaffold, route shells, CI | `c82b31e` | [STEP-033](docs/build-steps/STEP-033-mec-v1-s001-scaffold.md) |
-| STEP-034 | 2026-06-24 | A | MEC-V1-S002 — Prisma schema, initial migration, Zod schemas | *(pending)* | [STEP-034](docs/build-steps/STEP-034-mec-v1-s002-database.md) |
+| STEP-034 | 2026-06-24 | A | MEC-V1-S002 — Prisma schema, initial migration, Zod schemas | `ff83d90` | [STEP-034](docs/build-steps/STEP-034-mec-v1-s002-database.md) |
 
 ---
 
