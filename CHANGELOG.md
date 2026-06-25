@@ -63,6 +63,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Billing & limits (MEC-V1-S010)** — Free tier caps, Stripe Checkout/Portal, webhook subscription sync — STEP-042
 - **Expense engine (MEC-V1-S011)** — Manual expense CRUD, receipt-to-trip attach, trip expense_total recalc — STEP-043
 - **Onboarding & auth polish (MEC-V1-S012)** — First-run wizard, password reset, email verify — STEP-044
+- **Test harness & unit tests (MEC-V1-S013)** — Vitest, calculation/schema tests, CI test job — STEP-045
 
 ## [0.0.0] — 2026-06-24
 

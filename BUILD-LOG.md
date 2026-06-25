@@ -49,6 +49,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-042 | 2026-06-25 | A | MEC-V1-S010 — Stripe billing, usage limits, free tier enforcement | `6edc398` | [STEP-042](docs/build-steps/STEP-042-mec-v1-s010-billing.md) |
 | STEP-043 | 2026-06-25 | A | MEC-V1-S011 — Expense CRUD, receipt attach, trip expense_total recalc | `5f28e52` | [STEP-043](docs/build-steps/STEP-043-mec-v1-s011-expense-engine.md) |
 | STEP-044 | 2026-06-25 | A | MEC-V1-S012 — Onboarding wizard, auth polish, post-login redirects | `8b3e788` | [STEP-044](docs/build-steps/STEP-044-mec-v1-s012-onboarding-auth.md) |
+| STEP-045 | 2026-06-25 | A | MEC-V1-S013 — Vitest harness, calculation/schema tests, CI | — | [STEP-045](docs/build-steps/STEP-045-mec-v1-s013-unit-tests.md) |
 
 ---
 
@@ -56,8 +57,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 44 |
-| Current phase | **Implementation** — MEC-V1-S013 test harness next (STEP-045) |
+| Steps completed | 45 |
+| Current phase | **Implementation** — MEC-V1-S014 integration tests next (STEP-046) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---

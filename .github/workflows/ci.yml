@@ -45,6 +45,9 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Test
+        run: pnpm test
+
       - name: Build
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot

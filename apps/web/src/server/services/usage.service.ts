@@ -4,6 +4,7 @@ import {
   FREE_RECEIPTS_PER_MONTH,
   FREE_TRIPS_PER_MONTH,
 } from '@/lib/billing/config';
+import { isReceiptLimitReached, isTripLimitReached } from '@/lib/billing/usage-limits';
 import { prisma } from '@/lib/db/prisma';
 import { ensureSubscription, hasUnlimitedUsage } from '@/lib/billing/subscription-access';
 
@@ -50,11 +51,7 @@ export async function getUsageSummary(userId: string) {
 }
 
 function assertTripLimit(subscription: Subscription, tripsCount: number) {
-  if (hasUnlimitedUsage(subscription)) {
-    return;
-  }
-
-  if (tripsCount >= FREE_TRIPS_PER_MONTH) {
+  if (isTripLimitReached(tripsCount, hasUnlimitedUsage(subscription))) {
     throw new SubscriptionLimitError(
       `You've used all ${FREE_TRIPS_PER_MONTH} trips this month. Upgrade to Pro for unlimited trips.`
     );
@@ -62,11 +59,7 @@ function assertTripLimit(subscription: Subscription, tripsCount: number) {
 }
 
 function assertReceiptLimit(subscription: Subscription, receiptsCount: number) {
-  if (hasUnlimitedUsage(subscription)) {
-    return;
-  }
-
-  if (receiptsCount >= FREE_RECEIPTS_PER_MONTH) {
+  if (isReceiptLimitReached(receiptsCount, hasUnlimitedUsage(subscription))) {
     throw new SubscriptionLimitError(
       `You've used all ${FREE_RECEIPTS_PER_MONTH} receipts this month. Upgrade to Pro for unlimited receipts.`
     );
