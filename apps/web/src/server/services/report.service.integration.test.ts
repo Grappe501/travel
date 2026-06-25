@@ -61,6 +61,22 @@ describe.skipIf(!integrationDbReady())('report.service integration', () => {
     expect(lines.filter((line) => line.includes('Staples')).length).toBeGreaterThan(0);
   });
 
+  it('generates a 30-day combined CSV report within the documented timeout', async () => {
+    const reportGenTimeoutMs = 30_000;
+    const started = Date.now();
+
+    const report = await generateReport(ctx.userId, {
+      reportType: 'combined',
+      format: 'csv',
+      dateRangeStart: '2026-06-01',
+      dateRangeEnd: '2026-06-30',
+      businessId: ctx.businessId,
+    });
+
+    expect(report.status).toBe('ready');
+    expect(Date.now() - started).toBeLessThan(reportGenTimeoutMs);
+  });
+
   it('builds CSV summary rows from report data shape', () => {
     const buffer = generateReportCsv({
       reportType: 'expense',

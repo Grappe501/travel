@@ -9,15 +9,18 @@
 | BUILD-003 | S004 | Design system | WAVE-001 | — | STEP-036 | ☑ Complete |
 | BUILD-004 | S005 | Businesses + vehicles | WAVE-002 | 000002–000003 | STEP-037 | ☑ Complete |
 | BUILD-005 | S006 | Trip engine | WAVE-003 | 000004–000006 | STEP-038 | ☑ Complete |
-| BUILD-006 | — | Offline sync | WAVE-003 | 000016–000017 | post-GA | Backlog |
+| BUILD-006 | S021 | Offline sync | WAVE-003 | 000016–000017 | STEP-053 | ☑ Complete |
 | BUILD-007 | S007 | Receipt capture | WAVE-004 | 000007 | STEP-039 | ☑ Complete |
 | BUILD-008 | S008 | OCR + review | WAVE-004 | 000008–000009 | STEP-040 | ☑ Complete |
 | BUILD-009 | S011 | Expense engine | WAVE-005 | 000010–000011 | STEP-043 | ☑ Complete |
 | BUILD-010 | S009 | Reports + export | WAVE-006 | 000012–000013 | STEP-041 | ☑ Complete |
 | BUILD-011 | S010 | Stripe billing | WAVE-007 | 000014–000015 | STEP-042 | ☑ Complete |
-| BUILD-012 | — | AI dup | WAVE-008 | 000018–000019 | post-GA | Backlog |
-| BUILD-013 | S019 | AdminOS min | WAVE-009 | 000020 | STEP-051 | Backlog |
-| BUILD-014 | S013–S017, S020 | Launch hardening | WAVE-010 | all V1 | STEP-045–049, 052 | S013–S014 ☑ (2/5) |
+| BUILD-012 | S022 | AI duplicate detection | WAVE-008 | 000019 | STEP-054 | ☑ Complete |
+| BUILD-015 | S023 | AI category suggestions | WAVE-008 | 000018 | STEP-055 | ☑ Complete |
+| BUILD-016 | S024 | Client & project modules | WAVE-002 | — | STEP-056 | ☑ Complete |
+| BUILD-017 | S025 | AI feedback & history | WAVE-008 | — | STEP-057 | ☑ Complete |
+| BUILD-013 | S019 | AdminOS min | WAVE-009 | 000020 | STEP-051 | Complete |
+| BUILD-014 | S013–S017, S020 | Launch hardening | WAVE-010 | all V1 | STEP-045–049, 052 | ☑ Complete (WAVE-010 closed) |
 
 **Packet:** [VERSION_1_EXECUTION_PACKAGE.md](../execution/VERSION_1_EXECUTION_PACKAGE.md)  
 **Prompts:** [execution/slices/](../execution/slices/)

@@ -47,10 +47,10 @@ Validation:
 pnpm lint && pnpm typecheck && pnpm build
 
 Exit criteria:
-- [ ] Non-admin user gets 403 on /admin and /api/admin/*
-- [ ] Admin can search by email and view subscription + usage
-- [ ] Admin lookup writes audit log entry
-- [ ] System health page shows config flags (no secrets)
+- [x] Non-admin user gets 403 on /admin and /api/admin/*
+- [x] Admin can search by email and view subscription + usage
+- [x] Admin lookup writes audit log entry
+- [x] System health page shows config flags (no secrets)
 
 Commit:
 feat(admin): MEC-V1-S019 AdminOS minimum customer lookup

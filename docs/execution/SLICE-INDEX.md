@@ -18,15 +18,18 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S012 | Onboarding & auth polish | — | WAVE-001/002 | 000001 | STEP-044 | ☑ Complete |
 | MEC-V1-S013 | Test harness & unit tests | BUILD-014 §1 | WAVE-010 | — | STEP-045 | ☑ Complete |
 | MEC-V1-S014 | Integration tests | BUILD-014 §2 | WAVE-010 | 000004–000015 | STEP-046 | ☑ Complete |
-| MEC-V1-S015 | E2E critical journeys | BUILD-014 §3 | WAVE-010 | 000001–000015 | STEP-047 | Backlog |
-| MEC-V1-S016 | Security hardening | BUILD-014 §4 | WAVE-010 | — | STEP-048 | Backlog |
-| MEC-V1-S017 | Performance & a11y | BUILD-014 §5 | WAVE-010 | — | STEP-049 | Backlog |
-| MEC-V1-S018 | Production ops & monitoring | — | WAVE-010 | — | STEP-050 | Backlog |
-| MEC-V1-S019 | AdminOS minimum | BUILD-013 | WAVE-009 | 000020 | STEP-051 | Backlog |
-| MEC-V1-S020 | Launch gates & GA | BUILD-014 close | WAVE-010 | V1 all | STEP-052 | Backlog |
+| MEC-V1-S015 | E2E critical journeys | BUILD-014 §3 | WAVE-010 | 000001–000015 | STEP-047 | ☑ Complete |
+| MEC-V1-S016 | Security hardening | BUILD-014 §4 | WAVE-010 | — | STEP-048 | ☑ Complete |
+| MEC-V1-S017 | Performance & a11y | BUILD-014 §5 | WAVE-010 | — | STEP-049 | ☑ Complete |
+| MEC-V1-S018 | Production ops & monitoring | — | WAVE-010 | — | STEP-050 | ☑ Complete |
+| MEC-V1-S019 | AdminOS minimum | BUILD-013 | WAVE-009 | 000020 | STEP-051 | ☑ Complete |
+| MEC-V1-S020 | Launch gates & GA | BUILD-014 close | WAVE-010 | V1 all | STEP-052 | ☑ Complete |
+| MEC-V1-S021 | Offline sync | BUILD-006 | WAVE-003 ext | 000016–000017 | STEP-053 | ☑ Complete |
+| MEC-V1-S022 | AI duplicate detection | BUILD-012 | WAVE-008 | 000019 | STEP-054 | ☑ Complete |
+| MEC-V1-S023 | AI category suggestions | BUILD-015 | WAVE-008 | 000018 | STEP-055 | ☑ Complete |
+| MEC-V1-S024 | Client & project modules | BUILD-016 | WAVE-002 ext | — | STEP-056 | ☑ Complete |
+| MEC-V1-S025 | AI feedback & history | BUILD-017 | WAVE-008 | — | STEP-057 | ☑ Complete |
 
-**Roadmap:** [ROADMAP-043-052.md](ROADMAP-043-052.md)
-
-**Post-GA backlog:** BUILD-006 offline · BUILD-012 AI dup
+**Post-V1.2 backlog:** notifications · global search · attach-receipt UI
 
 Prompts: [slices/](slices/)

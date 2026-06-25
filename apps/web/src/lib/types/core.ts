@@ -31,6 +31,32 @@ export type SerializedVehicle = {
   updatedAt: string;
 };
 
+export type SerializedClient = {
+  id: string;
+  businessId: string | null;
+  name: string;
+  phone: string | null;
+  email: string | null;
+  notes: string | null;
+  projectCount: number;
+  tripCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SerializedProject = {
+  id: string;
+  businessId: string;
+  clientId: string | null;
+  name: string;
+  status: string;
+  budget: number | null;
+  notes: string | null;
+  tripCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type MileageSettings = {
   mileageRateType: 'irs' | 'company' | 'custom';
   customMileageRate: number | null;
@@ -53,6 +79,10 @@ export type SerializedTrip = {
   businessName: string;
   vehicleId: string;
   vehicleNickname: string;
+  clientId: string | null;
+  projectId: string | null;
+  clientName: string | null;
+  projectName: string | null;
   status: string;
   purpose: string;
   destination: string | null;

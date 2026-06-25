@@ -7,21 +7,33 @@
 | **Slice** | MEC-V1-S019 |
 | **BUILD-ID** | BUILD-013 |
 | **WAVE** | WAVE-009 |
-| **Date** | — |
-| **Commit** | — |
-| **Status** | **planned** |
+| **Date** | 2026-06-25 |
+| **Commit** | `cbc3d09` |
+| **Status** | complete |
 
 ## Objective
 
 Read-only admin customer lookup by email, account summary, system health (MRID-000020).
 
-## Prompt
+## Changes
 
-[MEC-V1-S019-admin-minimum.md](../execution/slices/MEC-V1-S019-admin-minimum.md)
+- `lib/auth/admin.ts` — allowlist + `app_metadata.role` admin/support check
+- `server/services/admin.service.ts` — lookup, summary, audit log, admin health
+- `GET /api/admin/users?email=` — admin-only lookup + `admin.view_user` audit entry
+- `GET /api/admin/health` — DB ping + dependency flags (no secrets)
+- `/admin` dashboard with email search; `/admin/users/[id]` summary; `/admin/health`
+- `DashboardShell` + admin components; non-admin → 403 (pages + API)
+- `.env.example` — `ADMIN_EMAIL_ALLOWLIST`; production checklist admin section
+- Tests: `admin.test.ts`, API auth inventory + 403 for non-admin
 
-## Traceability
+## Verification
 
-- **BUILD-013** · **MRID-000020** · **ADM-MRID-000020**
+```bash
+pnpm lint            # pass
+pnpm typecheck       # pass
+pnpm build           # pass
+pnpm test            # pass
+```
 
 ## Next step
 

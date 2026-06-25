@@ -9,6 +9,7 @@ import {
   isAllowedReceiptMimeType,
   MAX_RECEIPT_FILE_BYTES,
 } from '@/lib/receipts/constants';
+import { bufferMatchesReceiptMimeType } from '@/lib/receipts/magic-bytes';
 import { buildReceiptStoragePath, getStorageConfig } from '@/lib/storage/config';
 import { getSupabaseAdmin } from '@/lib/storage/server';
 import { prisma } from '@/lib/db/prisma';
@@ -16,6 +17,7 @@ import {
   assertCanUploadReceipt,
   incrementReceiptUsage,
 } from '@/server/services/usage.service';
+import { checkDuplicatesAfterUpload } from '@/server/services/duplicate-detection.service';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
@@ -126,6 +128,11 @@ export async function uploadReceipt(
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
+
+  if (!bufferMatchesReceiptMimeType(buffer, mimeType)) {
+    throw new ValidationError('File content does not match the declared file type.');
+  }
+
   const fileHash = hashFileBuffer(buffer);
   const receiptId = randomUUID();
   const ext = extensionForMimeType(mimeType);
@@ -193,6 +200,8 @@ export async function uploadReceipt(
 
       return created;
     });
+
+    await checkDuplicatesAfterUpload(userId, receiptId).catch(() => undefined);
 
     return serializeReceipt(receipt);
   } catch (error) {

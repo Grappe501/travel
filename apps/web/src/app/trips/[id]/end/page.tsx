@@ -1,7 +1,9 @@
 import { notFound, redirect } from 'next/navigation';
+import { OfflineTripEndShell } from '@/components/offline/OfflineTripEndShell';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { TripEndForm } from '@/components/trips/TripManager';
 import { ButtonLink } from '@/components/ui';
+import { isOfflineTripId } from '@/lib/offline/ids';
 import { requireSessionUser } from '@/lib/auth/server';
 import * as tripService from '@/server/services/trip.service';
 
@@ -16,6 +18,10 @@ export default async function TripEndPage({ params }: PageProps) {
   }
 
   const { id } = await params;
+
+  if (isOfflineTripId(id)) {
+    return <OfflineTripEndShell localId={id} />;
+  }
 
   let trip;
   try {

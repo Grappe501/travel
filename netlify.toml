@@ -1,5 +1,9 @@
 # Mileage & Expense Copilot — Netlify configuration
 # DEC-001: Netlify + Next.js 15 — use plugin v5 (v4 causes AsyncLocalStorage snapshot errors)
+#
+# Production env vars: see docs/execution/PRODUCTION-CHECKLIST.md
+# Required at runtime: DATABASE_URL, DIRECT_URL (migrations only), Supabase keys,
+# STRIPE_*, OPENAI_API_KEY (OCR), SENTRY_DSN + NEXT_PUBLIC_SENTRY_DSN (optional)
 
 [build]
   command = "pnpm install && pnpm db:generate && pnpm build"
@@ -24,3 +28,5 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(self), geolocation=(self), microphone=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.stripe.com https://*.ingest.sentry.io https://*.sentry.io; img-src 'self' data: blob: https://*.supabase.co; font-src 'self' data:; frame-src https://js.stripe.com https://hooks.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self'"

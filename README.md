@@ -8,11 +8,11 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Implementation in progress** — MEC-V1-S001 complete
+**Implementation in progress** — STEP-050 (production ops) complete · BUILD-014 done
 
 **Control stack:** [MEI](docs/MASTER-EXECUTION-INDEX.md) · [V1 Execution Package](docs/execution/VERSION_1_EXECUTION_PACKAGE.md)
 
-**Next:** [MEC-V1-S003 — Authentication](docs/execution/slices/MEC-V1-S003-auth.md) (STEP-035)
+**Next:** [MEC-V1-S019 — AdminOS minimum](docs/execution/slices/MEC-V1-S019-admin-minimum.md) (STEP-051)
 
 ---
 
@@ -37,7 +37,9 @@ pnpm typecheck
 pnpm build
 ```
 
-Health check: [http://localhost:3000/health](http://localhost:3000/health) → `{ "status": "ok" }`
+Health check: [http://localhost:3000/health](http://localhost:3000/health) → dependency flags and build metadata
+
+**Production deploy:** [PRODUCTION-CHECKLIST.md](docs/execution/PRODUCTION-CHECKLIST.md) · [Runbooks](docs/runbooks/README.md)
 
 ---
 
@@ -68,6 +70,8 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 | [Volume 22 — Platform Architecture](docs/blueprint/22-platform-architecture.md) | Platform constitution — 10-year evolution |
 | [Project Structure](docs/PROJECT-STRUCTURE.md) | H: drive filesystem layout |
 | [Technical Architecture & Production Infrastructure](docs/blueprint/06-technical-architecture.md) | Stack, deploy, Cursor build rules |
+| [Production checklist](docs/execution/PRODUCTION-CHECKLIST.md) | Netlify env vars & go-live sign-off |
+| [Runbooks](docs/runbooks/README.md) | Incidents, deploy, Stripe/OCR outages |
 
 ---
 

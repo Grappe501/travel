@@ -1,9 +1,16 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { Alert, Badge, Button, Card, CardContent, Input, Select } from '@/components/ui';
-import { getExpenseCategoryOptions } from '@/lib/receipts/categories';
+import { formatDuplicateMessage, type DuplicateMatch } from '@/lib/ai/duplicate-detection';
+import {
+  formatCategorySuggestionMessage,
+  shouldShowCategoryAlternatives,
+} from '@/lib/ai/category-intelligence';
+import { formatCategoryLabel, getExpenseCategoryOptions } from '@/lib/receipts/categories';
+import type { CategorySuggestionResult } from '@mileage-copilot/shared';
 import type { SerializedBusiness, SerializedReceiptWithOcr } from '@/lib/types/core';
 
 type ReceiptReviewPanelProps = {
@@ -19,6 +26,14 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [current, setCurrent] = useState(receipt);
+  const [duplicates, setDuplicates] = useState<DuplicateMatch[]>([]);
+  const [duplicateLoading, setDuplicateLoading] = useState(false);
+  const [acknowledgeDuplicate, setAcknowledgeDuplicate] = useState(false);
+  const [categorySuggestion, setCategorySuggestion] = useState<CategorySuggestionResult | null>(
+    null
+  );
+  const [categoryLoading, setCategoryLoading] = useState(false);
+  const [categoryTouched, setCategoryTouched] = useState(false);
 
   const [merchant, setMerchant] = useState(receipt.merchant ?? receipt.ocrResult?.merchant ?? '');
   const [receiptDate, setReceiptDate] = useState(
@@ -62,6 +77,8 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
     setTax(String(updated.tax ?? updated.ocrResult?.tax ?? ''));
     setTotal(String(updated.total ?? updated.ocrResult?.total ?? ''));
     setCategorySlug(updated.ocrResult?.suggestedCategorySlug ?? 'other');
+    setCategoryTouched(false);
+    setCategorySuggestion(null);
     setOcrRunning(false);
     router.refresh();
   }, [current.id, router]);
@@ -81,6 +98,118 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
       void runOcr();
     }
   }, [current, isApproved, ocrError, ocrRunning, runOcr]);
+
+  useEffect(() => {
+    if (isApproved) return;
+
+    void fetch(`/api/receipts/${current.id}/check-duplicate`)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.data?.duplicates?.length) {
+          setDuplicates(result.data.duplicates as DuplicateMatch[]);
+        }
+      });
+  }, [current.id, isApproved]);
+
+  const checkDuplicates = useCallback(async () => {
+    if (isApproved) return;
+
+    const totalNum = Number(total);
+    if (!merchant.trim() || !receiptDate || !Number.isFinite(totalNum) || totalNum <= 0) {
+      setDuplicates([]);
+      return;
+    }
+
+    setDuplicateLoading(true);
+    const response = await fetch(`/api/receipts/${current.id}/check-duplicate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        merchant: merchant.trim(),
+        receiptDate,
+        total: totalNum,
+      }),
+    });
+    const result = await response.json();
+    setDuplicateLoading(false);
+
+    if (response.ok) {
+      setDuplicates((result.data?.duplicates ?? []) as DuplicateMatch[]);
+      setAcknowledgeDuplicate(false);
+    }
+  }, [current.id, isApproved, merchant, receiptDate, total]);
+
+  useEffect(() => {
+    if (isApproved) return;
+    const timer = window.setTimeout(() => {
+      void checkDuplicates();
+    }, 400);
+    return () => window.clearTimeout(timer);
+  }, [checkDuplicates, isApproved]);
+
+  const loadCategorySuggestion = useCallback(
+    async (payload?: { merchant?: string; amount?: number }) => {
+      if (isApproved) return;
+
+      const merchantValue = payload?.merchant ?? merchant.trim();
+      if (!merchantValue) {
+        setCategorySuggestion(null);
+        return;
+      }
+
+      setCategoryLoading(true);
+      const totalNum = payload?.amount ?? Number(total);
+      const response = await fetch(`/api/receipts/${current.id}/suggest-category`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          merchant: merchantValue,
+          ...(Number.isFinite(totalNum) && totalNum > 0 ? { amount: totalNum } : {}),
+          ...(receipt.ocrResult?.suggestedCategorySlug
+            ? { ocrCategorySlug: receipt.ocrResult.suggestedCategorySlug }
+            : {}),
+        }),
+      });
+      const result = await response.json();
+      setCategoryLoading(false);
+
+      if (!response.ok || !result.data?.suggestion) return;
+
+      const suggestion = result.data.suggestion as CategorySuggestionResult;
+      setCategorySuggestion(suggestion);
+      if (!categoryTouched) {
+        setCategorySlug(suggestion.primary.slug);
+      }
+    },
+    [
+      categoryTouched,
+      current.id,
+      isApproved,
+      merchant,
+      receipt.ocrResult?.suggestedCategorySlug,
+      total,
+    ]
+  );
+
+  useEffect(() => {
+    if (isApproved) return;
+
+    void fetch(`/api/receipts/${current.id}/suggest-category`)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.data?.suggestion) {
+          setCategorySuggestion(result.data.suggestion as CategorySuggestionResult);
+        }
+      });
+  }, [current.id, isApproved]);
+
+  useEffect(() => {
+    if (isApproved) return;
+    const timer = window.setTimeout(() => {
+      void loadCategorySuggestion();
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [isApproved, loadCategorySuggestion]);
 
   async function handleApprove(e: React.FormEvent) {
     e.preventDefault();
@@ -112,13 +241,19 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
         businessId,
         tripId: current.tripId ?? undefined,
         currency: current.currency,
+        ...(acknowledgeDuplicate ? { acknowledgeDuplicate: true } : {}),
       }),
     });
 
     const result = await response.json();
 
     if (!response.ok) {
-      setSubmitError(result.error ?? 'Approval failed');
+      if (response.status === 409 && result.code === 'DUPLICATE_RECEIPT_DETECTED') {
+        setDuplicates((result.duplicates ?? []) as DuplicateMatch[]);
+        setSubmitError('Possible duplicate detected — review matches or save anyway.');
+      } else {
+        setSubmitError(result.error ?? 'Approval failed');
+      }
       setSubmitting(false);
       return;
     }
@@ -154,6 +289,59 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
       {ocrRunning || current.uploadStatus === 'processing' ? (
         <Alert variant="info">Scanning receipt with AI…</Alert>
       ) : null}
+
+      {duplicates.length > 0 && !isApproved ? (
+        <Alert variant="warning" title="Possible duplicate receipt">
+          {formatDuplicateMessage(duplicates[0])}
+          <div className="mt-2 flex flex-wrap gap-3">
+            <Link href={`/receipts/${duplicates[0].receiptId}`} className="font-medium underline">
+              View existing receipt
+            </Link>
+            {!acknowledgeDuplicate ? (
+              <button
+                type="button"
+                className="font-medium underline"
+                onClick={() => setAcknowledgeDuplicate(true)}
+              >
+                Save anyway
+              </button>
+            ) : (
+              <span className="text-caption">You chose to save anyway.</span>
+            )}
+          </div>
+        </Alert>
+      ) : null}
+
+      {duplicateLoading ? <Alert variant="info">Checking for duplicates…</Alert> : null}
+
+      {categorySuggestion && !isApproved ? (
+        <Alert variant="info" title="AI category suggestion">
+          {formatCategorySuggestionMessage(categorySuggestion)}
+          <p className="mt-1 text-caption text-muted">
+            Confidence: {Math.round(categorySuggestion.primary.confidence * 100)}%
+          </p>
+          {shouldShowCategoryAlternatives(categorySuggestion) ? (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {[categorySuggestion.primary, ...categorySuggestion.alternatives].map((option) => (
+                <Button
+                  key={option.slug}
+                  type="button"
+                  size="sm"
+                  variant={categorySlug === option.slug ? 'primary' : 'secondary'}
+                  onClick={() => {
+                    setCategoryTouched(true);
+                    setCategorySlug(option.slug);
+                  }}
+                >
+                  {formatCategoryLabel(option.slug)}
+                </Button>
+              ))}
+            </div>
+          ) : null}
+        </Alert>
+      ) : null}
+
+      {categoryLoading ? <Alert variant="info">Suggesting category…</Alert> : null}
 
       <div className="grid gap-6 lg:grid-cols-2">
         {signedUrl && isImage ? (
@@ -255,7 +443,10 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
                 label="Category (suggestion only until you approve)"
                 id="review-category"
                 value={categorySlug}
-                onChange={(e) => setCategorySlug(e.target.value)}
+                onChange={(e) => {
+                  setCategoryTouched(true);
+                  setCategorySlug(e.target.value);
+                }}
                 options={categoryOptions}
                 disabled={isApproved}
               />
@@ -277,8 +468,20 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
 
               {!isApproved ? (
                 <div className="flex flex-wrap gap-3">
-                  <Button type="submit" disabled={submitting || ocrRunning || !businesses.length}>
-                    {submitting ? 'Approving…' : 'Approve & create expense'}
+                  <Button
+                    type="submit"
+                    disabled={
+                      submitting ||
+                      ocrRunning ||
+                      !businesses.length ||
+                      (duplicates.length > 0 && !acknowledgeDuplicate)
+                    }
+                  >
+                    {submitting
+                      ? 'Approving…'
+                      : acknowledgeDuplicate
+                        ? 'Confirm save anyway'
+                        : 'Approve & create expense'}
                   </Button>
                   {current.mimeType?.startsWith('image/') ? (
                     <Button

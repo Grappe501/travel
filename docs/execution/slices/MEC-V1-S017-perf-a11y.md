@@ -46,10 +46,10 @@ Validation:
 pnpm lint && pnpm typecheck && pnpm build
 
 Exit criteria:
-- [ ] No critical axe violations on dashboard, trips, receipts, expenses, reports, billing
-- [ ] Tab order logical on main forms
-- [ ] Lighthouse baseline documented for 3 key routes
-- [ ] Report generation completes within documented timeout for 30-day range
+- [x] No critical axe violations on dashboard, trips, receipts, expenses, reports, billing
+- [x] Tab order logical on main forms
+- [x] Lighthouse baseline documented for 3 key routes
+- [x] Report generation completes within documented timeout for 30-day range
 
 Commit:
 perf(a11y): MEC-V1-S017 performance and accessibility pass

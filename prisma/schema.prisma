@@ -138,6 +138,13 @@ enum SuggestionStatus {
   dismissed
 }
 
+enum AIInteractionOutcome {
+  accepted
+  rejected
+  dismissed
+  corrected
+}
+
 enum BusinessMemberRole {
   owner
   admin
@@ -163,6 +170,12 @@ enum MileageRateType {
   irs
   company
   custom
+}
+
+enum ProjectStatus {
+  active
+  completed
+  archived
 }
 
 // --- Models ---
@@ -205,6 +218,9 @@ model UserProfile {
   businessEvents BusinessEvent[]
   aiSuggestions  AISuggestion[]
   fileAssets     FileAsset[]
+  clients        Client[]
+  projects       Project[]
+  aiInteractionLogs AIInteractionLog[]
 
   @@index([email])
   @@map("profiles")
@@ -274,7 +290,9 @@ model Business {
   receipts        Receipt[]
   expenses        Expense[]
   reports         Report[]
-  businessEvents  BusinessEvent[]
+  businessEvents BusinessEvent[]
+  clients        Client[]
+  projects       Project[]
 
   @@index([userId])
   @@map("businesses")
@@ -346,11 +364,62 @@ model MileageRate {
   @@map("mileage_rates")
 }
 
+model Client {
+  id           String       @id @default(uuid()) @db.Uuid
+  userId       String       @map("user_id") @db.Uuid
+  businessId   String?      @map("business_id") @db.Uuid
+  name         String
+  phone        String?
+  email        String?
+  notes        String?
+  recordStatus RecordStatus @default(active) @map("record_status")
+  deletedAt    DateTime?    @map("deleted_at")
+  version      Int          @default(1)
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  user     UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business?   @relation(fields: [businessId], references: [id], onDelete: SetNull)
+  projects Project[]
+  trips    Trip[]
+
+  @@index([userId, name])
+  @@index([businessId])
+  @@map("clients")
+}
+
+model Project {
+  id           String         @id @default(uuid()) @db.Uuid
+  userId       String         @map("user_id") @db.Uuid
+  businessId   String         @map("business_id") @db.Uuid
+  clientId     String?        @map("client_id") @db.Uuid
+  name         String
+  status       ProjectStatus  @default(active)
+  budget       Decimal?       @db.Decimal(12, 2)
+  notes        String?
+  recordStatus RecordStatus   @default(active) @map("record_status")
+  deletedAt    DateTime?      @map("deleted_at")
+  version      Int            @default(1)
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  user     UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business    @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  client   Client?     @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  trips    Trip[]
+
+  @@index([clientId])
+  @@index([businessId, status])
+  @@map("projects")
+}
+
 model Trip {
   id                  String              @id @default(uuid()) @db.Uuid
   userId              String              @map("user_id") @db.Uuid
   businessId          String              @map("business_id") @db.Uuid
   vehicleId           String              @map("vehicle_id") @db.Uuid
+  clientId            String?             @map("client_id") @db.Uuid
+  projectId           String?             @map("project_id") @db.Uuid
   clientName          String?             @map("client_name")
   projectName         String?             @map("project_name")
   status              TripStatus          @default(draft)
@@ -379,6 +448,8 @@ model Trip {
   user      UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
   business  Business    @relation(fields: [businessId], references: [id], onDelete: Restrict)
   vehicle   Vehicle     @relation(fields: [vehicleId], references: [id], onDelete: Restrict)
+  client    Client?     @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  project   Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
   receipts  Receipt[]
   expenses  Expense[]
 
@@ -552,9 +623,34 @@ model AISuggestion {
   resolvedAt      DateTime?        @map("resolved_at")
 
   user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  interactionLogs AIInteractionLog[]
 
   @@index([userId, status])
   @@map("ai_suggestions")
+}
+
+model AIInteractionLog {
+  id              String               @id @default(uuid()) @db.Uuid
+  userId          String               @map("user_id") @db.Uuid
+  suggestionId    String?              @map("suggestion_id") @db.Uuid
+  interactionType String               @map("interaction_type")
+  entityType      String?              @map("entity_type")
+  entityId        String?              @map("entity_id") @db.Uuid
+  stage           String?
+  outcome         AIInteractionOutcome
+  accepted        Boolean?
+  confidence      Decimal?             @db.Decimal(3, 2)
+  engineVersion   String?              @map("engine_version")
+  processingMs    Int?                 @map("processing_ms")
+  metadata        Json?
+  createdAt       DateTime             @default(now()) @map("created_at")
+
+  user       UserProfile   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  suggestion AISuggestion? @relation(fields: [suggestionId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([suggestionId])
+  @@map("ai_interaction_log")
 }
 
 model FileAsset {

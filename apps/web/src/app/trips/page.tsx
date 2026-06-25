@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { OfflineActiveTripBanner } from '@/components/offline/OfflineActiveTripBanner';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { ActiveTripBanner, TripList } from '@/components/trips/TripManager';
+import { TripsPageActions } from '@/components/trips/TripsPageActions';
 import { ButtonLink, EmptyState } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
 import * as tripService from '@/server/services/trip.service';
@@ -25,15 +27,9 @@ export default async function TripsPage() {
     <DashboardShell
       title="Trips"
       description="Track business mileage from start to finish."
-      actions={
-        activeTrip ? undefined : (
-          <ButtonLink href="/trips/start" size="sm">
-            Start trip
-          </ButtonLink>
-        )
-      }
+      actions={<TripsPageActions hasServerActiveTrip={Boolean(activeTrip)} />}
     >
-      {activeTrip ? <ActiveTripBanner trip={activeTrip} /> : null}
+      {activeTrip ? <ActiveTripBanner trip={activeTrip} /> : <OfflineActiveTripBanner />}
 
       {completedCount === 0 && !activeTrip ? (
         <div className="space-y-4 text-center">

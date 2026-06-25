@@ -49,10 +49,10 @@ Validation:
 pnpm lint && pnpm typecheck && pnpm build && pnpm test:e2e
 
 Exit criteria:
-- [ ] E2E-01–07 defined and pass locally with documented env
-- [ ] E2E-01–04 pass at 390×844 viewport
-- [ ] CI runs smoke E2E on PR when secrets available
-- [ ] README or docs/execution/E2E-SETUP.md explains local run
+- [x] E2E-01–07 defined and pass locally with documented env
+- [x] E2E-01–04 pass at 390×844 viewport
+- [x] CI runs smoke E2E on PR when secrets available
+- [x] README or docs/execution/E2E-SETUP.md explains local run
 
 Commit:
 test(e2e): MEC-V1-S015 Playwright critical journeys

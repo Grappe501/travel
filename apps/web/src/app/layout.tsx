@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { OfflineProvider } from '@/components/offline/OfflineProvider';
+import { SentryInit } from '@/components/monitoring/SentryInit';
 import { env } from '@/lib/env';
 import './globals.css';
 
@@ -10,7 +12,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SentryInit />
+        <OfflineProvider>{children}</OfflineProvider>
+      </body>
     </html>
   );
 }

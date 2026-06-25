@@ -26,6 +26,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ received: true });
   } catch (error) {
+    if (
+      error instanceof Error &&
+      /signature|webhook/i.test(error.message)
+    ) {
+      return NextResponse.json({ error: 'Invalid webhook signature' }, { status: 400 });
+    }
     return jsonError(error);
   }
 }

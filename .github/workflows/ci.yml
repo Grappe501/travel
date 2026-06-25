@@ -105,3 +105,73 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
           INTEGRATION_TEST: '1'
         run: pnpm test:integration
+
+  e2e:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: mileage_copilot
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+        continue-on-error: true
+
+      - name: Install (no lockfile)
+        if: failure()
+        run: pnpm install
+
+      - name: Generate Prisma client
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+        run: pnpm db:generate
+
+      - name: Migrate test database
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+        run: pnpm db:migrate:deploy
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install chromium --with-deps
+        working-directory: apps/web
+
+      - name: Build app
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.E2E_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.E2E_SUPABASE_ANON_KEY }}
+        run: pnpm build
+
+      - name: E2E smoke tests
+        if: ${{ secrets.E2E_USER_EMAIL != '' }}
+        env:
+          E2E_TEST: '1'
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.E2E_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.E2E_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.E2E_SUPABASE_SERVICE_ROLE_KEY }}
+          E2E_USER_EMAIL: ${{ secrets.E2E_USER_EMAIL }}
+          E2E_USER_PASSWORD: ${{ secrets.E2E_USER_PASSWORD }}
+          E2E_SIGNUP_ENABLED: '1'
+        run: pnpm test:e2e:smoke

@@ -52,12 +52,12 @@ Validation:
 pnpm lint && pnpm typecheck && pnpm build && pnpm test && pnpm test:e2e
 
 Exit criteria:
-- [ ] All Volume 9 launch gate items marked pass or waived with reason
-- [ ] SCR/API indexes match codebase (no stale ☐ on shipped items)
-- [ ] MEI §3 no longer shows 0% for completed layers
-- [ ] Device matrix signed for primary mobile + desktop browsers
-- [ ] GA-CHECKLIST signed by Product + Engineering (names/date fields filled)
-- [ ] Ready for public launch (Phase H)
+- [x] All Volume 9 launch gate items marked pass or waived with reason
+- [x] SCR/API indexes match codebase (no stale ☐ on shipped items)
+- [x] MEI §3 no longer shows 0% for completed layers
+- [x] Device matrix signed for primary mobile + desktop browsers
+- [x] GA-CHECKLIST signed by Product + Engineering (names/date fields filled)
+- [x] Ready for public launch (Phase H)
 
 Commit:
 chore(launch): MEC-V1-S020 GA gates catalog audit and release

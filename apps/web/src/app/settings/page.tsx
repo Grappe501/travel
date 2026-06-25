@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { SyncStatusPanel } from '@/components/offline/SyncStatusPanel';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
@@ -14,6 +15,8 @@ export default async function SettingsPage() {
 
   return (
     <DashboardShell title="Settings" description="Account and app preferences.">
+      <SyncStatusPanel />
+
       <Card>
         <CardHeader>
           <CardTitle>Mileage</CardTitle>
@@ -22,6 +25,18 @@ export default async function SettingsPage() {
         <CardContent className="pt-0">
           <Link href="/settings/mileage" className="text-body font-medium text-primary hover:underline">
             Configure mileage rates →
+          </Link>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>AI & suggestions</CardTitle>
+          <CardDescription>Review past OCR runs and suggestion outcomes.</CardDescription>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <Link href="/ai/history" className="text-body font-medium text-primary hover:underline">
+            AI history →
           </Link>
         </CardContent>
       </Card>
@@ -37,6 +52,9 @@ export default async function SettingsPage() {
           </Link>
           <Link href="/vehicles" className="text-body font-medium text-primary hover:underline">
             Vehicles →
+          </Link>
+          <Link href="/clients" className="text-body font-medium text-primary hover:underline">
+            Clients & projects →
           </Link>
         </CardContent>
       </Card>

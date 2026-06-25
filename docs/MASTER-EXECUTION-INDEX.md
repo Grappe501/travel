@@ -60,24 +60,26 @@ Executive progress dashboard. Update after every BUILD slice.
 |-------|-----------|------|--------|---|
 | Product Constitution (blueprint) | 0 | — | ☑ | 100% |
 | UX Foundation (blueprint) | 0 | — | ☑ | 100% |
-| Design System | 4 | WAVE-001 | ⬜ | 0% |
-| Database | 3 | WAVE-001–002 | ⬜ | 0% |
-| Authentication | 2 | WAVE-001 | ⬜ | 0% |
-| Core Business Objects | 5 | WAVE-002 | ⬜ | 0% |
-| Trips | 6 | WAVE-003 | ⬜ | 0% |
-| Receipts | 7 | WAVE-004 | ⬜ | 0% |
-| OCR | 7 | WAVE-004 | ⬜ | 0% |
-| Expense Engine | 8 | WAVE-005 | ⬜ | 0% |
-| Reports | 9 | WAVE-006 | ⬜ | 0% |
-| Billing | 10 | WAVE-007 | ⬜ | 0% |
-| AI Layer | 11 | WAVE-008 | ⬜ | 0% |
-| AdminOS | 12 | WAVE-009 | ⬜ | 0% |
+| Design System | 4 | WAVE-001 | ☑ | 100% |
+| Database | 3 | WAVE-001–002 | ☑ | 100% |
+| Authentication | 2 | WAVE-001 | ☑ | 90% |
+| Core Business Objects | 5 | WAVE-002 | ☑ | 75% |
+| Trips | 6 | WAVE-003 | ☑ | 95% |
+| Receipts | 7 | WAVE-004 | ☑ | 100% |
+| OCR | 7 | WAVE-004 | ☑ | 100% |
+| Expense Engine | 8 | WAVE-005 | ☑ | 100% |
+| Reports | 9 | WAVE-006 | ☑ | 100% |
+| Billing | 10 | WAVE-007 | ☑ | 100% |
+| AI Layer | 11 | WAVE-008 | ⬜ | 35% |
+| AdminOS | 12 | WAVE-009 | ☑ | 100% |
 | Analytics | 12 | WAVE-008+ | ⬜ | 0% |
 | Notifications | 12 | WAVE-007+ | ⬜ | 0% |
-| Testing | 13 | WAVE-010 | ⬜ | 0% |
-| Launch Hardening | 14 | WAVE-010 | ⬜ | 0% |
+| Testing | 13 | WAVE-010 | ☑ | 95% |
+| Launch Hardening | 14 | WAVE-010 | ☑ | 100% |
 
-**Overall V1 implementation:** 0% · **Blueprint:** 100% (Volumes 0–24)
+**Overall V1 implementation:** 92% · **Blueprint:** 100% (Volumes 0–24)
+
+*Notes (STEP-052):* Auth 90% — core flows shipped; account/settings sub-screens deferred. Core objects 75% — businesses/vehicles yes; clients/projects V1.1. AI 35% — receipt OCR only; categorization/duplicate detection post-GA (BUILD-012). AdminOS 100% = V1 minimum scope (BUILD-013), not full Volume 17.
 
 ---
 

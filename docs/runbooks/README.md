@@ -4,6 +4,36 @@
 
 Concise, tested procedures. Expand before production launch.
 
+## Production readiness
+
+| Document | Purpose |
+|----------|---------|
+| [PRODUCTION-CHECKLIST.md](../execution/PRODUCTION-CHECKLIST.md) | **Env vars & deploy sign-off** (STEP-050) |
+| [deployment.md](deployment.md) | Netlify deploy + 30m Sentry watch |
+| [E2E-SETUP.md](../execution/E2E-SETUP.md) | Playwright smoke / axe |
+
+**Health:** `GET /health` on your Netlify URL — verify `dependencies` before go-live.
+
+**Sentry test (staging):** set `SENTRY_TEST_ENABLED=1`, then `POST /health/sentry-test`.
+
+---
+
+## On-call basics (Volume 19)
+
+| Priority | Target response | Examples |
+|----------|-----------------|----------|
+| P1 | 15 minutes | Database unreachable, auth down, data loss |
+| P2 | 1 hour | Stripe webhooks failing, OCR provider outage, storage errors |
+| P3 | Next business day | Single-user export issue, non-blocking UI bug |
+
+**Escalation:** Engineering lead → founder. Log all incidents per [incident-response.md](incident-response.md).
+
+**Post-deploy:** Health check → smoke → **30 minutes Sentry** ([deployment.md](deployment.md)).
+
+---
+
+## Runbooks
+
 | OPS-RB-ID | Runbook | Severity |
 |-----------|---------|----------|
 | OPS-RB-001 | [incident-response.md](incident-response.md) | All |
