@@ -119,6 +119,26 @@ export type SerializedReport = {
   createdAt: string;
 };
 
+export type SerializedExpense = {
+  id: string;
+  businessId: string;
+  businessName: string;
+  tripId: string | null;
+  tripPurpose: string | null;
+  receiptId: string | null;
+  receiptMerchant: string | null;
+  categorySlug: string;
+  merchant: string | null;
+  amount: number;
+  taxAmount: number | null;
+  currency: string;
+  expenseDate: string;
+  paymentMethod: string | null;
+  notes: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type SerializedBillingSummary = {
   subscription: {
     plan: string;

@@ -1,8 +1,10 @@
 import { notFound, redirect } from 'next/navigation';
 import { DashboardShell } from '@/components/layout/DashboardShell';
+import { TripExpensesList } from '@/components/expenses/ExpenseManager';
 import { TripDetailCard } from '@/components/trips/TripManager';
 import { ButtonLink } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
+import * as expenseService from '@/server/services/expense.service';
 import * as tripService from '@/server/services/trip.service';
 
 export const dynamic = 'force-dynamic';
@@ -18,8 +20,10 @@ export default async function TripDetailPage({ params }: PageProps) {
   const { id } = await params;
 
   let trip;
+  let tripExpenses;
   try {
     trip = tripService.serializeTrip(await tripService.getOwnedTrip(user.id, id));
+    tripExpenses = await expenseService.listExpensesForTrip(user.id, id);
   } catch {
     notFound();
   }
@@ -47,6 +51,10 @@ export default async function TripDetailPage({ params }: PageProps) {
       }
     >
       <TripDetailCard trip={trip} />
+      <div className="mt-6 space-y-2">
+        <h2 className="text-section-title text-foreground">Linked expenses</h2>
+        <TripExpensesList expenses={tripExpenses} />
+      </div>
     </DashboardShell>
   );
 }

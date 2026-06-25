@@ -61,6 +61,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **AI OCR review (MEC-V1-S008)** — OpenAI Vision extraction, review screen, user approve → expense row — STEP-040
 - **Reports (MEC-V1-S009)** — Mileage/expense/combined builder, PDF/CSV/Excel export, Report persistence — STEP-041
 - **Billing & limits (MEC-V1-S010)** — Free tier caps, Stripe Checkout/Portal, webhook subscription sync — STEP-042
+- **Expense engine (MEC-V1-S011)** — Manual expense CRUD, receipt-to-trip attach, trip expense_total recalc — STEP-043
 
 ## [0.0.0] — 2026-06-24
 

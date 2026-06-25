@@ -477,6 +477,18 @@ export function TripDetailCard({ trip }: { trip: SerializedTrip }) {
               <dd className="text-card-title">${trip.reimbursementAmount.toFixed(2)}</dd>
             </div>
           ) : null}
+          {trip.expenseTotal !== null && trip.expenseTotal > 0 ? (
+            <div>
+              <dt className="text-caption text-muted">Expenses</dt>
+              <dd>${trip.expenseTotal.toFixed(2)}</dd>
+            </div>
+          ) : null}
+          {trip.grandTotal !== null ? (
+            <div>
+              <dt className="text-caption text-muted">Grand total</dt>
+              <dd className="text-card-title">${trip.grandTotal.toFixed(2)}</dd>
+            </div>
+          ) : null}
         </dl>
 
         {trip.notes ? (

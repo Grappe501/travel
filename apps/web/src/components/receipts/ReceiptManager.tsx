@@ -269,7 +269,21 @@ export function ReceiptDetailCard({ receipt, signedUrl }: ReceiptDetailProps) {
             {'expenseId' in receipt && receipt.expenseId ? (
               <div>
                 <dt className="text-caption text-muted">Expense</dt>
-                <dd className="font-mono text-caption">{receipt.expenseId}</dd>
+                <dd>
+                  <Link href={`/expenses/${receipt.expenseId}`} className="text-primary hover:underline">
+                    View expense
+                  </Link>
+                </dd>
+              </div>
+            ) : null}
+            {receipt.tripId ? (
+              <div>
+                <dt className="text-caption text-muted">Trip</dt>
+                <dd>
+                  <Link href={`/trips/${receipt.tripId}`} className="text-primary hover:underline">
+                    View trip
+                  </Link>
+                </dd>
               </div>
             ) : null}
           </dl>

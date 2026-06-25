@@ -7,6 +7,7 @@ import { ConflictError, NotFoundError, ValidationError } from '@/lib/api/respons
 import { getReceiptDisplayStatus } from '@/lib/receipts/constants';
 import { prisma } from '@/lib/db/prisma';
 import { getOwnedBusiness } from '@/server/services/business.service';
+import { createExpenseFromReceipt } from '@/server/services/expense.service';
 import { getOwnedReceipt, getReceiptSignedUrl } from '@/server/services/receipt.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
@@ -298,19 +299,17 @@ export async function approveReceipt(userId: string, receiptId: string, input: R
       },
     });
 
-    const expense = await tx.expense.create({
-      data: {
-        userId,
-        businessId: data.businessId,
-        tripId: data.tripId ?? receipt.tripId,
-        receiptId,
-        categorySlug: data.categorySlug,
-        merchant: data.merchant,
-        amount: data.total,
-        taxAmount: data.tax ?? null,
-        currency,
-        expenseDate: receiptDate,
-      },
+    const expense = await createExpenseFromReceipt(tx, {
+      userId,
+      receiptId,
+      businessId: data.businessId,
+      tripId: data.tripId ?? receipt.tripId,
+      categorySlug: data.categorySlug,
+      merchant: data.merchant,
+      amount: data.total,
+      taxAmount: data.tax ?? null,
+      currency,
+      expenseDate: receiptDate,
     });
 
     await tx.auditLog.create({
@@ -324,18 +323,6 @@ export async function approveReceipt(userId: string, receiptId: string, input: R
           expenseId: expense.id,
         },
         source: 'web',
-      },
-    });
-
-    await tx.businessEvent.create({
-      data: {
-        userId,
-        businessId: data.businessId,
-        eventType: 'expense.created',
-        entityType: 'expense',
-        entityId: expense.id,
-        payload: { receiptId, categorySlug: data.categorySlug, amount: data.total },
-        occurredAt: new Date(),
       },
     });
 

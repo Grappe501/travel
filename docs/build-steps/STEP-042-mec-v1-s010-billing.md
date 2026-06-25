@@ -43,4 +43,6 @@ Requires `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_PRO_MONTHLY
 
 ## Next step
 
-**V1 launch hardening** — [BUILD-014](../mei/BUILD-INDEX.md) (post-S010 backlog)
+**STEP-043** — [MEC-V1-S011 Expense Engine](../execution/slices/MEC-V1-S011-expense-engine.md) (BUILD-009)
+
+GA roadmap: [ROADMAP-043-052.md](../execution/ROADMAP-043-052.md)
