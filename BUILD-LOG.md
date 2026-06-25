@@ -26,7 +26,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-019 | 2026-06-24 | Blueprint | Volume 16 — AI Operating System (ENG/PRM registry) | `f9f1b16` | [STEP-019](docs/build-steps/STEP-019-volume-16-ai-os.md) |
 | STEP-020 | 2026-06-24 | Blueprint | Volume 17 — AdminOS (ADM registry, runbooks) | `467eaa9` | [STEP-020](docs/build-steps/STEP-020-volume-17-admin-os.md) |
 | STEP-021 | 2026-06-24 | Blueprint | Volume 18 — Mobile field experience (MOB registry) | `98916a2` | [STEP-021](docs/build-steps/STEP-021-volume-18-mobile.md) |
-| STEP-022 | 2026-06-24 | Blueprint | Volume 19 — Production SRE (OPS registry, runbooks) | _(pending)_ | [STEP-022](docs/build-steps/STEP-022-volume-19-sre.md) |
+| STEP-022 | 2026-06-24 | Blueprint | Volume 19 — Production SRE (OPS registry, runbooks) | `1c55681` | [STEP-022](docs/build-steps/STEP-022-volume-19-sre.md) |
 
 ---
 
