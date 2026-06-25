@@ -8,7 +8,7 @@
 | **BUILD-ID** | BUILD-006 |
 | **WAVE** | WAVE-003 ext |
 | **Date** | 2026-06-25 |
-| **Commit** | — |
+| **Commit** | `1db24a5` |
 | **Status** | complete |
 
 ## Objective
