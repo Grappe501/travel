@@ -47,7 +47,11 @@ if (authConfigured) {
 }
 
 projects.push({
-  name: 'signup-mobile',
+  name: 'smoke-public',
+  testMatch: /smoke\/.*\.spec\.ts/,
+});
+
+projects.push({
   testMatch: /e2e-01-signup\.spec\.ts/,
   use: {
     ...devices['Pixel 5'],

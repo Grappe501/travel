@@ -30,7 +30,7 @@ export async function GET(request: Request) {
   }
 }
 
-export async function PATCH(_request: Request) {
+export async function PATCH() {
   try {
     const user = await requireSessionUser();
     if (!user) {

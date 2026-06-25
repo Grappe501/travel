@@ -10,6 +10,12 @@ const AUTHENTICATED_A11Y_ROUTES = [
   { path: '/expenses/new', name: 'New expense' },
   { path: '/reports', name: 'Reports' },
   { path: '/billing', name: 'Billing' },
+  { path: '/search', name: 'Search' },
+  { path: '/notifications', name: 'Notifications' },
+  { path: '/settings', name: 'Settings hub' },
+  { path: '/settings/account', name: 'Account settings' },
+  { path: '/settings/appearance', name: 'Appearance settings' },
+  { path: '/settings/security', name: 'Security settings' },
 ];
 
 test.describe('Primary flow axe scans @a11y', () => {

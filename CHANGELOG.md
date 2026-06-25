@@ -13,6 +13,23 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.9.2] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.9.2 (STEP-068)**
+
+Sandbox audit — route/link validation, auth middleware gaps, and deploy hardening.
+
+### Added
+- **Route catalog** — Automated audit that every nav/settings link resolves to a page
+- **Public smoke E2E** — Health check JSON, public pages, and protected-route redirects
+
+### Fixed
+- **Auth middleware** — `/search` and `/notifications` now protected with session refresh
+- **Netlify build** — `corepack enable`, pnpm 9.15.0 aligned with packageManager
+- **Lint** — Unused param in notifications PATCH handler
+
+---
+
 ## [1.9.1] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.9.1 (STEP-067)**

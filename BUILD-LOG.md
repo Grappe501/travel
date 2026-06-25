@@ -72,6 +72,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-065 | 2026-06-25 | B | MEC-V1-S033 — Production hardening (V1.8.2) | — | [STEP-065](docs/build-steps/STEP-065-production-hardening.md) |
 | STEP-066 | 2026-06-25 | B | MEC-V1-S034 — Design & UX v2 (V1.9.0) | — | [STEP-066](docs/build-steps/STEP-066-design-ux-v2.md) |
 | STEP-067 | 2026-06-25 | B | MEC-V1-S035 — Settings completion (V1.9.1) | — | [STEP-067](docs/build-steps/STEP-067-settings-completion.md) |
+| STEP-068 | 2026-06-25 | B | MEC-V1-S036 — Sandbox audit & deploy hardening (V1.9.2) | — | [STEP-068](docs/build-steps/STEP-068-sandbox-audit.md) |
 
 ---
 
