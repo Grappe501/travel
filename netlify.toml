@@ -1,0 +1,32 @@
+# Mileage & Expense Copilot — Netlify configuration
+# Full build settings documented in docs/blueprint/06-technical-architecture.md
+# Application code not yet present — this is the deployment skeleton.
+
+[build]
+  base = "apps/web"
+  command = "npm run build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--prefix=../.."
+  # All Netlify build caches use repo-relative paths on the linked Git repo (H:/)
+
+# Redirect SPA / Next.js — finalized when app scaffold exists
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
+
+# Security headers — applied at deploy time
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(self), geolocation=(self), microphone=()"
+
+# Netlify Functions path (if used alongside Supabase Edge Functions)
+# [functions]
+#   directory = "apps/web/netlify/functions"
