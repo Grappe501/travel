@@ -133,11 +133,22 @@ export type BuildMetadata = {
 };
 
 export function getBuildMetadata(): BuildMetadata {
+  const deployUrl = process.env.URL ?? process.env.DEPLOY_PRIME_URL ?? null;
+  const isNetlify =
+    process.env.NETLIFY === 'true' ||
+    Boolean(process.env.NETLIFY_DEV) ||
+    Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME && deployUrl?.includes('netlify.app')) ||
+    Boolean(deployUrl?.includes('netlify.app'));
+
   return {
-    build: process.env.NETLIFY ? 'netlify' : 'local',
+    build: isNetlify ? 'netlify' : 'local',
     nodeEnv: process.env.NODE_ENV ?? 'development',
-    commitRef: process.env.COMMIT_REF ?? process.env.VERCEL_GIT_COMMIT_SHA ?? null,
-    deployUrl: process.env.URL ?? process.env.DEPLOY_PRIME_URL ?? null,
-    deployContext: process.env.CONTEXT ?? null,
+    commitRef:
+      process.env.COMMIT_REF ??
+      process.env.NETLIFY_COMMIT_REF ??
+      process.env.VERCEL_GIT_COMMIT_SHA ??
+      null,
+    deployUrl,
+    deployContext: process.env.CONTEXT ?? process.env.NETLIFY_CONTEXT ?? null,
   };
 }

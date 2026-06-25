@@ -15,6 +15,8 @@
   NPM_FLAGS = "--version"
   # Pin to packageManager in package.json (pnpm@9.15.0)
   PNPM_VERSION = "9.15.0"
+  # Public production URL (embedded at build time for NEXT_PUBLIC_*)
+  NEXT_PUBLIC_APP_URL = "https://travel-mileage.netlify.app"
   # DATABASE_URL, DIRECT_URL, and Supabase public keys: set in Netlify UI only
   # (do not commit secret values — see docs/execution/PRODUCTION-CHECKLIST.md)
   SECRETS_SCAN_OMIT_PATHS = "apps/web/src/lib/supabase/config.ts,apps/web/src/lib/monitoring/config.test.ts,.github/workflows/ci.yml"
