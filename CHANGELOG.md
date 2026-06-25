@@ -65,6 +65,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Onboarding & auth polish (MEC-V1-S012)** — First-run wizard, password reset, email verify — STEP-044
 - **Test harness & unit tests (MEC-V1-S013)** — Vitest, calculation/schema tests, CI test job — STEP-045
 - **Integration tests (MEC-V1-S014)** — Service-level DB tests for trips, usage, expenses, reports — STEP-046
+- **E2E critical journeys (MEC-V1-S015)** — Playwright E2E-01–07, mobile viewport, smoke CI — STEP-047
 
 ## [0.0.0] — 2026-06-24
 

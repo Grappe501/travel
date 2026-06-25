@@ -14,6 +14,8 @@
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "test:integration": "pnpm --filter web test:integration",
+    "test:e2e": "pnpm --filter web test:e2e",
+    "test:e2e:smoke": "pnpm --filter web test:e2e:smoke",
     "test:coverage": "pnpm --filter @mileage-copilot/shared test:coverage",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
     "postinstall": "prisma generate",

@@ -51,6 +51,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-044 | 2026-06-25 | A | MEC-V1-S012 — Onboarding wizard, auth polish, post-login redirects | `8b3e788` | [STEP-044](docs/build-steps/STEP-044-mec-v1-s012-onboarding-auth.md) |
 | STEP-045 | 2026-06-25 | A | MEC-V1-S013 — Vitest harness, calculation/schema tests, CI | `5d84260` | [STEP-045](docs/build-steps/STEP-045-mec-v1-s013-unit-tests.md) |
 | STEP-046 | 2026-06-25 | A | MEC-V1-S014 — Service integration tests, Postgres CI job | `bb3ab71` | [STEP-046](docs/build-steps/STEP-046-mec-v1-s014-integration-tests.md) |
+| STEP-047 | 2026-06-25 | B | MEC-V1-S015 — Playwright E2E journeys E2E-01–07, smoke CI | — | [STEP-047](docs/build-steps/STEP-047-mec-v1-s015-e2e-journeys.md) |
 
 ---
 
@@ -58,8 +59,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 46 |
-| Current phase | **Implementation** — MEC-V1-S015 E2E journeys next (STEP-047) |
+| Steps completed | 47 |
+| Current phase | **Implementation** — MEC-V1-S016 Security hardening next (STEP-048) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---
