@@ -13,6 +13,7 @@
     "lint": "pnpm --filter web lint",
     "typecheck": "pnpm -r typecheck",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "postinstall": "prisma generate",
     "db:validate": "prisma validate",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
@@ -20,6 +21,6 @@
   },
   "devDependencies": {
     "prettier": "^3.4.2",
-    "prisma": "^6.1.0"
+    "prisma": "^6.19.3"
   }
 }

@@ -1,11 +1,12 @@
 import { redirect } from 'next/navigation';
 import { LogoutButton } from '@/components/auth/LogoutButton';
 import { DashboardShell } from '@/components/layout/DashboardShell';
-import { Badge, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
+import { Alert, Badge, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 import { createClient } from '@/lib/supabase/server';
 import { ensureUserProfile, getUserProfile } from '@/server/services/auth.service';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -17,13 +18,21 @@ export default async function DashboardPage() {
     redirect('/login');
   }
 
-  await ensureUserProfile({
-    id: user.id,
-    email: user.email,
-    emailVerified: Boolean(user.email_confirmed_at),
-  });
+  let profile = null;
+  let dbError: string | null = null;
 
-  const profile = await getUserProfile(user.id);
+  try {
+    await ensureUserProfile({
+      id: user.id,
+      email: user.email,
+      emailVerified: Boolean(user.email_confirmed_at),
+    });
+    profile = await getUserProfile(user.id);
+  } catch (error) {
+    console.error('Dashboard profile sync failed:', error);
+    dbError =
+      'Could not sync your profile with the database. Set DATABASE_URL in Netlify and run migrations.';
+  }
 
   return (
     <DashboardShell
@@ -32,18 +41,24 @@ export default async function DashboardPage() {
       badge={<Badge variant="primary">V1</Badge>}
       actions={<LogoutButton />}
     >
+      {dbError ? <Alert variant="error">{dbError}</Alert> : null}
+
       <Card>
         <CardHeader>
           <CardTitle>Account</CardTitle>
-          <CardDescription>Signed in and synced with your profile.</CardDescription>
+          <CardDescription>
+            {dbError ? 'Signed in via Supabase.' : 'Signed in and synced with your profile.'}
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2 pt-0 text-body">
           <p>
             Signed in as <strong>{profile?.email ?? user.email}</strong>
           </p>
-          <p className="text-caption text-muted">
-            Profile ID: <code className="font-mono text-micro">{profile?.id}</code>
-          </p>
+          {profile ? (
+            <p className="text-caption text-muted">
+              Profile ID: <code className="font-mono text-micro">{profile.id}</code>
+            </p>
+          ) : null}
         </CardContent>
       </Card>
     </DashboardShell>

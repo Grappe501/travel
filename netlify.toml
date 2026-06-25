@@ -1,17 +1,18 @@
 # Mileage & Expense Copilot — Netlify configuration
-# DEC-001: Netlify + Next.js 15
+# DEC-001: Netlify + Next.js 15 (OpenNext adapter — do not pin legacy v4 plugin)
 
 [build]
-  command = "pnpm install && pnpm build"
+  command = "pnpm install && pnpm db:generate && pnpm build"
   publish = "apps/web/.next"
 
 [build.environment]
   NODE_VERSION = "22"
   NPM_FLAGS = "--version"
   PNPM_VERSION = "9"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  # Prisma generate at build time (no live DB required)
+  DATABASE_URL = "postgresql://build:build@localhost:5432/mileage_copilot"
+  NEXT_PUBLIC_SUPABASE_URL = "https://placeholder.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "placeholder-anon-key"
 
 [[headers]]
   for = "/*"
