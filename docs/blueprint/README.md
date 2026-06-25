@@ -13,10 +13,11 @@
 5. **Volume 10** defines the *universal design system* — how every screen is built.
 6. **Volume 11** is the *Screen Bible* — every SCR-ID specified before code.
 7. **Volume 12** is the *API Constitution* — every API-ID documented before implementation.
+8. **Volume 13** defines *state machines* — explicit workflow logic for every major action.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–12 complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–13 complete (v1.0). Ready for sign-off → Phase A.
 
 ---
 
@@ -37,6 +38,7 @@
 | **10** | [Universal Design System & Component Library](10-design-system.md) | Tokens, components, patterns — build the system, not 200 screens |
 | **11** | [Complete Screen Bible & Experience Atlas](11-screen-bible.md) | 60 SCR-IDs — every screen specified before development |
 | **12** | [API Architecture & Integration Specification](12-api-architecture.md) | 70+ API-IDs — response envelope, error registry, API Constitution |
+| **13** | [Component State Machines & Workflow Logic](13-state-machines.md) | SM-IDs — trips, receipts, OCR, sync, billing, screen states |
 
 ---
 
@@ -47,6 +49,7 @@
 | [PROJECT-STRUCTURE.md](../PROJECT-STRUCTURE.md) | H: drive filesystem layout |
 | [SCR-INDEX.md](../screen-catalog/SCR-INDEX.md) | Screen implementation tracker (Volume 11) |
 | [API-INDEX.md](../api-catalog/API-INDEX.md) | API implementation tracker (Volume 12) |
+| [SM-INDEX.md](../state-machines/SM-INDEX.md) | State machine tracker (Volume 13) |
 | [Root README](../../README.md) | Project overview and quick start |
 
 ---

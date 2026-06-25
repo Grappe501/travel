@@ -30,6 +30,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Volume 10 added as **Universal Design System & Component Library** (44 chapters) — STEP-013
 - Volume 11 added as **Complete Screen Bible** with SCR-001–060 catalog (26 chapters) — STEP-014
 - Volume 12 added as **API Architecture & Constitution** with 70+ API-IDs (42 chapters) — STEP-015
+- Volume 13 added as **State Machines & Workflow Logic** with 10 SM-IDs (12 sections) — STEP-016
 
 ## [0.0.0] — 2026-06-24
 

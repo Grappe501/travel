@@ -1181,4 +1181,4 @@ The API is a **stable product in its own right** — not merely a backend implem
 
 ---
 
-*Previous: [Volume 11 — Complete Screen Bible](11-screen-bible.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 11 — Complete Screen Bible](11-screen-bible.md) | Next: [Volume 13 — State Machines](13-state-machines.md)*

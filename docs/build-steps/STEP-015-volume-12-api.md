@@ -40,4 +40,4 @@ Add **Volume 12 — API Architecture & Integration Specification** — the API C
 
 ## Next step
 
-Blueprint sign-off → **STEP-016 Phase A: Repo scaffold**
+Blueprint sign-off → **STEP-017 Phase A: Repo scaffold**
