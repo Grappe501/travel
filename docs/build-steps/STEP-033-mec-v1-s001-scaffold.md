@@ -6,7 +6,7 @@
 | **Phase** | A |
 | **Slice** | MEC-V1-S001 |
 | **Date** | 2026-06-24 |
-| **Commit** | *(filled after commit)* |
+| **Commit** | `c82b31e` |
 | **Status** | complete |
 
 ## Objective
