@@ -13,6 +13,24 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.9.1] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.9.1 (STEP-067)**
+
+Settings completion — account, appearance, and security sub-screens.
+
+### Added
+- **Account settings** — `/settings/account` with profile fields and `PATCH /api/settings/account`
+- **Appearance** — `/settings/appearance` with light/dark/system theme (local storage)
+- **Security** — `/settings/security` with password change and email verification
+- **Settings hub** — Grouped navigation tiles for account, preferences, and workspace
+
+### Changed
+- **Theme system** — `data-theme` override with boot script to prevent flash
+- **SCR-047–049** — Account, appearance, and security screens marked complete
+
+---
+
 ## [1.9.0] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.9.0 (STEP-066)**

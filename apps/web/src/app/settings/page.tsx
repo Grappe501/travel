@@ -1,8 +1,12 @@
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { SyncStatusPanel } from '@/components/offline/SyncStatusPanel';
 import { DashboardShell } from '@/components/layout/DashboardShell';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
+import {
+  SETTINGS_ACCOUNT_GROUP,
+  SETTINGS_PREFERENCES_GROUP,
+  SETTINGS_WORKSPACE_GROUP,
+  SettingsNavList,
+} from '@/components/settings/SettingsNavList';
 import { requireSessionUser } from '@/lib/auth/server';
 
 export const dynamic = 'force-dynamic';
@@ -14,92 +18,27 @@ export default async function SettingsPage() {
   }
 
   return (
-    <DashboardShell title="Settings" description="Account and app preferences.">
+    <DashboardShell
+      title="Settings"
+      description="Account, preferences, and workspace configuration."
+      eyebrow="Preferences"
+    >
       <SyncStatusPanel />
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Notifications</CardTitle>
-          <CardDescription>Trip reminders, receipt reviews, and expense checklists.</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap gap-4 pt-0">
-          <Link href="/notifications" className="text-body font-medium text-primary hover:underline">
-            Notification center →
-          </Link>
-          <Link
-            href="/settings/notifications"
-            className="text-body font-medium text-primary hover:underline"
-          >
-            Preferences →
-          </Link>
-        </CardContent>
-      </Card>
+      <section className="space-y-3">
+        <h2 className="text-subheading font-semibold text-foreground">Account &amp; security</h2>
+        <SettingsNavList items={SETTINGS_ACCOUNT_GROUP} />
+      </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Billing &amp; plan</CardTitle>
-          <CardDescription>Usage limits, upgrades, and subscription management.</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <Link href="/billing" className="text-body font-medium text-primary hover:underline">
-            Billing &amp; usage →
-          </Link>
-        </CardContent>
-      </Card>
+      <section className="space-y-3">
+        <h2 className="text-subheading font-semibold text-foreground">Preferences</h2>
+        <SettingsNavList items={SETTINGS_PREFERENCES_GROUP} />
+      </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Data &amp; privacy</CardTitle>
-          <CardDescription>Export your records and read legal policies.</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <Link href="/settings/privacy" className="text-body font-medium text-primary hover:underline">
-            Data export &amp; privacy →
-          </Link>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Mileage</CardTitle>
-          <CardDescription>IRS, company, or custom reimbursement rates.</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <Link href="/settings/mileage" className="text-body font-medium text-primary hover:underline">
-            Configure mileage rates →
-          </Link>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>AI & suggestions</CardTitle>
-          <CardDescription>Review past OCR runs and suggestion outcomes.</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <Link href="/ai/history" className="text-body font-medium text-primary hover:underline">
-            AI history →
-          </Link>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Businesses & vehicles</CardTitle>
-          <CardDescription>Manage profiles used for trips and reports.</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap gap-4 pt-0">
-          <Link href="/businesses" className="text-body font-medium text-primary hover:underline">
-            Businesses →
-          </Link>
-          <Link href="/vehicles" className="text-body font-medium text-primary hover:underline">
-            Vehicles →
-          </Link>
-          <Link href="/clients" className="text-body font-medium text-primary hover:underline">
-            Clients & projects →
-          </Link>
-        </CardContent>
-      </Card>
+      <section className="space-y-3">
+        <h2 className="text-subheading font-semibold text-foreground">Workspace</h2>
+        <SettingsNavList items={SETTINGS_WORKSPACE_GROUP} />
+      </section>
     </DashboardShell>
   );
 }

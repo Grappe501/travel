@@ -12,6 +12,7 @@ export * from './client-project';
 export * from './notification';
 export * from './search';
 export * from './restore';
+export * from './settings';
 
 export const businessCreateSchema = z.object({
   name: z.string().min(1).max(100),

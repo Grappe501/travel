@@ -55,9 +55,9 @@ Update **Dev Status** and **QA Status** columns as screens ship.
 | SCR-044 | Subscription | `/settings/billing` | `/billing` | 6 | ☑ | ◐ |
 | SCR-045 | Usage Dashboard | `/settings/usage` | `/billing` (combined) | 6 | ☑ | ◐ |
 | SCR-046 | Settings Home | `/settings` | `/settings` | 7 | ☑ | ☐ |
-| SCR-047 | Account | `/settings/account` | — | 7 | ☐ | ☐ |
-| SCR-048 | Appearance | `/settings/appearance` | — | 7 | ☐ | ☐ |
-| SCR-049 | Security | `/settings/security` | — | 7 | ☐ | ☐ |
+| SCR-047 | Account | `/settings/account` | `/settings/account` | 7 | ☑ | ☐ |
+| SCR-048 | Appearance | `/settings/appearance` | `/settings/appearance` | 7 | ☑ | ☐ |
+| SCR-049 | Security | `/settings/security` | `/settings/security` | 7 | ☑ | ☐ |
 | SCR-050 | Data & Privacy | `/settings/privacy` | `/settings/privacy` | 7 | ☑ | ☐ |
 | SCR-051 | Help Center | `/help` | — | 7 | ☐ | ☐ |
 | SCR-052 | Contact Support | `/help/contact` | — | 7 | ☐ | ☐ |

@@ -47,7 +47,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root[data-theme='system'],
+  :root:not([data-theme]) {
     --color-primary: 168 50% 48%;
     --color-primary-hover: 168 50% 54%;
     --color-primary-active: 168 50% 58%;
@@ -77,4 +78,35 @@
     --app-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--color-primary) / 0.18), transparent),
       linear-gradient(180deg, hsl(var(--color-background-subtle)) 0%, hsl(var(--color-background)) 40%);
   }
+}
+
+:root[data-theme='dark'] {
+  --color-primary: 168 50% 48%;
+  --color-primary-hover: 168 50% 54%;
+  --color-primary-active: 168 50% 58%;
+  --color-accent: 199 85% 55%;
+
+  --color-success: 152 50% 48%;
+  --color-warning: 38 90% 55%;
+  --color-warning-foreground: 222 47% 6%;
+  --color-danger: 0 65% 58%;
+  --color-info: 199 75% 55%;
+
+  --color-background: 222 47% 6%;
+  --color-background-subtle: 222 47% 8%;
+  --color-surface: 222 47% 9%;
+  --color-surface-elevated: 222 47% 11%;
+  --color-border: 217 19% 20%;
+  --color-text-primary: 210 40% 98%;
+  --color-text-muted: 215 20% 62%;
+  --color-text-disabled: 215 15% 42%;
+  --color-selected: 168 35% 16%;
+  --color-hover: 217 19% 14%;
+
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.35);
+  --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.45);
+  --shadow-primary: 0 4px 14px -2px hsl(var(--color-primary) / 0.25);
+
+  --app-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--color-primary) / 0.18), transparent),
+    linear-gradient(180deg, hsl(var(--color-background-subtle)) 0%, hsl(var(--color-background)) 40%);
 }
