@@ -26,7 +26,7 @@
 | **4** | [Data Architecture & Database](04-database-architecture.md) | Entities, RLS, storage, events, governance, retention |
 | **5** | [AI & Intelligence Architecture](05-ai-design.md) | Engines, prompts, confidence, safety, personal memory |
 | **6** | [Technical Architecture & Production Infrastructure](06-technical-architecture.md) | Stack, modules, deploy, CI, Cursor build rules |
-| **7** | [Business Operations](07-business-operations.md) | Pricing, billing, legal, support, launch |
+| **7** | [Business Operations & Go-to-Market](07-business-operations.md) | Pricing, launch, support, legal, growth, metrics |
 | **8** | [Security](08-security.md) | Auth, encryption, privacy, compliance roadmap |
 | **9** | [Testing & Quality](09-testing-quality.md) | Test strategy, release checklist, accessibility |
 

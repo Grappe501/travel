@@ -222,4 +222,4 @@ Supabase and Stripe are SOC 2 compliant processors.
 
 ---
 
-*Previous: [Volume 7 — Business Operations](07-business-operations.md) | Next: [Volume 9 — Testing & Quality](09-testing-quality.md)*
+*Previous: [Volume 7 — Business Operations & Go-to-Market](07-business-operations.md) | Next: [Volume 9 — Testing & Quality](09-testing-quality.md)*
