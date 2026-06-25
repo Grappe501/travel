@@ -32,11 +32,13 @@ jobs:
       - name: Generate Prisma client
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
         run: pnpm db:generate
 
       - name: Validate schema
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
         run: pnpm db:validate
 
       - name: Lint
@@ -93,16 +95,19 @@ jobs:
       - name: Generate Prisma client
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
         run: pnpm db:generate
 
       - name: Migrate test database
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
         run: pnpm db:migrate:deploy
 
       - name: Integration tests
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
           INTEGRATION_TEST: '1'
         run: pnpm test:integration
 
@@ -145,11 +150,13 @@ jobs:
       - name: Generate Prisma client
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
         run: pnpm db:generate
 
       - name: Migrate test database
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
         run: pnpm db:migrate:deploy
 
       - name: Install Playwright browsers
