@@ -16,10 +16,11 @@
 8. **Volume 13** defines *state machines* — explicit workflow logic for every major action.
 9. **Volume 14** defines *analytics & BI* — what we measure and why.
 10. **Volume 15** is the *Communication Engine* — every MSG-ID, channel, and timing rule.
+11. **Volume 16** is the *AI Operating System* — engines, PRM-IDs, and the AI Constitution.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–15 complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–16 complete (v1.0). Ready for sign-off → Phase A.
 
 ---
 
