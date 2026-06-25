@@ -29,6 +29,16 @@ jobs:
         if: failure()
         run: pnpm install
 
+      - name: Generate Prisma client
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+        run: pnpm db:generate
+
+      - name: Validate schema
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+        run: pnpm db:validate
+
       - name: Lint
         run: pnpm lint
 

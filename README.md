@@ -12,7 +12,7 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 **Control stack:** [MEI](docs/MASTER-EXECUTION-INDEX.md) · [V1 Execution Package](docs/execution/VERSION_1_EXECUTION_PACKAGE.md)
 
-**Next:** [MEC-V1-S002 — Database](docs/execution/slices/MEC-V1-S002-database.md) (STEP-034)
+**Next:** [MEC-V1-S003 — Authentication](docs/execution/slices/MEC-V1-S003-auth.md) (STEP-035)
 
 ---
 
@@ -23,7 +23,9 @@ Prerequisites: Node.js 22+, pnpm 9+, repo on `H:/Travel-Expense/`
 ```powershell
 cd H:\Travel-Expense
 pnpm install
-copy .env.example .env.local   # edit placeholders as needed for later slices
+copy .env.example .env.local   # set DATABASE_URL for Neon before migrate
+pnpm db:generate               # after schema changes
+pnpm db:migrate:deploy         # apply migrations to Neon (see prisma/README.md)
 pnpm dev                       # http://localhost:3000
 ```
 

@@ -5,8 +5,8 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | Slice | Name | BUILD-ID | WAVE | MRIDs | STEP | Kanban |
 |-------|------|----------|------|-------|------|--------|
 | MEC-V1-S001 | Project scaffold | BUILD-001 | WAVE-001 | — | STEP-033 | ☑ Complete |
-| MEC-V1-S002 | Database foundation | BUILD-001 | WAVE-001 | — | STEP-034 | Ready |
-| MEC-V1-S003 | Authentication | BUILD-002 | WAVE-001 | AUTH-000001 | STEP-035 | Backlog |
+| MEC-V1-S002 | Database foundation | BUILD-001 | WAVE-001 | — | STEP-034 | ☑ Complete |
+| MEC-V1-S003 | Authentication | BUILD-002 | WAVE-001 | AUTH-000001 | STEP-035 | Ready |
 | MEC-V1-S004 | Design system v1 | BUILD-003 | WAVE-001 | — | STEP-036 | Backlog |
 | MEC-V1-S005 | Business & vehicle | BUILD-004 | WAVE-002 | 000002–000003 | STEP-037 | Backlog |
 | MEC-V1-S006 | Trip engine | BUILD-005 | WAVE-003 | 000004–000006 | STEP-038 | Backlog |
