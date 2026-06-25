@@ -20,6 +20,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 ### Changed
 - Volume 1 rewritten as **Product Vision & Strategy** (18 chapters + Non-Negotiables) — STEP-004
 - Volume 2 rewritten as **Experience Architecture (UX/UI)** (16 chapters + micro-specs) — STEP-005
+- Volume 3 rewritten as **Functional Requirements & Business Logic** (21 chapters + dependency matrix) — STEP-006
 
 ## [0.0.0] — 2026-06-24
 

@@ -22,7 +22,7 @@
 | **0** | [Product Doctrine & Design Constitution](00-product-doctrine.md) | Mission, values, scope boundaries — **read first** |
 | **1** | [Product Vision & Strategy](01-product-vision.md) | Cross-functional strategy: vision, pillars, metrics, non-negotiables |
 | **2** | [Experience Architecture (UX/UI)](02-user-experience.md) | Every screen, journey, state, design system, micro-specs |
-| **3** | [Functional Requirements](03-functional-requirements.md) | Feature specs: inputs, outputs, rules, validation |
+| **3** | [Functional Requirements & Business Logic](03-functional-requirements.md) | FR contract: inputs, rules, acceptance criteria, dependency matrix |
 | **4** | [Database Architecture](04-database-architecture.md) | Tables, relationships, RLS, indexes |
 | **5** | [AI Design](05-ai-design.md) | OCR, categorization, copilot prompts, confidence |
 | **6** | [Technical Architecture](06-technical-architecture.md) | Stack, H: drive, GitHub, Netlify, Supabase |

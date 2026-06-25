@@ -10,6 +10,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-002 | 2026-06-24 | A | Git traceability protocol + GitHub remote init | `a2d36c1` | [STEP-002](docs/build-steps/STEP-002-git-traceability.md) |
 | STEP-004 | 2026-06-24 | Blueprint | Volume 1 rewrite — Product Vision & Strategy (18 chapters) | `606401a` | [STEP-004](docs/build-steps/STEP-004-volume-1-strategy.md) |
 | STEP-005 | 2026-06-24 | Blueprint | Volume 2 rewrite — Experience Architecture (16 chapters) | `d8926fd` | [STEP-005](docs/build-steps/STEP-005-volume-2-experience.md) |
+| STEP-006 | 2026-06-24 | Blueprint | Volume 3 rewrite — Functional Requirements (21 chapters) | *pending* | [STEP-006](docs/build-steps/STEP-006-volume-3-functional.md) |
 
 ---
 
@@ -17,7 +18,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 4 |
+| Steps completed | 5 |
 | Current phase | Blueprint complete → Phase A next |
 | Latest tag | `v0.0.0` (after push) |
 
