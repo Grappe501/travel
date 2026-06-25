@@ -14,6 +14,7 @@ export async function GET() {
   return NextResponse.json({
     status: allCoreReady ? 'ok' : 'degraded',
     service: 'mileage-expense-copilot',
+    version: '1.2.0',
     slice: 'MEC-V1-S025',
     step: 'STEP-057',
     ...build,

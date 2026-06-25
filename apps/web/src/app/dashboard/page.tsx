@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { LogoutButton } from '@/components/auth/LogoutButton';
 import { DashboardShell } from '@/components/layout/DashboardShell';
+import { ActiveTripBanner } from '@/components/trips/TripManager';
 import {
   Alert,
   Badge,
@@ -13,9 +14,21 @@ import {
 } from '@/components/ui';
 import { requireAuthenticatedUser } from '@/lib/auth/guards';
 import { getUserProfile } from '@/server/services/auth.service';
+import * as expenseService from '@/server/services/expense.service';
+import * as receiptService from '@/server/services/receipt.service';
+import * as tripService from '@/server/services/trip.service';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
+
+const QUICK_LINKS = [
+  { href: '/trips/start', title: 'Start trip', description: 'Log business mileage' },
+  { href: '/receipts/upload', title: 'Upload receipt', description: 'Scan and categorize' },
+  { href: '/expenses/new', title: 'Add expense', description: 'Manual entry' },
+  { href: '/clients', title: 'Clients', description: 'Clients & projects' },
+  { href: '/reports', title: 'Reports', description: 'Export for taxes' },
+  { href: '/ai/history', title: 'AI history', description: 'OCR & suggestions' },
+] as const;
 
 export default async function DashboardPage() {
   const { user, onboarding } = await requireAuthenticatedUser();
@@ -30,17 +43,29 @@ export default async function DashboardPage() {
       'Could not load your profile from the database. Set DATABASE_URL in Netlify and run migrations.';
   }
 
+  const [trips, receipts, expenses, activeTrip] = dbError
+    ? [[], [], [], null]
+    : await Promise.all([
+        tripService.listTrips(user.id),
+        receiptService.listReceipts(user.id),
+        expenseService.listExpenses(user.id),
+        tripService.getActiveTrip(user.id),
+      ]);
+
+  const completedTrips = trips.filter((trip) => trip.status === 'completed').length;
   const showSetupPrompt =
     onboarding.needsOnboarding || !onboarding.hasBusiness || !onboarding.hasVehicle;
 
   return (
     <DashboardShell
       title="Dashboard"
-      description="Trip and expense overview — more in upcoming slices."
-      badge={<Badge variant="primary">V1</Badge>}
+      description="Track trips, receipts, and expenses in one place."
+      badge={<Badge variant="primary">V1.2</Badge>}
       actions={<LogoutButton />}
     >
       {dbError ? <Alert variant="error">{dbError}</Alert> : null}
+
+      {activeTrip ? <ActiveTripBanner trip={activeTrip} /> : null}
 
       {showSetupPrompt ? (
         <Card>
@@ -61,29 +86,57 @@ export default async function DashboardPage() {
         </Card>
       ) : null}
 
+      {!dbError ? (
+        <div className="grid grid-cols-3 gap-3">
+          <Card className="text-center">
+            <CardContent className="space-y-1 py-4">
+              <p className="text-2xl font-semibold tabular-nums">{completedTrips}</p>
+              <p className="text-caption text-muted">Trips</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center">
+            <CardContent className="space-y-1 py-4">
+              <p className="text-2xl font-semibold tabular-nums">{receipts.length}</p>
+              <p className="text-caption text-muted">Receipts</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center">
+            <CardContent className="space-y-1 py-4">
+              <p className="text-2xl font-semibold tabular-nums">{expenses.length}</p>
+              <p className="text-caption text-muted">Expenses</p>
+            </CardContent>
+          </Card>
+        </div>
+      ) : null}
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Quick actions</CardTitle>
+          <CardDescription>Jump to common tasks.</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 pt-0 sm:grid-cols-2">
+          {QUICK_LINKS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-lg border border-border bg-surface px-4 py-3 transition-colors hover:border-primary/40 hover:bg-surface-elevated"
+            >
+              <p className="font-medium text-foreground">{item.title}</p>
+              <p className="text-caption text-muted">{item.description}</p>
+            </Link>
+          ))}
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
           <CardTitle>Account</CardTitle>
-          <CardDescription>
-            {dbError ? 'Signed in via Supabase.' : 'Signed in and synced with your profile.'}
-          </CardDescription>
+          <CardDescription>Signed in as {profile?.email ?? user.email}</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-2 pt-0 text-body">
-          <p>
-            Signed in as <strong>{profile?.email ?? user.email}</strong>
-          </p>
-          {profile ? (
-            <p className="text-caption text-muted">
-              Profile ID: <code className="font-mono text-micro">{profile.id}</code>
-            </p>
-          ) : null}
-          <p className="text-caption text-muted">
-            Manage businesses and vehicles in{' '}
-            <Link href="/businesses" className="text-primary hover:underline">
-              settings
-            </Link>
-            .
-          </p>
+        <CardContent className="pt-0">
+          <Link href="/settings" className="text-body font-medium text-primary hover:underline">
+            Settings & preferences →
+          </Link>
         </CardContent>
       </Card>
     </DashboardShell>
