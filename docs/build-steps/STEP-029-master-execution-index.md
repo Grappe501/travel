@@ -5,7 +5,7 @@
 | **Step ID** | STEP-029 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | *(filled after commit)* |
+| **Commit** | `bb00470` |
 | **Status** | complete |
 
 ## Objective
