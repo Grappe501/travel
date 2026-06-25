@@ -55,7 +55,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-048 | 2026-06-25 | B | MEC-V1-S016 — Security audit, CSP/HSTS, rate limits, SEC tests | `23b1895` | [STEP-048](docs/build-steps/STEP-048-mec-v1-s016-security-hardening.md) |
 | STEP-049 | 2026-06-25 | B | MEC-V1-S017 — Perf/a11y pass, Lighthouse baseline, axe e2e | `d06cf27` | [STEP-049](docs/build-steps/STEP-049-mec-v1-s017-perf-a11y.md) |
 | STEP-050 | 2026-06-25 | B | MEC-V1-S018 — Sentry, /health deps, production checklist | `bf1a1f5` | [STEP-050](docs/build-steps/STEP-050-mec-v1-s018-production-ops.md) |
-| STEP-051 | 2026-06-25 | B | MEC-V1-S019 — AdminOS minimum customer lookup + health | — | [STEP-051](docs/build-steps/STEP-051-mec-v1-s019-admin-minimum.md) |
+| STEP-051 | 2026-06-25 | B | MEC-V1-S019 — AdminOS minimum customer lookup + health | `cbc3d09` | [STEP-051](docs/build-steps/STEP-051-mec-v1-s019-admin-minimum.md) |
 
 ---
 
