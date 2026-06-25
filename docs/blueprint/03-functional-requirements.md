@@ -20,7 +20,7 @@ Volume 3 is the **behavioral contract** for Mileage & Expense Copilot. If Volume
 | **AI** | Bound OCR and suggestion behavior (Chapter 13) |
 | **Support** | Understand expected behavior vs. bugs |
 
-**Related:** [Volume 2 — Experience Architecture](02-user-experience.md) · [Volume 4 — Database Architecture](04-database-architecture.md) · [Volume 5 — AI Design](05-ai-design.md)
+**Related:** [Volume 2 — Experience Architecture](02-user-experience.md) · [Volume 4 — Database Architecture](04-database-architecture.md) · [Volume 5 — AI & Intelligence Architecture](05-ai-design.md)
 
 ---
 

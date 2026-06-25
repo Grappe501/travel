@@ -997,10 +997,10 @@ All `security definer` functions in `private` schema — not exposed via API.
 | Need | Go to |
 |------|-------|
 | Behavior rules | [Volume 3](03-functional-requirements.md) |
-| OCR detail | [Volume 5](05-ai-design.md) |
+| OCR detail | [Volume 5 — AI & Intelligence Architecture](05-ai-design.md) |
 | RLS security | [Volume 8](08-security.md) |
 | Migrations path | [PROJECT-STRUCTURE.md](../PROJECT-STRUCTURE.md) |
 
 ---
 
-*Previous: [Volume 3 — Functional Requirements & Business Logic](03-functional-requirements.md) | Next: [Volume 5 — AI Design](05-ai-design.md)*
+*Previous: [Volume 3 — Functional Requirements & Business Logic](03-functional-requirements.md) | Next: [Volume 5 — AI & Intelligence Architecture](05-ai-design.md)*
