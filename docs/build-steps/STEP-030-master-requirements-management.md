@@ -5,7 +5,7 @@
 | **Step ID** | STEP-030 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | *(filled after commit)* |
+| **Commit** | `49ec4c1` |
 | **Status** | complete |
 
 ## Objective
