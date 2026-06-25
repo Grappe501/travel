@@ -35,4 +35,4 @@ pnpm build      # pass
 
 ## Next step
 
-**STEP-039** — [MEC-V1-S007 Receipt upload](../execution/slices/MEC-V1-S007-receipt-upload.md)
+**STEP-040** — [MEC-V1-S008 AI OCR review](../execution/slices/MEC-V1-S008-ocr-review.md)

@@ -62,3 +62,21 @@ export type SerializedTrip = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type SerializedReceipt = {
+  id: string;
+  businessId: string | null;
+  tripId: string | null;
+  storagePath: string;
+  fileSizeBytes: number | null;
+  mimeType: string | null;
+  merchant: string | null;
+  receiptDate: string | null;
+  total: number | null;
+  currency: string;
+  uploadStatus: string;
+  reviewStatus: string;
+  displayStatus: string;
+  createdAt: string;
+  updatedAt: string;
+};

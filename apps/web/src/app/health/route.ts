@@ -6,8 +6,13 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     service: 'mileage-expense-copilot',
-    slice: 'MEC-V1-S006',
-    step: 'STEP-038',
+    slice: 'MEC-V1-S007',
+    step: 'STEP-039',
+    storageConfigured: Boolean(
+      process.env.SUPABASE_SERVICE_ROLE_KEY &&
+        process.env.NEXT_PUBLIC_SUPABASE_URL &&
+        !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')
+    ),
     build: process.env.NETLIFY ? 'netlify' : 'local',
     databaseConfigured: Boolean(process.env.DATABASE_URL),
     supabaseConfigured: Boolean(

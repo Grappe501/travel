@@ -57,6 +57,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Design system v1 (MEC-V1-S004)** — Volume 10 tokens, UI primitives, DashboardShell, BottomNav — STEP-036
 - **Business & vehicle setup (MEC-V1-S005)** — CRUD businesses/vehicles, mileage rate settings — STEP-037
 - **Trip engine (MEC-V1-S006)** — Start/end flow, history, mileage calc, audit on edits — STEP-038
+- **Receipt upload (MEC-V1-S007)** — Private Supabase Storage upload, FileAsset rows, list/detail UI, audit on upload — STEP-039
 
 ## [0.0.0] — 2026-06-24
 
