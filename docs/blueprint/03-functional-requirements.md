@@ -858,4 +858,4 @@ flowchart TD
 
 ---
 
-*Previous: [Volume 2 — Experience Architecture](02-user-experience.md) | Next: [Volume 4 — Database Architecture](04-database-architecture.md)*
+*Previous: [Volume 3 — Functional Requirements & Business Logic](03-functional-requirements.md) | Next: [Volume 4 — Data Architecture & Database](04-database-architecture.md)*
