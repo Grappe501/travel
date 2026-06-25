@@ -348,4 +348,4 @@ When blueprint is signed off:
 
 ---
 
-*Previous: [Volume 5 — AI Design](05-ai-design.md) | Next: [Volume 7 — Business Operations](07-business-operations.md)*
+*Previous: [Volume 5 — AI & Intelligence Architecture](05-ai-design.md) | Next: [Volume 7 — Business Operations](07-business-operations.md)*

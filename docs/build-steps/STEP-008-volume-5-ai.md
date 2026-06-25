@@ -5,7 +5,7 @@
 | **Step ID** | STEP-008 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | *(pending)* |
+| **Commit** | [`0f7ca9c`](https://github.com/Grappe501/travel/commit/0f7ca9c) |
 | **Status** | complete |
 
 ## Objective
