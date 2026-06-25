@@ -42,6 +42,23 @@ vi.mock('@/lib/auth/server', () => ({
   requireSessionUser: vi.fn(async () => null),
 }));
 
+describe('API admin forbidden responses', () => {
+  it('returns 403 for authenticated non-admin users', async () => {
+    const { requireSessionUser } = await import('@/lib/auth/server');
+    vi.mocked(requireSessionUser).mockResolvedValueOnce({
+      id: '11111111-1111-1111-1111-111111111111',
+      email: 'member@example.com',
+      app_metadata: { role: 'member' },
+    } as unknown as NonNullable<Awaited<ReturnType<typeof requireSessionUser>>>);
+
+    const { GET: getAdminUsers } = await import('@/app/api/admin/users/route');
+    const response = await getAdminUsers(
+      new Request('http://localhost/api/admin/users?email=test@example.com')
+    );
+    expect(response.status).toBe(403);
+  });
+});
+
 describe('API unauthorized responses', () => {
   it('returns 401 from protected routes without a session', async () => {
     const { GET: getTrips } = await import('@/app/api/trips/route');
@@ -74,5 +91,16 @@ describe('API unauthorized responses', () => {
       })
     );
     expect(expenseResponse.status).toBe(401);
+
+    const { GET: getAdminUsers } = await import('@/app/api/admin/users/route');
+    const { GET: getAdminHealth } = await import('@/app/api/admin/health/route');
+
+    const adminUsersResponse = await getAdminUsers(
+      new Request('http://localhost/api/admin/users?email=test@example.com')
+    );
+    expect(adminUsersResponse.status).toBe(401);
+
+    const adminHealthResponse = await getAdminHealth();
+    expect(adminHealthResponse.status).toBe(401);
   });
 });

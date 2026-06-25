@@ -1,13 +1,21 @@
-import { ShellPage } from '@/components/layout/ShellPage';
-import { EmptyState } from '@/components/ui';
+import { AdminNavLinks, AdminUserSearch } from '@/components/admin/AdminManager';
+import { DashboardShell } from '@/components/layout/DashboardShell';
+import { Alert } from '@/components/ui';
+
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export default function AdminPage() {
   return (
-    <ShellPage title="Admin" description="AdminOS — V1.1.">
-      <EmptyState
-        title="Admin tools not available"
-        description="Operational admin features are planned for a post-V1 release."
-      />
-    </ShellPage>
+    <DashboardShell
+      title="Admin"
+      description="Read-only customer lookup and system health for support staff."
+    >
+      <Alert variant="info">
+        Admin access is read-only. Lookups are recorded in the audit log.
+      </Alert>
+      <AdminUserSearch />
+      <AdminNavLinks />
+    </DashboardShell>
   );
 }

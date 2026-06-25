@@ -82,7 +82,19 @@ Set in Netlify for production OCR. **Runbook:** [ai-provider-outage.md](../runbo
 
 ---
 
-## 7. Post-deploy smoke
+## 7. Admin access (STEP-051)
+
+| Variable | Owner | Purpose | Staging | Production |
+|----------|-------|---------|---------|------------|
+| `ADMIN_EMAIL_ALLOWLIST` | Eng | Comma-separated support staff emails | ☐ | ☐ |
+
+Alternatively set Supabase `app_metadata.role` to `admin` or `support` for staff accounts.
+
+**Verify:** Non-admin session → `403` on `/admin` and `/api/admin/*`; allowlisted admin can look up a test user.
+
+---
+
+## 8. Post-deploy smoke
 
 | Check | Staging | Production |
 |-------|---------|------------|

@@ -69,6 +69,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Security hardening (MEC-V1-S016)** — CSP/HSTS, rate limits, magic-byte upload validation, SEC tests — STEP-048
 - **Performance & a11y (MEC-V1-S017)** — Skip links, axe scans, Lighthouse baseline, report perf — STEP-049
 - **Production ops (MEC-V1-S018)** — Sentry, /health dependencies, production checklist, runbooks — STEP-050
+- **Admin minimum (MEC-V1-S019)** — Customer lookup by email, read-only summary, admin health dashboard — STEP-051
 
 ## [0.0.0] — 2026-06-24
 
