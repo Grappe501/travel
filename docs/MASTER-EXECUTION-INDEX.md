@@ -15,6 +15,7 @@
 | Volumes 0–24 | **Library** — what, why, how it should feel |
 | **This document (MEI)** | **Schedule** — what to build, in what order, status |
 | [MRMS](requirements/MRMS.md) | **Requirements** — every MRID, test, release |
+| [MRMS-2 DRS](requirements/MRMS-2-DRS.md) | **Domain namespace** — NASA-level traceability |
 | [BUILD-LOG.md](../BUILD-LOG.md) | **Ledger** — every STEP with commit SHA |
 
 **Owner:** Product + Engineering · **Update:** Every BUILD slice + every STEP  
@@ -101,7 +102,7 @@ Nothing out of sequence. Maps to [WAVE-INDEX](construction/WAVE-INDEX.md).
 | **13** | Testing — full pyramid + UAT | BUILD-014 | ☐ |
 | **14** | Launch — Alpha → GA | BUILD-014 | ☐ |
 
-**Next:** BUILD-001 → **STEP-031** (Phase 1 / WAVE-001)
+**Next:** BUILD-001 → **STEP-032** (Phase 1 / WAVE-001)
 
 ---
 
@@ -341,7 +342,7 @@ CEO / founder dashboard — update weekly.
 
 **[mei/MEI-KANBAN.md](mei/MEI-KANBAN.md)** — Backlog · Ready · Building · Testing · Complete
 
-Current: All BUILD slices in **Backlog** until STEP-031.
+Current: All BUILD slices in **Backlog** until STEP-032.
 
 ---
 
@@ -352,6 +353,9 @@ Current: All BUILD slices in **Backlog** until STEP-031.
 | Artifact | Registry |
 |----------|----------|
 | **MRMS Constitution** | [requirements/MRMS.md](requirements/MRMS.md) |
+| **DRS (MRMS-2)** | [requirements/MRMS-2-DRS.md](requirements/MRMS-2-DRS.md) |
+| Domain registry | [domains/DRS-INDEX.md](domains/DRS-INDEX.md) |
+| Traceability chains | [domains/chains/](domains/chains/) |
 | Master registry | [requirements/MRID-REGISTRY.md](requirements/MRID-REGISTRY.md) |
 | MEI summary | [mei/MRID-INDEX.md](mei/MRID-INDEX.md) |
 | Full matrix | [mei/MEI-TRACEABILITY.md](mei/MEI-TRACEABILITY.md) |
@@ -368,8 +372,8 @@ Current: All BUILD slices in **Backlog** until STEP-031.
 
 | Milestone | Target | Gate |
 |-----------|--------|------|
-| Blueprint + MEI + MRMS complete | ☑ 2026-06-24 | Volumes 0–24 + MEI v2 + MRMS v1 |
-| Implementation start | STEP-031 | Sign-off |
+| Blueprint + MEI + MRMS + DRS complete | ☑ 2026-06-24 | Volumes 0–24 + MEI + MRMS + DRS |
+| Implementation start | STEP-032 | Sign-off |
 | Internal Alpha | TBD | WAVE-001–006 |
 | Private Beta | TBD | WAVE-001–008 |
 | Public Beta | TBD | WAVE-001–009 |
@@ -451,7 +455,7 @@ The MEI eliminates uncertainty. Any engineer or AI agent can answer within minut
 | How will I know it's finished? | BLD-DOD-001 · MRID status ☑ |
 | What comes next? | §4 · Kanban |
 
-**Sign-off** → **STEP-031** → **BUILD-001** → WAVE-001
+**Sign-off** → **STEP-032** → **BUILD-001** → WAVE-001
 
 ---
 

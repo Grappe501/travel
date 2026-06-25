@@ -4,7 +4,7 @@
 
 | BUILD-ID | Name | WAVE | MRIDs | STEP | Status | Kanban |
 |----------|------|------|-------|------|--------|--------|
-| BUILD-001 | Repository + CI + Netlify | WAVE-001 | — | STEP-031 | ☐ | Backlog |
+| BUILD-001 | Repository + CI + Netlify | WAVE-001 | — | STEP-032 | ☐ | Backlog |
 | BUILD-002 | Auth + profiles schema | WAVE-001 | MRID-000001 | | ☐ | Backlog |
 | BUILD-003 | Design system shell | WAVE-001 | — | | ☐ | Backlog |
 | BUILD-004 | Businesses + vehicles | WAVE-002 | MRID-000002, 000003 | | ☐ | Backlog |

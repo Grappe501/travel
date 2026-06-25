@@ -49,6 +49,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Master Execution Index updated to v1.4 — Volume 24 integration — STEP-028
 - **Master Execution Index (MEI) v2.0** — 25-section construction constitution, MRID traceability, BUILD slice registry — STEP-029
 - **Master Requirements Management System (MRMS) v1.0** — domain MRIDs, master registry, lifecycle, coverage — STEP-030
+- **MRMS-2 Domain Registration System (DRS) v1.0** — hierarchical namespace, 58 domains, traceability chains — STEP-031
 
 ## [0.0.0] — 2026-06-24
 

@@ -13,7 +13,8 @@
 | Volumes 0–24 | **Library** — product design |
 | [MEI](../MASTER-EXECUTION-INDEX.md) | **Schedule** — what to build next |
 | **MRMS (this document)** | **Requirements backbone** — every decision, test, release |
-| [MRID-REGISTRY](MRID-REGISTRY.md) | **Master registry** — all MRIDs |
+| [MRMS-2 DRS](MRMS-2-DRS.md) | **Domain namespace** — hierarchical artifact IDs |
+| [DRS-INDEX](../domains/DRS-INDEX.md) | Permanent domain registry |
 | [BUILD-LOG](../../BUILD-LOG.md) | **Ledger** — every STEP |
 
 **Owner:** Product · **Co-owner:** Engineering, QA  

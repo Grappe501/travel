@@ -1,15 +1,16 @@
-# Domain Index — MRID Categories & Allocation
+# Domain Index — MRID Categories & DRS Allocation
 
-**MRMS Part III & XXV**
+**MRMS Part III & XXV** · **DRS registry:** [DRS-INDEX.md](../domains/DRS-INDEX.md)
 
 ## Dual ID Format
 
 | Form | Example | Use |
 |------|---------|-----|
-| Global (canonical) | `MRID-000004` | Code, DB, commits, APIs |
-| Domain (display) | `TRIP-MRID-000004` | Search, reports, assignment |
+| Global (canonical) | `MRID-000004` | Code, DB, commits |
+| Domain (DRS) | `TRIP-MRID-000004` | Search, reports, ownership |
+| Full artifact | `TRIP-API-001` | APIs, screens, tests — see [DRS-TYPE-REGISTRY](../domains/DRS-TYPE-REGISTRY.md) |
 
-The numeric suffix is **identical**. Domain = primary category.
+The numeric suffix is **identical** across `MRID` and `{DOMAIN}-MRID`. Domain = primary category per [MRMS-2 DRS](MRMS-2-DRS.md).
 
 ---
 
@@ -26,12 +27,12 @@ The numeric suffix is **identical**. Domain = primary category.
 | OCR | OCR | 150 | 000886–001035 | Vol 5, Vol 16 |
 | EXP | Expenses | 220 | 001036–001255 | Vol 3 FR-600–699 |
 | RPT | Reports | 250 | 001256–001505 | Vol 3 FR-700–799 |
-| BILL | Billing | 140 | 001506–001645 | Vol 3 FR-012, Vol 7 |
-| AI | Artificial intelligence | 250 | 001646–001895 | Vol 5, Vol 16 |
-| SRCH | Search | 80 | 001896–001975 | Vol 5, Vol 22 |
-| ADM | Administration | 300 | 001976–002275 | Vol 17 |
-| AN | Analytics | 250 | 002276–002525 | Vol 14 |
-| NOTIF | Notifications | 180 | 002526–002705 | Vol 15 |
+| BILL | Billing | 140 | 001506–001645 | Vol 3 FR-012, Vol 7 | **DRS: SUB** |
+| AI | Artificial intelligence | 250 | 001646–001895 | Vol 5, Vol 16 | |
+| SRCH | Search | 80 | 001896–001975 | Vol 5, Vol 22 | **DRS: SEARCH** |
+| ADM | Administration | 300 | 001976–002275 | Vol 17 | **DRS: ADMIN** |
+| AN | Analytics | 250 | 002276–002525 | Vol 14 | |
+| NOTIF | Notifications | 180 | 002526–002705 | Vol 15 | **DRS: NOTIFY** |
 | SEC | Security | 250 | 002706–002955 | Vol 8 |
 | OPS | Operations | 300 | 002956–003255 | Vol 19 |
 | MOB | Mobile & offline | 250 | 003256–003505 | Vol 18 |

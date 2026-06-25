@@ -8,9 +8,9 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Blueprint + MEI + MRMS complete** — sign off → build
+**Blueprint + MEI + MRMS + DRS complete** — sign off → build
 
-**25 planning volumes** (0–24) + **[MEI](docs/MASTER-EXECUTION-INDEX.md)** (schedule) + **[MRMS](docs/requirements/MRMS.md)** (requirements backbone). Identity: [Volume 24](docs/blueprint/24-product-constitution.md). Build: [Volume 21](docs/blueprint/21-construction-manual.md) WAVE-001 after sign-off (**STEP-031**).
+**25 volumes** (0–24) + **[MEI](docs/MASTER-EXECUTION-INDEX.md)** (schedule) + **[MRMS](docs/requirements/MRMS.md)** (requirements) + **[DRS](docs/requirements/MRMS-2-DRS.md)** (domain namespace). Build: [Volume 21](docs/blueprint/21-construction-manual.md) WAVE-001 after sign-off (**STEP-032**).
 
 ---
 

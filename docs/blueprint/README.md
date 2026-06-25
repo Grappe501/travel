@@ -26,9 +26,10 @@
 18. **Volume 23** is the *Product Factory* — FCT-IDs, every feature from idea to improvement.
 19. **Volume 24** is the *Product Constitution* — DNA-IDs, design language, permanent identity.
 20. **[Master Execution Index (MEI)](../MASTER-EXECUTION-INDEX.md)** is the *construction schedule*.
-21. **[MRMS](../requirements/MRMS.md)** is the *requirements backbone* — every MRID, test, and release.
+21. **[MRMS](../requirements/MRMS.md)** is the *requirements backbone*.
+22. **[DRS (MRMS-2)](../requirements/MRMS-2-DRS.md)** is the *domain namespace* — every artifact has a permanent home.
 
-**Blueprint status:** Volumes 0–24 + MEI v2 + MRMS v1 complete. Sign off → WAVE-001 / Phase A (**STEP-031**).
+**Blueprint status:** Volumes 0–24 + MEI + MRMS + DRS complete. Sign off → WAVE-001 (**STEP-032**).
 
 ---
 
@@ -92,7 +93,8 @@
 | [TRACEABILITY-MATRIX.md](../construction/TRACEABILITY-MATRIX.md) | FR ↔ SCR ↔ API matrix (Volume 21) |
 | [MASTER-EXECUTION-INDEX.md](../MASTER-EXECUTION-INDEX.md) | **Construction schedule** |
 | [requirements/MRMS.md](../requirements/MRMS.md) | **Requirements backbone (MRMS)** |
-| [requirements/MRID-REGISTRY.md](../requirements/MRID-REGISTRY.md) | Master MRID registry |
+| [requirements/MRMS-2-DRS.md](../requirements/MRMS-2-DRS.md) | **Domain namespace (DRS)** |
+| [domains/DRS-INDEX.md](../domains/DRS-INDEX.md) | Permanent domain registry |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
 | [Root README](../../README.md) | Project overview and quick start |
 
@@ -193,4 +195,4 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 | Product | | | ☐ |
 | Engineering | | | ☐ |
 
-Once signed off ([Master Execution Index](../MASTER-EXECUTION-INDEX.md) + [MRMS](../requirements/MRMS.md)), proceed to **WAVE-001 / Phase A** (STEP-031).
+Once signed off ([MEI](../MASTER-EXECUTION-INDEX.md) + [MRMS](../requirements/MRMS.md) + [DRS](../requirements/MRMS-2-DRS.md)), proceed to **WAVE-001 / Phase A** (STEP-032).
