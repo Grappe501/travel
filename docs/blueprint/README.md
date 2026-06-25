@@ -15,10 +15,11 @@
 7. **Volume 12** is the *API Constitution* — every API-ID documented before implementation.
 8. **Volume 13** defines *state machines* — explicit workflow logic for every major action.
 9. **Volume 14** defines *analytics & BI* — what we measure and why.
+10. **Volume 15** is the *Communication Engine* — every MSG-ID, channel, and timing rule.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–14 complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–15 complete (v1.0). Ready for sign-off → Phase A.
 
 ---
 
@@ -41,6 +42,7 @@
 | **12** | [API Architecture & Integration Specification](12-api-architecture.md) | 70+ API-IDs — response envelope, error registry, API Constitution |
 | **13** | [Component State Machines & Workflow Logic](13-state-machines.md) | SM-IDs — trips, receipts, OCR, sync, billing, screen states |
 | **14** | [Analytics, Metrics & Business Intelligence](14-analytics.md) | EVT-IDs, North Star, funnels, dashboards, privacy rules |
+| **15** | [Communication & Engagement Engine](15-communication-engine.md) | MSG-IDs, channels, timing, lifecycle, non-negotiables |
 
 ---
 
@@ -53,6 +55,7 @@
 | [API-INDEX.md](../api-catalog/API-INDEX.md) | API implementation tracker (Volume 12) |
 | [SM-INDEX.md](../state-machines/SM-INDEX.md) | State machine tracker (Volume 13) |
 | [EVENT-REGISTRY.md](../analytics/EVENT-REGISTRY.md) | Analytics event registry (Volume 14) |
+| [MSG-INDEX.md](../communications/MSG-INDEX.md) | Communication template registry (Volume 15) |
 | [Root README](../../README.md) | Project overview and quick start |
 
 ---

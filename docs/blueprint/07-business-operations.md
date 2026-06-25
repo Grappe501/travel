@@ -569,17 +569,19 @@ Before public launch:
 
 # Chapter 23 — Email Lifecycle
 
-| Email | Trigger |
+> **Canonical specification:** [Volume 15 — Communication & Engagement Engine](15-communication-engine.md) · [MSG-INDEX](../communications/MSG-INDEX.md)
+
+| Email | Trigger | MSG-ID |
 |-------|---------|
-| Welcome | Signup |
-| Verify email | Supabase Auth |
-| First trip completed | `trip.ended` first time |
-| First report generated | `report.generated` first time |
-| Free limit reached | 80% and 100% usage |
-| Payment failed | Stripe webhook |
-| Subscription canceled | Stripe webhook |
-| Monthly summary | Opt-in, 1st of month |
-| Year-end reminder | January |
+| Welcome | Signup | MSG-EMAIL-001 |
+| Verify email | Supabase Auth | MSG-EMAIL-002 |
+| First trip completed | `trip.ended` first time | MSG-MS-001 |
+| First report generated | `report.generated` first time | MSG-MS-002 |
+| Free limit reached | 80% and 100% usage | MSG-RM-003, MSG-RM-004 |
+| Payment failed | Stripe webhook | MSG-BIL-003 |
+| Subscription canceled | Stripe webhook | MSG-BIL-005 |
+| Monthly summary | Opt-in, 1st of month | MSG-EMAIL-010 |
+| Year-end reminder | January | MSG-EMAIL-012 |
 
 **Provider:** Resend · templates in repo `emails/` · useful not spammy · unsubscribe on marketing only
 

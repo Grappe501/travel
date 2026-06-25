@@ -594,4 +594,4 @@ If the data can't answer that, fix instrumentation before adding features.
 
 ---
 
-*Previous: [Volume 13 — State Machines](13-state-machines.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 13 — State Machines](13-state-machines.md) | Next: [Volume 15 — Communication Engine](15-communication-engine.md)*

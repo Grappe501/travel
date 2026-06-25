@@ -39,4 +39,4 @@ Add **Volume 14 — Analytics, Metrics & Business Intelligence** — North Star,
 
 ## Next step
 
-Blueprint sign-off → **STEP-018 Phase A: Repo scaffold**
+Blueprint sign-off → **STEP-019 Phase A: Repo scaffold**
