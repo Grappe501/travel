@@ -10,10 +10,11 @@
 2. **Volumes 1–3** define *what* we build and *how users experience it*.
 3. **Volumes 4–6** define *data, AI, and technology*.
 4. **Volumes 7–9** define *business, security, and quality*.
+5. **Volume 10** defines the *universal design system* — how every screen is built.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–9 complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–10 complete (v1.0). Ready for sign-off → Phase A.
 
 ---
 
@@ -23,7 +24,7 @@
 |-----|----------|---------|
 | **0** | [Product Doctrine & Design Constitution](00-product-doctrine.md) | Mission, values, scope boundaries — **read first** |
 | **1** | [Product Vision & Strategy](01-product-vision.md) | Cross-functional strategy: vision, pillars, metrics, non-negotiables |
-| **2** | [Experience Architecture (UX/UI)](02-user-experience.md) | Every screen, journey, state, design system, micro-specs |
+| **2** | [Experience Architecture (UX/UI)](02-user-experience.md) | Every screen, journey, state — **Volume 10** owns components |
 | **3** | [Functional Requirements & Business Logic](03-functional-requirements.md) | FR contract: inputs, rules, acceptance criteria, dependency matrix |
 | **4** | [Data Architecture & Database](04-database-architecture.md) | Entities, RLS, storage, events, governance, retention |
 | **5** | [AI & Intelligence Architecture](05-ai-design.md) | Engines, prompts, confidence, safety, personal memory |
@@ -31,6 +32,7 @@
 | **7** | [Business Operations & Go-to-Market](07-business-operations.md) | Pricing, launch, support, legal, growth, metrics |
 | **8** | [Security, Privacy & Trust Architecture](08-security.md) | Auth, RLS, encryption, compliance, trust dashboard |
 | **9** | [Quality Assurance & Release Engineering](09-testing-quality.md) | Test pyramid, launch gates, certification, non-negotiables |
+| **10** | [Universal Design System & Component Library](10-design-system.md) | Tokens, components, patterns — build the system, not 200 screens |
 
 ---
 

@@ -934,6 +934,7 @@ See [PROJECT-STRUCTURE.md](../PROJECT-STRUCTURE.md).
 | UX routes | [Volume 2](02-user-experience.md) |
 | Security depth | [Volume 8](08-security.md) |
 | Test plan | [Volume 9](09-testing-quality.md) |
+| Design system | [Volume 10](10-design-system.md) |
 | Filesystem | [PROJECT-STRUCTURE.md](../PROJECT-STRUCTURE.md) |
 
 ---

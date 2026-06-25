@@ -588,7 +588,11 @@ Small details build confidence without distracting from capture.
 
 # Chapter 13 — Design System
 
-Define components **before implementation**. Figma (or equivalent) library mirrors this spec.
+> **Canonical specification:** [Volume 10 — Universal Design System & UI Component Library](10-design-system.md)
+
+Volume 10 defines tokens, every component variant, accessibility requirements, and the V1 component inventory. This chapter summarizes **UX constraints** that inform the design system.
+
+Define components **before implementation**. Figma (or equivalent) library mirrors Volume 10.
 
 ## Color Tokens (semantic)
 
@@ -829,7 +833,10 @@ Queued items: trips, expenses, receipt images. Never block capture.
 | Feature rules & validation | [Volume 3](03-functional-requirements.md) |
 | AI / OCR behavior | [Volume 5](05-ai-design.md) |
 | Test plan | [Volume 9](09-testing-quality.md) |
+| Design system | [Volume 10](10-design-system.md) |
 
 ---
 
 *Previous: [Volume 1 — Product Vision & Strategy](01-product-vision.md) | Next: [Volume 3 — Functional Requirements](03-functional-requirements.md)*
+
+*Design system:* [Volume 10](10-design-system.md)

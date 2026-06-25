@@ -41,4 +41,4 @@ Rewrite Volume 9 as **Quality Assurance, Testing, Validation & Release Engineeri
 
 ## Next step
 
-Blueprint sign-off → **STEP-013 Phase A: Repo scaffold**
+Blueprint sign-off → **STEP-014 Phase A: Repo scaffold**

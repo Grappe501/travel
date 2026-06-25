@@ -904,8 +904,8 @@ This benchmark applies to **every version** that follows — growth never comes 
 
 ## Blueprint Complete
 
-Volumes 0–9 form the **Master Build Blueprint v1.0**. With Volume 9 signed off, the project may proceed to **Phase A: Repo scaffold** ([Blueprint Index](README.md)).
+Volumes 0–10 form the **Master Build Blueprint v1.0**. With Volume 10 signed off, the project may proceed to **Phase A: Repo scaffold** ([Blueprint Index](README.md)).
 
 ---
 
-*Previous: [Volume 8 — Security, Privacy & Trust Architecture](08-security.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 8 — Security, Privacy & Trust Architecture](08-security.md) | Next: [Volume 10 — Universal Design System](10-design-system.md)*
