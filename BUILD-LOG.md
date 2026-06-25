@@ -30,7 +30,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-023 | 2026-06-24 | Blueprint | Volume 20 — Product evolution roadmap (ROAD registry) | `59251a7` | [STEP-023](docs/build-steps/STEP-023-volume-20-roadmap.md) |
 | STEP-024 | 2026-06-24 | Blueprint | Master Build Index — The Constitution | `59251a7` | [STEP-024](docs/build-steps/STEP-024-master-build-index.md) |
 | STEP-025 | 2026-06-24 | Blueprint | Volume 21 — Construction Manual (WAVE registry) | `a61e113` | [STEP-025](docs/build-steps/STEP-025-volume-21-construction.md) |
-| STEP-026 | 2026-06-24 | Blueprint | Volume 22 — Platform architecture (PLT registry) | _(pending)_ | [STEP-026](docs/build-steps/STEP-026-volume-22-platform.md) |
+| STEP-026 | 2026-06-24 | Blueprint | Volume 22 — Platform architecture (PLT registry) | `b5af35c` | [STEP-026](docs/build-steps/STEP-026-volume-22-platform.md) |
 
 ---
 
