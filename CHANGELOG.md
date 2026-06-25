@@ -26,6 +26,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Volume 6 rewritten as **Technical Architecture & Production Infrastructure** (33 chapters + tech debt policy) — STEP-009
 - Volume 7 rewritten as **Business Operations & Go-to-Market** (30 chapters) — STEP-010
 - Volume 8 rewritten as **Security, Privacy & Trust Architecture** (34 chapters) — STEP-011
+- Volume 9 rewritten as **Quality Assurance & Release Engineering** (33 chapters) — STEP-012
 
 ## [0.0.0] — 2026-06-24
 

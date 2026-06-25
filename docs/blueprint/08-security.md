@@ -745,9 +745,9 @@ Maintain processor list in privacy policy annex.
 | RLS schema | [Volume 4](04-database-architecture.md) |
 | Billing legal | [Volume 7 Ch. 13–14](07-business-operations.md) |
 | AI privacy | [Volume 5 Ch. 17](05-ai-design.md) |
-| Security tests | [Volume 9](09-testing-quality.md) |
+| Security tests | [Volume 9 Ch. 15](09-testing-quality.md) |
 | Incident runbook | `docs/runbooks/incident-response.md` (create at Phase H) |
 
 ---
 
-*Previous: [Volume 7 — Business Operations & Go-to-Market](07-business-operations.md) | Next: [Volume 9 — Testing & Quality](09-testing-quality.md)*
+*Previous: [Volume 7 — Business Operations & Go-to-Market](07-business-operations.md) | Next: [Volume 9 — Quality Assurance & Release Engineering](09-testing-quality.md)*

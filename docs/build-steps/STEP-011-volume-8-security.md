@@ -38,4 +38,4 @@ Rewrite Volume 8 as **Security, Privacy, Compliance & Trust Architecture** — 3
 
 ## Next step
 
-Volume 9 Testing rewrite or STEP-012 Phase A scaffold
+Blueprint sign-off → **STEP-013 Phase A: Repo scaffold**

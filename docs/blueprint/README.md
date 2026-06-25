@@ -13,6 +13,8 @@
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
+**Blueprint status:** Volumes 0–9 complete (v1.0). Ready for sign-off → Phase A.
+
 ---
 
 ## Volumes
@@ -28,7 +30,7 @@
 | **6** | [Technical Architecture & Production Infrastructure](06-technical-architecture.md) | Stack, modules, deploy, CI, Cursor build rules |
 | **7** | [Business Operations & Go-to-Market](07-business-operations.md) | Pricing, launch, support, legal, growth, metrics |
 | **8** | [Security, Privacy & Trust Architecture](08-security.md) | Auth, RLS, encryption, compliance, trust dashboard |
-| **9** | [Testing & Quality](09-testing-quality.md) | Test strategy, release checklist, accessibility |
+| **9** | [Quality Assurance & Release Engineering](09-testing-quality.md) | Test pyramid, launch gates, certification, non-negotiables |
 
 ---
 
