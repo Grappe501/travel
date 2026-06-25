@@ -6,7 +6,7 @@
 | **Phase** | A |
 | **Slice** | MEC-V1-S010 |
 | **Date** | 2026-06-25 |
-| **Commit** | _(pending traceability)_ |
+| **Commit** | `6edc398` |
 | **Status** | complete |
 
 ## Objective
