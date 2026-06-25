@@ -46,11 +46,11 @@ Validation:
 pnpm lint && pnpm typecheck && pnpm build
 
 Exit criteria:
-- [ ] Sentry captures test error in staging when DSN set
-- [ ] /health returns accurate configuration flags
-- [ ] PRODUCTION-CHECKLIST complete with ☑/☐ per env var
-- [ ] Deploy to Netlify succeeds with documented env set
-- [ ] Runbooks linked from README or docs/runbooks/README.md
+- [x] Sentry captures test error in staging when DSN set
+- [x] /health returns accurate configuration flags
+- [x] PRODUCTION-CHECKLIST complete with ☑/☐ per env var
+- [x] Deploy to Netlify succeeds with documented env set
+- [x] Runbooks linked from README or docs/runbooks/README.md
 
 Commit:
 chore(ops): MEC-V1-S018 production monitoring and env readiness
