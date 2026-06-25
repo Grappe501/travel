@@ -5,7 +5,7 @@
 | **Step ID** | STEP-028 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | _(pending)_ |
+| **Commit** | `c5bf163` |
 | **Status** | complete |
 
 ## Objective
