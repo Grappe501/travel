@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/db/prisma';
+import { ensureSubscription } from '@/lib/billing/subscription-access';
 
 type AuthUser = {
   id: string;
@@ -13,7 +14,7 @@ type AuthUser = {
 export async function ensureUserProfile(user: AuthUser) {
   const emailVerified = user.emailVerified ?? false;
 
-  return prisma.userProfile.upsert({
+  const profile = await prisma.userProfile.upsert({
     where: { id: user.id },
     create: {
       id: user.id,
@@ -27,6 +28,10 @@ export async function ensureUserProfile(user: AuthUser) {
       lastLoginAt: new Date(),
     },
   });
+
+  await ensureSubscription(user.id);
+
+  return profile;
 }
 
 export async function getUserProfile(userId: string) {

@@ -60,6 +60,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Receipt upload (MEC-V1-S007)** — Private Supabase Storage upload, FileAsset rows, list/detail UI, audit on upload — STEP-039
 - **AI OCR review (MEC-V1-S008)** — OpenAI Vision extraction, review screen, user approve → expense row — STEP-040
 - **Reports (MEC-V1-S009)** — Mileage/expense/combined builder, PDF/CSV/Excel export, Report persistence — STEP-041
+- **Billing & limits (MEC-V1-S010)** — Free tier caps, Stripe Checkout/Portal, webhook subscription sync — STEP-042
 
 ## [0.0.0] — 2026-06-24
 

@@ -14,7 +14,7 @@
 | BUILD-008 | S008 | OCR + review | WAVE-004 | 000008–000009 | STEP-040 | ☑ Complete |
 | BUILD-009 | — | Expense engine | WAVE-005 | 000010–000011 | folded in S008 | Backlog |
 | BUILD-010 | S009 | Reports + export | WAVE-006 | 000012–000013 | STEP-041 | ☑ Complete |
-| BUILD-011 | S010 | Stripe billing | WAVE-007 | 000014–000015 | STEP-042 | Backlog |
+| BUILD-011 | S010 | Stripe billing | WAVE-007 | 000014–000015 | STEP-042 | ☑ Complete |
 | BUILD-012 | — | AI dup | WAVE-008 | 000018–000019 | V1.1 | Backlog |
 | BUILD-013 | — | AdminOS min | WAVE-009 | 000020 | V1.1 | Backlog |
 | BUILD-014 | — | Launch hardening | WAVE-010 | all V1 | post-S010 | Backlog |

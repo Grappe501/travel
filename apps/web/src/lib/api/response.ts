@@ -27,6 +27,14 @@ export class ConflictError extends AppError {
   }
 }
 
+export class SubscriptionLimitError extends AppError {
+  readonly code = 'SUBSCRIPTION_LIMIT_REACHED';
+
+  constructor(message = "You've reached your plan limit. Upgrade to continue.") {
+    super(message, 403);
+  }
+}
+
 export class ValidationError extends AppError {
   constructor(message: string) {
     super(message, 400);
@@ -35,7 +43,11 @@ export class ValidationError extends AppError {
 
 export function jsonError(error: unknown) {
   if (error instanceof AppError) {
-    return NextResponse.json({ error: error.message }, { status: error.status });
+    const body: { error: string; code?: string } = { error: error.message };
+    if (error instanceof SubscriptionLimitError) {
+      body.code = error.code;
+    }
+    return NextResponse.json(body, { status: error.status });
   }
 
   console.error(error);

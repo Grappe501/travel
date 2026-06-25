@@ -12,6 +12,10 @@ import {
 import { buildReceiptStoragePath, getStorageConfig } from '@/lib/storage/config';
 import { getSupabaseAdmin } from '@/lib/storage/server';
 import { prisma } from '@/lib/db/prisma';
+import {
+  assertCanUploadReceipt,
+  incrementReceiptUsage,
+} from '@/server/services/usage.service';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
@@ -112,6 +116,7 @@ export async function uploadReceipt(
   }
 
   await assertReceiptRelations(userId, meta);
+  await assertCanUploadReceipt(userId);
 
   const { bucket, isConfigured } = getStorageConfig();
   if (!isConfigured) {
@@ -138,6 +143,8 @@ export async function uploadReceipt(
 
   try {
     const receipt = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      await incrementReceiptUsage(userId, tx);
+
       const created = await tx.receipt.create({
         data: {
           id: receiptId,

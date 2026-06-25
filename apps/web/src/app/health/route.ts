@@ -6,8 +6,8 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     service: 'mileage-expense-copilot',
-    slice: 'MEC-V1-S009',
-    step: 'STEP-041',
+    slice: 'MEC-V1-S010',
+    step: 'STEP-042',
     openAiConfigured: Boolean(
       process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.includes('...')
     ),
@@ -22,6 +22,12 @@ export async function GET() {
       process.env.NEXT_PUBLIC_SUPABASE_URL &&
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
         !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')
+    ),
+    stripeConfigured: Boolean(
+      process.env.STRIPE_SECRET_KEY &&
+        process.env.STRIPE_PRICE_PRO_MONTHLY &&
+        process.env.STRIPE_PRICE_SMALL_BUSINESS_MONTHLY &&
+        !process.env.STRIPE_SECRET_KEY.includes('...')
     ),
   });
 }

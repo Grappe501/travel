@@ -118,3 +118,27 @@ export type SerializedReport = {
   expiresAt: string | null;
   createdAt: string;
 };
+
+export type SerializedBillingSummary = {
+  subscription: {
+    plan: string;
+    status: string;
+    billingCycle: string | null;
+    currentPeriodStart: string | null;
+    currentPeriodEnd: string | null;
+    canceledAt: string | null;
+    trialEndsAt: string | null;
+    hasStripeCustomer: boolean;
+    hasStripeSubscription: boolean;
+  };
+  usage: {
+    periodMonth: string;
+    resetsAt: string;
+    tripsCount: number;
+    tripsLimit: number | null;
+    receiptsCount: number;
+    receiptsLimit: number | null;
+    unlimited: boolean;
+  };
+  stripeConfigured: boolean;
+};

@@ -13,6 +13,10 @@ import { resolveEffectiveRate } from '@/server/services/mileage.service';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { getOwnedVehicle } from '@/server/services/vehicle.service';
 import { prisma } from '@/lib/db/prisma';
+import {
+  assertCanStartTrip,
+  incrementTripUsage,
+} from '@/server/services/usage.service';
 
 const activeTripRecord = { recordStatus: 'active' as const };
 
@@ -175,8 +179,11 @@ export async function startTrip(userId: string, input: TripStartInput) {
 
   await getOwnedBusiness(userId, data.businessId);
   await getOwnedVehicle(userId, data.vehicleId);
+  await assertCanStartTrip(userId);
 
   const trip = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+    await incrementTripUsage(userId, tx);
+
     const created = await tx.trip.create({
       data: {
         userId,

@@ -46,6 +46,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-039 | 2026-06-24 | A | MEC-V1-S007 — Receipt upload, private storage, FileAsset, status workflow | `2fedd86` | [STEP-039](docs/build-steps/STEP-039-mec-v1-s007-receipt-upload.md) |
 | STEP-040 | 2026-06-24 | A | MEC-V1-S008 — OpenAI Vision OCR, review UI, approve → expense | `bb8d4ff` | [STEP-040](docs/build-steps/STEP-040-mec-v1-s008-ocr-review.md) |
 | STEP-041 | 2026-06-25 | A | MEC-V1-S009 — Report builder, PDF/CSV/Excel export, Report rows | `019cd13` | [STEP-041](docs/build-steps/STEP-041-mec-v1-s009-reports.md) |
+| STEP-042 | 2026-06-25 | A | MEC-V1-S010 — Stripe billing, usage limits, free tier enforcement | _(pending)_ | [STEP-042](docs/build-steps/STEP-042-mec-v1-s010-billing.md) |
 
 ---
 
@@ -53,8 +54,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 41 |
-| Current phase | **Implementation** — MEC-V1-S010 billing next (STEP-042) |
+| Steps completed | 42 |
+| Current phase | **Implementation** — V1 slices complete; launch hardening (BUILD-014) next |
 | Latest tag | `v0.0.0` (after push) |
 
 ---
