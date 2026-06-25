@@ -10,6 +10,13 @@ type GuardOptions = {
   allowUnverifiedEmail?: boolean;
 };
 
+function safeRedirectPath(redirectTo: string | null | undefined, fallback: string) {
+  if (redirectTo && redirectTo.startsWith('/') && !redirectTo.startsWith('//')) {
+    return redirectTo;
+  }
+  return fallback;
+}
+
 export async function requireAuthenticatedUser(options: GuardOptions = {}) {
   const supabase = await createClient();
   const {
@@ -69,28 +76,42 @@ export async function requireOnboardingAccess() {
 }
 
 export async function resolvePostAuthPath(redirectTo?: string | null) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (!user?.email) {
+    if (!user?.email) {
+      return '/login';
+    }
+
+    try {
+      await ensureUserProfile({
+        id: user.id,
+        email: user.email,
+        emailVerified: Boolean(user.email_confirmed_at),
+      });
+    } catch {
+      // Profile sync failed (often DATABASE_URL) — still route authenticated users forward.
+      return safeRedirectPath(redirectTo, '/dashboard');
+    }
+
+    if (!user.email_confirmed_at) {
+      return '/auth/verify-email';
+    }
+
+    try {
+      const onboarding = await getOnboardingStatus(user.id);
+      if (onboarding.needsOnboarding) {
+        return '/onboarding';
+      }
+    } catch {
+      return safeRedirectPath(redirectTo, '/dashboard');
+    }
+
+    return safeRedirectPath(redirectTo, '/dashboard');
+  } catch {
     return '/login';
   }
-
-  if (!user.email_confirmed_at) {
-    return '/auth/verify-email';
-  }
-
-  const onboarding = await getOnboardingStatus(user.id);
-
-  if (onboarding.needsOnboarding) {
-    return '/onboarding';
-  }
-
-  if (redirectTo && redirectTo.startsWith('/') && !redirectTo.startsWith('//')) {
-    return redirectTo;
-  }
-
-  return '/dashboard';
 }

@@ -27,6 +27,7 @@ export const config = {
     '/dashboard',
     '/login',
     '/signup',
+    '/beta/login',
     '/auth/:path*',
   ],
 };
