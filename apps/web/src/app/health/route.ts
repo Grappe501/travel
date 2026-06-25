@@ -3,31 +3,37 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const isProduction = process.env.NODE_ENV === 'production';
+
   return NextResponse.json({
     status: 'ok',
     service: 'mileage-expense-copilot',
-    slice: 'MEC-V1-S015',
-    step: 'STEP-047',
-    openAiConfigured: Boolean(
-      process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.includes('...')
-    ),
-    storageConfigured: Boolean(
-      process.env.SUPABASE_SERVICE_ROLE_KEY &&
-        process.env.NEXT_PUBLIC_SUPABASE_URL &&
-        !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')
-    ),
+    slice: 'MEC-V1-S016',
+    step: 'STEP-048',
     build: process.env.NETLIFY ? 'netlify' : 'local',
-    databaseConfigured: Boolean(process.env.DATABASE_URL),
-    supabaseConfigured: Boolean(
-      process.env.NEXT_PUBLIC_SUPABASE_URL &&
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-        !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')
-    ),
-    stripeConfigured: Boolean(
-      process.env.STRIPE_SECRET_KEY &&
-        process.env.STRIPE_PRICE_PRO_MONTHLY &&
-        process.env.STRIPE_PRICE_SMALL_BUSINESS_MONTHLY &&
-        !process.env.STRIPE_SECRET_KEY.includes('...')
-    ),
+    ...(isProduction
+      ? {}
+      : {
+          databaseConfigured: Boolean(process.env.DATABASE_URL),
+          supabaseConfigured: Boolean(
+            process.env.NEXT_PUBLIC_SUPABASE_URL &&
+              process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+              !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')
+          ),
+          storageConfigured: Boolean(
+            process.env.SUPABASE_SERVICE_ROLE_KEY &&
+              process.env.NEXT_PUBLIC_SUPABASE_URL &&
+              !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('placeholder')
+          ),
+          openAiConfigured: Boolean(
+            process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.includes('...')
+          ),
+          stripeConfigured: Boolean(
+            process.env.STRIPE_SECRET_KEY &&
+              process.env.STRIPE_PRICE_PRO_MONTHLY &&
+              process.env.STRIPE_PRICE_SMALL_BUSINESS_MONTHLY &&
+              !process.env.STRIPE_SECRET_KEY.includes('...')
+          ),
+        }),
   });
 }

@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { jsonData, jsonError } from '@/lib/api/response';
 import { requireSessionUser } from '@/lib/auth/server';
+import {
+  checkRateLimit,
+  rateLimitKey,
+  RECEIPT_OCR_RATE_LIMIT,
+} from '@/lib/security/rate-limit';
 import * as ocrService from '@/server/services/ocr.service';
 
 export const runtime = 'nodejs';
@@ -16,6 +21,13 @@ export async function POST(_request: Request, context: RouteContext) {
     }
 
     const { id } = await context.params;
+
+    checkRateLimit(
+      rateLimitKey(user.id, 'receipt-ocr'),
+      RECEIPT_OCR_RATE_LIMIT.limit,
+      RECEIPT_OCR_RATE_LIMIT.windowMs
+    );
+
     const receipt = await ocrService.runReceiptOcr(user.id, id);
     return jsonData(receipt);
   } catch (error) {

@@ -1,6 +1,6 @@
 # Roadmap: STEP-043 → STEP-052 (V1 GA)
 
-**Status:** In progress · **Current:** STEP-047 complete · **Next:** STEP-048
+**Status:** In progress · **Current:** STEP-048 complete · **Next:** STEP-049
 
 Sequence to public launch without skipping construction gates. Each row has a Cursor-ready slice prompt.
 

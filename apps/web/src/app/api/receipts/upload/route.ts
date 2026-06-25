@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { jsonData, jsonError } from '@/lib/api/response';
 import { requireSessionUser } from '@/lib/auth/server';
+import {
+  checkRateLimit,
+  rateLimitKey,
+  RECEIPT_UPLOAD_RATE_LIMIT,
+} from '@/lib/security/rate-limit';
 import * as receiptService from '@/server/services/receipt.service';
 
 export const runtime = 'nodejs';
@@ -19,6 +24,12 @@ export async function POST(request: Request) {
     if (!(file instanceof File)) {
       return NextResponse.json({ error: 'File is required' }, { status: 400 });
     }
+
+    checkRateLimit(
+      rateLimitKey(user.id, 'receipt-upload'),
+      RECEIPT_UPLOAD_RATE_LIMIT.limit,
+      RECEIPT_UPLOAD_RATE_LIMIT.windowMs
+    );
 
     const businessId = formData.get('businessId');
     const tripId = formData.get('tripId');

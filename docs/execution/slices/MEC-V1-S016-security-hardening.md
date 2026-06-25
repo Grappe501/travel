@@ -49,11 +49,11 @@ Validation:
 pnpm lint && pnpm typecheck && pnpm build && pnpm test
 
 Exit criteria:
-- [ ] No API route missing auth (except /health, /api/stripe/webhook)
-- [ ] Cross-user trip/receipt/expense access blocked in tests
-- [ ] Stripe webhook rejects invalid signature
-- [ ] Audit doc lists all findings with status fixed/deferred
-- [ ] No critical open items remain
+- [x] No API route missing auth (except /health, /api/stripe/webhook)
+- [x] Cross-user trip/receipt/expense access blocked in tests
+- [x] Stripe webhook rejects invalid signature
+- [x] Audit doc lists all findings with status fixed/deferred
+- [x] No critical open items remain
 
 Commit:
 chore(security): MEC-V1-S016 hardening audit and fixes
