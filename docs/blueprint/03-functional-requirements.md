@@ -258,4 +258,4 @@ IRS rate: stored reference table updated annually (admin seed).
 
 ---
 
-*Previous: [Volume 2 — User Experience](02-user-experience.md) | Next: [Volume 4 — Database Architecture](04-database-architecture.md)*
+*Previous: [Volume 2 — Experience Architecture](02-user-experience.md) | Next: [Volume 4 — Database Architecture](04-database-architecture.md)*

@@ -612,7 +612,7 @@ Full feature specs: [Volume 3 — Functional Requirements](03-functional-require
 | Need | Go to |
 |------|-------|
 | Values and constitution | [Volume 0](00-product-doctrine.md) |
-| Screens and flows | [Volume 2](02-user-experience.md) |
+| Screens and flows | [Volume 2 — Experience Architecture](02-user-experience.md) |
 | Feature specs | [Volume 3](03-functional-requirements.md) |
 | Database | [Volume 4](04-database-architecture.md) |
 | AI / OCR | [Volume 5](05-ai-design.md) |
@@ -620,4 +620,4 @@ Full feature specs: [Volume 3 — Functional Requirements](03-functional-require
 
 ---
 
-*Previous: [Volume 0 — Product Doctrine](00-product-doctrine.md) | Next: [Volume 2 — User Experience](02-user-experience.md)*
+*Previous: [Volume 0 — Product Doctrine](00-product-doctrine.md) | Next: [Volume 2 — Experience Architecture](02-user-experience.md)*
