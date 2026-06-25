@@ -24,7 +24,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-017 | 2026-06-24 | Blueprint | Volume 14 — Analytics & Business Intelligence (EVT registry) | `d88ea72` | [STEP-017](docs/build-steps/STEP-017-volume-14-analytics.md) |
 | STEP-018 | 2026-06-24 | Blueprint | Volume 15 — Communication & Engagement Engine (MSG registry) | `46a931c` | [STEP-018](docs/build-steps/STEP-018-volume-15-communication.md) |
 | STEP-019 | 2026-06-24 | Blueprint | Volume 16 — AI Operating System (ENG/PRM registry) | `f9f1b16` | [STEP-019](docs/build-steps/STEP-019-volume-16-ai-os.md) |
-| STEP-020 | 2026-06-24 | Blueprint | Volume 17 — AdminOS (ADM registry, runbooks) | _(pending)_ | [STEP-020](docs/build-steps/STEP-020-volume-17-admin-os.md) |
+| STEP-020 | 2026-06-24 | Blueprint | Volume 17 — AdminOS (ADM registry, runbooks) | `467eaa9` | [STEP-020](docs/build-steps/STEP-020-volume-17-admin-os.md) |
 
 ---
 

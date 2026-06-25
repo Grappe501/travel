@@ -5,7 +5,7 @@
 | **Step ID** | STEP-020 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | _(pending)_ |
+| **Commit** | `467eaa9` |
 | **Status** | complete |
 
 ## Objective
