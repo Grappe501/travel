@@ -603,7 +603,7 @@ When N1–N8 conflict with a feature request, **the non-negotiable wins** unless
 
 **Out:** Accounting integrations · Auto GPS trip detection · Calendar sync · Small Business tier (V1.1) · Native apps · Voice · Handwritten OCR · Tax filing
 
-Full feature specs: [Volume 3 — Functional Requirements](03-functional-requirements.md)
+Full feature specs: [Volume 3 — Functional Requirements & Business Logic](03-functional-requirements.md)
 
 ---
 
@@ -613,7 +613,7 @@ Full feature specs: [Volume 3 — Functional Requirements](03-functional-require
 |------|-------|
 | Values and constitution | [Volume 0](00-product-doctrine.md) |
 | Screens and flows | [Volume 2 — Experience Architecture](02-user-experience.md) |
-| Feature specs | [Volume 3](03-functional-requirements.md) |
+| Feature specs | [Volume 3 — Functional Requirements & Business Logic](03-functional-requirements.md) |
 | Database | [Volume 4](04-database-architecture.md) |
 | AI / OCR | [Volume 5](05-ai-design.md) |
 | Tech stack and deploy | [Volume 6](06-technical-architecture.md) |
