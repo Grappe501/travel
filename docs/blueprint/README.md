@@ -20,7 +20,7 @@
 | Vol | Document | Summary |
 |-----|----------|---------|
 | **0** | [Product Doctrine & Design Constitution](00-product-doctrine.md) | Mission, values, scope boundaries — **read first** |
-| **1** | [Product Vision](01-product-vision.md) | Problem, solution, differentiation, success metrics |
+| **1** | [Product Vision & Strategy](01-product-vision.md) | Cross-functional strategy: vision, pillars, metrics, non-negotiables |
 | **2** | [User Experience](02-user-experience.md) | Every screen, flow, state, and interaction |
 | **3** | [Functional Requirements](03-functional-requirements.md) | Feature specs: inputs, outputs, rules, validation |
 | **4** | [Database Architecture](04-database-architecture.md) | Tables, relationships, RLS, indexes |

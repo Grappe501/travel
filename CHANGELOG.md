@@ -17,7 +17,8 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Netlify deployment skeleton (`netlify.toml`) — STEP-001
 - Build traceability protocol (BUILD-LOG, build-steps, commit conventions) — STEP-002
 
----
+### Changed
+- Volume 1 rewritten as **Product Vision & Strategy** (18 chapters + Non-Negotiables) — STEP-004
 
 ## [0.0.0] — 2026-06-24
 

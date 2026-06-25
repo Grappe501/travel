@@ -32,6 +32,7 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 |----------|---------|
 | [Blueprint Index](docs/blueprint/README.md) | All 10 design volumes |
 | [Volume 0 — Product Doctrine](docs/blueprint/00-product-doctrine.md) | Design constitution — read first |
+| [Volume 1 — Product Vision & Strategy](docs/blueprint/01-product-vision.md) | Shared strategy for all teams |
 | [Project Structure](docs/PROJECT-STRUCTURE.md) | H: drive filesystem layout |
 | [Technical Architecture](docs/blueprint/06-technical-architecture.md) | Stack, Netlify, Supabase, H: drive config |
 

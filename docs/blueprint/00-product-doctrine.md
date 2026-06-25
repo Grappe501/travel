@@ -213,4 +213,4 @@ Every feature request, UI change, AI behavior change, and pricing decision is ev
 
 ---
 
-*Next: [Volume 1 — Product Vision](01-product-vision.md)*
+*Next: [Volume 1 — Product Vision & Strategy](01-product-vision.md)*
