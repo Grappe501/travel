@@ -5,7 +5,7 @@
 | **Step ID** | STEP-024 |
 | **Phase** | Blueprint |
 | **Date** | 2026-06-24 |
-| **Commit** | _(pending)_ |
+| **Commit** | `59251a7` |
 | **Status** | complete |
 
 ## Objective
