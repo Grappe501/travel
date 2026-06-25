@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { LogoutButton } from '@/components/auth/LogoutButton';
-import { ShellPage } from '@/components/layout/ShellPage';
+import { DashboardShell } from '@/components/layout/DashboardShell';
+import { Badge, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 import { createClient } from '@/lib/supabase/server';
 import { ensureUserProfile, getUserProfile } from '@/server/services/auth.service';
 
@@ -25,18 +26,26 @@ export default async function DashboardPage() {
   const profile = await getUserProfile(user.id);
 
   return (
-    <ShellPage title="Dashboard" description="Trip and expense overview — more in upcoming slices.">
-      <div className="space-y-4 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-        <p>
-          Signed in as <strong>{profile?.email ?? user.email}</strong>
-        </p>
-        <p className="text-slate-500">
-          Profile ID: <code className="text-xs">{profile?.id}</code>
-        </p>
-      </div>
-      <div className="mt-6">
-        <LogoutButton />
-      </div>
-    </ShellPage>
+    <DashboardShell
+      title="Dashboard"
+      description="Trip and expense overview — more in upcoming slices."
+      badge={<Badge variant="primary">V1</Badge>}
+      actions={<LogoutButton />}
+    >
+      <Card>
+        <CardHeader>
+          <CardTitle>Account</CardTitle>
+          <CardDescription>Signed in and synced with your profile.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2 pt-0 text-body">
+          <p>
+            Signed in as <strong>{profile?.email ?? user.email}</strong>
+          </p>
+          <p className="text-caption text-muted">
+            Profile ID: <code className="font-mono text-micro">{profile?.id}</code>
+          </p>
+        </CardContent>
+      </Card>
+    </DashboardShell>
   );
 }

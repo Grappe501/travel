@@ -54,6 +54,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Application scaffold (MEC-V1-S001)** — Next.js 15 monorepo, Tailwind, route shells, `/health`, CI — STEP-033
 - **Database foundation (MEC-V1-S002)** — Prisma schema, initial migration, shared Zod schemas — STEP-034
 - **Authentication (MEC-V1-S003)** — Supabase Auth SSR, login/signup, protected dashboard, UserProfile upsert — STEP-035
+- **Design system v1 (MEC-V1-S004)** — Volume 10 tokens, UI primitives, DashboardShell, BottomNav — STEP-036
 
 ## [0.0.0] — 2026-06-24
 

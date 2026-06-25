@@ -1,0 +1,63 @@
+/**
+ * Volume 10 design tokens — semantic colors, typography, spacing.
+ * Components reference these via Tailwind theme extensions only.
+ */
+:root {
+  --color-primary: 220 70% 45%;
+  --color-primary-hover: 220 70% 40%;
+  --color-primary-active: 220 70% 35%;
+  --color-primary-foreground: 0 0% 100%;
+
+  --color-success: 152 60% 38%;
+  --color-success-foreground: 0 0% 100%;
+  --color-warning: 38 92% 45%;
+  --color-warning-foreground: 222 47% 11%;
+  --color-danger: 0 72% 48%;
+  --color-danger-foreground: 0 0% 100%;
+  --color-info: 200 80% 45%;
+  --color-info-foreground: 0 0% 100%;
+
+  --color-background: 0 0% 98%;
+  --color-surface: 0 0% 100%;
+  --color-surface-elevated: 0 0% 100%;
+  --color-border: 220 13% 88%;
+  --color-text-primary: 222 47% 11%;
+  --color-text-muted: 215 16% 47%;
+  --color-text-disabled: 215 16% 65%;
+  --color-selected: 220 70% 95%;
+  --color-hover: 220 14% 96%;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.06);
+
+  --focus-ring: 0 0 0 2px hsl(var(--color-background)), 0 0 0 4px hsl(var(--color-primary));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: 220 70% 58%;
+    --color-primary-hover: 220 70% 63%;
+    --color-primary-active: 220 70% 68%;
+
+    --color-success: 152 55% 48%;
+    --color-warning: 38 90% 55%;
+    --color-warning-foreground: 222 47% 6%;
+    --color-danger: 0 65% 58%;
+    --color-info: 200 75% 55%;
+
+    --color-background: 222 47% 6%;
+    --color-surface: 222 47% 9%;
+    --color-surface-elevated: 222 47% 11%;
+    --color-border: 217 19% 18%;
+    --color-text-primary: 210 40% 98%;
+    --color-text-muted: 215 20% 65%;
+    --color-text-disabled: 215 15% 40%;
+    --color-selected: 220 40% 18%;
+    --color-hover: 217 19% 14%;
+  }
+}
