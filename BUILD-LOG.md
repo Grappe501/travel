@@ -52,7 +52,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-045 | 2026-06-25 | A | MEC-V1-S013 — Vitest harness, calculation/schema tests, CI | `5d84260` | [STEP-045](docs/build-steps/STEP-045-mec-v1-s013-unit-tests.md) |
 | STEP-046 | 2026-06-25 | A | MEC-V1-S014 — Service integration tests, Postgres CI job | `bb3ab71` | [STEP-046](docs/build-steps/STEP-046-mec-v1-s014-integration-tests.md) |
 | STEP-047 | 2026-06-25 | B | MEC-V1-S015 — Playwright E2E journeys E2E-01–07, smoke CI | `8a9c334` | [STEP-047](docs/build-steps/STEP-047-mec-v1-s015-e2e-journeys.md) |
-| STEP-048 | 2026-06-25 | B | MEC-V1-S016 — Security audit, CSP/HSTS, rate limits, SEC tests | — | [STEP-048](docs/build-steps/STEP-048-mec-v1-s016-security-hardening.md) |
+| STEP-048 | 2026-06-25 | B | MEC-V1-S016 — Security audit, CSP/HSTS, rate limits, SEC tests | `23b1895` | [STEP-048](docs/build-steps/STEP-048-mec-v1-s016-security-hardening.md) |
 
 ---
 
