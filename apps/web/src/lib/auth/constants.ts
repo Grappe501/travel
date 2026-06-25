@@ -11,6 +11,8 @@ export const PROTECTED_ROUTE_PREFIXES = [
   '/settings',
   '/admin',
   '/onboarding',
+  '/clients',
+  '/ai',
 ] as const;
 
 export const AUTH_ROUTES = ['/login', '/signup'] as const;

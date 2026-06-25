@@ -1,13 +1,17 @@
 'use server';
 
 import { loginSchema, signupSchema, type LoginInput, type SignupInput } from '@mileage-copilot/shared';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { resolvePostAuthPath } from '@/lib/auth/guards';
 import { createClient } from '@/lib/supabase/server';
 import { getPublicSupabaseConfig } from '@/lib/supabase/config';
 import { ensureUserProfile } from '@/server/services/auth.service';
 
-export type AuthActionResult = { error: string } | { message: string };
+export type AuthActionResult =
+  | { error: string }
+  | { message: string }
+  | { redirectTo: string };
 
 function authNotConfiguredError(): AuthActionResult {
   return {
@@ -46,10 +50,24 @@ export async function getPostAuthRedirect(redirectTo?: string | null) {
   return resolvePostAuthPath(redirectTo);
 }
 
+async function finishAuthRedirect(redirectTo?: string | null): Promise<AuthActionResult> {
+  const destination = await resolvePostAuthPath(redirectTo);
+
+  if (destination === '/login') {
+    return {
+      error:
+        'Signed in with Supabase but the app session was not saved. Refresh the page and try again.',
+    };
+  }
+
+  revalidatePath('/', 'layout');
+  return { redirectTo: destination };
+}
+
 export async function signInAction(
   input: LoginInput,
   redirectTo?: string | null
-): Promise<AuthActionResult | void> {
+): Promise<AuthActionResult> {
   if (!getPublicSupabaseConfig().isConfigured) {
     return authNotConfiguredError();
   }
@@ -73,10 +91,10 @@ export async function signInAction(
     };
   }
 
-  redirect(await resolvePostAuthPath(redirectTo));
+  return finishAuthRedirect(redirectTo);
 }
 
-export async function signUpAction(input: SignupInput): Promise<AuthActionResult | void> {
+export async function signUpAction(input: SignupInput): Promise<AuthActionResult> {
   if (!getPublicSupabaseConfig().isConfigured) {
     return authNotConfiguredError();
   }
@@ -108,7 +126,7 @@ export async function signUpAction(input: SignupInput): Promise<AuthActionResult
         error: 'Account created but profile sync failed. Check DATABASE_URL and run migrations.',
       };
     }
-    redirect(await resolvePostAuthPath());
+    return finishAuthRedirect();
   }
 
   return {

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { signInAction } from '@/lib/auth/actions';
+import { navigateAfterAuth } from '@/lib/auth/navigate-after-auth';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function LoginForm() {
@@ -20,9 +21,21 @@ export function LoginForm() {
     setError(null);
     setLoading(true);
 
-    const result = await signInAction(form, redirectTo);
-    if (result && 'error' in result) {
-      setError(result.error);
+    try {
+      const result = await signInAction(form, redirectTo);
+
+      if ('error' in result) {
+        setError(result.error);
+        setLoading(false);
+        return;
+      }
+
+      if ('redirectTo' in result) {
+        navigateAfterAuth(result.redirectTo);
+        return;
+      }
+    } catch {
+      setError('Sign in failed unexpectedly. Please try again.');
       setLoading(false);
     }
   }

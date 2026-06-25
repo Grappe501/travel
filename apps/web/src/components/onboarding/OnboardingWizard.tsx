@@ -1,8 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { BusinessForm } from '@/components/businesses/BusinessManager';
+import { navigateAfterAuth } from '@/lib/auth/navigate-after-auth';
 import { MileageSettingsForm } from '@/components/settings/MileageSettingsForm';
 import { VehicleForm } from '@/components/vehicles/VehicleManager';
 import { Alert, Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
@@ -45,7 +45,6 @@ export function OnboardingWizard({
   businesses: initialBusinesses,
   mileageSettings,
 }: OnboardingWizardProps) {
-  const router = useRouter();
   const [step, setStep] = useState<OnboardingStep>(
     initialStep === 'complete' ? 'rate' : initialStep
   );
@@ -71,8 +70,7 @@ export function OnboardingWizard({
       setError(result.error ?? 'Could not finish onboarding');
       return false;
     }
-    router.push('/dashboard');
-    router.refresh();
+    navigateAfterAuth('/dashboard');
     return true;
   }
 
@@ -86,8 +84,7 @@ export function OnboardingWizard({
       setSkipping(false);
       return;
     }
-    router.push('/dashboard');
-    router.refresh();
+    navigateAfterAuth('/dashboard');
   }
 
   return (

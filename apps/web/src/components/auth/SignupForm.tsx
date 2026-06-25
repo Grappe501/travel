@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { signUpAction } from '@/lib/auth/actions';
+import { navigateAfterAuth } from '@/lib/auth/navigate-after-auth';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function SignupForm() {
@@ -19,19 +20,28 @@ export function SignupForm() {
     setMessage(null);
     setLoading(true);
 
-    const result = await signUpAction({ email, password, confirmPassword });
-    if (!result) {
-      return;
-    }
+    try {
+      const result = await signUpAction({ email, password, confirmPassword });
 
-    if ('error' in result) {
-      setError(result.error);
+      if ('error' in result) {
+        setError(result.error);
+        setLoading(false);
+        return;
+      }
+
+      if ('redirectTo' in result) {
+        navigateAfterAuth(result.redirectTo);
+        return;
+      }
+
+      if ('message' in result) {
+        setMessage(result.message);
+        setLoading(false);
+      }
+    } catch {
+      setError('Sign up failed unexpectedly. Please try again.');
       setLoading(false);
-      return;
     }
-
-    setMessage(result.message);
-    setLoading(false);
   }
 
   return (

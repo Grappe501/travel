@@ -40,7 +40,15 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (isAuthPath(pathname) && user) {
-    return NextResponse.redirect(new URL('/auth/continue', request.url));
+    const continueUrl = request.nextUrl.clone();
+    continueUrl.pathname = '/auth/continue';
+    const redirectParam = request.nextUrl.searchParams.get('redirect');
+    if (redirectParam) {
+      continueUrl.searchParams.set('redirect', redirectParam);
+    } else {
+      continueUrl.searchParams.delete('redirect');
+    }
+    return NextResponse.redirect(continueUrl);
   }
 
   if (
