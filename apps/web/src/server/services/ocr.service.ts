@@ -12,6 +12,7 @@ import { assertNoBlockingDuplicates, resolveDuplicateSuggestion } from '@/server
 import { logAIInteraction } from '@/server/services/ai-feedback.service';
 import { resolveCategorySuggestion, suggestCategoryForReceipt } from '@/server/services/category-suggestion.service';
 import { getOwnedReceipt, getReceiptSignedUrl } from '@/server/services/receipt.service';
+import { sendReceiptProcessedEmail } from '@/server/services/email.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
 const activeReceipt = { recordStatus: 'active' as const };
@@ -248,6 +249,12 @@ export async function runReceiptOcr(userId: string, receiptId: string) {
         suggestedCategory: extracted.category_slug,
       },
     }).catch(() => undefined);
+
+    void sendReceiptProcessedEmail(userId, {
+      receiptId,
+      merchant: extracted.merchant ?? null,
+      total: extracted.total ?? null,
+    }).catch((err) => console.error('Receipt processed email failed:', err));
 
     return serializeReceiptWithOcr(updated);
   } catch (error) {

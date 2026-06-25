@@ -30,7 +30,7 @@ export default async function TripStartPage() {
       <TripStartForm
         businesses={businesses}
         vehicles={vehicles}
-        hasActiveTrip={Boolean(activeTrip)}
+        activeTrip={activeTrip}
       />
     </DashboardShell>
   );

@@ -51,14 +51,14 @@ Update **Dev Status** and **QA Status** columns as screens ship.
 | SCR-040 | AI Suggestions | `/ai/suggestions` | — | 4 | ☐ | ☐ |
 | SCR-041 | AI History | `/ai/history` | `/ai/history` | 4 | ☑ | ◐ |
 | SCR-042 | Notification Center | `/notifications` | — | 7 | ☐ | ☐ |
-| SCR-043 | Global Search | `/search` | — | 3 | ☐ | ☐ |
+| SCR-043 | Global Search | `/search` | `/search` | 3 | ☑ | ☐ |
 | SCR-044 | Subscription | `/settings/billing` | `/billing` | 6 | ☑ | ◐ |
 | SCR-045 | Usage Dashboard | `/settings/usage` | `/billing` (combined) | 6 | ☑ | ◐ |
 | SCR-046 | Settings Home | `/settings` | `/settings` | 7 | ☑ | ☐ |
 | SCR-047 | Account | `/settings/account` | — | 7 | ☐ | ☐ |
 | SCR-048 | Appearance | `/settings/appearance` | — | 7 | ☐ | ☐ |
 | SCR-049 | Security | `/settings/security` | — | 7 | ☐ | ☐ |
-| SCR-050 | Data & Privacy | `/settings/privacy` | — | 7 | ☐ | ☐ |
+| SCR-050 | Data & Privacy | `/settings/privacy` | `/settings/privacy` | 7 | ☑ | ☐ |
 | SCR-051 | Help Center | `/help` | — | 7 | ☐ | ☐ |
 | SCR-052 | Contact Support | `/help/contact` | — | 7 | ☐ | ☐ |
 | SCR-053 | Admin Dashboard | `/admin` | `/admin` | 7 | ☑ | ☐ |

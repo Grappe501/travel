@@ -19,6 +19,48 @@ export default async function SettingsPage() {
 
       <Card>
         <CardHeader>
+          <CardTitle>Notifications</CardTitle>
+          <CardDescription>Trip reminders, receipt reviews, and expense checklists.</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-4 pt-0">
+          <Link href="/notifications" className="text-body font-medium text-primary hover:underline">
+            Notification center →
+          </Link>
+          <Link
+            href="/settings/notifications"
+            className="text-body font-medium text-primary hover:underline"
+          >
+            Preferences →
+          </Link>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Billing &amp; plan</CardTitle>
+          <CardDescription>Usage limits, upgrades, and subscription management.</CardDescription>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <Link href="/billing" className="text-body font-medium text-primary hover:underline">
+            Billing &amp; usage →
+          </Link>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Data &amp; privacy</CardTitle>
+          <CardDescription>Export your records and read legal policies.</CardDescription>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <Link href="/settings/privacy" className="text-body font-medium text-primary hover:underline">
+            Data export &amp; privacy →
+          </Link>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
           <CardTitle>Mileage</CardTitle>
           <CardDescription>IRS, company, or custom reimbursement rates.</CardDescription>
         </CardHeader>

@@ -14,6 +14,8 @@ import { getOwnedBusiness } from '@/server/services/business.service';
 import { resolveClientProjectForTrip } from '@/server/services/client.service';
 import { getOwnedVehicle } from '@/server/services/vehicle.service';
 import { prisma } from '@/lib/db/prisma';
+import { syncNotificationsForUser } from '@/server/services/notification.service';
+import { sendTripEndedSummaryEmail } from '@/server/services/email.service';
 import {
   assertCanStartTrip,
   incrementTripUsage,
@@ -286,6 +288,15 @@ export async function endTrip(userId: string, input: TripEndInput) {
 
   await emitTripEvent(userId, updated.businessId, 'trip_ended', updated.id);
 
+  await syncNotificationsForUser(userId);
+
+  void sendTripEndedSummaryEmail(userId, {
+    tripId: updated.id,
+    purpose: updated.purpose,
+    miles: miles !== null ? Number(miles) : null,
+    reimbursementAmount: reimbursementAmount !== null ? Number(reimbursementAmount) : null,
+  }).catch((err) => console.error('Trip summary email failed:', err));
+
   return serializeTrip(updated);
 }
 
@@ -382,4 +393,64 @@ export async function updateTrip(userId: string, tripId: string, input: TripUpda
   }
 
   return serializeTrip(updated);
+}
+
+export async function deleteTrip(userId: string, tripId: string) {
+  const trip = await getOwnedTrip(userId, tripId);
+
+  if (trip.status === 'draft') {
+    throw new ValidationError('Draft trips cannot be deleted from the app');
+  }
+
+  await prisma.$transaction(async (tx) => {
+    await tx.trip.update({
+      where: { id: tripId },
+      data: {
+        recordStatus: 'deleted',
+        status: 'deleted',
+        deletedAt: new Date(),
+      },
+    });
+
+    await tx.expense.updateMany({
+      where: { tripId, userId, recordStatus: 'active' },
+      data: { tripId: null },
+    });
+
+    await tx.receipt.updateMany({
+      where: { tripId, userId, recordStatus: 'active' },
+      data: { tripId: null },
+    });
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        entityType: 'trip',
+        entityId: tripId,
+        action: 'delete',
+        oldValues: { status: trip.status, purpose: trip.purpose },
+        source: 'web',
+      },
+    });
+  });
+
+  return { id: tripId, deleted: true };
+}
+
+export async function duplicateTrip(userId: string, tripId: string) {
+  const source = await getOwnedTrip(userId, tripId);
+
+  if (source.status !== 'completed') {
+    throw new ValidationError('Only completed trips can be duplicated');
+  }
+
+  return startTrip(userId, {
+    businessId: source.businessId,
+    vehicleId: source.vehicleId,
+    purpose: source.purpose,
+    ...(source.destination ? { destination: source.destination } : {}),
+    ...(source.startLocation ? { startLocation: source.startLocation } : {}),
+    ...(source.clientId ? { clientId: source.clientId } : {}),
+    ...(source.projectId ? { projectId: source.projectId } : {}),
+  });
 }

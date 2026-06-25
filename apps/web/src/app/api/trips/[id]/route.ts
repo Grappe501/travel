@@ -21,6 +21,21 @@ export async function GET(_request: Request, context: RouteContext) {
   }
 }
 
+export async function DELETE(_request: Request, context: RouteContext) {
+  try {
+    const user = await requireSessionUser();
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { id } = await context.params;
+    const result = await tripService.deleteTrip(user.id, id);
+    return jsonData(result);
+  } catch (error) {
+    return jsonError(error);
+  }
+}
+
 export async function PATCH(request: Request, context: RouteContext) {
   try {
     const user = await requireSessionUser();

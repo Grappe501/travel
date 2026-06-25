@@ -68,11 +68,11 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 | API-NOT-001 | List Notifications | GET | notifications | — | notification | user | ☐ | ☐ | ☑ |
 | API-NOT-002 | Mark Read | PATCH | notifications | — | notification | user | ☐ | ☐ | ☑ |
 | API-NOT-003 | Preferences | PATCH | profiles | — | notification | user | ☐ | ☐ | ☑ |
-| API-SRH-001 | Unified Search | GET | search | — | search | user | ☐ | ☐ | ☑ |
+| API-SRH-001 | Unified Search | GET | search | `GET /api/search` | search | user | ☑ | ☐ | ☑ |
 | API-AI-001 | Category Suggestion | POST | suggest-category | `POST /api/receipts/[id]/suggest-category` | ai | user | ☑ | ☑ | ☑ |
 | API-AI-002 | Duplicate Detection | POST | check-duplicate | `POST /api/receipts/[id]/check-duplicate` | ai | user | ☑ | ☑ | ☑ |
 | API-AI-003 | AI Feedback | POST | ai_interaction_log | `POST /api/ai/feedback` | ai | user | ☑ | ☑ | ☑ |
-| API-EXP-010 | Account Export | POST | export-account | — | export | user | ☐ | ☐ | ☑ |
+| API-EXP-010 | Account Export | POST | export-account | `POST /api/export/account` | export | user | ☑ | ☐ | ☑ |
 | API-FIL-001 | Signed URL | POST | storage | `GET /api/receipts/[id]/file` | file | user | ☑ | ◐ | ☑ |
 | API-FIL-002 | Delete File | DELETE | storage | — | file | user | ☐ | ☐ | ☑ |
 | API-ADM-001 | User Lookup | GET | admin RPC | `GET /api/admin/users?email=` | admin | admin | ☑ | ☑ | ☑ |

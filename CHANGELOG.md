@@ -11,8 +11,80 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ## [Unreleased]
 
+---
+
+## [1.7.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.7 (STEP-062)**
+
+Search filters for date, amount, type, and category.
+
 ### Added
-- Post-V1.2 backlog: notifications, global search
+- **Search filters** — `from`/`to` dates, `amountMin`/`amountMax`, `kind`, `category` on API-SRH-001
+- **Filter-only search** — browse by date or amount without a text query
+- **Search UI** — collapsible Filters panel on `/search` with URL-synced params
+
+---
+
+## [1.6.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.6 (STEP-061)**
+
+Monetization polish, legal trust pages, account export, and transactional email.
+
+### Added
+- **Legal** — Privacy, Terms, and Refund policies at `/legal/*` with footer links
+- **Usage UX** — Dashboard/billing usage meters with 80% warnings; upgrade CTA when limits hit
+- **API-EXP-010** — `POST /api/export/account` JSON data export
+- **SCR-050** — `/settings/privacy` export panel and legal links
+- **Email** — Resend trip-ended and receipt-processed emails (notification prefs)
+
+---
+
+## [1.5.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.5 (STEP-060)**
+
+Unified global search across core entities.
+
+### Added
+- **API-SRH-001** — `GET /api/search?q=` grouped results
+- **Search page** — `/search` with 300ms debounced live results (SCR-043)
+- **Amount search** — prefix query with `$` for exact expense/receipt amounts
+- **Search bar** — in app shell on every page; dashboard quick action
+- **Keyboard** — `/` focuses search on the search page
+
+---
+
+## [1.4.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.4 (STEP-059)**
+
+In-app notification center with trip and receipt reminders.
+
+### Added
+- **Notifications table** — deduplicated in-app reminders with read state
+- **Notification center** — `/notifications` with mark read and deep links
+- **Preferences** — `/settings/notifications` (trip, receipt, checklist toggles)
+- **Sync rules** — active trip expenses, forgot-to-end (24h), receipt review pending, post-trip checklist
+- **Notification bell** — unread badge in app shell
+
+### Database
+- Run `pnpm db:migrate:deploy` for `notifications` and `profiles.notification_prefs`
+
+---
+
+## [1.3.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.3 (STEP-058)**
+
+Trip loop polish and dashboard summary upgrade.
+
+### Added
+- **End-trip checklist** — "Forgot something?" prompts for unlinked receipts/expenses before completing a trip
+- **Dashboard v1.3** — Today's miles, month mileage/expenses/reimbursement, needs-attention items
+- **Navigation** — Expenses and Clients in primary app nav (top + bottom)
+- **Trip actions** — Duplicate completed trip; delete/cancel trip (soft delete, unlinks expenses)
 
 ---
 

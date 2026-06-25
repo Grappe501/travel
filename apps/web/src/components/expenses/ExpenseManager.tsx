@@ -11,6 +11,7 @@ import {
   Card,
   CardContent,
   Input,
+  RemoveEntryButton,
   Select,
   Textarea,
 } from '@/components/ui';
@@ -18,6 +19,7 @@ import { formatCategoryLabel, getExpenseCategoryOptions } from '@/lib/receipts/c
 import type {
   SerializedBusiness,
   SerializedExpense,
+  SerializedReceipt,
   SerializedTrip,
 } from '@/lib/types/core';
 
@@ -130,9 +132,19 @@ export function ExpenseList({ expenses: initialExpenses }: ExpenseListProps) {
                   {formatMoney(expense.amount, expense.currency)}
                 </p>
               </div>
-              <ButtonLink href={`/expenses/${expense.id}`} variant="secondary" size="sm">
-                View
-              </ButtonLink>
+              <div className="flex flex-wrap gap-2">
+                <ButtonLink href={`/expenses/${expense.id}`} variant="secondary" size="sm">
+                  View
+                </ButtonLink>
+                <RemoveEntryButton
+                  apiUrl={`/api/expenses/${expense.id}`}
+                  confirmMessage="Remove this expense? This cannot be undone."
+                  errorDisplay="alert"
+                  onRemoved={() =>
+                    setExpenses((items) => items.filter((item) => item.id !== expense.id))
+                  }
+                />
+              </div>
             </CardContent>
           </Card>
         ))}
@@ -145,16 +157,30 @@ type ExpenseFormProps = {
   businesses: SerializedBusiness[];
   trips: SerializedTrip[];
   initial?: SerializedExpense;
+  defaultTripId?: string;
+  lockTrip?: boolean;
+  returnToTripId?: string;
 };
 
-export function ExpenseForm({ businesses, trips, initial }: ExpenseFormProps) {
+export function ExpenseForm({
+  businesses,
+  trips,
+  initial,
+  defaultTripId,
+  lockTrip = false,
+  returnToTripId,
+}: ExpenseFormProps) {
   const router = useRouter();
   const isEdit = Boolean(initial);
   const categoryOptions = getExpenseCategoryOptions();
   const today = new Date().toISOString().slice(0, 10);
+  const lockedTrip =
+    lockTrip && defaultTripId ? trips.find((trip) => trip.id === defaultTripId) : undefined;
 
-  const [businessId, setBusinessId] = useState(initial?.businessId ?? businesses[0]?.id ?? '');
-  const [tripId, setTripId] = useState(initial?.tripId ?? '');
+  const [businessId, setBusinessId] = useState(
+    initial?.businessId ?? lockedTrip?.businessId ?? businesses[0]?.id ?? ''
+  );
+  const [tripId, setTripId] = useState(initial?.tripId ?? defaultTripId ?? '');
   const [categorySlug, setCategorySlug] = useState(initial?.categorySlug ?? 'other');
   const [merchant, setMerchant] = useState(initial?.merchant ?? '');
   const [amount, setAmount] = useState(initial ? String(initial.amount) : '');
@@ -197,7 +223,11 @@ export function ExpenseForm({ businesses, trips, initial }: ExpenseFormProps) {
       return;
     }
 
-    router.push(`/expenses/${result.data.id}`);
+    if (returnToTripId) {
+      router.push(`/trips/${returnToTripId}`);
+    } else {
+      router.push(`/expenses/${result.data.id}`);
+    }
     router.refresh();
   }
 
@@ -207,29 +237,41 @@ export function ExpenseForm({ businesses, trips, initial }: ExpenseFormProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           {error ? <Alert variant="error">{error}</Alert> : null}
 
+          {lockedTrip ? (
+            <p className="text-body text-muted">
+              Linking to trip:{' '}
+              <span className="font-medium text-foreground">{lockedTrip.purpose}</span>
+            </p>
+          ) : null}
+
           <Select
             label="Business"
             id="expense-business"
             value={businessId}
             onChange={(e) => {
               setBusinessId(e.target.value);
-              setTripId('');
+              if (!defaultTripId) {
+                setTripId('');
+              }
             }}
             required
+            disabled={Boolean(lockedTrip)}
             options={businesses.map((business) => ({ value: business.id, label: business.name }))}
           />
 
-          <Select
-            label="Trip (optional)"
-            id="expense-trip"
-            value={tripId}
-            onChange={(e) => setTripId(e.target.value)}
-            placeholder="No trip"
-            options={tripsForBusiness.map((trip) => ({
-              value: trip.id,
-              label: `${trip.purpose} (${trip.status})`,
-            }))}
-          />
+          {!lockedTrip ? (
+            <Select
+              label="Trip (optional)"
+              id="expense-trip"
+              value={tripId}
+              onChange={(e) => setTripId(e.target.value)}
+              placeholder="No trip"
+              options={tripsForBusiness.map((trip) => ({
+                value: trip.id,
+                label: `${trip.purpose} (${trip.status})`,
+              }))}
+            />
+          ) : null}
 
           <Select
             label="Category"
@@ -279,7 +321,16 @@ export function ExpenseForm({ businesses, trips, initial }: ExpenseFormProps) {
             <Button type="submit" disabled={loading}>
               {loading ? 'Saving…' : isEdit ? 'Save changes' : 'Add expense'}
             </Button>
-            <ButtonLink href={isEdit ? `/expenses/${initial!.id}` : '/expenses'} variant="secondary">
+            <ButtonLink
+              href={
+                returnToTripId
+                  ? `/trips/${returnToTripId}`
+                  : isEdit
+                    ? `/expenses/${initial!.id}`
+                    : '/expenses'
+              }
+              variant="secondary"
+            >
               Cancel
             </ButtonLink>
           </div>
@@ -290,34 +341,8 @@ export function ExpenseForm({ businesses, trips, initial }: ExpenseFormProps) {
 }
 
 export function ExpenseDetailCard({ expense }: { expense: SerializedExpense }) {
-  const router = useRouter();
-  const [deleting, setDeleting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleDelete() {
-    if (!confirm('Delete this expense? This cannot be undone.')) {
-      return;
-    }
-
-    setDeleting(true);
-    setError(null);
-
-    const response = await fetch(`/api/expenses/${expense.id}`, { method: 'DELETE' });
-    const result = await response.json();
-
-    if (!response.ok) {
-      setError(result.error ?? 'Could not delete expense');
-      setDeleting(false);
-      return;
-    }
-
-    router.push('/expenses');
-    router.refresh();
-  }
-
   return (
     <div className="space-y-6">
-      {error ? <Alert variant="error">{error}</Alert> : null}
       <Card>
         <CardContent className="space-y-4 pt-4">
           <div className="flex flex-wrap items-center gap-2">
@@ -381,9 +406,11 @@ export function ExpenseDetailCard({ expense }: { expense: SerializedExpense }) {
             <ButtonLink href={`/expenses/${expense.id}/edit`} size="sm">
               Edit
             </ButtonLink>
-            <Button type="button" variant="secondary" size="sm" disabled={deleting} onClick={handleDelete}>
-              {deleting ? 'Deleting…' : 'Delete'}
-            </Button>
+            <RemoveEntryButton
+              apiUrl={`/api/expenses/${expense.id}`}
+              confirmMessage="Remove this expense? This cannot be undone."
+              redirectTo="/expenses"
+            />
           </div>
         </CardContent>
       </Card>
@@ -505,5 +532,166 @@ export function TripExpensesList({ expenses }: TripExpensesListProps) {
         </li>
       ))}
     </ul>
+  );
+}
+
+type TripExpenseLinkPanelProps = {
+  trip: SerializedTrip;
+  unlinkedExpenses: SerializedExpense[];
+  unlinkedReceipts: SerializedReceipt[];
+};
+
+export function TripExpenseLinkPanel({
+  trip,
+  unlinkedExpenses: initialUnlinkedExpenses,
+  unlinkedReceipts: initialUnlinkedReceipts,
+}: TripExpenseLinkPanelProps) {
+  const router = useRouter();
+  const [unlinkedExpenses, setUnlinkedExpenses] = useState(initialUnlinkedExpenses);
+  const [unlinkedReceipts, setUnlinkedReceipts] = useState(initialUnlinkedReceipts);
+  const [linkingId, setLinkingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const isActiveTrip = trip.status === 'active';
+  const uploadHref = `/receipts/upload?tripId=${trip.id}&businessId=${trip.businessId}`;
+  const addExpenseHref = `/expenses/new?tripId=${trip.id}`;
+
+  async function linkExpense(expenseId: string) {
+    setLinkingId(expenseId);
+    setError(null);
+
+    const response = await fetch(`/api/expenses/${expenseId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tripId: trip.id }),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      setError(result.error ?? 'Could not link expense');
+      setLinkingId(null);
+      return;
+    }
+
+    setUnlinkedExpenses((items) => items.filter((item) => item.id !== expenseId));
+    setLinkingId(null);
+    router.refresh();
+  }
+
+  async function linkReceipt(receiptId: string) {
+    setLinkingId(receiptId);
+    setError(null);
+
+    const response = await fetch(`/api/receipts/${receiptId}/attach`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tripId: trip.id,
+        businessId: trip.businessId,
+      }),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      setError(result.error ?? 'Could not link receipt');
+      setLinkingId(null);
+      return;
+    }
+
+    setUnlinkedReceipts((items) => items.filter((item) => item.id !== receiptId));
+    setLinkingId(null);
+    router.refresh();
+  }
+
+  const hasUnlinked = unlinkedExpenses.length > 0 || unlinkedReceipts.length > 0;
+
+  return (
+    <Card>
+      <CardContent className="space-y-4 pt-4">
+        <div>
+          <h2 className="text-section-title text-foreground">
+            {isActiveTrip ? 'Trip expenses' : 'Link expenses'}
+          </h2>
+          <p className="mt-1 text-caption text-muted">
+            {isActiveTrip
+              ? 'Upload receipts and add expenses while your trip is in progress.'
+              : 'Add new expenses or connect receipts and expenses you recorded before ending the trip.'}
+          </p>
+        </div>
+
+        {error ? <Alert variant="error">{error}</Alert> : null}
+
+        <div className="flex flex-wrap gap-2">
+          <ButtonLink href={addExpenseHref} size="sm">
+            Add expense
+          </ButtonLink>
+          <ButtonLink href={uploadHref} variant="secondary" size="sm">
+            Upload receipt
+          </ButtonLink>
+        </div>
+
+        {hasUnlinked ? (
+          <div className="space-y-4 border-t border-border pt-4">
+            {unlinkedReceipts.length > 0 ? (
+              <div className="space-y-2">
+                <h3 className="text-subheading text-foreground">Unlinked receipts</h3>
+                <ul className="space-y-2">
+                  {unlinkedReceipts.map((receipt) => (
+                    <li
+                      key={receipt.id}
+                      className="flex flex-wrap items-center justify-between gap-2 text-body"
+                    >
+                      <Link href={`/receipts/${receipt.id}`} className="text-primary hover:underline">
+                        {receipt.merchant ?? 'Receipt'}
+                        {receipt.total !== null
+                          ? ` · ${receipt.currency} ${receipt.total.toFixed(2)}`
+                          : ''}
+                      </Link>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="secondary"
+                        disabled={linkingId === receipt.id}
+                        onClick={() => linkReceipt(receipt.id)}
+                      >
+                        {linkingId === receipt.id ? 'Linking…' : 'Link to trip'}
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {unlinkedExpenses.length > 0 ? (
+              <div className="space-y-2">
+                <h3 className="text-subheading text-foreground">Unlinked expenses</h3>
+                <ul className="space-y-2">
+                  {unlinkedExpenses.map((expense) => (
+                    <li
+                      key={expense.id}
+                      className="flex flex-wrap items-center justify-between gap-2 text-body"
+                    >
+                      <Link href={`/expenses/${expense.id}`} className="text-primary hover:underline">
+                        {expense.merchant ?? formatCategoryLabel(expense.categorySlug)} ·{' '}
+                        {formatMoney(expense.amount, expense.currency)}
+                      </Link>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="secondary"
+                        disabled={linkingId === expense.id}
+                        onClick={() => linkExpense(expense.id)}
+                      >
+                        {linkingId === expense.id ? 'Linking…' : 'Link to trip'}
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+      </CardContent>
+    </Card>
   );
 }

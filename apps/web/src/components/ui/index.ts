@@ -14,4 +14,5 @@ export { FormField, Input, Textarea } from './Input';
 export { LoadingSkeleton, LoadingState } from './LoadingState';
 export { Modal } from './Modal';
 export { PageHeader } from './PageHeader';
+export { RemoveEntryButton } from './RemoveEntryButton';
 export { Select } from './Select';

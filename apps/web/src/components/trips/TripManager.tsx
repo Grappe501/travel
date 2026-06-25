@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useOffline } from '@/components/offline/OfflineProvider';
-import { Alert, Badge, Button, ButtonLink, Card, CardContent, Input, Select } from '@/components/ui';
+import { Alert, Badge, Button, ButtonLink, Card, CardContent, Input, RemoveEntryButton, Select } from '@/components/ui';
+import { UpgradeLimitAlert } from '@/components/billing/UpgradeLimitAlert';
 import { enqueueOfflineTripStart } from '@/lib/offline/queue';
 import { isBrowserOnline } from '@/lib/offline/connectivity';
 import type { SerializedBusiness, SerializedClient, SerializedProject, SerializedTrip, SerializedVehicle } from '@/lib/types/core';
@@ -14,10 +15,10 @@ export { ActiveTripBanner } from '@/components/trips/ActiveTripBanner';
 type TripStartFormProps = {
   businesses: SerializedBusiness[];
   vehicles: SerializedVehicle[];
-  hasActiveTrip: boolean;
+  activeTrip?: SerializedTrip | null;
 };
 
-export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStartFormProps) {
+export function TripStartForm({ businesses, vehicles, activeTrip }: TripStartFormProps) {
   const router = useRouter();
   const { refresh, syncNow, localActiveTrip } = useOffline();
   const defaultBusiness = businesses.find((b) => b.isDefault)?.id ?? businesses[0]?.id ?? '';
@@ -34,6 +35,7 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
   const [clients, setClients] = useState<SerializedClient[]>([]);
   const [projects, setProjects] = useState<SerializedProject[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+    setErrorCode(null);
     setLoading(true);
 
     const payload = {
@@ -107,13 +110,14 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
 
     if (!response.ok) {
       setError(result.error ?? 'Could not start trip');
+      setErrorCode(result.code ?? null);
       setLoading(false);
       return;
     }
 
     await refresh();
     await syncNow();
-    router.push('/trips');
+    router.push(`/trips/${result.data.id}`);
     router.refresh();
   }
 
@@ -133,10 +137,27 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
     );
   }
 
-  if (hasActiveTrip || localActiveTrip) {
+  if (activeTrip || localActiveTrip) {
+    const tripId = activeTrip?.id ?? localActiveTrip?.localId;
+    const purpose = activeTrip?.purpose ?? localActiveTrip?.purpose;
+
     return (
       <Alert variant="info">
-        You already have an active trip. End it before starting another.
+        You already have an active trip{purpose ? `: ${purpose}` : ''}.{' '}
+        {tripId ? (
+          <>
+            <Link href={`/trips/${tripId}`} className="font-medium underline">
+              View trip
+            </Link>
+            {' to add receipts and expenses, or '}
+            <Link href={`/trips/${tripId}/end`} className="font-medium underline">
+              end it
+            </Link>
+            {' before starting another.'}
+          </>
+        ) : (
+          'End it before starting another.'
+        )}
       </Alert>
     );
   }
@@ -145,7 +166,7 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
     <Card>
       <CardContent className="pt-4">
         <form onSubmit={handleSubmit} className="space-y-4">
-          {error ? <Alert variant="error">{error}</Alert> : null}
+          <UpgradeLimitAlert error={error} errorCode={errorCode} />
 
           <Select
             label="Business"
@@ -444,8 +465,13 @@ function statusBadge(status: string) {
   return <Badge variant="outline">{status}</Badge>;
 }
 
-export function TripList({ trips }: TripListProps) {
+export function TripList({ trips: initialTrips }: TripListProps) {
+  const [trips, setTrips] = useState(initialTrips);
   const completed = trips.filter((t) => t.status === 'completed');
+
+  useEffect(() => {
+    setTrips(initialTrips);
+  }, [initialTrips]);
 
   if (completed.length === 0) {
     return null;
@@ -476,9 +502,17 @@ export function TripList({ trips }: TripListProps) {
                   : ''}
               </p>
             </div>
-            <ButtonLink href={`/trips/${trip.id}`} variant="secondary" size="sm">
-              View
-            </ButtonLink>
+            <div className="flex flex-wrap gap-2">
+              <ButtonLink href={`/trips/${trip.id}`} variant="secondary" size="sm">
+                View
+              </ButtonLink>
+              <RemoveEntryButton
+                apiUrl={`/api/trips/${trip.id}`}
+                confirmMessage="Remove this trip? Linked expenses and receipts will be kept but unlinked."
+                errorDisplay="alert"
+                onRemoved={() => setTrips((items) => items.filter((item) => item.id !== trip.id))}
+              />
+            </div>
           </CardContent>
         </Card>
       ))}

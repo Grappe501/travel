@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useOffline } from '@/components/offline/OfflineProvider';
-import { Alert, Badge, Button, ButtonLink, Card, CardContent, Select } from '@/components/ui';
+import { Alert, Badge, Button, ButtonLink, Card, CardContent, RemoveEntryButton, Select } from '@/components/ui';
+import { UpgradeLimitAlert } from '@/components/billing/UpgradeLimitAlert';
 import { nativeFieldClassName } from '@/lib/a11y/form-styles';
 import { isBrowserOnline } from '@/lib/offline/connectivity';
 import { enqueueOfflineReceiptUpload } from '@/lib/offline/queue';
@@ -39,17 +40,31 @@ function formatFileSize(bytes: number | null) {
 type ReceiptUploadFormProps = {
   businesses: SerializedBusiness[];
   trips: SerializedTrip[];
+  defaultTripId?: string;
+  defaultBusinessId?: string;
+  lockTrip?: boolean;
 };
 
-export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps) {
+export function ReceiptUploadForm({
+  businesses,
+  trips,
+  defaultTripId,
+  defaultBusinessId,
+  lockTrip = false,
+}: ReceiptUploadFormProps) {
   const router = useRouter();
   const { refresh, syncNow } = useOffline();
   const inputRef = useRef<HTMLInputElement>(null);
-  const [businessId, setBusinessId] = useState('');
-  const [tripId, setTripId] = useState('');
+  const lockedTrip =
+    lockTrip && defaultTripId ? trips.find((t) => t.id === defaultTripId) : undefined;
+  const [businessId, setBusinessId] = useState(
+    defaultBusinessId ?? lockedTrip?.businessId ?? ''
+  );
+  const [tripId, setTripId] = useState(defaultTripId ?? '');
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   function handleFileChange(file: File | null) {
@@ -80,6 +95,7 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
 
     setLoading(true);
     setError(null);
+    setErrorCode(null);
 
     if (!isBrowserOnline()) {
       try {
@@ -112,6 +128,7 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
 
     if (!response.ok) {
       setError(result.error ?? 'Upload failed');
+      setErrorCode(result.code ?? null);
       setLoading(false);
       return;
     }
@@ -122,13 +139,24 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
     router.refresh();
   }
 
-  const completedTrips = trips.filter((t) => t.status === 'completed');
+  const completedTrips = trips.filter((t) => t.status === 'completed' || t.status === 'active');
+  const tripOptions = lockedTrip ? [lockedTrip] : completedTrips;
+  const preselectedTrip = defaultTripId ? trips.find((t) => t.id === defaultTripId) : undefined;
 
   return (
     <Card>
       <CardContent className="space-y-4 pt-4">
         <form onSubmit={handleSubmit} className="space-y-4">
-          {error ? <Alert variant="error">{error}</Alert> : null}
+          <UpgradeLimitAlert error={error} errorCode={errorCode} />
+
+          {lockedTrip || preselectedTrip ? (
+            <p className="text-body text-muted">
+              {lockedTrip ? 'Linking to trip' : 'Adding to active trip'}:{' '}
+              <span className="font-medium text-foreground">
+                {(lockedTrip ?? preselectedTrip)!.purpose}
+              </span>
+            </p>
+          ) : null}
 
           <div className="space-y-2">
             <label htmlFor="receipt-file" className="block text-subheading text-foreground">
@@ -168,20 +196,21 @@ export function ReceiptUploadForm({ businesses, trips }: ReceiptUploadFormProps)
               value={businessId}
               onChange={(e) => setBusinessId(e.target.value)}
               placeholder="No business"
+              disabled={Boolean(lockedTrip)}
               options={businesses.map((b) => ({ value: b.id, label: b.name }))}
             />
           ) : null}
 
-          {completedTrips.length > 0 ? (
+          {!lockedTrip && tripOptions.length > 0 ? (
             <Select
               label="Trip (optional)"
               id="receipt-trip"
               value={tripId}
               onChange={(e) => setTripId(e.target.value)}
               placeholder="No trip"
-              options={completedTrips.map((t) => ({
+              options={tripOptions.map((t) => ({
                 value: t.id,
-                label: `${t.purpose} (${t.miles ?? 0} mi)`,
+                label: `${t.purpose} (${t.status === 'active' ? 'active' : `${t.miles ?? 0} mi`})`,
               }))}
             />
           ) : null}
@@ -199,7 +228,13 @@ type ReceiptListProps = {
   receipts: SerializedReceipt[];
 };
 
-export function ReceiptList({ receipts }: ReceiptListProps) {
+export function ReceiptList({ receipts: initialReceipts }: ReceiptListProps) {
+  const [receipts, setReceipts] = useState(initialReceipts);
+
+  useEffect(() => {
+    setReceipts(initialReceipts);
+  }, [initialReceipts]);
+
   if (receipts.length === 0) {
     return null;
   }
@@ -234,6 +269,14 @@ export function ReceiptList({ receipts }: ReceiptListProps) {
               <ButtonLink href={`/receipts/${receipt.id}`} variant="secondary" size="sm">
                 View
               </ButtonLink>
+              <RemoveEntryButton
+                apiUrl={`/api/receipts/${receipt.id}`}
+                confirmMessage="Remove this receipt? Any linked expense will also be removed."
+                errorDisplay="alert"
+                onRemoved={() =>
+                  setReceipts((items) => items.filter((item) => item.id !== receipt.id))
+                }
+              />
             </div>
           </CardContent>
         </Card>
@@ -351,6 +394,12 @@ export function ReceiptDetailCard({ receipt, signedUrl }: ReceiptDetailProps) {
           Preview unavailable — configure Supabase Storage and the private receipts bucket.
         </Alert>
       ) : null}
+
+      <RemoveEntryButton
+        apiUrl={`/api/receipts/${receipt.id}`}
+        confirmMessage="Remove this receipt? Any linked expense will also be removed."
+        redirectTo="/receipts"
+      />
     </div>
   );
 }

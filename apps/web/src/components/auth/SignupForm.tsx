@@ -84,6 +84,18 @@ export function SignupForm() {
       </Button>
 
       <p className="text-center text-caption text-muted">
+        By creating an account you agree to our{' '}
+        <Link href="/legal/terms" className="font-medium text-primary hover:underline">
+          Terms
+        </Link>{' '}
+        and{' '}
+        <Link href="/legal/privacy" className="font-medium text-primary hover:underline">
+          Privacy Policy
+        </Link>
+        .
+      </p>
+
+      <p className="text-center text-caption text-muted">
         Already have an account?{' '}
         <Link href="/login" className="font-medium text-primary hover:underline">
           Log in

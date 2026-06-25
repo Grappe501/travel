@@ -60,4 +60,41 @@ describe.skipIf(!integrationDbReady())('trip.service integration', () => {
 
     await endTrip(ctx.userId, { tripId: first.id, endOdometer: 110 });
   });
+
+  it('duplicates a completed trip into a new active trip', async () => {
+    const completed = await startTrip(ctx.userId, {
+      businessId: ctx.businessId,
+      vehicleId: ctx.vehicleId,
+      purpose: 'Site visit',
+      destination: 'Downtown',
+    });
+
+    await endTrip(ctx.userId, { tripId: completed.id, endOdometer: 120 });
+
+    const duplicated = await import('@/server/services/trip.service').then((m) =>
+      m.duplicateTrip(ctx.userId, completed.id)
+    );
+
+    expect(duplicated.status).toBe('active');
+    expect(duplicated.purpose).toBe('Site visit');
+    expect(duplicated.destination).toBe('Downtown');
+
+    await endTrip(ctx.userId, { tripId: duplicated.id, endOdometer: 125 });
+  });
+
+  it('soft-deletes a completed trip', async () => {
+    const trip = await startTrip(ctx.userId, {
+      businessId: ctx.businessId,
+      vehicleId: ctx.vehicleId,
+      purpose: 'Delete me',
+    });
+
+    await endTrip(ctx.userId, { tripId: trip.id, endOdometer: 130 });
+
+    const { deleteTrip, listTrips } = await import('@/server/services/trip.service');
+    await deleteTrip(ctx.userId, trip.id);
+
+    const trips = await listTrips(ctx.userId);
+    expect(trips.find((t) => t.id === trip.id)).toBeUndefined();
+  });
 });

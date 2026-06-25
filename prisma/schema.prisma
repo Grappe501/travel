@@ -167,6 +167,12 @@ enum FileAssetKind {
   avatar
 }
 
+enum NotificationDeliveryMethod {
+  in_app
+  email
+  push
+}
+
 enum MileageRateType {
   irs
   company
@@ -199,6 +205,7 @@ model UserProfile {
   accountStatus        AccountStatus @default(active) @map("account_status")
   emailVerified        Boolean       @default(false) @map("email_verified")
   onboardingCompleted  Boolean       @default(false) @map("onboarding_completed")
+  notificationPrefs    Json          @default("{}") @map("notification_prefs")
   lastLoginAt          DateTime?     @map("last_login_at")
   deletedAt            DateTime?     @map("deleted_at")
   version              Int           @default(1)
@@ -222,6 +229,7 @@ model UserProfile {
   clients        Client[]
   projects       Project[]
   aiInteractionLogs AIInteractionLog[]
+  notifications     Notification[]
 
   @@index([email])
   @@map("profiles")
@@ -674,4 +682,25 @@ model FileAsset {
   @@index([userId, kind])
   @@index([entityType, entityId])
   @@map("file_assets")
+}
+
+model Notification {
+  id              String                     @id @default(uuid()) @db.Uuid
+  userId          String                     @map("user_id") @db.Uuid
+  type            String
+  title           String
+  body            String
+  payload         Json?
+  deliveryMethod  NotificationDeliveryMethod @default(in_app) @map("delivery_method")
+  dedupeKey       String                     @map("dedupe_key")
+  readAt          DateTime?                  @map("read_at")
+  deliveredAt     DateTime?                  @map("delivered_at")
+  createdAt       DateTime                   @default(now()) @map("created_at")
+  updatedAt       DateTime                   @updatedAt @map("updated_at")
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, dedupeKey])
+  @@index([userId, readAt, createdAt(sort: Desc)])
+  @@map("notifications")
 }

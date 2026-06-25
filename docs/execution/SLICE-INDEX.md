@@ -29,7 +29,12 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S023 | AI category suggestions | BUILD-015 | WAVE-008 | 000018 | STEP-055 | ☑ Complete |
 | MEC-V1-S024 | Client & project modules | BUILD-016 | WAVE-002 ext | — | STEP-056 | ☑ Complete |
 | MEC-V1-S025 | AI feedback & history | BUILD-017 | WAVE-008 | — | STEP-057 | ☑ Complete |
+| MEC-V1-S026 | Trip loop & dashboard v1.3 | — | WAVE-003 ext | — | STEP-058 | ☑ Complete |
+| MEC-V1-S027 | In-app notifications | — | WAVE-007 ext | FR-900 | STEP-059 | ☑ Complete |
+| MEC-V1-S028 | Global search | — | WAVE-003 ext | FR-1000 | STEP-060 | ☑ Complete |
+| MEC-V1-S029 | Monetization & trust | — | WAVE-007 ext | FR-003, FR-1600 | STEP-061 | ☑ Complete |
+| MEC-V1-S030 | Search filters | — | WAVE-003 ext | FR-1000 | STEP-062 | ☑ Complete |
 
-**Post-V1.2 backlog:** notifications · global search · attach-receipt UI
+**Post-V1.7 backlog:** team access · accountant role · report templates
 
 Prompts: [slices/](slices/)

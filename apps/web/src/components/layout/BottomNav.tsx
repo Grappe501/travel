@@ -2,21 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { APP_NAV_ITEMS, isAppNavActive } from '@/lib/navigation/app-nav';
 import { cn } from '@/lib/utils/cn';
-
-type NavItem = {
-  href: string;
-  label: string;
-  icon: string;
-};
-
-const NAV_ITEMS: NavItem[] = [
-  { href: '/dashboard', label: 'Home', icon: '⌂' },
-  { href: '/trips', label: 'Trips', icon: '◎' },
-  { href: '/receipts', label: 'Receipts', icon: '▣' },
-  { href: '/reports', label: 'Reports', icon: '≡' },
-  { href: '/settings', label: 'Settings', icon: '⚙' },
-];
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -26,13 +13,13 @@ export function BottomNav() {
       className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface pb-[env(safe-area-inset-bottom)] md:hidden"
       aria-label="Primary navigation"
     >
-      <ul className="mx-auto flex max-w-lg items-stretch justify-around">
-        {NAV_ITEMS.map((item) => {
-          const active =
-            pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
+      <ul className="mx-auto flex max-w-lg items-stretch justify-start overflow-x-auto">
+        {APP_NAV_ITEMS.map((item) => {
+          const active = isAppNavActive(pathname, item.href);
+          const label = item.shortLabel ?? item.label;
 
           return (
-            <li key={item.href} className="flex-1">
+            <li key={item.href} className="min-w-[4.25rem] flex-1 shrink-0">
               <Link
                 href={item.href}
                 className={cn(
@@ -40,11 +27,12 @@ export function BottomNav() {
                   active ? 'text-primary' : 'text-muted hover:text-foreground'
                 )}
                 aria-current={active ? 'page' : undefined}
+                title={item.label}
               >
                 <span className="text-base leading-none" aria-hidden>
                   {item.icon}
                 </span>
-                <span>{item.label}</span>
+                <span className="truncate">{label}</span>
               </Link>
             </li>
           );

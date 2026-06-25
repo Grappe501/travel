@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { Alert, Badge, Button, Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
+import { UsageMeterRow } from '@/components/billing/UsageMeter';
 import { PLAN_DISPLAY } from '@/lib/billing/config';
 import type { SerializedBillingSummary } from '@/lib/types/core';
 
@@ -29,9 +30,7 @@ function usageLine(label: string, count: number, limit: number | null) {
   }
 
   return (
-    <p className="text-sm text-gray-600">
-      <span className="font-medium text-gray-900">{label}:</span> {count} of {limit} used this month
-    </p>
+    <UsageMeterRow label={label} count={count} limit={limit} />
   );
 }
 

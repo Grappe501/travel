@@ -5,6 +5,7 @@ import { ReceiptList } from '@/components/receipts/ReceiptManager';
 import { ButtonLink, EmptyState } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
 import * as receiptService from '@/server/services/receipt.service';
+import * as tripService from '@/server/services/trip.service';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -15,14 +16,21 @@ export default async function ReceiptsPage() {
     redirect('/login');
   }
 
-  const receipts = await receiptService.listReceipts(user.id);
+  const [receipts, activeTrip] = await Promise.all([
+    receiptService.listReceipts(user.id),
+    tripService.getActiveTrip(user.id),
+  ]);
+
+  const uploadHref = activeTrip
+    ? `/receipts/upload?tripId=${activeTrip.id}&businessId=${activeTrip.businessId}`
+    : '/receipts/upload';
 
   return (
     <DashboardShell
       title="Receipts"
       description="Upload and track receipt images securely."
       actions={
-        <ButtonLink href="/receipts/upload" size="sm">
+        <ButtonLink href={uploadHref} size="sm">
           Upload receipt
         </ButtonLink>
       }
@@ -33,7 +41,7 @@ export default async function ReceiptsPage() {
             title="No receipts yet"
             description="Upload a photo or PDF — files are stored in your private Supabase bucket."
           />
-          <ButtonLink href="/receipts/upload">Upload receipt</ButtonLink>
+          <ButtonLink href={uploadHref}>Upload receipt</ButtonLink>
         </div>
       ) : (
         <ReceiptList receipts={receipts} />
@@ -41,7 +49,7 @@ export default async function ReceiptsPage() {
 
       {receipts.length > 0 ? (
         <p className="text-center">
-          <Link href="/receipts/upload" className="text-body font-medium text-primary hover:underline">
+          <Link href={uploadHref} className="text-body font-medium text-primary hover:underline">
             Upload another receipt
           </Link>
         </p>

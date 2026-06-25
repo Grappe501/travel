@@ -24,6 +24,25 @@ export async function isV12SchemaReady(): Promise<boolean> {
   }
 }
 
+let notificationsSchemaCache: { value: boolean; checkedAt: number } | null = null;
+
+/** Returns false when STEP-059 notifications migration is not applied. */
+export async function isNotificationsSchemaReady(): Promise<boolean> {
+  if (notificationsSchemaCache && Date.now() - notificationsSchemaCache.checkedAt < CACHE_MS) {
+    return notificationsSchemaCache.value;
+  }
+
+  try {
+    await prisma.$queryRaw`SELECT dedupe_key FROM notifications LIMIT 0`;
+    await prisma.$queryRaw`SELECT notification_prefs FROM profiles LIMIT 0`;
+    notificationsSchemaCache = { value: true, checkedAt: Date.now() };
+    return true;
+  } catch {
+    notificationsSchemaCache = { value: false, checkedAt: Date.now() };
+    return false;
+  }
+}
+
 export function resetSchemaReadyCache(): void {
   schemaReadyCache = null;
 }

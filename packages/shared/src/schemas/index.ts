@@ -9,6 +9,8 @@ export * from './billing';
 export * from './expense';
 export * from './ai';
 export * from './client-project';
+export * from './notification';
+export * from './search';
 
 export const businessCreateSchema = z.object({
   name: z.string().min(1).max(100),

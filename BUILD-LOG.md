@@ -62,6 +62,11 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-055 | 2026-06-25 | B | MEC-V1-S023 — AI category suggestions on receipt review | `af9d59a` | [STEP-055](docs/build-steps/STEP-055-mec-v1-s023-category-suggestions.md) |
 | STEP-056 | 2026-06-25 | B | MEC-V1-S024 — Client & project modules | `2842037` | [STEP-056](docs/build-steps/STEP-056-mec-v1-s024-client-projects.md) |
 | STEP-057 | 2026-06-25 | B | MEC-V1-S025 — AI feedback & history (V1.2) | `6dcb196` | [STEP-057](docs/build-steps/STEP-057-mec-v1-s025-ai-feedback.md) |
+| STEP-058 | 2026-06-25 | B | MEC-V1-S026 — Trip loop + dashboard v1.3 | — | [STEP-058](docs/build-steps/STEP-058-trip-loop-dashboard.md) |
+| STEP-059 | 2026-06-25 | B | MEC-V1-S027 — In-app notifications (V1.4) | — | [STEP-059](docs/build-steps/STEP-059-notifications.md) |
+| STEP-060 | 2026-06-25 | B | MEC-V1-S028 — Global search (V1.5) | — | [STEP-060](docs/build-steps/STEP-060-global-search.md) |
+| STEP-061 | 2026-06-25 | B | MEC-V1-S029 — Monetization & trust (V1.6) | — | [STEP-061](docs/build-steps/STEP-061-monetization-trust.md) |
+| STEP-062 | 2026-06-25 | B | MEC-V1-S030 — Search filters (V1.7) | — | [STEP-062](docs/build-steps/STEP-062-search-filters.md) |
 
 ---
 
@@ -69,8 +74,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 57 |
-| Current phase | **V1.2 complete** |
+| Steps completed | 62 |
+| Current phase | **V1.7 complete** |
 | Latest tag | `v1.2.0` |
 
 ---

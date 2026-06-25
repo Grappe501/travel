@@ -18,6 +18,7 @@ import {
   incrementReceiptUsage,
 } from '@/server/services/usage.service';
 import { checkDuplicatesAfterUpload } from '@/server/services/duplicate-detection.service';
+import { recalculateTripExpenseTotal } from '@/server/services/expense.service';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
@@ -69,6 +70,23 @@ export async function listReceipts(userId: string) {
   const receipts = await prisma.receipt.findMany({
     where: { userId, ...activeReceipt },
     orderBy: { createdAt: 'desc' },
+  });
+
+  return receipts.map(serializeReceipt);
+}
+
+export async function listUnlinkedReceiptsForBusiness(userId: string, businessId: string) {
+  await getOwnedBusiness(userId, businessId);
+
+  const receipts = await prisma.receipt.findMany({
+    where: {
+      userId,
+      tripId: null,
+      ...activeReceipt,
+      OR: [{ businessId }, { businessId: null }],
+    },
+    orderBy: { createdAt: 'desc' },
+    take: 20,
   });
 
   return receipts.map(serializeReceipt);
@@ -232,4 +250,66 @@ export async function getReceiptSignedUrl(userId: string, receiptId: string, exp
     mimeType: receipt.mimeType,
     expiresIn,
   };
+}
+
+export async function deleteReceipt(userId: string, receiptId: string) {
+  const receipt = await getOwnedReceipt(userId, receiptId);
+  const tripId = receipt.tripId;
+  const storagePath = receipt.storagePath;
+
+  const linkedExpenses = await prisma.expense.findMany({
+    where: { receiptId, userId, recordStatus: 'active' },
+    select: { id: true, tripId: true },
+  });
+
+  await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+    if (linkedExpenses.length > 0) {
+      await tx.expense.updateMany({
+        where: { receiptId, userId, recordStatus: 'active' },
+        data: { recordStatus: 'deleted', deletedAt: new Date() },
+      });
+    }
+
+    await tx.receipt.update({
+      where: { id: receiptId },
+      data: {
+        recordStatus: 'deleted',
+        deletedAt: new Date(),
+        tripId: null,
+      },
+    });
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        entityType: 'receipt',
+        entityId: receiptId,
+        action: 'delete',
+        oldValues: {
+          merchant: receipt.merchant,
+          tripId: receipt.tripId,
+          linkedExpenseCount: linkedExpenses.length,
+        },
+        source: 'web',
+      },
+    });
+  });
+
+  const tripIds = new Set<string>();
+  if (tripId) tripIds.add(tripId);
+  for (const expense of linkedExpenses) {
+    if (expense.tripId) tripIds.add(expense.tripId);
+  }
+
+  for (const id of tripIds) {
+    await recalculateTripExpenseTotal(userId, id);
+  }
+
+  const { bucket, isConfigured } = getStorageConfig();
+  if (isConfigured && storagePath) {
+    const supabase = getSupabaseAdmin();
+    await supabase.storage.from(bucket).remove([storagePath]).catch(() => undefined);
+  }
+
+  return { id: receiptId, deleted: true };
 }

@@ -434,3 +434,16 @@ export async function listExpensesForTrip(userId: string, tripId: string) {
   await getOwnedTrip(userId, tripId);
   return listExpenses(userId, { tripId });
 }
+
+export async function listUnlinkedExpensesForBusiness(userId: string, businessId: string) {
+  await getOwnedBusiness(userId, businessId);
+
+  const expenses = await prisma.expense.findMany({
+    where: { userId, businessId, tripId: null, ...activeExpense },
+    include: expenseInclude,
+    orderBy: [{ expenseDate: 'desc' }, { createdAt: 'desc' }],
+    take: 20,
+  });
+
+  return expenses.map(serializeExpense);
+}
