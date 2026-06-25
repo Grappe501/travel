@@ -1,14 +1,11 @@
 'use client';
 
 import { resetPasswordSchema } from '@mileage-copilot/shared';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { getPostAuthRedirect } from '@/lib/auth/actions';
 import { createClient } from '@/lib/supabase/client';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function ResetPasswordForm() {
-  const router = useRouter();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -36,9 +33,7 @@ export function ResetPasswordForm() {
       return;
     }
 
-    const destination = await getPostAuthRedirect();
-    router.push(destination);
-    router.refresh();
+    window.location.assign('/auth/continue');
   }
 
   return (

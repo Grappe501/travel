@@ -1,9 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { getPostAuthRedirect } from '@/lib/auth/actions';
 import { createClient } from '@/lib/supabase/client';
 import { Alert, Button } from '@/components/ui';
 
@@ -12,7 +10,6 @@ type VerifyEmailPanelProps = {
 };
 
 export function VerifyEmailPanel({ email }: VerifyEmailPanelProps) {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -55,9 +52,7 @@ export function VerifyEmailPanel({ email }: VerifyEmailPanelProps) {
     }
 
     if (data.user?.email_confirmed_at) {
-      const destination = await getPostAuthRedirect();
-      router.push(destination);
-      router.refresh();
+      window.location.assign('/auth/continue');
       return;
     }
 

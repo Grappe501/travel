@@ -1,15 +1,13 @@
 'use client';
 
-import { loginSchema, type LoginInput } from '@mileage-copilot/shared';
+import { type LoginInput } from '@mileage-copilot/shared';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { syncUserProfileAfterAuth, getPostAuthRedirect } from '@/lib/auth/actions';
-import { createClient } from '@/lib/supabase/client';
+import { signInAction } from '@/lib/auth/actions';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirect') ?? '/dashboard';
 
@@ -20,37 +18,13 @@ export function LoginForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-
-    const parsed = loginSchema.safeParse(form);
-    if (!parsed.success) {
-      setError(parsed.error.errors[0]?.message ?? 'Invalid input');
-      return;
-    }
-
     setLoading(true);
-    const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email: parsed.data.email,
-      password: parsed.data.password,
-    });
 
-    if (signInError) {
-      setError(signInError.message);
+    const result = await signInAction(form, redirectTo);
+    if (result && 'error' in result) {
+      setError(result.error);
       setLoading(false);
-      return;
     }
-
-    try {
-      await syncUserProfileAfterAuth();
-    } catch {
-      setError('Signed in but could not sync profile. Check DATABASE_URL.');
-      setLoading(false);
-      return;
-    }
-
-    const destination = await getPostAuthRedirect(redirectTo);
-    router.push(destination);
-    router.refresh();
   }
 
   return (

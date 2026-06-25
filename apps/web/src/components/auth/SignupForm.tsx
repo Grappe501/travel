@@ -1,15 +1,11 @@
 'use client';
 
-import { signupSchema } from '@mileage-copilot/shared';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { syncUserProfileAfterAuth, getPostAuthRedirect } from '@/lib/auth/actions';
-import { createClient } from '@/lib/supabase/client';
+import { signUpAction } from '@/lib/auth/actions';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function SignupForm() {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -21,41 +17,20 @@ export function SignupForm() {
     e.preventDefault();
     setError(null);
     setMessage(null);
+    setLoading(true);
 
-    const parsed = signupSchema.safeParse({ email, password, confirmPassword });
-    if (!parsed.success) {
-      setError(parsed.error.errors[0]?.message ?? 'Invalid input');
+    const result = await signUpAction({ email, password, confirmPassword });
+    if (!result) {
       return;
     }
 
-    setLoading(true);
-    const supabase = createClient();
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email: parsed.data.email,
-      password: parsed.data.password,
-    });
-
-    if (signUpError) {
-      setError(signUpError.message);
+    if ('error' in result) {
+      setError(result.error);
       setLoading(false);
       return;
     }
 
-    if (data.session) {
-      try {
-        await syncUserProfileAfterAuth();
-      } catch {
-        setError('Account created but profile sync failed. Check DATABASE_URL.');
-        setLoading(false);
-        return;
-      }
-      const destination = await getPostAuthRedirect();
-      router.push(destination);
-      router.refresh();
-      return;
-    }
-
-    setMessage('Check your email to confirm your account, then continue from the link in the email.');
+    setMessage(result.message);
     setLoading(false);
   }
 
