@@ -618,6 +618,8 @@ NEXT_PUBLIC_MAPBOX_TOKEN=
 
 # Chapter 23 — API Design
 
+> **Canonical specification:** [Volume 12 — API Architecture & Integration Specification](12-api-architecture.md)
+
 ## Pattern
 
 | Operation | Path |

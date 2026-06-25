@@ -19,6 +19,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-012 | 2026-06-24 | Blueprint | Volume 9 rewrite — QA & Release Engineering (33 chapters) | `529c5a6` | [STEP-012](docs/build-steps/STEP-012-volume-9-qa.md) |
 | STEP-013 | 2026-06-24 | Blueprint | Volume 10 — Design System & Component Library (44 chapters) | `1fbca9e` | [STEP-013](docs/build-steps/STEP-013-volume-10-design-system.md) |
 | STEP-014 | 2026-06-24 | Blueprint | Volume 11 — Screen Bible & SCR catalog (60 screens) | `3e87abb` | [STEP-014](docs/build-steps/STEP-014-volume-11-screen-bible.md) |
+| STEP-015 | 2026-06-24 | Blueprint | Volume 12 — API Architecture & Constitution (70+ APIs) | *pending* | [STEP-015](docs/build-steps/STEP-015-volume-12-api.md) |
 
 ---
 
@@ -26,7 +27,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 14 |
+| Steps completed | 15 |
 | Current phase | Blueprint v1.0 complete → sign-off → Phase A |
 | Latest tag | `v0.0.0` (after push) |
 

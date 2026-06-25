@@ -1186,7 +1186,8 @@ When Volume 12+ are added (API docs, analytics), they **must** use SCR-IDs.
 | Functional rules | [Volume 3](03-functional-requirements.md) |
 | Implementation tracker | `docs/screen-catalog/SCR-INDEX.md` |
 | QA per screen | [Volume 9](09-testing-quality.md) |
+| API per screen | [Volume 12](12-api-architecture.md) |
 
 ---
 
-*Previous: [Volume 10 — Universal Design System](10-design-system.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 10 — Universal Design System](10-design-system.md) | Next: [Volume 12 — API Architecture](12-api-architecture.md)*
