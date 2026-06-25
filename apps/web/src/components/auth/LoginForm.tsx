@@ -4,9 +4,8 @@ import { type LoginInput } from '@mileage-copilot/shared';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { finalizeSignInAction } from '@/lib/auth/actions';
+import { completeClientSignIn } from '@/lib/auth/complete-client-sign-in';
 import { signInOnClient } from '@/lib/auth/client-sign-in';
-import { isRedirectError } from '@/lib/auth/is-redirect-error';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function LoginForm() {
@@ -33,11 +32,8 @@ export function LoginForm() {
         return;
       }
 
-      await finalizeSignInAction(redirectTo);
-    } catch (caught) {
-      if (isRedirectError(caught)) {
-        throw caught;
-      }
+      completeClientSignIn({ redirectTo });
+    } catch {
       setError('Sign in failed unexpectedly. Please try again.');
       setLoading(false);
     }

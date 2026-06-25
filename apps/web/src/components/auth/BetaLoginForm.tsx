@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { finalizeSignInAction, prepareBetaTesterAction } from '@/lib/auth/actions';
+import { prepareBetaTesterAction } from '@/lib/auth/actions';
+import { completeClientSignIn } from '@/lib/auth/complete-client-sign-in';
 import { signInOnClient } from '@/lib/auth/client-sign-in';
-import { isRedirectError } from '@/lib/auth/is-redirect-error';
 import { Alert, Button, Input } from '@/components/ui';
 
 export function BetaLoginForm() {
@@ -49,11 +49,8 @@ export function BetaLoginForm() {
         }
       }
 
-      await finalizeSignInAction(redirectTo, label || null);
-    } catch (caught) {
-      if (isRedirectError(caught)) {
-        throw caught;
-      }
+      completeClientSignIn({ redirectTo, fieldTestLabel: label || null });
+    } catch {
       setError('Sign in failed unexpectedly. Please try again.');
       setLoading(false);
     }
