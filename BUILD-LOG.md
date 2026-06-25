@@ -62,6 +62,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | STEP-055 | 2026-06-25 | B | MEC-V1-S023 — AI category suggestions on receipt review | `af9d59a` | [STEP-055](docs/build-steps/STEP-055-mec-v1-s023-category-suggestions.md) |
 | STEP-056 | 2026-06-25 | B | MEC-V1-S024 — Client & project modules | `2842037` | [STEP-056](docs/build-steps/STEP-056-mec-v1-s024-client-projects.md) |
+| STEP-057 | 2026-06-25 | B | MEC-V1-S025 — AI feedback & history (V1.2) | — | [STEP-057](docs/build-steps/STEP-057-mec-v1-s025-ai-feedback.md) |
 
 ---
 
@@ -69,8 +70,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 56 |
-| Current phase | **V1.1 complete** — V1.2 AI feedback next |
+| Steps completed | 57 |
+| Current phase | **V1.2 complete** |
 | Latest tag | `v1.0.0` |
 
 ---

@@ -5,8 +5,9 @@ import {
   pickDuplicateMatches,
   type DuplicateMatch,
 } from '@/lib/ai/duplicate-detection';
-import { NotFoundError, DuplicateReceiptDetectedError } from '@/lib/api/response';
+import { DuplicateReceiptDetectedError, NotFoundError } from '@/lib/api/response';
 import { prisma } from '@/lib/db/prisma';
+import { logAIInteraction } from '@/server/services/ai-feedback.service';
 import { getOwnedReceipt } from '@/server/services/receipt.service';
 
 const activeReceipt = { recordStatus: 'active' as const };
@@ -138,6 +139,16 @@ export async function resolveDuplicateSuggestion(
   receiptId: string,
   status: 'accepted' | 'dismissed'
 ) {
+  const suggestion = await prisma.aISuggestion.findFirst({
+    where: {
+      userId,
+      entityType: 'receipt',
+      entityId: receiptId,
+      suggestionType: 'duplicate_receipt',
+      status: 'pending',
+    },
+  });
+
   await prisma.aISuggestion.updateMany({
     where: {
       userId,
@@ -151,6 +162,18 @@ export async function resolveDuplicateSuggestion(
       resolvedAt: new Date(),
     },
   });
+
+  if (suggestion) {
+    await logAIInteraction(userId, {
+      suggestionId: suggestion.id,
+      interactionType: 'duplicate_receipt',
+      entityType: 'receipt',
+      entityId: receiptId,
+      outcome: status === 'accepted' ? 'accepted' : 'dismissed',
+      accepted: status === 'accepted',
+      metadata: { resolution: status },
+    });
+  }
 }
 
 export async function getPendingDuplicateMatches(userId: string, receiptId: string) {

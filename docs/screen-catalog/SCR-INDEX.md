@@ -49,7 +49,7 @@ Update **Dev Status** and **QA Status** columns as screens ship.
 | SCR-038 | Client Detail | `/clients/[id]` | `/clients/[id]` | 2 | ☑ | ◐ |
 | SCR-039 | Project Detail | `/clients/[id]/projects/[pid]` | `/clients/[id]/projects/[pid]` | 2 | ☑ | ◐ |
 | SCR-040 | AI Suggestions | `/ai/suggestions` | — | 4 | ☐ | ☐ |
-| SCR-041 | AI History | `/ai/history` | — | 4 | ☐ | ☐ |
+| SCR-041 | AI History | `/ai/history` | `/ai/history` | 4 | ☑ | ◐ |
 | SCR-042 | Notification Center | `/notifications` | — | 7 | ☐ | ☐ |
 | SCR-043 | Global Search | `/search` | — | 3 | ☐ | ☐ |
 | SCR-044 | Subscription | `/settings/billing` | `/billing` | 6 | ☑ | ◐ |

@@ -9,6 +9,7 @@ import { buildCategorySuggestion } from '@/lib/ai/category-intelligence';
 import { classifyCategoryWithLlm } from '@/lib/ai/category-classify';
 import { NotFoundError } from '@/lib/api/response';
 import { prisma } from '@/lib/db/prisma';
+import { logAIInteraction } from '@/server/services/ai-feedback.service';
 import { getOwnedReceipt } from '@/server/services/receipt.service';
 
 const activeExpense = { recordStatus: 'active' as const };
@@ -176,10 +177,22 @@ export async function resolveCategorySuggestion(
   receiptId: string,
   chosenCategorySlug: string
 ) {
-  const pending = await getPendingCategorySuggestion(userId, receiptId);
-  if (!pending) return;
+  const suggestion = await prisma.aISuggestion.findFirst({
+    where: {
+      userId,
+      entityType: 'receipt',
+      entityId: receiptId,
+      suggestionType: 'category',
+      status: 'pending',
+    },
+  });
 
-  const status = pending.primary.slug === chosenCategorySlug ? 'accepted' : 'dismissed';
+  const pending = await getPendingCategorySuggestion(userId, receiptId);
+  if (!suggestion && !pending) return;
+
+  const suggestedSlug = pending?.primary.slug;
+  const accepted = suggestedSlug === chosenCategorySlug;
+  const status = accepted ? 'accepted' : 'dismissed';
 
   await prisma.aISuggestion.updateMany({
     where: {
@@ -194,6 +207,22 @@ export async function resolveCategorySuggestion(
       resolvedAt: new Date(),
     },
   });
+
+  if (suggestion) {
+    await logAIInteraction(userId, {
+      suggestionId: suggestion.id,
+      interactionType: 'category',
+      entityType: 'receipt',
+      entityId: receiptId,
+      outcome: accepted ? 'accepted' : 'corrected',
+      accepted,
+      confidence: pending?.primary.confidence,
+      metadata: {
+        suggestedSlug,
+        chosenCategorySlug,
+      },
+    });
+  }
 }
 
 export async function getCategorySuggestionForReceipt(

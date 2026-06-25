@@ -31,6 +31,18 @@ export default async function SettingsPage() {
 
       <Card>
         <CardHeader>
+          <CardTitle>AI & suggestions</CardTitle>
+          <CardDescription>Review past OCR runs and suggestion outcomes.</CardDescription>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <Link href="/ai/history" className="text-body font-medium text-primary hover:underline">
+            AI history →
+          </Link>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
           <CardTitle>Businesses & vehicles</CardTitle>
           <CardDescription>Manage profiles used for trips and reports.</CardDescription>
         </CardHeader>

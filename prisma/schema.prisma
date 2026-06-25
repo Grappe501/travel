@@ -138,6 +138,13 @@ enum SuggestionStatus {
   dismissed
 }
 
+enum AIInteractionOutcome {
+  accepted
+  rejected
+  dismissed
+  corrected
+}
+
 enum BusinessMemberRole {
   owner
   admin
@@ -213,6 +220,7 @@ model UserProfile {
   fileAssets     FileAsset[]
   clients        Client[]
   projects       Project[]
+  aiInteractionLogs AIInteractionLog[]
 
   @@index([email])
   @@map("profiles")
@@ -615,9 +623,34 @@ model AISuggestion {
   resolvedAt      DateTime?        @map("resolved_at")
 
   user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  interactionLogs AIInteractionLog[]
 
   @@index([userId, status])
   @@map("ai_suggestions")
+}
+
+model AIInteractionLog {
+  id              String               @id @default(uuid()) @db.Uuid
+  userId          String               @map("user_id") @db.Uuid
+  suggestionId    String?              @map("suggestion_id") @db.Uuid
+  interactionType String               @map("interaction_type")
+  entityType      String?              @map("entity_type")
+  entityId        String?              @map("entity_id") @db.Uuid
+  stage           String?
+  outcome         AIInteractionOutcome
+  accepted        Boolean?
+  confidence      Decimal?             @db.Decimal(3, 2)
+  engineVersion   String?              @map("engine_version")
+  processingMs    Int?                 @map("processing_ms")
+  metadata        Json?
+  createdAt       DateTime             @default(now()) @map("created_at")
+
+  user       UserProfile   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  suggestion AISuggestion? @relation(fields: [suggestionId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([suggestionId])
+  @@map("ai_interaction_log")
 }
 
 model FileAsset {

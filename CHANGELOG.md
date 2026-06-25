@@ -16,7 +16,8 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **AI duplicate detection (MEC-V1-S022)** — Hash + fuzzy duplicate warnings on receipt review — STEP-054
 - **AI category suggestions (MEC-V1-S023)** — Layered category intelligence on receipt review — STEP-055
 - **Client & project modules (MEC-V1-S024)** — CRUD, trip tagging, SCR-037–039 — STEP-056
-- V1.2 backlog: AI feedback (API-AI-003)
+- **AI feedback & history (MEC-V1-S025)** — `ai_interaction_log`, API-AI-003, SCR-041 — STEP-057
+- Post-V1.2 backlog: notifications, global search
 
 ---
 

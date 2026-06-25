@@ -64,14 +64,14 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 | API-RPT-004 | List Reports | GET | reports | `GET /api/reports` (via POST list) | report | user | ☑ | ☑ | ☑ |
 | API-DSH-001 | Dashboard Summary | GET | dashboard_summary RPC | `/dashboard` server page | dashboard | user | ☑ | ◐ | ☑ |
 | API-DSH-002 | Recent Activity | GET | business_events | — | dashboard | user | ☐ | ☐ | ☑ |
-| API-DSH-003 | AI Insights | GET | ai-suggestions | — | dashboard | user | ☐ | ☐ | ☑ |
+| API-DSH-003 | AI Insights | GET | ai-suggestions | `GET /api/ai/history` | dashboard | user | ☑ | ☐ | ☑ |
 | API-NOT-001 | List Notifications | GET | notifications | — | notification | user | ☐ | ☐ | ☑ |
 | API-NOT-002 | Mark Read | PATCH | notifications | — | notification | user | ☐ | ☐ | ☑ |
 | API-NOT-003 | Preferences | PATCH | profiles | — | notification | user | ☐ | ☐ | ☑ |
 | API-SRH-001 | Unified Search | GET | search | — | search | user | ☐ | ☐ | ☑ |
 | API-AI-001 | Category Suggestion | POST | suggest-category | `POST /api/receipts/[id]/suggest-category` | ai | user | ☑ | ☑ | ☑ |
 | API-AI-002 | Duplicate Detection | POST | check-duplicate | `POST /api/receipts/[id]/check-duplicate` | ai | user | ☑ | ☑ | ☑ |
-| API-AI-003 | AI Feedback | POST | ai_interaction_log | — | ai | user | ☐ | ☐ | ☑ |
+| API-AI-003 | AI Feedback | POST | ai_interaction_log | `POST /api/ai/feedback` | ai | user | ☑ | ☑ | ☑ |
 | API-EXP-010 | Account Export | POST | export-account | — | export | user | ☐ | ☐ | ☑ |
 | API-FIL-001 | Signed URL | POST | storage | `GET /api/receipts/[id]/file` | file | user | ☑ | ◐ | ☑ |
 | API-FIL-002 | Delete File | DELETE | storage | — | file | user | ☐ | ☐ | ☑ |
@@ -81,6 +81,6 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 
 **Onboarding (V1):** `GET/POST /api/onboarding/status|complete|skip` — not in Volume 12 catalog; covered by SCR-008.
 
-**V1 summary:** 50 Dev ☑ · 32 Tests ☑ · 28 Tests ◐ · 21 not implemented (V1.2+)
+**V1 summary:** 52 Dev ☑ · 34 Tests ☑ · 28 Tests ◐ · 19 not implemented (post-V1.2)
 
 **Tests legend:** ☑ = unit, integration, or SEC test; ◐ = E2E or partial coverage.

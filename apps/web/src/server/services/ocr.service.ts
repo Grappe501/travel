@@ -9,6 +9,7 @@ import { prisma } from '@/lib/db/prisma';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { createExpenseFromReceipt } from '@/server/services/expense.service';
 import { assertNoBlockingDuplicates, resolveDuplicateSuggestion } from '@/server/services/duplicate-detection.service';
+import { logAIInteraction } from '@/server/services/ai-feedback.service';
 import { resolveCategorySuggestion, suggestCategoryForReceipt } from '@/server/services/category-suggestion.service';
 import { getOwnedReceipt, getReceiptSignedUrl } from '@/server/services/receipt.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
@@ -232,6 +233,21 @@ export async function runReceiptOcr(userId: string, receiptId: string) {
     });
 
     void suggestCategoryForReceipt(userId, receiptId).catch(() => undefined);
+
+    void logAIInteraction(userId, {
+      interactionType: 'ocr',
+      entityType: 'receipt',
+      entityId: receiptId,
+      stage: 'ocr',
+      outcome: 'accepted',
+      accepted: true,
+      confidence: overallConfidence ?? undefined,
+      engineVersion: model,
+      metadata: {
+        merchant: extracted.merchant,
+        suggestedCategory: extracted.category_slug,
+      },
+    }).catch(() => undefined);
 
     return serializeReceiptWithOcr(updated);
   } catch (error) {

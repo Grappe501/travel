@@ -36,4 +36,4 @@ pnpm test            # pass
 
 ## Next step
 
-V1.2 — AI feedback (API-AI-003, MRID backlog)
+Post-V1.2 backlog — notifications, global search, attach-receipt UI
