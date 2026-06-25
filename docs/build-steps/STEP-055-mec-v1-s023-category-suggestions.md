@@ -36,4 +36,4 @@ pnpm test            # pass (includes category-intelligence.test.ts)
 
 ## Next step
 
-V1.1 backlog — client/project modules or AI feedback (API-AI-003)
+V1.2 — AI feedback (API-AI-003)

@@ -11,6 +11,7 @@ import type { TripEndInput, TripStartInput, TripUpdateInput } from '@mileage-cop
 import { ConflictError, NotFoundError, ValidationError } from '@/lib/api/response';
 import { resolveEffectiveRate } from '@/server/services/mileage.service';
 import { getOwnedBusiness } from '@/server/services/business.service';
+import { resolveClientProjectForTrip } from '@/server/services/client.service';
 import { getOwnedVehicle } from '@/server/services/vehicle.service';
 import { prisma } from '@/lib/db/prisma';
 import {
@@ -35,6 +36,10 @@ export function serializeTrip(trip: TripWithRelations) {
     status: trip.status,
     purpose: trip.purpose,
     destination: trip.destination,
+    clientId: trip.clientId,
+    projectId: trip.projectId,
+    clientName: trip.clientName,
+    projectName: trip.projectName,
     startLocation: trip.startLocation,
     endLocation: trip.endLocation,
     startOdometer: trip.startOdometer ? Number(trip.startOdometer) : null,
@@ -181,6 +186,13 @@ export async function startTrip(userId: string, input: TripStartInput) {
   await getOwnedVehicle(userId, data.vehicleId);
   await assertCanStartTrip(userId);
 
+  const clientProject = await resolveClientProjectForTrip(
+    userId,
+    data.businessId,
+    data.clientId,
+    data.projectId
+  );
+
   const trip = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     await incrementTripUsage(userId, tx);
 
@@ -193,6 +205,10 @@ export async function startTrip(userId: string, input: TripStartInput) {
         destination: data.destination,
         startLocation: data.startLocation,
         startOdometer: data.startOdometer,
+        clientId: clientProject.clientId,
+        projectId: clientProject.projectId,
+        clientName: clientProject.clientName,
+        projectName: clientProject.projectName,
         status: 'active',
         startedAt: new Date(),
       },
@@ -314,6 +330,16 @@ export async function updateTrip(userId: string, tripId: string, input: TripUpda
 
   const beforeFinancial = pickFinancialSnapshot(trip);
 
+  let clientProjectUpdate: Awaited<ReturnType<typeof resolveClientProjectForTrip>> | null = null;
+  if (data.clientId !== undefined || data.projectId !== undefined) {
+    clientProjectUpdate = await resolveClientProjectForTrip(
+      userId,
+      trip.businessId,
+      data.clientId ?? trip.clientId,
+      data.projectId ?? trip.projectId
+    );
+  }
+
   const updated = await prisma.trip.update({
     where: { id: tripId },
     data: {
@@ -324,6 +350,14 @@ export async function updateTrip(userId: string, tripId: string, input: TripUpda
       ...(data.notes !== undefined ? { notes: data.notes } : {}),
       ...(data.startOdometer !== undefined ? { startOdometer: data.startOdometer } : {}),
       ...(data.endOdometer !== undefined ? { endOdometer: data.endOdometer } : {}),
+      ...(clientProjectUpdate
+        ? {
+            clientId: clientProjectUpdate.clientId,
+            projectId: clientProjectUpdate.projectId,
+            clientName: clientProjectUpdate.clientName,
+            projectName: clientProjectUpdate.projectName,
+          }
+        : {}),
       miles,
       reimbursementAmount,
       grandTotal,

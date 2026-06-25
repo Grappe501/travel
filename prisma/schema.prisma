@@ -165,6 +165,12 @@ enum MileageRateType {
   custom
 }
 
+enum ProjectStatus {
+  active
+  completed
+  archived
+}
+
 // --- Models ---
 
 model UserProfile {
@@ -205,6 +211,8 @@ model UserProfile {
   businessEvents BusinessEvent[]
   aiSuggestions  AISuggestion[]
   fileAssets     FileAsset[]
+  clients        Client[]
+  projects       Project[]
 
   @@index([email])
   @@map("profiles")
@@ -274,7 +282,9 @@ model Business {
   receipts        Receipt[]
   expenses        Expense[]
   reports         Report[]
-  businessEvents  BusinessEvent[]
+  businessEvents BusinessEvent[]
+  clients        Client[]
+  projects       Project[]
 
   @@index([userId])
   @@map("businesses")
@@ -346,11 +356,62 @@ model MileageRate {
   @@map("mileage_rates")
 }
 
+model Client {
+  id           String       @id @default(uuid()) @db.Uuid
+  userId       String       @map("user_id") @db.Uuid
+  businessId   String?      @map("business_id") @db.Uuid
+  name         String
+  phone        String?
+  email        String?
+  notes        String?
+  recordStatus RecordStatus @default(active) @map("record_status")
+  deletedAt    DateTime?    @map("deleted_at")
+  version      Int          @default(1)
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  user     UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business?   @relation(fields: [businessId], references: [id], onDelete: SetNull)
+  projects Project[]
+  trips    Trip[]
+
+  @@index([userId, name])
+  @@index([businessId])
+  @@map("clients")
+}
+
+model Project {
+  id           String         @id @default(uuid()) @db.Uuid
+  userId       String         @map("user_id") @db.Uuid
+  businessId   String         @map("business_id") @db.Uuid
+  clientId     String?        @map("client_id") @db.Uuid
+  name         String
+  status       ProjectStatus  @default(active)
+  budget       Decimal?       @db.Decimal(12, 2)
+  notes        String?
+  recordStatus RecordStatus   @default(active) @map("record_status")
+  deletedAt    DateTime?      @map("deleted_at")
+  version      Int            @default(1)
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  user     UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business    @relation(fields: [businessId], references: [id], onDelete: Restrict)
+  client   Client?     @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  trips    Trip[]
+
+  @@index([clientId])
+  @@index([businessId, status])
+  @@map("projects")
+}
+
 model Trip {
   id                  String              @id @default(uuid()) @db.Uuid
   userId              String              @map("user_id") @db.Uuid
   businessId          String              @map("business_id") @db.Uuid
   vehicleId           String              @map("vehicle_id") @db.Uuid
+  clientId            String?             @map("client_id") @db.Uuid
+  projectId           String?             @map("project_id") @db.Uuid
   clientName          String?             @map("client_name")
   projectName         String?             @map("project_name")
   status              TripStatus          @default(draft)
@@ -379,6 +440,8 @@ model Trip {
   user      UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
   business  Business    @relation(fields: [businessId], references: [id], onDelete: Restrict)
   vehicle   Vehicle     @relation(fields: [vehicleId], references: [id], onDelete: Restrict)
+  client    Client?     @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  project   Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
   receipts  Receipt[]
   expenses  Expense[]
 

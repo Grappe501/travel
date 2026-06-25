@@ -8,6 +8,7 @@ export * from './report';
 export * from './billing';
 export * from './expense';
 export * from './ai';
+export * from './client-project';
 
 export const businessCreateSchema = z.object({
   name: z.string().min(1).max(100),
@@ -37,6 +38,8 @@ export const tripStartSchema = z.object({
   destination: z.string().max(500).optional(),
   startLocation: z.string().max(500).optional(),
   startOdometer: z.number().nonnegative().optional(),
+  clientId: z.string().uuid().optional(),
+  projectId: z.string().uuid().optional(),
 });
 
 export type TripStartInput = z.infer<typeof tripStartSchema>;

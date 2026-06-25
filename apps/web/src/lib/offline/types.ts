@@ -14,6 +14,8 @@ export type TripStartPayload = {
   destination?: string;
   startLocation?: string;
   startOdometer?: number;
+  clientId?: string;
+  projectId?: string;
 };
 
 export type TripEndPayload = {

@@ -41,6 +41,9 @@ export default async function SettingsPage() {
           <Link href="/vehicles" className="text-body font-medium text-primary hover:underline">
             Vehicles →
           </Link>
+          <Link href="/clients" className="text-body font-medium text-primary hover:underline">
+            Clients & projects →
+          </Link>
         </CardContent>
       </Card>
     </DashboardShell>

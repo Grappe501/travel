@@ -15,7 +15,8 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Offline sync (MEC-V1-S021)** — IndexedDB queue, offline trip/receipt capture — STEP-053
 - **AI duplicate detection (MEC-V1-S022)** — Hash + fuzzy duplicate warnings on receipt review — STEP-054
 - **AI category suggestions (MEC-V1-S023)** — Layered category intelligence on receipt review — STEP-055
-- Post-GA backlog: client/project modules, AI feedback (API-AI-003)
+- **Client & project modules (MEC-V1-S024)** — CRUD, trip tagging, SCR-037–039 — STEP-056
+- V1.2 backlog: AI feedback (API-AI-003)
 
 ---
 

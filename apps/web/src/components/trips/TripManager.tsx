@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useOffline } from '@/components/offline/OfflineProvider';
 import { Alert, Badge, Button, ButtonLink, Card, CardContent, Input, Select } from '@/components/ui';
 import { enqueueOfflineTripStart } from '@/lib/offline/queue';
 import { isBrowserOnline } from '@/lib/offline/connectivity';
-import type { SerializedBusiness, SerializedTrip, SerializedVehicle } from '@/lib/types/core';
+import type { SerializedBusiness, SerializedClient, SerializedProject, SerializedTrip, SerializedVehicle } from '@/lib/types/core';
 
 export function ActiveTripBanner({ trip }: { trip: SerializedTrip }) {
   return (
@@ -20,6 +20,8 @@ export function ActiveTripBanner({ trip }: { trip: SerializedTrip }) {
           </div>
           <p className="text-caption text-muted">
             {trip.vehicleNickname} · {trip.businessName}
+            {trip.clientName ? ` · ${trip.clientName}` : ''}
+            {trip.projectName ? ` / ${trip.projectName}` : ''}
             {trip.startOdometer !== null ? ` · ${trip.startOdometer.toLocaleString()} mi start` : ''}
           </p>
         </div>
@@ -47,8 +49,39 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
   const [destination, setDestination] = useState('');
   const [startLocation, setStartLocation] = useState('');
   const [startOdometer, setStartOdometer] = useState('');
+  const [clientId, setClientId] = useState('');
+  const [projectId, setProjectId] = useState('');
+  const [clients, setClients] = useState<SerializedClient[]>([]);
+  const [projects, setProjects] = useState<SerializedProject[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!businessId) {
+      setClients([]);
+      return;
+    }
+
+    void fetch(`/api/clients?businessId=${businessId}`)
+      .then((response) => response.json())
+      .then((result) => {
+        setClients((result.data ?? []) as SerializedClient[]);
+      });
+  }, [businessId]);
+
+  useEffect(() => {
+    setProjectId('');
+    if (!clientId) {
+      setProjects([]);
+      return;
+    }
+
+    void fetch(`/api/projects?clientId=${clientId}`)
+      .then((response) => response.json())
+      .then((result) => {
+        setProjects((result.data ?? []) as SerializedProject[]);
+      });
+  }, [clientId]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -62,6 +95,8 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
       ...(destination ? { destination } : {}),
       ...(startLocation ? { startLocation } : {}),
       ...(startOdometer ? { startOdometer: Number(startOdometer) } : {}),
+      ...(clientId ? { clientId } : {}),
+      ...(projectId ? { projectId } : {}),
     };
 
     if (!isBrowserOnline()) {
@@ -152,6 +187,32 @@ export function TripStartForm({ businesses, vehicles, hasActiveTrip }: TripStart
               label: `${v.nickname}${v.currentOdometer !== null ? ` (${v.currentOdometer.toLocaleString()} mi)` : ''}`,
             }))}
           />
+
+          {clients.length > 0 ? (
+            <Select
+              label="Client (optional)"
+              id="trip-client"
+              value={clientId}
+              onChange={(e) => setClientId(e.target.value)}
+              options={[
+                { value: '', label: 'No client' },
+                ...clients.map((c) => ({ value: c.id, label: c.name })),
+              ]}
+            />
+          ) : null}
+
+          {projects.length > 0 ? (
+            <Select
+              label="Project (optional)"
+              id="trip-project"
+              value={projectId}
+              onChange={(e) => setProjectId(e.target.value)}
+              options={[
+                { value: '', label: 'No project' },
+                ...projects.map((p) => ({ value: p.id, label: p.name })),
+              ]}
+            />
+          ) : null}
 
           <Input
             label="Purpose"
@@ -463,6 +524,18 @@ export function TripDetailCard({ trip }: { trip: SerializedTrip }) {
             <dt className="text-caption text-muted">Vehicle</dt>
             <dd>{trip.vehicleNickname}</dd>
           </div>
+          {trip.clientName ? (
+            <div>
+              <dt className="text-caption text-muted">Client</dt>
+              <dd>{trip.clientName}</dd>
+            </div>
+          ) : null}
+          {trip.projectName ? (
+            <div>
+              <dt className="text-caption text-muted">Project</dt>
+              <dd>{trip.projectName}</dd>
+            </div>
+          ) : null}
           {trip.destination ? (
             <div>
               <dt className="text-caption text-muted">Destination</dt>

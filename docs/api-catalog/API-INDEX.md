@@ -31,11 +31,11 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 | API-VEH-002 | Create Vehicle | POST | vehicles | `POST /api/vehicles` | vehicle | user | ☑ | ◐ | ☑ |
 | API-VEH-003 | Update Vehicle | PATCH | vehicles | `PATCH /api/vehicles/[id]` | vehicle | user | ☑ | ☐ | ☑ |
 | API-VEH-004 | Odometer History | GET | vehicle_odometer_history | — | vehicle | user | ☐ | ☐ | ☑ |
-| API-CLI-001 | List Clients | GET | clients | — | client | user | ☐ | ☐ | ☑ |
-| API-CLI-002 | Create Client | POST | clients | — | client | user | ☐ | ☐ | ☑ |
-| API-CLI-003 | Update Client | PATCH | clients | — | client | user | ☐ | ☐ | ☑ |
-| API-PRJ-001 | List Projects | GET | projects | — | project | user | ☐ | ☐ | ☑ |
-| API-PRJ-002 | Create Project | POST | projects | — | project | user | ☐ | ☐ | ☑ |
+| API-CLI-001 | List Clients | GET | clients | `GET /api/clients` | client | user | ☑ | ☑ | ☑ |
+| API-CLI-002 | Create Client | POST | clients | `POST /api/clients` | client | user | ☑ | ☑ | ☑ |
+| API-CLI-003 | Update Client | PATCH | clients | `PATCH /api/clients/[id]` | client | user | ☑ | ☐ | ☑ |
+| API-PRJ-001 | List Projects | GET | projects | `GET /api/projects` | project | user | ☑ | ☑ | ☑ |
+| API-PRJ-002 | Create Project | POST | projects | `POST /api/projects` | project | user | ☑ | ☑ | ☑ |
 | API-TRIP-001 | Start Trip | POST | trips | `POST /api/trips/start` | trip | user | ☑ | ☑ | ☑ |
 | API-TRIP-002 | End Trip | PATCH | complete_trip RPC | `POST /api/trips/[id]/end` | trip | user | ☑ | ☑ | ☑ |
 | API-TRIP-003 | Edit Trip | PATCH | trips | `PATCH /api/trips/[id]` | trip | user | ☑ | ☑ | ☑ |
@@ -81,6 +81,6 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 
 **Onboarding (V1):** `GET/POST /api/onboarding/status|complete|skip` — not in Volume 12 catalog; covered by SCR-008.
 
-**V1 summary:** 45 Dev ☑ · 29 Tests ☑ · 28 Tests ◐ · 26 not implemented (post-GA / V1.1)
+**V1 summary:** 50 Dev ☑ · 32 Tests ☑ · 28 Tests ◐ · 21 not implemented (V1.2+)
 
 **Tests legend:** ☑ = unit, integration, or SEC test; ◐ = E2E or partial coverage.

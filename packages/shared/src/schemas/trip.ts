@@ -9,6 +9,8 @@ export const tripUpdateSchema = z
     startOdometer: z.number().nonnegative().optional(),
     endOdometer: z.number().nonnegative().optional(),
     notes: z.string().max(2000).optional(),
+    clientId: z.string().uuid().nullable().optional(),
+    projectId: z.string().uuid().nullable().optional(),
   })
   .refine(
     (data) => {

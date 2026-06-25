@@ -27,7 +27,8 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S021 | Offline sync | BUILD-006 | WAVE-003 ext | 000016–000017 | STEP-053 | ☑ Complete |
 | MEC-V1-S022 | AI duplicate detection | BUILD-012 | WAVE-008 | 000019 | STEP-054 | ☑ Complete |
 | MEC-V1-S023 | AI category suggestions | BUILD-015 | WAVE-008 | 000018 | STEP-055 | ☑ Complete |
+| MEC-V1-S024 | Client & project modules | BUILD-016 | WAVE-002 ext | — | STEP-056 | ☑ Complete |
 
-**Post-GA backlog:** client/project modules · AI feedback (API-AI-003)
+**V1.2 backlog:** AI feedback (API-AI-003)
 
 Prompts: [slices/](slices/)
