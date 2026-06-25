@@ -43,6 +43,7 @@
 | **13** | [Component State Machines & Workflow Logic](13-state-machines.md) | SM-IDs — trips, receipts, OCR, sync, billing, screen states |
 | **14** | [Analytics, Metrics & Business Intelligence](14-analytics.md) | EVT-IDs, North Star, funnels, dashboards, privacy rules |
 | **15** | [Communication & Engagement Engine](15-communication-engine.md) | MSG-IDs, channels, timing, lifecycle, non-negotiables |
+| **16** | [AI Operating System & Prompt Registry](16-ai-operating-system.md) | ENG/PRM-IDs, golden set, maturity roadmap, AI Constitution |
 
 ---
 
@@ -56,6 +57,7 @@
 | [SM-INDEX.md](../state-machines/SM-INDEX.md) | State machine tracker (Volume 13) |
 | [EVENT-REGISTRY.md](../analytics/EVENT-REGISTRY.md) | Analytics event registry (Volume 14) |
 | [MSG-INDEX.md](../communications/MSG-INDEX.md) | Communication template registry (Volume 15) |
+| [PROMPT-INDEX.md](../ai-catalog/PROMPT-INDEX.md) | AI prompt registry (Volume 16) |
 | [Root README](../../README.md) | Project overview and quick start |
 
 ---

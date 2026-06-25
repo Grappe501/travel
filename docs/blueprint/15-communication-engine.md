@@ -707,4 +707,4 @@ This guides every email, push, in-app alert, reminder, and AI message the produc
 
 ---
 
-*Previous: [Volume 14 — Analytics](14-analytics.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 14 — Analytics](14-analytics.md) | Next: [Volume 16 — AI Operating System](16-ai-operating-system.md)*

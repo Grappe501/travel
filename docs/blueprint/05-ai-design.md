@@ -546,6 +546,8 @@ Improve OCR/classification from corrections — with consent.
 
 # Chapter 18 — Prompt Library
 
+> **Canonical specification:** [Volume 16 — AI Operating System & Prompt Registry](16-ai-operating-system.md) · [PROMPT-INDEX](../ai-catalog/PROMPT-INDEX.md)
+
 **No magic prompts in application code.** All prompts live in `supabase/functions/_shared/prompts/` with version headers.
 
 ## Prompt Registry
@@ -823,6 +825,7 @@ Orchestrator chains: OCR → Classification → FR-403 association → trip tota
 | Copilot UX | [Volume 2 — Ch. 11](02-user-experience.md) |
 | Security | [Volume 8](08-security.md) |
 | QA gates | [Volume 9](09-testing-quality.md) |
+| AI OS & prompts | [Volume 16](16-ai-operating-system.md) |
 
 ---
 

@@ -40,4 +40,4 @@ Add **Volume 15 — Communication, Notification & Engagement Engine** — MSG-ID
 
 ## Next step
 
-Blueprint sign-off → **STEP-019 Phase A: Repo scaffold**
+Blueprint sign-off → **STEP-020 Phase A: Repo scaffold**

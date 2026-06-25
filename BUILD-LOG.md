@@ -23,6 +23,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-016 | 2026-06-24 | Blueprint | Volume 13 — State Machines & Workflow Logic (10 SM-IDs) | `0ea6a9a` | [STEP-016](docs/build-steps/STEP-016-volume-13-state-machines.md) |
 | STEP-017 | 2026-06-24 | Blueprint | Volume 14 — Analytics & Business Intelligence (EVT registry) | `d88ea72` | [STEP-017](docs/build-steps/STEP-017-volume-14-analytics.md) |
 | STEP-018 | 2026-06-24 | Blueprint | Volume 15 — Communication & Engagement Engine (MSG registry) | `46a931c` | [STEP-018](docs/build-steps/STEP-018-volume-15-communication.md) |
+| STEP-019 | 2026-06-24 | Blueprint | Volume 16 — AI Operating System (ENG/PRM registry) | *pending* | [STEP-019](docs/build-steps/STEP-019-volume-16-ai-os.md) |
 
 ---
 
@@ -30,7 +31,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 18 |
+| Steps completed | 19 |
 | Current phase | Blueprint v1.0 complete → sign-off → Phase A |
 | Latest tag | `v0.0.0` (after push) |
 
