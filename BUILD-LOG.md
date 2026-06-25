@@ -14,7 +14,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-007 | 2026-06-24 | Blueprint | Volume 4 rewrite — Data Architecture (26 chapters) | `edf84cc` | [STEP-007](docs/build-steps/STEP-007-volume-4-data.md) |
 | STEP-008 | 2026-06-24 | Blueprint | Volume 5 rewrite — AI & Intelligence Architecture (25 chapters) | `0f7ca9c` | [STEP-008](docs/build-steps/STEP-008-volume-5-ai.md) |
 | STEP-009 | 2026-06-24 | Blueprint | Volume 6 rewrite — Technical Architecture (33 chapters) | `e7a1a19` | [STEP-009](docs/build-steps/STEP-009-volume-6-technical.md) |
-| STEP-010 | 2026-06-24 | Blueprint | Volume 7 rewrite — Business Operations & GTM (30 chapters) | *pending* | [STEP-010](docs/build-steps/STEP-010-volume-7-business.md) |
+| STEP-010 | 2026-06-24 | Blueprint | Volume 7 rewrite — Business Operations & GTM (30 chapters) | `fe217f9` | [STEP-010](docs/build-steps/STEP-010-volume-7-business.md) |
 
 ---
 
