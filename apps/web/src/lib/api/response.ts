@@ -21,6 +21,18 @@ export class ForbiddenError extends AppError {
   }
 }
 
+export class ConflictError extends AppError {
+  constructor(message: string) {
+    super(message, 409);
+  }
+}
+
+export class ValidationError extends AppError {
+  constructor(message: string) {
+    super(message, 400);
+  }
+}
+
 export function jsonError(error: unknown) {
   if (error instanceof AppError) {
     return NextResponse.json({ error: error.message }, { status: error.status });

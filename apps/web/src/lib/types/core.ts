@@ -36,3 +36,29 @@ export type MileageSettings = {
     businessId: string | null;
   }>;
 };
+
+export type SerializedTrip = {
+  id: string;
+  businessId: string;
+  businessName: string;
+  vehicleId: string;
+  vehicleNickname: string;
+  status: string;
+  purpose: string;
+  destination: string | null;
+  startLocation: string | null;
+  endLocation: string | null;
+  startOdometer: number | null;
+  endOdometer: number | null;
+  miles: number | null;
+  mileageRate: number | null;
+  mileageRateSource: string | null;
+  reimbursementAmount: number | null;
+  expenseTotal: number | null;
+  grandTotal: number | null;
+  notes: string | null;
+  startedAt: string | null;
+  endedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};

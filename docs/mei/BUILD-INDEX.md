@@ -8,7 +8,7 @@
 | BUILD-002 | S003 | Auth + profile | WAVE-001 | MRID-000001 | STEP-035 | ☑ Complete |
 | BUILD-003 | S004 | Design system | WAVE-001 | — | STEP-036 | ☑ Complete |
 | BUILD-004 | S005 | Businesses + vehicles | WAVE-002 | 000002–000003 | STEP-037 | ☑ Complete |
-| BUILD-005 | S006 | Trip engine | WAVE-003 | 000004–000006 | STEP-038 | Backlog |
+| BUILD-005 | S006 | Trip engine | WAVE-003 | 000004–000006 | STEP-038 | ☑ Complete |
 | BUILD-006 | — | Offline sync | WAVE-003 | 000016–000017 | post-V1 | Backlog |
 | BUILD-007 | S007 | Receipt capture | WAVE-004 | 000007 | STEP-039 | Backlog |
 | BUILD-008 | S008 | OCR + review | WAVE-004 | 000008–000009 | STEP-040 | Backlog |
