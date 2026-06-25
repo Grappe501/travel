@@ -27,6 +27,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-020 | 2026-06-24 | Blueprint | Volume 17 — AdminOS (ADM registry, runbooks) | `467eaa9` | [STEP-020](docs/build-steps/STEP-020-volume-17-admin-os.md) |
 | STEP-021 | 2026-06-24 | Blueprint | Volume 18 — Mobile field experience (MOB registry) | `98916a2` | [STEP-021](docs/build-steps/STEP-021-volume-18-mobile.md) |
 | STEP-022 | 2026-06-24 | Blueprint | Volume 19 — Production SRE (OPS registry, runbooks) | `1c55681` | [STEP-022](docs/build-steps/STEP-022-volume-19-sre.md) |
+| STEP-023 | 2026-06-24 | Blueprint | Volume 20 — Product evolution roadmap (ROAD registry) | _(pending)_ | [STEP-023](docs/build-steps/STEP-023-volume-20-roadmap.md) |
+| STEP-024 | 2026-06-24 | Blueprint | Master Build Index — The Constitution | _(pending)_ | [STEP-024](docs/build-steps/STEP-024-master-build-index.md) |
 
 ---
 
@@ -34,8 +36,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 22 |
-| Current phase | Blueprint v1.0 complete → sign-off → Phase A (STEP-023) |
+| Steps completed | 24 |
+| Current phase | Blueprint complete → sign-off → Phase A (STEP-025) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---

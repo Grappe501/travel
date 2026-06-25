@@ -8,9 +8,9 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Phase: Master Blueprint (pre-code)**
+**Phase: Blueprint complete — ready for sign-off → implementation**
 
-No application code has been written yet. This repository currently contains the complete Version 1 design constitution and master build plan. Implementation begins only after blueprint sign-off.
+No application code has been written yet. This repository contains the complete **Volumes 0–20** design constitution, **[Master Build Index](docs/MASTER-BUILD-INDEX.md)** (The Constitution), and master build plan. Implementation begins after blueprint sign-off (STEP-025 Phase A).
 
 ---
 
@@ -30,9 +30,10 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 
 | Document | Purpose |
 |----------|---------|
-| [Blueprint Index](docs/blueprint/README.md) | All 10 design volumes |
+| [Master Build Index](docs/MASTER-BUILD-INDEX.md) | **The Constitution** — execution guide, registries, build order |
+| [Blueprint Index](docs/blueprint/README.md) | All 21 planning volumes (0–20) |
 | [Volume 0 — Product Doctrine](docs/blueprint/00-product-doctrine.md) | Design constitution — read first |
-| [Volume 1 — Product Vision & Strategy](docs/blueprint/01-product-vision.md) | Shared strategy for all teams |
+| [Volume 20 — Product Evolution](docs/blueprint/20-product-evolution-roadmap.md) | Version roadmap & growth strategy |
 | [Project Structure](docs/PROJECT-STRUCTURE.md) | H: drive filesystem layout |
 | [Technical Architecture & Production Infrastructure](docs/blueprint/06-technical-architecture.md) | Stack, deploy, Cursor build rules |
 

@@ -20,10 +20,12 @@
 12. **Volume 17** is *AdminOS* — the company operating system: roles, dashboards, runbooks, and internal workflows.
 13. **Volume 18** is the *Mobile Field Experience* — offline-first PWA, camera, thumb-zone UX, and the Field Productivity Standard.
 14. **Volume 19** is the *Operations Bible* — DevOps, SRE, deployments, monitoring, backups, and production readiness.
+15. **Volume 20** is the *Product Evolution Roadmap* — versions, feature admission, and strategic growth.
+16. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is *The Constitution* — execution guide, registries, build order, and status.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–19 complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–20 + Master Build Index complete (v1.0). Ready for sign-off → Phase A.
 
 ---
 
@@ -51,6 +53,9 @@
 | **17** | [Administration, Operations & Company OS (AdminOS)](17-admin-operating-system.md) | ADM-IDs, roles, dashboards, runbooks, incident response, launch checklist |
 | **18** | [Mobile Experience, Offline & Field Productivity](18-mobile-field-experience.md) | MOB-IDs, offline queue, camera, field workflows, device matrix, Field Productivity Standard |
 | **19** | [Production Operations, DevOps & SRE](19-production-sre.md) | OPS-IDs, environments, SLOs, deployment pipeline, runbooks, Reliability Standard |
+| **20** | [Product Evolution & Strategic Growth](20-product-evolution-roadmap.md) | ROAD-IDs, version strategy, feature admission, Product Evolution Standard |
+
+**Meta:** [Master Build Index — The Constitution](../MASTER-BUILD-INDEX.md) — cross-reference all volumes, registries, implementation order, build status.
 
 ---
 
@@ -69,6 +74,8 @@
 | [MOB-INDEX.md](../mobile/MOB-INDEX.md) | Mobile & field workflow registry (Volume 18) |
 | [DEVICE-MATRIX.md](../mobile/DEVICE-MATRIX.md) | Device compatibility matrix (Volume 18 Ch. 36) |
 | [OPS-INDEX.md](../ops/OPS-INDEX.md) | Operations & SRE registry (Volume 19) |
+| [ROAD-INDEX.md](../roadmap/ROAD-INDEX.md) | Product roadmap registry (Volume 20) |
+| [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) | **The Constitution** — execution guide |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
 | [Root README](../../README.md) | Project overview and quick start |
 
@@ -137,7 +144,7 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 
 | Phase | Scope | Depends on |
 |-------|-------|------------|
-| **A** | Repo scaffold, H: setup, CI, Netlify skeleton | Blueprint sign-off |
+| **A** | Repo scaffold, H: setup, CI, Netlify skeleton | Blueprint + Master Build Index sign-off |
 | **B** | Supabase schema + auth + RLS | Phase A |
 | **C** | Core trip flow (start → expense → end) | Phase B |
 | **D** | Receipt OCR pipeline | Phase C |
@@ -169,4 +176,4 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 | Product | | | ☐ |
 | Engineering | | | ☐ |
 
-Once signed off, proceed to **Phase A: Repo scaffold**.
+Once signed off (including [Master Build Index](../MASTER-BUILD-INDEX.md)), proceed to **Phase A: Repo scaffold** (STEP-025).
