@@ -664,9 +664,10 @@ When Volume 23 is implemented, Mileage & Expense Copilot has a documented engine
 | First build | 21 |
 | Platform | 22 |
 | **Factory** | **23** |
+| **Identity** | **24** |
 
-**Execute:** [Master Build Index](../MASTER-BUILD-INDEX.md) · **Build:** [Volume 21](21-construction-manual.md) WAVE-001 · **Every feature after:** this volume.
+**Execute:** [Master Execution Index](../MASTER-BUILD-INDEX.md) · **Build:** [Volume 21](21-construction-manual.md) WAVE-001 · **Every feature:** Vol 23 · **Every design:** Vol 24.
 
 ---
 
-*Previous: [Volume 22 — Platform](22-platform-architecture.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*
+*Previous: [Volume 22 — Platform](22-platform-architecture.md) | Next: [Volume 24 — Constitution](24-product-constitution.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*

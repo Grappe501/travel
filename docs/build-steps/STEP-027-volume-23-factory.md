@@ -50,4 +50,4 @@ Add **Volume 23 — Product Factory, Continuous Development & Engineering Excell
 
 ## Next step
 
-Blueprint sign-off → **STEP-028 Phase A / WAVE-001**
+**STEP-028** — Volume 24 Product Constitution

@@ -24,11 +24,12 @@
 16. **Volume 21** is the *Construction Manual* — WAVE-IDs, first build, AI handoff protocol.
 17. **Volume 22** is the *Platform Constitution* — PLT-IDs, 10-year evolution without rewrite.
 18. **Volume 23** is the *Product Factory* — FCT-IDs, every feature from idea to improvement.
-19. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is the *control tower* — registries, traceability, status.
+19. **Volume 24** is the *Product Constitution* — DNA-IDs, design language, permanent identity.
+20. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is the *master execution index* — registries, traceability, status.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–23 + Master Build Index complete (v1.3). Ready for sign-off → WAVE-001 / Phase A.
+**Blueprint status:** Volumes 0–24 + Master Execution Index complete (v1.4). **Blueprint phase complete.** Sign off → WAVE-001 / Phase A.
 
 ---
 
@@ -59,9 +60,10 @@
 | **20** | [Product Evolution & Strategic Growth](20-product-evolution-roadmap.md) | ROAD-IDs, version strategy, feature admission, Product Evolution Standard |
 | **21** | [Construction Manual & AI Build Protocol](21-construction-manual.md) | WAVE-IDs, build waves, AI handoff, DoD, launch phases — **start building here** |
 | **22** | [Platform Architecture & Long-Term Evolution](22-platform-architecture.md) | PLT-IDs, domains, ecosystem, Platform Standard |
-| **23** | [Product Factory & Engineering Excellence](23-product-factory.md) | FCT-IDs, feature lifecycle, testing/release factory, Product Factory Standard |
+| **23** | [Product Factory & Engineering Excellence](23-product-factory.md) | FCT-IDs, feature lifecycle, testing/release factory |
+| **24** | [Product Constitution & Experience DNA](24-product-constitution.md) | DNA-IDs, design language, Constitution Statement — **permanent identity** |
 
-**Meta:** [Master Build Index — Control Tower](../MASTER-BUILD-INDEX.md)
+**Meta:** [Master Build Index — Master Execution Index](../MASTER-BUILD-INDEX.md)
 
 ---
 
@@ -86,6 +88,8 @@
 | [FCT-INDEX.md](../factory/FCT-INDEX.md) | Product factory registry (Volume 23) |
 | [FEATURE-PROPOSAL-TEMPLATE.md](../factory/FEATURE-PROPOSAL-TEMPLATE.md) | Feature intake (Volume 23) |
 | [RISK-REGISTER.md](../factory/RISK-REGISTER.md) | Risk register (Volume 23) |
+| [DNA-INDEX.md](../constitution/DNA-INDEX.md) | Product constitution (Volume 24) |
+| [VOCABULARY.md](../constitution/VOCABULARY.md) | UI vocabulary (Volume 24) |
 | [TRACEABILITY-MATRIX.md](../construction/TRACEABILITY-MATRIX.md) | FR ↔ SCR ↔ API matrix (Volume 21) |
 | [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) | **Control tower** — status & registries |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
@@ -188,4 +192,4 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 | Product | | | ☐ |
 | Engineering | | | ☐ |
 
-Once signed off ([Master Build Index](../MASTER-BUILD-INDEX.md) + Volumes 21–23), proceed to **WAVE-001 / Phase A** (STEP-028).
+Once signed off ([Master Execution Index](../MASTER-BUILD-INDEX.md)), proceed to **WAVE-001 / Phase A** (STEP-029).

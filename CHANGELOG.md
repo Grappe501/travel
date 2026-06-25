@@ -45,6 +45,8 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Master Build Index updated to v1.2 — Volume 22 integration — STEP-026
 - Volume 23 added as **Product Factory & Engineering Excellence** with FCT registry (33 chapters) — STEP-027
 - Master Build Index updated to v1.3 — Volume 23 integration — STEP-027
+- Volume 24 added as **Product Constitution & Experience DNA** with DNA registry (35 chapters) — STEP-028
+- Master Execution Index updated to v1.4 — Volume 24 integration — STEP-028
 
 ## [0.0.0] — 2026-06-24
 

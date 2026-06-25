@@ -32,6 +32,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-025 | 2026-06-24 | Blueprint | Volume 21 — Construction Manual (WAVE registry) | `a61e113` | [STEP-025](docs/build-steps/STEP-025-volume-21-construction.md) |
 | STEP-026 | 2026-06-24 | Blueprint | Volume 22 — Platform architecture (PLT registry) | `b5af35c` | [STEP-026](docs/build-steps/STEP-026-volume-22-platform.md) |
 | STEP-027 | 2026-06-24 | Blueprint | Volume 23 — Product factory (FCT registry) | `fa2f4ef` | [STEP-027](docs/build-steps/STEP-027-volume-23-factory.md) |
+| STEP-028 | 2026-06-24 | Blueprint | Volume 24 — Product constitution (DNA registry) | _(pending)_ | [STEP-028](docs/build-steps/STEP-028-volume-24-constitution.md) |
 
 ---
 
@@ -39,8 +40,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 
 | Metric | Value |
 |--------|-------|
-| Steps completed | 27 |
-| Current phase | Blueprint complete (0–23) → sign-off → WAVE-001 (STEP-028) |
+| Steps completed | 28 |
+| Current phase | **Blueprint complete** (0–24) → sign-off → WAVE-001 (STEP-029) |
 | Latest tag | `v0.0.0` (after push) |
 
 ---

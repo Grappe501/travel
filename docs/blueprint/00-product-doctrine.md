@@ -2,6 +2,8 @@
 
 **Mileage & Expense Copilot** | Master Build Blueprint v1.0
 
+**Permanent product DNA:** [Volume 24 — Product Constitution](24-product-constitution.md)
+
 ---
 
 ## Mission Statement
