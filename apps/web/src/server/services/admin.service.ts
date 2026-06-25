@@ -1,6 +1,9 @@
 import { NotFoundError, ValidationError } from '@/lib/api/response';
-import { prisma } from '@/lib/db/prisma';
+import { APP_RELEASE } from '@/lib/app-release';
+import { isNotificationsSchemaReady, isV12SchemaReady } from '@/lib/db/schema-health';
 import { getBuildMetadata, getDependencyFlags } from '@/lib/monitoring/config';
+import { evaluateProductionReadiness } from '@/lib/monitoring/production-readiness';
+import { prisma } from '@/lib/db/prisma';
 import { ensureSubscription, serializeSubscription } from '@/server/services/subscription.service';
 import { getUsageSummary } from '@/server/services/usage.service';
 
@@ -154,6 +157,9 @@ export async function recordAdminUserLookup(
 
 export async function getAdminSystemHealth() {
   let databaseOk = false;
+  let migrationsApplied = false;
+  let notificationsReady = false;
+
   try {
     await prisma.$queryRaw`SELECT 1`;
     databaseOk = true;
@@ -164,12 +170,33 @@ export async function getAdminSystemHealth() {
   const dependencies = getDependencyFlags();
   const build = getBuildMetadata();
 
+  if (dependencies.databaseConfigured && databaseOk) {
+    try {
+      migrationsApplied = await isV12SchemaReady();
+      notificationsReady = await isNotificationsSchemaReady();
+    } catch {
+      migrationsApplied = false;
+      notificationsReady = false;
+    }
+  }
+
+  const readiness = evaluateProductionReadiness({
+    dependencies,
+    migrationsApplied,
+    notificationsReady,
+    build,
+  });
+
   return {
-    status: databaseOk && dependencies.databaseConfigured ? 'ok' : 'degraded',
+    status: readiness.coreReady && databaseOk ? 'ok' : 'degraded',
     service: 'mileage-expense-copilot',
-    slice: 'MEC-V1-S019',
-    step: 'STEP-051',
+    version: APP_RELEASE.version,
+    slice: APP_RELEASE.slice,
+    step: APP_RELEASE.step,
     databaseOk,
+    migrationsApplied,
+    notificationsReady,
+    readiness,
     ...build,
     dependencies,
   };

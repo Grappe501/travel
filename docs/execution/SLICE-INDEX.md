@@ -36,7 +36,8 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S030 | Search filters | — | WAVE-003 ext | FR-1000 | STEP-062 | ☑ Complete |
 | MEC-V1-S031 | Navigation IA v2 | — | WAVE-002 ext | — | STEP-063 | ☑ Complete |
 | MEC-V1-S032 | Delete UX v2 | — | WAVE-003 ext | SCR-057 | STEP-064 | ☑ Complete |
+| MEC-V1-S033 | Production hardening | — | WAVE-010 ext | — | STEP-065 | ☑ Complete |
 
-**Post-V1.8 backlog:** production hardening · help center
+**Post-V1.8 backlog:** help center · team access
 
 Prompts: [slices/](slices/)

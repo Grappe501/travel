@@ -15,9 +15,11 @@
 ## Deploy
 
 1. Merge to `main` (or trigger Netlify production deploy)
-2. Apply migrations: `supabase db push` (production project)
+2. **Apply migrations** — see [database-migrations.md](./database-migrations.md):
+   - `pnpm db:env:sync && pnpm db:migrate:deploy && pnpm db:verify-schema`
 3. Deploy Edge Functions if changed
 4. Wait for Netlify build complete
+5. Optional: `pnpm prod:check-env -- --tier=production` with production env loaded locally
 
 ## Post-deploy
 

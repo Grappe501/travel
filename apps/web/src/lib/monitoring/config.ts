@@ -11,6 +11,10 @@ function isPlaceholder(value: string | undefined): boolean {
   );
 }
 
+export function isPlaceholderEnv(value: string | undefined): boolean {
+  return isPlaceholder(value);
+}
+
 /** CI/Netlify build URLs that must not count as production database config. */
 export function isCiBuildDatabaseUrl(url: string | undefined): boolean {
   if (!url) return true;
@@ -34,6 +38,33 @@ export function getSentryEnvironment(): string {
     process.env.NODE_ENV ??
     'development'
   );
+}
+
+export function getSentryRelease(): string | undefined {
+  const commit = process.env.COMMIT_REF ?? process.env.VERCEL_GIT_COMMIT_SHA;
+  if (commit) return commit.slice(0, 12);
+  return process.env.npm_package_version;
+}
+
+export type StripeMode = 'live' | 'test' | 'off';
+
+export function getStripeMode(): StripeMode {
+  const secret = process.env.STRIPE_SECRET_KEY;
+  if (!secret || isPlaceholder(secret)) return 'off';
+  if (secret.startsWith('sk_live_')) return 'live';
+  if (secret.startsWith('sk_test_')) return 'test';
+  return 'off';
+}
+
+export function isProductionAppUrl(): boolean {
+  const url = process.env.NEXT_PUBLIC_APP_URL;
+  if (!url || isPlaceholder(url)) return false;
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'https:' && !parsed.hostname.includes('localhost');
+  } catch {
+    return false;
+  }
 }
 
 export type DependencyFlags = {
@@ -74,14 +105,21 @@ export function getDependencyFlags(): DependencyFlags {
     ),
     stripeConfigured: Boolean(
       process.env.STRIPE_SECRET_KEY &&
+        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY &&
         process.env.STRIPE_PRICE_PRO_MONTHLY &&
         process.env.STRIPE_PRICE_SMALL_BUSINESS_MONTHLY &&
-        !isPlaceholder(process.env.STRIPE_SECRET_KEY)
+        !isPlaceholder(process.env.STRIPE_SECRET_KEY) &&
+        !isPlaceholder(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
     ),
     stripeWebhookConfigured: Boolean(
       process.env.STRIPE_WEBHOOK_SECRET && !isPlaceholder(process.env.STRIPE_WEBHOOK_SECRET)
     ),
-    emailConfigured: Boolean(process.env.RESEND_API_KEY && !isPlaceholder(process.env.RESEND_API_KEY)),
+    emailConfigured: Boolean(
+      process.env.RESEND_API_KEY &&
+        !isPlaceholder(process.env.RESEND_API_KEY) &&
+        process.env.RESEND_FROM_EMAIL &&
+        !isPlaceholder(process.env.RESEND_FROM_EMAIL)
+    ),
     sentryConfigured: isSentryEnabled(),
   };
 }

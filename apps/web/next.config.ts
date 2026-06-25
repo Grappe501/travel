@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   transpilePackages: ['@mileage-copilot/shared'],
   serverExternalPackages: ['@prisma/client', 'prisma'],
+  env: {
+    NEXT_PUBLIC_SENTRY_RELEASE:
+      process.env.COMMIT_REF?.slice(0, 12) ??
+      process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 12) ??
+      process.env.npm_package_version,
+  },
   async headers() {
     const values = { ...SECURITY_HEADERS };
 

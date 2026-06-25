@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
+import { APP_RELEASE } from '@/lib/app-release';
 import { isNotificationsSchemaReady, isV12SchemaReady } from '@/lib/db/schema-health';
 import { getBuildMetadata, getDependencyFlags } from '@/lib/monitoring/config';
+import { evaluateProductionReadiness } from '@/lib/monitoring/production-readiness';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,20 +22,30 @@ export async function GET() {
     }
   }
 
-  const allCoreReady =
-    dependencies.databaseConfigured &&
-    dependencies.supabaseConfigured &&
-    dependencies.storageConfigured &&
-    migrationsApplied;
-
-  return NextResponse.json({
-    status: allCoreReady ? 'ok' : 'degraded',
-    service: 'mileage-expense-copilot',
-    version: '1.8.1',
-    slice: 'MEC-V1-S032',
-    step: 'STEP-064',
+  const readiness = evaluateProductionReadiness({
+    dependencies,
     migrationsApplied,
     notificationsReady,
+    build,
+  });
+
+  const status = readiness.coreReady ? 'ok' : 'degraded';
+
+  return NextResponse.json({
+    status,
+    service: 'mileage-expense-copilot',
+    version: APP_RELEASE.version,
+    slice: APP_RELEASE.slice,
+    step: APP_RELEASE.step,
+    migrationsApplied,
+    notificationsReady,
+    readiness: {
+      coreReady: readiness.coreReady,
+      productionReady: readiness.productionReady,
+      stripeMode: readiness.stripeMode,
+      missingForProduction: readiness.missingForProduction,
+      gates: readiness.gates,
+    },
     ...build,
     dependencies,
   });

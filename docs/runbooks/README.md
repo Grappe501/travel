@@ -8,11 +8,12 @@ Concise, tested procedures. Expand before production launch.
 
 | Document | Purpose |
 |----------|---------|
-| [PRODUCTION-CHECKLIST.md](../execution/PRODUCTION-CHECKLIST.md) | **Env vars & deploy sign-off** (STEP-050) |
+| [PRODUCTION-CHECKLIST.md](../execution/PRODUCTION-CHECKLIST.md) | **Env vars & deploy sign-off** (STEP-050 / STEP-065) |
 | [deployment.md](deployment.md) | Netlify deploy + 30m Sentry watch |
+| [database-migrations.md](database-migrations.md) | **Prisma migrate deploy** (STEP-065) |
 | [E2E-SETUP.md](../execution/E2E-SETUP.md) | Playwright smoke / axe |
 
-**Health:** `GET /health` on your Netlify URL — verify `dependencies` before go-live.
+**Health:** `GET /health` — `readiness.coreReady` / `readiness.productionReady` + per-gate hints.
 
 **Sentry test (staging):** set `SENTRY_TEST_ENABLED=1`, then `POST /health/sentry-test`.
 
@@ -46,5 +47,6 @@ Concise, tested procedures. Expand before production launch.
 | OPS-RB-008 | [storage-failure.md](storage-failure.md) | P1 |
 | OPS-RB-009 | [stripe-outage.md](stripe-outage.md) | P2 |
 | OPS-RB-010 | [deployment.md](deployment.md) | Deploy |
+| OPS-RB-011 | [database-migrations.md](database-migrations.md) | Deploy |
 
 **Testing:** Quarterly restore drill — log in `docs/ops/restore-drill-log.md`.

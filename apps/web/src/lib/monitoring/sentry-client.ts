@@ -4,6 +4,10 @@ import * as Sentry from '@sentry/nextjs';
 
 let clientInitialized = false;
 
+function getClientRelease(): string | undefined {
+  return process.env.NEXT_PUBLIC_SENTRY_RELEASE;
+}
+
 export function initSentryClient(): void {
   if (clientInitialized || typeof window === 'undefined') return;
 
@@ -13,6 +17,7 @@ export function initSentryClient(): void {
   Sentry.init({
     dsn,
     environment: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT ?? process.env.NODE_ENV ?? 'development',
+    release: getClientRelease(),
     tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1,
     sendDefaultPii: false,
   });

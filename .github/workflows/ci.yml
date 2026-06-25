@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -99,6 +104,12 @@ jobs:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
           DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
         run: pnpm db:migrate:deploy
+
+      - name: Verify schema
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+        run: pnpm db:verify-schema
 
       - name: Integration tests
         env:

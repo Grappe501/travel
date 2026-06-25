@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/nextjs';
-import { getSentryDsn, getSentryEnvironment, isSentryEnabled } from '@/lib/monitoring/config';
+import { getSentryDsn, getSentryEnvironment, getSentryRelease, isSentryEnabled } from '@/lib/monitoring/config';
 
 let serverInitialized = false;
 
@@ -12,6 +12,7 @@ export function initSentryServer(): void {
   Sentry.init({
     dsn,
     environment: getSentryEnvironment(),
+    release: getSentryRelease(),
     tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1,
     sendDefaultPii: false,
     beforeSend(event) {

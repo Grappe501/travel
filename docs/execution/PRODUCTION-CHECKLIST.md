@@ -99,7 +99,12 @@ Alternatively set Supabase `app_metadata.role` to `admin` or `support` for staff
 | Check | Staging | Production |
 |-------|---------|------------|
 | `GET /health` → `status: ok` | ☐ | ☐ |
+| `GET /health` → `readiness.productionReady: true` (GA) | ☐ | ☐ |
 | Login, trip, receipt, report flows | ☐ | ☐ |
 | Sentry 30m watch | ☐ | ☐ |
 
-**Deploy procedure:** [deployment.md](../runbooks/deployment.md)
+**Readiness:** `GET /health` → `readiness.gates[]` with hints for missing integrations.
+
+**CLI:** `pnpm prod:check-env -- --tier=production`
+
+**Deploy procedure:** [deployment.md](../runbooks/deployment.md) · **Migrations:** [database-migrations.md](../runbooks/database-migrations.md)

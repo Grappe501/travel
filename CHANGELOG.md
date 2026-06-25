@@ -13,6 +13,26 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.8.2] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.8.2 (STEP-065)**
+
+Production hardening — readiness gates, migration runbook, and deploy tooling.
+
+### Added
+- **Production readiness** — `/health` `readiness.gates[]` with core vs production tiers and hints
+- **Stripe mode** — `readiness.stripeMode` (`live` / `test` / `off`) on health endpoint
+- **Migration runbook** — `docs/runbooks/database-migrations.md` (OPS-RB-011)
+- **Env checker** — `pnpm prod:check-env -- --tier=production`
+- **Sentry releases** — commit SHA wired as `release` on server and client
+
+### Changed
+- **Admin health** — production readiness checklist with gate hints
+- **CI** — `db:verify-schema` after migrate; concurrency group; manual dispatch
+- **Stripe / email flags** — publishable key and verified sender required for `dependencies.*Configured`
+
+---
+
 ## [1.8.1] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.8.1 (STEP-064)**

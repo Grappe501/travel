@@ -126,6 +126,44 @@ export function AdminHealthPanel({ health }: AdminHealthPanelProps) {
 
       <Card>
         <CardHeader>
+          <CardTitle>Production readiness</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3 text-body">
+          <p>
+            Core:{' '}
+            <Badge variant={health.readiness.coreReady ? 'success' : 'warning'}>
+              {health.readiness.coreReady ? 'ready' : 'degraded'}
+            </Badge>
+          </p>
+          <p>
+            Full production:{' '}
+            <Badge variant={health.readiness.productionReady ? 'success' : 'outline'}>
+              {health.readiness.productionReady ? 'ready' : 'incomplete'}
+            </Badge>
+            {health.readiness.stripeMode !== 'off' ? (
+              <span className="ml-2 text-caption text-muted">Stripe: {health.readiness.stripeMode}</span>
+            ) : null}
+          </p>
+          <ul className="space-y-2">
+            {health.readiness.gates.map((gate) => (
+              <li key={gate.id} className="flex flex-wrap items-start justify-between gap-2 text-caption">
+                <span>
+                  {gate.label}
+                  {gate.hint && !gate.ready ? (
+                    <span className="block text-muted">{gate.hint}</span>
+                  ) : null}
+                </span>
+                <Badge variant={gate.ready ? 'success' : gate.tier === 'core' ? 'warning' : 'outline'}>
+                  {gate.ready ? 'ok' : gate.tier}
+                </Badge>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
           <CardTitle>Dependencies</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-2 sm:grid-cols-2">

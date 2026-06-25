@@ -27,7 +27,8 @@
     "db:env:sync": "node scripts/sync-prisma-env.mjs",
     "db:migrate:deploy:local": "node scripts/sync-prisma-env.mjs && prisma migrate deploy",
     "db:migrate:deploy": "prisma migrate deploy",
-    "db:verify-schema": "node scripts/verify-schema.mjs"
+    "db:verify-schema": "node scripts/verify-schema.mjs",
+    "prod:check-env": "node scripts/check-production-env.mjs"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "5.15.12",
