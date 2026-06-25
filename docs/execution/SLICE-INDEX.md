@@ -17,7 +17,7 @@ Maps execution slices → MEI BUILD → MRIDs → implementation STEP.
 | MEC-V1-S011 | Expense engine | BUILD-009 | WAVE-005 | 000010–000011 | STEP-043 | ☑ Complete |
 | MEC-V1-S012 | Onboarding & auth polish | — | WAVE-001/002 | 000001 | STEP-044 | ☑ Complete |
 | MEC-V1-S013 | Test harness & unit tests | BUILD-014 §1 | WAVE-010 | — | STEP-045 | ☑ Complete |
-| MEC-V1-S014 | Integration tests | BUILD-014 §2 | WAVE-010 | 000004–000015 | STEP-046 | Backlog |
+| MEC-V1-S014 | Integration tests | BUILD-014 §2 | WAVE-010 | 000004–000015 | STEP-046 | ☑ Complete |
 | MEC-V1-S015 | E2E critical journeys | BUILD-014 §3 | WAVE-010 | 000001–000015 | STEP-047 | Backlog |
 | MEC-V1-S016 | Security hardening | BUILD-014 §4 | WAVE-010 | — | STEP-048 | Backlog |
 | MEC-V1-S017 | Performance & a11y | BUILD-014 §5 | WAVE-010 | — | STEP-049 | Backlog |

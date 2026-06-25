@@ -13,6 +13,7 @@
     "lint": "pnpm --filter web lint",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
+    "test:integration": "pnpm --filter web test:integration",
     "test:coverage": "pnpm --filter @mileage-copilot/shared test:coverage",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
     "postinstall": "prisma generate",

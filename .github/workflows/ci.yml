@@ -54,3 +54,54 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
           NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
         run: pnpm build
+
+  integration:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: mileage_copilot
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+        continue-on-error: true
+
+      - name: Install (no lockfile)
+        if: failure()
+        run: pnpm install
+
+      - name: Generate Prisma client
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+        run: pnpm db:generate
+
+      - name: Migrate test database
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+        run: pnpm db:migrate:deploy
+
+      - name: Integration tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mileage_copilot
+          INTEGRATION_TEST: '1'
+        run: pnpm test:integration

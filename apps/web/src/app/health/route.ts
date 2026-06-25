@@ -6,8 +6,8 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     service: 'mileage-expense-copilot',
-    slice: 'MEC-V1-S013',
-    step: 'STEP-045',
+    slice: 'MEC-V1-S014',
+    step: 'STEP-046',
     openAiConfigured: Boolean(
       process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.includes('...')
     ),

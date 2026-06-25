@@ -64,6 +64,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - **Expense engine (MEC-V1-S011)** — Manual expense CRUD, receipt-to-trip attach, trip expense_total recalc — STEP-043
 - **Onboarding & auth polish (MEC-V1-S012)** — First-run wizard, password reset, email verify — STEP-044
 - **Test harness & unit tests (MEC-V1-S013)** — Vitest, calculation/schema tests, CI test job — STEP-045
+- **Integration tests (MEC-V1-S014)** — Service-level DB tests for trips, usage, expenses, reports — STEP-046
 
 ## [0.0.0] — 2026-06-24
 

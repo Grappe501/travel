@@ -34,4 +34,4 @@ See [ROADMAP-043-052.md](../ROADMAP-043-052.md).
 | 19 | AdminOS minimum | 051 | [MEC-V1-S019-admin-minimum.md](MEC-V1-S019-admin-minimum.md) |
 | 20 | Launch gates & GA | 052 | [MEC-V1-S020-launch-ga.md](MEC-V1-S020-launch-ga.md) |
 
-**Next:** S014 / STEP-046 — integration tests.
+**Next:** S015 / STEP-047 — E2E critical journeys.

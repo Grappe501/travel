@@ -17,7 +17,7 @@
 | BUILD-011 | S010 | Stripe billing | WAVE-007 | 000014–000015 | STEP-042 | ☑ Complete |
 | BUILD-012 | — | AI dup | WAVE-008 | 000018–000019 | post-GA | Backlog |
 | BUILD-013 | S019 | AdminOS min | WAVE-009 | 000020 | STEP-051 | Backlog |
-| BUILD-014 | S013–S017, S020 | Launch hardening | WAVE-010 | all V1 | STEP-045–049, 052 | S013 ☑ (1/5) |
+| BUILD-014 | S013–S017, S020 | Launch hardening | WAVE-010 | all V1 | STEP-045–049, 052 | S013–S014 ☑ (2/5) |
 
 **Packet:** [VERSION_1_EXECUTION_PACKAGE.md](../execution/VERSION_1_EXECUTION_PACKAGE.md)  
 **Prompts:** [execution/slices/](../execution/slices/)
