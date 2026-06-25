@@ -687,8 +687,8 @@ Every feature should be:
 | **Volume 21** (this) | **How** to build |
 | [Master Build Index](../MASTER-BUILD-INDEX.md) | **Control tower** — status, traceability, registries |
 
-**Begin implementation:** Sign off → **STEP-026 Phase A** (WAVE-001).
+**Begin implementation:** Sign off → **STEP-027** WAVE-001.
 
 ---
 
-*Previous: [Volume 20 — Product Evolution](20-product-evolution-roadmap.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*
+*Previous: [Volume 20 — Product Evolution](20-product-evolution-roadmap.md) | Next: [Volume 22 — Platform](22-platform-architecture.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*

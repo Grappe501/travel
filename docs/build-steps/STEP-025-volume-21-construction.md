@@ -46,4 +46,4 @@ Add **Volume 21 — Construction Manual, Implementation Roadmap & AI Build Proto
 
 ## Next step
 
-Sign-off → **STEP-026 Phase A / WAVE-001: Repo scaffold**
+**STEP-026** — Volume 22 Platform Architecture

@@ -41,6 +41,8 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Master Build Index added as **The Constitution** — execution guide for all volumes and registries — STEP-024
 - Volume 21 added as **Construction Manual & AI Build Protocol** with WAVE registry (35 chapters) — STEP-025
 - Master Build Index updated to v1.1 — control tower + Volume 21 integration — STEP-025
+- Volume 22 added as **Platform Architecture & Long-Term Evolution** with PLT registry (35 chapters) — STEP-026
+- Master Build Index updated to v1.2 — Volume 22 integration — STEP-026
 
 ## [0.0.0] — 2026-06-24
 

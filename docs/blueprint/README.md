@@ -22,10 +22,11 @@
 14. **Volume 19** is the *Operations Bible* — DevOps, SRE, deployments, monitoring, backups, and production readiness.
 15. **Volume 21** is the *Construction Manual* — WAVE-IDs, AI build protocol, Definition of Done, quality gates.
 16. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is the *control tower* — registries, traceability, build status.
+17. **Volume 22** is the *Platform Constitution* — layers, domains, modules, and 10-year evolution without rewrite.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–21 + Master Build Index complete (v1.1). Ready for sign-off → WAVE-001 / Phase A.
+**Blueprint status:** Volumes 0–22 + Master Build Index complete (v1.2). Ready for sign-off → WAVE-001 / Phase A.
 
 ---
 
@@ -55,6 +56,7 @@
 | **19** | [Production Operations, DevOps & SRE](19-production-sre.md) | OPS-IDs, environments, SLOs, deployment pipeline, runbooks, Reliability Standard |
 | **20** | [Product Evolution & Strategic Growth](20-product-evolution-roadmap.md) | ROAD-IDs, version strategy, feature admission, Product Evolution Standard |
 | **21** | [Construction Manual & AI Build Protocol](21-construction-manual.md) | WAVE-IDs, build waves, AI handoff, DoD, launch phases — **start building here** |
+| **22** | [Platform Architecture & Long-Term Evolution](22-platform-architecture.md) | PLT-IDs, domains, modules, ecosystem, Platform Standard — **10-year constitution** |
 
 **Meta:** [Master Build Index — Control Tower](../MASTER-BUILD-INDEX.md) — registries, traceability matrix, build status.
 
@@ -77,6 +79,7 @@
 | [OPS-INDEX.md](../ops/OPS-INDEX.md) | Operations & SRE registry (Volume 19) |
 | [ROAD-INDEX.md](../roadmap/ROAD-INDEX.md) | Product roadmap registry (Volume 20) |
 | [WAVE-INDEX.md](../construction/WAVE-INDEX.md) | Implementation waves (Volume 21) |
+| [PLT-INDEX.md](../platform/PLT-INDEX.md) | Platform registry (Volume 22) |
 | [TRACEABILITY-MATRIX.md](../construction/TRACEABILITY-MATRIX.md) | FR ↔ SCR ↔ API matrix (Volume 21) |
 | [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) | **Control tower** — status & registries |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
@@ -179,4 +182,4 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 | Product | | | ☐ |
 | Engineering | | | ☐ |
 
-Once signed off ([Master Build Index](../MASTER-BUILD-INDEX.md) + [Volume 21](21-construction-manual.md)), proceed to **WAVE-001 / Phase A** (STEP-026).
+Once signed off ([Master Build Index](../MASTER-BUILD-INDEX.md) + Volumes 21–22), proceed to **WAVE-001 / Phase A** (STEP-027).

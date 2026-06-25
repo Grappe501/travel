@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This document is the **control tower** for the entire product. Volumes 0–20 define *what* to build and *how* it operates and evolves. **[Volume 21 — Construction Manual](blueprint/21-construction-manual.md)** defines *how to build it* (waves, AI protocol, gates). The Master Build Index tracks **status, traceability, and registries**.
+This document is the **control tower** for the entire product. Volumes 0–20 define *what* to build and *how* it operates and evolves. **Volume 21** defines *how to build it*. **Volume 22** defines *how it becomes a 10-year platform*. The Master Build Index tracks **status, traceability, and registries**.
 
 > **When this index is signed off, development shifts from invention to execution.**
 
@@ -24,19 +24,21 @@ This document is the **control tower** for the entire product. Volumes 0–20 de
 
 | Status | Value |
 |--------|-------|
-| Planning volumes | **0–21 complete** |
-| Master Build Index | **v1.1** |
+| Planning volumes | **0–22 complete** |
+| Master Build Index | **v1.2** |
 | Construction Manual | Volume 21 |
+| Platform Constitution | Volume 22 |
 | Application code | **Not started** |
-| Next step | **STEP-026 — Phase A / WAVE-001** |
+| Next step | **STEP-027 — Phase A / WAVE-001** |
 
 ### Sign-off
 
 | Gate | Owner | Date | ✓ |
 |------|-------|------|---|
-| Blueprint Volumes 0–21 | Product | | ☐ |
+| Blueprint Volumes 0–22 | Product + Eng | | ☐ |
 | Master Build Index | Engineering | | ☐ |
 | Construction Manual (Vol 21) | Engineering | | ☐ |
+| Platform Architecture (Vol 22) | Engineering | | ☐ |
 | Begin Phase A / WAVE-001 | Both | | ☐ |
 
 ---
@@ -69,6 +71,7 @@ This document is the **control tower** for the entire product. Volumes 0–20 de
 | **19** | [Production SRE](blueprint/19-production-sre.md) | Platform ops | OPS-IDs, runbooks |
 | **20** | [Product Evolution](blueprint/20-product-evolution-roadmap.md) | Roadmap | ROAD-IDs, versions |
 | **21** | [Construction Manual](blueprint/21-construction-manual.md) | **Build** | WAVE-IDs, AI protocol, DoD, gates |
+| **22** | [Platform Architecture](blueprint/22-platform-architecture.md) | **Platform** | PLT-IDs, domains, modules, 10-year evolution |
 | — | **This document** | Control tower | Status, traceability, registries |
 
 ---
@@ -95,6 +98,7 @@ Every implementable artifact has an ID. **Update tracker status as work ships.**
 | Roadmap | [roadmap/ROAD-INDEX.md](roadmap/ROAD-INDEX.md) | ROAD-* | 20 |
 | Waves | [construction/WAVE-INDEX.md](construction/WAVE-INDEX.md) | WAVE-*, BLD-* | 21 |
 | Traceability | [construction/TRACEABILITY-MATRIX.md](construction/TRACEABILITY-MATRIX.md) | FR↔SCR↔API | 21 |
+| Platform | [platform/PLT-INDEX.md](platform/PLT-INDEX.md) | PLT-* | 22 |
 | AI handoff | [construction/AI-HANDOFF-TEMPLATE.md](construction/AI-HANDOFF-TEMPLATE.md) | BLD-AI-HANDOFF | 21 |
 
 **PR convention:** Every PR lists affected IDs: `WAVE-IDs: … SCR-IDs: … API-IDs: … Step: STEP-NNN`
@@ -143,8 +147,8 @@ Canonical: Volume 4. Migration order in Phase B.
 
 | Phase | WAVE | STEP | Scope | Status |
 |-------|------|------|-------|--------|
-| **Blueprint** | — | 001–025 | Volumes 0–21 + this index | ☑ |
-| **A** | WAVE-001 | 026+ | Repo, CI, Netlify, auth shell | ☐ |
+| **Blueprint** | — | 001–026 | Volumes 0–22 + this index | ☑ |
+| **A** | WAVE-001 | 027+ | Repo, CI, Netlify, auth shell | ☐ |
 | **B** | WAVE-001–002 | | Schema, RLS, core entities | ☐ |
 | **C** | WAVE-003 | | Trip flow | ☐ |
 | **D** | WAVE-004 | | Receipt + OCR pipeline | ☐ |
@@ -226,7 +230,7 @@ Update this section at each STEP during implementation.
 
 | Metric | Count | Done |
 |--------|-------|------|
-| Blueprint volumes | 22 | 22 |
+| Blueprint volumes | 23 | 23 |
 | Screens (SCR) | 60 | 0 |
 | APIs documented | 70+ | 0 impl |
 | State machines | 10 | 0 |
@@ -279,6 +283,7 @@ Sourced from volume non-negotiables chapters — **never waive without ADR**.
 | Current wave | [WAVE-INDEX](construction/WAVE-INDEX.md) |
 | AI task setup | [AI-HANDOFF-TEMPLATE](construction/AI-HANDOFF-TEMPLATE.md) |
 | FR ↔ SCR ↔ API trace | [TRACEABILITY-MATRIX](construction/TRACEABILITY-MATRIX.md) |
+| Platform domains | [PLT-INDEX](platform/PLT-INDEX.md) |
 | Start coding | WAVE-001 → `PROJECT-STRUCTURE.md` |
 | Add a screen | SCR-INDEX → Volume 11 spec → Volume 10 components |
 | Add an API | API-INDEX → Volume 12 → SM if workflow |
@@ -311,4 +316,4 @@ When tempted to add V2 scope to V1 → re-read Volume 20 Ch. 4 and Ch. 34.
 
 *Blueprint: [README](blueprint/README.md) · Roadmap: [Volume 20](blueprint/20-product-evolution-roadmap.md) · Build log: [BUILD-LOG.md](../BUILD-LOG.md)*
 
-*Last updated: STEP-025 — Volume 21 Construction Manual · Master Build Index v1.1*
+*Last updated: STEP-026 — Volume 22 Platform Architecture · Master Build Index v1.2*
