@@ -14,10 +14,11 @@
 6. **Volume 11** is the *Screen Bible* — every SCR-ID specified before code.
 7. **Volume 12** is the *API Constitution* — every API-ID documented before implementation.
 8. **Volume 13** defines *state machines* — explicit workflow logic for every major action.
+9. **Volume 14** defines *analytics & BI* — what we measure and why.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–13 complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–14 complete (v1.0). Ready for sign-off → Phase A.
 
 ---
 
