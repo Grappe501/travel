@@ -41,7 +41,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-034 | 2026-06-24 | A | MEC-V1-S002 — Prisma schema, initial migration, Zod schemas | `ff83d90` | [STEP-034](docs/build-steps/STEP-034-mec-v1-s002-database.md) |
 | STEP-035 | 2026-06-24 | A | MEC-V1-S003 — Supabase Auth, protected dashboard, UserProfile upsert | `354de64` | [STEP-035](docs/build-steps/STEP-035-mec-v1-s003-auth.md) |
 | STEP-036 | 2026-06-24 | A | MEC-V1-S004 — Design system v1 components, tokens, DashboardShell | `5612ec1` | [STEP-036](docs/build-steps/STEP-036-mec-v1-s004-design-system.md) |
-| STEP-037 | 2026-06-24 | A | MEC-V1-S005 — Business/vehicle CRUD, mileage settings, ownership | _(pending)_ | [STEP-037](docs/build-steps/STEP-037-mec-v1-s005-business-vehicle.md) |
+| STEP-037 | 2026-06-24 | A | MEC-V1-S005 — Business/vehicle CRUD, mileage settings, ownership | `91d5412` | [STEP-037](docs/build-steps/STEP-037-mec-v1-s005-business-vehicle.md) |
 
 ---
 
