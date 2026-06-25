@@ -23,6 +23,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Volume 3 rewritten as **Functional Requirements & Business Logic** (21 chapters + dependency matrix) — STEP-006
 - Volume 4 rewritten as **Data Architecture & Database** (26 chapters + business event ledger) — STEP-007
 - Volume 5 rewritten as **AI & Intelligence Architecture** (25 chapters + personal travel memory) — STEP-008
+- Volume 6 rewritten as **Technical Architecture & Production Infrastructure** (33 chapters + tech debt policy) — STEP-009
 
 ## [0.0.0] — 2026-06-24
 
