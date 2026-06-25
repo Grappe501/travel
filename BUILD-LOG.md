@@ -29,7 +29,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-022 | 2026-06-24 | Blueprint | Volume 19 — Production SRE (OPS registry, runbooks) | `1c55681` | [STEP-022](docs/build-steps/STEP-022-volume-19-sre.md) |
 | STEP-023 | 2026-06-24 | Blueprint | Volume 20 — Product evolution roadmap (ROAD registry) | `59251a7` | [STEP-023](docs/build-steps/STEP-023-volume-20-roadmap.md) |
 | STEP-024 | 2026-06-24 | Blueprint | Master Build Index — The Constitution | `59251a7` | [STEP-024](docs/build-steps/STEP-024-master-build-index.md) |
-| STEP-025 | 2026-06-24 | Blueprint | Volume 21 — Construction Manual (WAVE registry) | _(pending)_ | [STEP-025](docs/build-steps/STEP-025-volume-21-construction.md) |
+| STEP-025 | 2026-06-24 | Blueprint | Volume 21 — Construction Manual (WAVE registry) | `a61e113` | [STEP-025](docs/build-steps/STEP-025-volume-21-construction.md) |
 
 ---
 
