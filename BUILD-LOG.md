@@ -74,6 +74,8 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-067 | 2026-06-25 | B | MEC-V1-S035 — Settings completion (V1.9.1) | — | [STEP-067](docs/build-steps/STEP-067-settings-completion.md) |
 | STEP-068 | 2026-06-25 | B | MEC-V1-S036 — Sandbox audit & deploy hardening (V1.9.2) | — | [STEP-068](docs/build-steps/STEP-068-sandbox-audit.md) |
 | STEP-069 | 2026-06-25 | B | MEC-V1-S037 — PWA install & offline app (V1.10.0) | — | [STEP-069](docs/build-steps/STEP-069-pwa-install.md) |
+| STEP-070 | 2026-06-25 | B | MEC-V1-S038 — GPS trip tracking (V1.11.0) | — | [STEP-070](docs/build-steps/STEP-070-gps-trip-tracking.md) |
+| STEP-071 | 2026-06-25 | B | MEC-V1-S039 — Design & UX v3 (V1.12.0) | — | [STEP-071](docs/build-steps/STEP-071-design-ux-v3.md) |
 
 ---
 

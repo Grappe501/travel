@@ -5,19 +5,28 @@ type CardProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
   padding?: 'none' | 'sm' | 'md';
   interactive?: boolean;
+  variant?: 'default' | 'elevated' | 'soft' | 'highlight';
 };
+
+const variantStyles = {
+  default: 'surface-card',
+  elevated: 'surface-card-elevated',
+  soft: 'surface-card-soft',
+  highlight: 'surface-card-highlight',
+} as const;
 
 export function Card({
   children,
   className,
   padding = 'md',
   interactive = false,
+  variant = 'default',
   ...props
 }: CardProps) {
   return (
     <div
       className={cn(
-        interactive ? 'surface-card-interactive' : 'surface-card',
+        interactive ? 'surface-card-interactive' : variantStyles[variant],
         padding === 'sm' && 'p-3',
         padding === 'md' && 'p-4',
         className

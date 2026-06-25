@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
   QuickActionGrid,
+  SectionHeader,
   StatCard,
 } from '@/components/ui';
 import { isV12SchemaReady } from '@/lib/db/schema-health';
@@ -111,7 +112,7 @@ export default async function DashboardPage() {
       <InstallAppPrompt variant="banner" />
 
       {showSetupPrompt ? (
-        <Card interactive>
+        <Card interactive variant="soft">
           <CardHeader>
             <CardTitle>Finish setting up</CardTitle>
             <CardDescription>
@@ -155,7 +156,7 @@ export default async function DashboardPage() {
           </div>
 
           {attentionCount > 0 || summary.recentTripsWithoutExpenses > 0 ? (
-            <Card className="border-warning/30 bg-warning/5">
+            <Card variant="soft" className="border-warning/40 bg-warning/5">
               <CardHeader>
                 <CardTitle>Needs attention</CardTitle>
                 <CardDescription>Items to review before your next report.</CardDescription>
@@ -204,14 +205,11 @@ export default async function DashboardPage() {
       ) : null}
 
       <section className="space-y-4">
-        <div>
-          <h2 className="text-section-title text-foreground">Quick actions</h2>
-          <p className="text-caption text-muted">Jump to common tasks.</p>
-        </div>
+        <SectionHeader title="Quick actions" description="Jump to common tasks." />
         <QuickActionGrid actions={[...QUICK_ACTIONS]} />
       </section>
 
-      <Card>
+      <Card variant="elevated">
         <CardHeader>
           <CardTitle>Account</CardTitle>
           <CardDescription>Signed in as {profile?.email ?? user.email}</CardDescription>

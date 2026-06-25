@@ -45,4 +45,26 @@ export async function isNotificationsSchemaReady(): Promise<boolean> {
 
 export function resetSchemaReadyCache(): void {
   schemaReadyCache = null;
+  notificationsSchemaCache = null;
+  gpsSchemaCache = null;
+}
+
+let gpsSchemaCache: { value: boolean; checkedAt: number } | null = null;
+
+/** Returns false when STEP-070 GPS migration is not applied. */
+export async function isGpsTrackingSchemaReady(): Promise<boolean> {
+  if (gpsSchemaCache && Date.now() - gpsSchemaCache.checkedAt < CACHE_MS) {
+    return gpsSchemaCache.value;
+  }
+
+  try {
+    await prisma.$queryRaw`SELECT tracking_enabled FROM trips LIMIT 0`;
+    await prisma.$queryRaw`SELECT id FROM trip_gps_points LIMIT 0`;
+    await prisma.$queryRaw`SELECT app_prefs FROM profiles LIMIT 0`;
+    gpsSchemaCache = { value: true, checkedAt: Date.now() };
+    return true;
+  } catch {
+    gpsSchemaCache = { value: false, checkedAt: Date.now() };
+    return false;
+  }
 }

@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { ShellNavActions } from '@/components/layout/ShellNavActions';
-import { TripDetailCard } from '@/components/trips/TripManager';
+import { TripDetailCard, TripActiveTracking, TripRouteSection } from '@/components/trips/TripManager';
 import { TripDetailActions } from '@/components/trips/TripDetailActions';
 import { TripExpenseLinkPanel, TripExpensesList } from '@/components/expenses/ExpenseManager';
 import { ButtonLink } from '@/components/ui';
@@ -75,9 +75,19 @@ export default async function TripDetailPage({ params }: PageProps) {
           unlinkedReceipts={unlinkedReceipts}
         />
       ) : null}
+      {trip.status === 'active' ? (
+        <div className="mb-6">
+          <TripActiveTracking trip={trip} />
+        </div>
+      ) : null}
       <div className={canLinkExpenses ? 'mt-6' : undefined}>
         <TripDetailCard trip={trip} />
       </div>
+      {trip.status === 'completed' ? (
+        <div className="mt-6">
+          <TripRouteSection trip={trip} />
+        </div>
+      ) : null}
       <div className="mt-6 space-y-2">
         <h2 className="text-section-title text-foreground">Linked expenses</h2>
         <TripExpensesList expenses={tripExpenses} />

@@ -34,7 +34,7 @@ export function DashboardShell({
       <div className="app-shell-bg">
         <SkipLink />
         <AppTopNav />
-        <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8">
+        <div className="mx-auto max-w-4xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8">
           <ConditionalMobileQuickNav />
           <ConditionalGlobalSearchBar />
           <PageHeader
@@ -49,7 +49,7 @@ export function DashboardShell({
             id="main-content"
             tabIndex={-1}
             aria-label={title}
-            className={cn('mt-8 space-y-6 outline-none', className)}
+            className={cn('animate-fade-in mt-8 space-y-6 outline-none', className)}
           >
             {children}
           </main>

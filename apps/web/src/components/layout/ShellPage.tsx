@@ -27,13 +27,13 @@ export function ShellPage({
   auth = false,
 }: ShellPageProps) {
   return (
-    <div className="app-shell-bg">
+    <div className="app-shell-bg hero-mesh">
       <SkipLink />
       <main
         id="main-content"
         tabIndex={-1}
         aria-label={title}
-        className="mx-auto flex min-h-screen max-w-lg flex-col justify-center px-4 py-10 outline-none md:px-6 md:py-14"
+        className="mx-auto flex min-h-screen max-w-lg flex-col justify-center px-4 py-10 outline-none md:max-w-md md:px-6 md:py-14"
       >
         <PageHeader
           title={title}
@@ -43,7 +43,7 @@ export function ShellPage({
           eyebrow={eyebrow}
         />
         {children ? (
-          <div className={cn('mt-8', auth && 'auth-panel animate-fade-in', className)}>{children}</div>
+          <div className={cn('mt-8', auth && 'auth-panel animate-slide-up', className)}>{children}</div>
         ) : null}
       </main>
     </div>

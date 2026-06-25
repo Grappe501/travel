@@ -185,6 +185,20 @@ enum ProjectStatus {
   archived
 }
 
+enum TripGpsPointSource {
+  live
+  start
+  end
+  sync_batch
+}
+
+enum TripMileageSource {
+  odometer
+  gps
+  manual
+  hybrid
+}
+
 // --- Models ---
 
 model UserProfile {
@@ -206,6 +220,7 @@ model UserProfile {
   emailVerified        Boolean       @default(false) @map("email_verified")
   onboardingCompleted  Boolean       @default(false) @map("onboarding_completed")
   notificationPrefs    Json          @default("{}") @map("notification_prefs")
+  appPrefs             Json          @default("{}") @map("app_prefs")
   lastLoginAt          DateTime?     @map("last_login_at")
   deletedAt            DateTime?     @map("deleted_at")
   version              Int           @default(1)
@@ -230,6 +245,7 @@ model UserProfile {
   projects       Project[]
   aiInteractionLogs AIInteractionLog[]
   notifications     Notification[]
+  tripGpsPoints     TripGpsPoint[]
 
   @@index([email])
   @@map("profiles")
@@ -445,6 +461,16 @@ model Trip {
   expenseTotal        Decimal?            @map("expense_total") @db.Decimal(10, 2)
   grandTotal          Decimal?            @map("grand_total") @db.Decimal(10, 2)
   notes               String?
+  trackingEnabled     Boolean             @default(false) @map("tracking_enabled")
+  trackingStartedAt   DateTime?           @map("tracking_started_at")
+  trackingStoppedAt   DateTime?           @map("tracking_stopped_at")
+  startLatitude       Decimal?            @map("start_latitude") @db.Decimal(9, 6)
+  startLongitude      Decimal?            @map("start_longitude") @db.Decimal(9, 6)
+  endLatitude         Decimal?            @map("end_latitude") @db.Decimal(9, 6)
+  endLongitude        Decimal?            @map("end_longitude") @db.Decimal(9, 6)
+  gpsMiles            Decimal?            @map("gps_miles") @db.Decimal(10, 1)
+  mileageSource       TripMileageSource?  @map("mileage_source")
+  mileageReviewRequired Boolean           @default(false) @map("mileage_review_required")
   reimbursementStatus ReimbursementStatus  @default(none) @map("reimbursement_status")
   startedAt           DateTime?           @map("started_at")
   endedAt             DateTime?           @map("ended_at")
@@ -461,10 +487,33 @@ model Trip {
   project   Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
   receipts  Receipt[]
   expenses  Expense[]
+  gpsPoints TripGpsPoint[]
 
   @@index([userId, status])
   @@index([businessId, startedAt(sort: Desc)])
   @@map("trips")
+}
+
+model TripGpsPoint {
+  id          String             @id @default(uuid()) @db.Uuid
+  tripId      String             @map("trip_id") @db.Uuid
+  userId      String             @map("user_id") @db.Uuid
+  latitude    Decimal            @db.Decimal(9, 6)
+  longitude   Decimal            @db.Decimal(9, 6)
+  accuracyM   Decimal?           @map("accuracy_m") @db.Decimal(8, 2)
+  altitudeM   Decimal?           @map("altitude_m") @db.Decimal(8, 2)
+  speedMps    Decimal?           @map("speed_mps") @db.Decimal(8, 2)
+  heading     Decimal?           @db.Decimal(6, 2)
+  recordedAt  DateTime           @map("recorded_at")
+  source      TripGpsPointSource @default(live)
+  createdAt   DateTime           @default(now()) @map("created_at")
+
+  trip Trip        @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tripId, recordedAt])
+  @@index([userId, recordedAt])
+  @@map("trip_gps_points")
 }
 
 model Receipt {

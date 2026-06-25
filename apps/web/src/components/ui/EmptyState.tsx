@@ -24,12 +24,12 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        'surface-card flex flex-col items-center justify-center border-dashed bg-gradient-to-b from-surface to-background-subtle/50 px-6 py-14 text-center',
+        'surface-card-soft flex flex-col items-center justify-center border-dashed px-6 py-16 text-center animate-scale-in',
         className
       )}
     >
       {icon ? (
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-2xl text-primary">
+        <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-accent/10 text-3xl shadow-sm ring-1 ring-primary/15">
           {icon}
         </div>
       ) : null}

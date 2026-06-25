@@ -7,6 +7,7 @@ import {
   SETTINGS_WORKSPACE_GROUP,
   SettingsNavList,
 } from '@/components/settings/SettingsNavList';
+import { SectionHeader } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
 
 export const dynamic = 'force-dynamic';
@@ -26,17 +27,17 @@ export default async function SettingsPage() {
       <SyncStatusPanel />
 
       <section className="space-y-3">
-        <h2 className="text-subheading font-semibold text-foreground">Account &amp; security</h2>
+        <SectionHeader title="Account & security" />
         <SettingsNavList items={SETTINGS_ACCOUNT_GROUP} />
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-subheading font-semibold text-foreground">Preferences</h2>
+        <SectionHeader title="Preferences" />
         <SettingsNavList items={SETTINGS_PREFERENCES_GROUP} />
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-subheading font-semibold text-foreground">Workspace</h2>
+        <SectionHeader title="Workspace" />
         <SettingsNavList items={SETTINGS_WORKSPACE_GROUP} />
       </section>
     </DashboardShell>

@@ -1,4 +1,4 @@
-import type { MileageRateSource, Prisma, Trip } from '@prisma/client';
+import type { MileageRateSource, Prisma, Trip, TripMileageSource } from '@prisma/client';
 import {
   calculateReimbursement,
   calculateTripMiles,
@@ -16,6 +16,7 @@ import { getOwnedVehicle } from '@/server/services/vehicle.service';
 import { prisma } from '@/lib/db/prisma';
 import { syncNotificationsForUser } from '@/server/services/notification.service';
 import { sendTripEndedSummaryEmail } from '@/server/services/email.service';
+import { resolveMileageAtEnd } from '@/server/services/gps-tracking.service';
 import {
   assertCanStartTrip,
   incrementTripUsage,
@@ -53,6 +54,16 @@ export function serializeTrip(trip: TripWithRelations) {
     expenseTotal: trip.expenseTotal ? Number(trip.expenseTotal) : null,
     grandTotal: trip.grandTotal ? Number(trip.grandTotal) : null,
     notes: trip.notes,
+    trackingEnabled: trip.trackingEnabled,
+    trackingStartedAt: trip.trackingStartedAt?.toISOString() ?? null,
+    trackingStoppedAt: trip.trackingStoppedAt?.toISOString() ?? null,
+    startLatitude: trip.startLatitude ? Number(trip.startLatitude) : null,
+    startLongitude: trip.startLongitude ? Number(trip.startLongitude) : null,
+    endLatitude: trip.endLatitude ? Number(trip.endLatitude) : null,
+    endLongitude: trip.endLongitude ? Number(trip.endLongitude) : null,
+    gpsMiles: trip.gpsMiles ? Number(trip.gpsMiles) : null,
+    mileageSource: trip.mileageSource,
+    mileageReviewRequired: trip.mileageReviewRequired,
     startedAt: trip.startedAt?.toISOString() ?? null,
     endedAt: trip.endedAt?.toISOString() ?? null,
     createdAt: trip.createdAt.toISOString(),
@@ -213,9 +224,26 @@ export async function startTrip(userId: string, input: TripStartInput) {
         projectName: clientProject.projectName,
         status: 'active',
         startedAt: new Date(),
+        trackingEnabled: data.trackingEnabled ?? false,
+        trackingStartedAt: data.trackingEnabled ? new Date() : null,
+        startLatitude: data.startLatitude,
+        startLongitude: data.startLongitude,
       },
       include: tripInclude,
     });
+
+    if (data.trackingEnabled && data.startLatitude != null && data.startLongitude != null) {
+      await tx.tripGpsPoint.create({
+        data: {
+          tripId: created.id,
+          userId,
+          latitude: data.startLatitude,
+          longitude: data.startLongitude,
+          recordedAt: new Date(),
+          source: 'start',
+        },
+      });
+    }
 
     if (data.startOdometer !== undefined) {
       await tx.vehicle.update({
@@ -241,10 +269,12 @@ export async function endTrip(userId: string, input: TripEndInput) {
   }
 
   const startOdometer = trip.startOdometer ? Number(trip.startOdometer) : null;
-  const odometerCheck = validateOdometerRange(startOdometer, data.endOdometer);
 
-  if (!odometerCheck.valid) {
-    throw new ValidationError(odometerCheck.error);
+  if (data.endOdometer !== undefined) {
+    const odometerCheck = validateOdometerRange(startOdometer, data.endOdometer);
+    if (!odometerCheck.valid) {
+      throw new ValidationError(odometerCheck.error);
+    }
   }
 
   const { rate, source } = await resolveMileageRateSnapshot(
@@ -253,23 +283,48 @@ export async function endTrip(userId: string, input: TripEndInput) {
     trip.vehicleId
   );
 
-  const miles = calculateTripMiles(startOdometer, data.endOdometer);
+  const mileage = await resolveMileageAtEnd(trip, {
+    endOdometer: data.endOdometer,
+    endLatitude: data.endLatitude,
+    endLongitude: data.endLongitude,
+  });
+
   const reimbursementAmount =
-    miles !== null ? calculateReimbursement(miles, rate) : null;
+    mileage.miles !== null ? calculateReimbursement(mileage.miles, rate) : null;
   const expenseTotal = trip.expenseTotal ? Number(trip.expenseTotal) : 0;
   const grandTotal =
     reimbursementAmount !== null ? reimbursementAmount + expenseTotal : null;
 
   const updated = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+    if (data.endLatitude != null && data.endLongitude != null) {
+      await tx.tripGpsPoint.create({
+        data: {
+          tripId: trip.id,
+          userId,
+          latitude: data.endLatitude,
+          longitude: data.endLongitude,
+          recordedAt: new Date(),
+          source: 'end',
+        },
+      });
+    }
+
     const completed = await tx.trip.update({
       where: { id: trip.id },
       data: {
         status: 'completed',
         endLocation: data.endLocation,
         endOdometer: data.endOdometer,
+        endLatitude: data.endLatitude,
+        endLongitude: data.endLongitude,
         notes: data.notes,
         endedAt: new Date(),
-        miles,
+        trackingEnabled: false,
+        trackingStoppedAt: new Date(),
+        miles: mileage.miles,
+        gpsMiles: mileage.gpsMiles,
+        mileageSource: mileage.mileageSource as TripMileageSource | null,
+        mileageReviewRequired: mileage.mileageReviewRequired,
         mileageRate: rate,
         mileageRateSource: source,
         reimbursementAmount,
@@ -278,10 +333,12 @@ export async function endTrip(userId: string, input: TripEndInput) {
       include: tripInclude,
     });
 
-    await tx.vehicle.update({
-      where: { id: trip.vehicleId },
-      data: { currentOdometer: data.endOdometer },
-    });
+    if (data.endOdometer !== undefined) {
+      await tx.vehicle.update({
+        where: { id: trip.vehicleId },
+        data: { currentOdometer: data.endOdometer },
+      });
+    }
 
     return completed;
   });
@@ -293,7 +350,7 @@ export async function endTrip(userId: string, input: TripEndInput) {
   void sendTripEndedSummaryEmail(userId, {
     tripId: updated.id,
     purpose: updated.purpose,
-    miles: miles !== null ? Number(miles) : null,
+    miles: mileage.miles !== null ? Number(mileage.miles) : null,
     reimbursementAmount: reimbursementAmount !== null ? Number(reimbursementAmount) : null,
   }).catch((err) => console.error('Trip summary email failed:', err));
 

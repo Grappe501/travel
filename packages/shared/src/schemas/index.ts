@@ -13,6 +13,7 @@ export * from './notification';
 export * from './search';
 export * from './restore';
 export * from './settings';
+export * from './gps';
 
 export const businessCreateSchema = z.object({
   name: z.string().min(1).max(100),
@@ -44,16 +45,31 @@ export const tripStartSchema = z.object({
   startOdometer: z.number().nonnegative().optional(),
   clientId: z.string().uuid().optional(),
   projectId: z.string().uuid().optional(),
+  trackingEnabled: z.boolean().optional(),
+  startLatitude: z.number().min(-90).max(90).optional(),
+  startLongitude: z.number().min(-180).max(180).optional(),
 });
 
 export type TripStartInput = z.infer<typeof tripStartSchema>;
 
-export const tripEndSchema = z.object({
-  tripId: z.string().uuid(),
-  endLocation: z.string().max(500).optional(),
-  endOdometer: z.number().nonnegative(),
-  notes: z.string().max(2000).optional(),
-});
+export const tripEndSchema = z
+  .object({
+    tripId: z.string().uuid(),
+    endLocation: z.string().max(500).optional(),
+    endOdometer: z.number().nonnegative().optional(),
+    endLatitude: z.number().min(-90).max(90).optional(),
+    endLongitude: z.number().min(-180).max(180).optional(),
+    notes: z.string().max(2000).optional(),
+  })
+  .refine(
+    (data) =>
+      data.endOdometer !== undefined ||
+      (data.endLatitude !== undefined && data.endLongitude !== undefined),
+    {
+      message: 'Provide ending odometer or end GPS coordinates',
+      path: ['endOdometer'],
+    }
+  );
 
 export type TripEndInput = z.infer<typeof tripEndSchema>;
 

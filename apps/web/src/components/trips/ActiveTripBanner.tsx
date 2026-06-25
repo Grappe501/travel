@@ -8,12 +8,13 @@ export function ActiveTripBanner({ trip }: { trip: SerializedTrip }) {
   const addExpenseHref = `/expenses/new?tripId=${trip.id}`;
 
   return (
-    <Card className="overflow-hidden border-primary/25 bg-gradient-to-br from-primary/10 via-surface to-surface">
+    <Card variant="highlight" className="overflow-hidden">
       <CardContent className="space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="primary">Active trip</Badge>
+              {trip.trackingEnabled ? <Badge variant="success">GPS ON</Badge> : null}
               <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-primary" aria-hidden />
             </div>
             <p className="text-card-title text-foreground">{trip.purpose}</p>

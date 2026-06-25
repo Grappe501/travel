@@ -27,12 +27,26 @@ describe('tripStartSchema', () => {
 });
 
 describe('tripEndSchema', () => {
-  it('requires end odometer and trip id', () => {
+  it('accepts end odometer and trip id', () => {
     const result = tripEndSchema.safeParse({
       tripId,
       endOdometer: 1050,
     });
     expect(result.success).toBe(true);
+  });
+
+  it('accepts end coordinates without odometer', () => {
+    const result = tripEndSchema.safeParse({
+      tripId,
+      endLatitude: 40.71,
+      endLongitude: -74.0,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('rejects when neither odometer nor coordinates provided', () => {
+    const result = tripEndSchema.safeParse({ tripId });
+    expect(result.success).toBe(false);
   });
 });
 

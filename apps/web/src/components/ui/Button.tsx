@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/cn';
 
 const variantStyles = {
   primary:
-    'bg-primary text-primary-foreground shadow-primary hover:bg-primary-hover active:bg-primary-active active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40',
+    'bg-gradient-to-b from-primary to-primary-hover text-primary-foreground shadow-primary hover:from-primary-hover hover:to-primary-active active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40',
   secondary:
     'border border-border bg-surface text-foreground shadow-sm hover:bg-hover active:bg-selected active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40',
   destructive:

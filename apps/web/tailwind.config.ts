@@ -36,6 +36,7 @@ const config: Config = {
         surface: {
           DEFAULT: 'hsl(var(--color-surface))',
           elevated: 'hsl(var(--color-surface-elevated))',
+          muted: 'hsl(var(--color-surface-muted))',
         },
         border: 'hsl(var(--color-border))',
         foreground: 'hsl(var(--color-text-primary))',
@@ -64,12 +65,14 @@ const config: Config = {
         md: 'var(--radius-md)',
         lg: 'var(--radius-lg)',
         xl: 'var(--radius-xl)',
+        '2xl': 'var(--radius-2xl)',
       },
       boxShadow: {
         sm: 'var(--shadow-sm)',
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
         primary: 'var(--shadow-primary)',
+        glow: 'var(--shadow-glow)',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
@@ -77,11 +80,21 @@ const config: Config = {
       },
       animation: {
         'fade-in': 'fade-in 0.25s ease-out',
+        'slide-up': 'slide-up 0.35s ease-out',
+        'scale-in': 'scale-in 0.2s ease-out',
       },
       keyframes: {
         'fade-in': {
           from: { opacity: '0', transform: 'translateY(4px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-up': {
+          from: { opacity: '0', transform: 'translateY(12px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'scale-in': {
+          from: { opacity: '0', transform: 'scale(0.97)' },
+          to: { opacity: '1', transform: 'scale(1)' },
         },
       },
     },

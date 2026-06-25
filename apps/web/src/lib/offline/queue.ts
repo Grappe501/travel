@@ -9,6 +9,7 @@ import {
 } from '@/lib/offline/db';
 import { createIdempotencyKey, createLocalReceiptId, createLocalTripId } from '@/lib/offline/ids';
 import type {
+  GpsPointPayload,
   LocalActiveTrip,
   QueueEntry,
   ReceiptUploadMeta,
@@ -64,6 +65,7 @@ export async function enqueueOfflineTripStart(
     startOdometer: payload.startOdometer ?? null,
     destination: payload.destination ?? null,
     startLocation: payload.startLocation ?? null,
+    trackingEnabled: payload.trackingEnabled ?? false,
     startedAt: nowIso(),
   };
 
@@ -106,12 +108,36 @@ export async function enqueueOfflineReceiptUpload(file: File, meta: Omit<Receipt
   return localReceiptId;
 }
 
+export async function enqueueGpsPointsBatch(
+  tripId: string,
+  points: GpsPointPayload[],
+  localTripId?: string
+) {
+  if (points.length === 0) return;
+  await assertQueueCapacity();
+
+  const entry = baseEntry(`queue-gps-${tripId}-${nowIso()}`, {
+    type: 'gps_points_batch',
+    tripId,
+    localTripId,
+    idempotencyKey: createIdempotencyKey(),
+    points,
+  });
+
+  await putQueueEntry(entry);
+}
+
 export async function getOfflineActiveTrip() {
   return getLocalActiveTrip();
 }
 
 export function sortQueueForSync(entries: QueueEntry[]): QueueEntry[] {
-  const typeOrder = { trip_start: 0, trip_end: 1, receipt_upload: 2 } as const;
+  const typeOrder = {
+    trip_start: 0,
+    gps_points_batch: 1,
+    trip_end: 2,
+    receipt_upload: 3,
+  } as const;
 
   return [...entries].sort((a, b) => {
     const orderDiff = typeOrder[a.operation.type] - typeOrder[b.operation.type];

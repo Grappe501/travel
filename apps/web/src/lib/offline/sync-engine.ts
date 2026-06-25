@@ -31,6 +31,35 @@ async function syncTripStart(entry: QueueEntry): Promise<string> {
   return result.data.id as string;
 }
 
+async function syncGpsPointsBatch(entry: QueueEntry, entries: QueueEntry[]) {
+  if (entry.operation.type !== 'gps_points_batch') {
+    throw new Error('Invalid operation');
+  }
+
+  let serverTripId = entry.operation.tripId;
+  if (serverTripId.startsWith('offline-') && entry.operation.localTripId) {
+    const resolved = resolveServerTripId(entries, entry.operation.localTripId);
+    if (!resolved) {
+      throw new Error('Waiting for trip start to sync');
+    }
+    serverTripId = resolved;
+  }
+
+  const response = await fetch(`/api/trips/${serverTripId}/gps-points`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Idempotency-Key': entry.operation.idempotencyKey,
+    },
+    body: JSON.stringify({ points: entry.operation.points }),
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.error ?? 'GPS points sync failed');
+  }
+}
+
 async function syncTripEnd(entry: QueueEntry, entries: QueueEntry[]) {
   if (entry.operation.type !== 'trip_end') {
     throw new Error('Invalid operation');
@@ -124,6 +153,16 @@ export async function syncOfflineQueue(): Promise<SyncResult> {
       continue;
     }
 
+    if (
+      entry.operation.type === 'gps_points_batch' &&
+      entry.operation.tripId.startsWith('offline-') &&
+      entry.operation.localTripId &&
+      !resolveServerTripId(entries, entry.operation.localTripId)
+    ) {
+      result.deferred += 1;
+      continue;
+    }
+
     await markEntry(entry, { syncStatus: 'syncing' });
 
     try {
@@ -138,6 +177,9 @@ export async function syncOfflineQueue(): Promise<SyncResult> {
         );
       } else if (entry.operation.type === 'trip_end') {
         await syncTripEnd(entry, entries);
+        await markEntry(entry, { syncStatus: 'synced' });
+      } else if (entry.operation.type === 'gps_points_batch') {
+        await syncGpsPointsBatch(entry, entries);
         await markEntry(entry, { syncStatus: 'synced' });
       } else {
         await syncReceiptUpload(entry);

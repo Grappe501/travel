@@ -16,18 +16,18 @@ export function SettingsNavList({ items }: { items: SettingsNavItem[] }) {
           <Link
             href={item.href}
             className={cn(
-              'surface-card-interactive flex items-center gap-4 p-4',
+              'group surface-card-interactive flex items-center gap-4 p-4',
               'focus-visible:outline-none'
             )}
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-lg text-primary">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/12 to-accent/8 text-lg shadow-sm ring-1 ring-primary/10">
               {item.icon}
             </span>
             <span className="min-w-0 flex-1">
               <span className="block font-semibold text-foreground">{item.title}</span>
               <span className="block text-caption text-muted">{item.description}</span>
             </span>
-            <span className="text-muted" aria-hidden>
+            <span className="text-lg text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden>
               →
             </span>
           </Link>

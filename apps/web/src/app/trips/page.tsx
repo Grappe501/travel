@@ -27,6 +27,7 @@ export default async function TripsPage() {
     <DashboardShell
       title="Trips"
       description="Track business mileage from start to finish."
+      eyebrow="Travel"
       actions={<TripsPageActions hasServerActiveTrip={Boolean(activeTrip)} />}
     >
       {activeTrip ? <ActiveTripBanner trip={activeTrip} /> : <OfflineActiveTripBanner />}

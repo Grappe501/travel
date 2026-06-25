@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils/cn';
 
 const variantStyles = {
-  info: 'border-info/30 bg-info/10 text-foreground',
-  success: 'border-success/30 bg-success/10 text-foreground',
-  warning: 'border-warning/30 bg-warning/10 text-foreground',
-  error: 'border-danger/30 bg-danger/10 text-foreground',
+  info: 'alert-accent border-info bg-info/10 text-foreground',
+  success: 'alert-accent border-success bg-success/10 text-foreground',
+  warning: 'alert-accent border-warning bg-warning/10 text-foreground',
+  error: 'alert-accent border-danger bg-danger/10 text-foreground',
 } as const;
 
 export type AlertVariant = keyof typeof variantStyles;
@@ -21,14 +21,10 @@ export function Alert({ variant = 'info', title, children, className }: AlertPro
   return (
     <div
       role="alert"
-      className={cn(
-        'rounded-lg border px-4 py-3 text-body',
-        variantStyles[variant],
-        className
-      )}
+      className={cn('text-body shadow-sm', variantStyles[variant], className)}
     >
-      {title ? <p className="text-subheading">{title}</p> : null}
-      <div className={cn(title && 'mt-1', 'text-caption')}>{children}</div>
+      {title ? <p className="text-subheading font-semibold">{title}</p> : null}
+      <div className={cn(title && 'mt-1', 'text-caption leading-relaxed')}>{children}</div>
     </div>
   );
 }

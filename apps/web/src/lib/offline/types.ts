@@ -16,12 +16,28 @@ export type TripStartPayload = {
   startOdometer?: number;
   clientId?: string;
   projectId?: string;
+  trackingEnabled?: boolean;
+  startLatitude?: number;
+  startLongitude?: number;
 };
 
 export type TripEndPayload = {
-  endOdometer: number;
+  endOdometer?: number;
   endLocation?: string;
+  endLatitude?: number;
+  endLongitude?: number;
   notes?: string;
+};
+
+export type GpsPointPayload = {
+  latitude: number;
+  longitude: number;
+  accuracyM?: number;
+  altitudeM?: number;
+  speedMps?: number;
+  heading?: number;
+  recordedAt: string;
+  source: 'live' | 'start' | 'end' | 'sync_batch';
 };
 
 export type ReceiptUploadMeta = {
@@ -44,6 +60,13 @@ export type QueueOperation =
       localTripId: string;
       idempotencyKey: string;
       payload: TripEndPayload;
+    }
+  | {
+      type: 'gps_points_batch';
+      tripId: string;
+      localTripId?: string;
+      idempotencyKey: string;
+      points: GpsPointPayload[];
     }
   | {
       type: 'receipt_upload';
@@ -72,6 +95,7 @@ export type LocalActiveTrip = {
   startOdometer: number | null;
   destination: string | null;
   startLocation: string | null;
+  trackingEnabled: boolean;
   startedAt: string;
 };
 

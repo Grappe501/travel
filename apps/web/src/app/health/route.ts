@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { APP_RELEASE } from '@/lib/app-release';
-import { isNotificationsSchemaReady, isV12SchemaReady } from '@/lib/db/schema-health';
+import { isGpsTrackingSchemaReady, isNotificationsSchemaReady, isV12SchemaReady } from '@/lib/db/schema-health';
 import { getBuildMetadata, getDependencyFlags } from '@/lib/monitoring/config';
 import { evaluateProductionReadiness } from '@/lib/monitoring/production-readiness';
 
@@ -11,14 +11,17 @@ export async function GET() {
   const build = getBuildMetadata();
   let migrationsApplied = false;
   let notificationsReady = false;
+  let gpsTrackingReady = false;
 
   if (dependencies.databaseConfigured) {
     try {
       migrationsApplied = await isV12SchemaReady();
       notificationsReady = await isNotificationsSchemaReady();
+      gpsTrackingReady = await isGpsTrackingSchemaReady();
     } catch {
       migrationsApplied = false;
       notificationsReady = false;
+      gpsTrackingReady = false;
     }
   }
 
@@ -39,6 +42,7 @@ export async function GET() {
     step: APP_RELEASE.step,
     migrationsApplied,
     notificationsReady,
+    gpsTrackingReady,
     readiness: {
       coreReady: readiness.coreReady,
       productionReady: readiness.productionReady,

@@ -97,6 +97,16 @@ export type SerializedTrip = {
   expenseTotal: number | null;
   grandTotal: number | null;
   notes: string | null;
+  trackingEnabled: boolean;
+  trackingStartedAt: string | null;
+  trackingStoppedAt: string | null;
+  startLatitude: number | null;
+  startLongitude: number | null;
+  endLatitude: number | null;
+  endLongitude: number | null;
+  gpsMiles: number | null;
+  mileageSource: string | null;
+  mileageReviewRequired: boolean;
   startedAt: string | null;
   endedAt: string | null;
   createdAt: string;

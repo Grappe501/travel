@@ -77,8 +77,8 @@ function NavLinkButton({ item, pathname }: { item: AppNavLinkItem; pathname: str
     >
       <span
         className={cn(
-          'flex h-8 w-8 items-center justify-center rounded-xl text-base leading-none transition-colors',
-          active ? 'bg-primary/12' : 'bg-transparent'
+          'flex h-8 w-8 items-center justify-center rounded-xl text-base leading-none transition-all duration-200',
+          active ? 'nav-link-active scale-105' : 'bg-transparent'
         )}
         aria-hidden
       >

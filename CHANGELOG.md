@@ -13,7 +13,46 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
-## [1.10.0] — 2026-06-25
+## [1.12.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.12.0 (STEP-071)**
+
+Design & UX v3 — depth, motion, and layout polish.
+
+### Added
+- **Design tokens v3** — Mesh gradients, glow shadows, surface-muted palette
+- **Card variants** — `elevated`, `soft`, `highlight` for hierarchy
+- **SectionHeader** — Consistent section titles across dashboard and settings
+- **Motion** — slide-up and scale-in animations
+
+### Changed
+- **Shell layout** — Wider content area (`max-w-4xl`), refined glass navigation
+- **Home hero** — Elevated marketing card with feature list including GPS
+- **Stat cards & quick actions** — Ring borders, hover lift, chevron affordance
+- **Alerts** — Left-accent border styling
+- **Active trip banner** — Highlight card treatment
+
+---
+
+## [1.11.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.11.0 (STEP-070)**
+
+GPS trip tracking — foreground mileage capture, route history, and FR-500 mileage precedence.
+
+### Added
+- **GPS tracking** — Opt-in “Track mileage with GPS” on trip start and active trips
+- **`trip_gps_points`** — Batch API, route summary, SVG polyline map, timeline
+- **FR-500 mileage** — Odometer authoritative; GPS fallback; >10% divergence review flag
+- **Offline GPS queue** — Buffered point uploads sync with existing offline engine
+- **Settings → Data & privacy** — Location defaults and high-accuracy toggle
+- **Health** — `gpsTrackingReady` schema flag
+
+### Changed
+- **End trip** — Odometer optional when GPS tracking provides mileage
+- **Trip detail** — Route section for completed trips with GPS data
+
+---
 
 **Mileage & Expense Copilot — V1.10.0 (STEP-069)**
 

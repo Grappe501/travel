@@ -1,5 +1,5 @@
 /**
- * Design System v2 — semantic tokens (STEP-066 UX refresh).
+ * Design System v3 — semantic tokens (STEP-071 UX refresh).
  * Components consume these via Tailwind theme extensions only.
  */
 :root {
@@ -23,6 +23,7 @@
   --color-background-subtle: 204 45% 96%;
   --color-surface: 0 0% 100%;
   --color-surface-elevated: 0 0% 100%;
+  --color-surface-muted: 210 32% 97%;
   --color-border: 214 24% 88%;
   --color-text-primary: 222 47% 11%;
   --color-text-muted: 215 16% 42%;
@@ -34,16 +35,21 @@
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
   --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
 
   --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.04);
   --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 0.08), 0 2px 6px -2px rgb(15 23 42 / 0.04);
   --shadow-lg: 0 12px 24px -4px rgb(15 23 42 / 0.1), 0 4px 8px -4px rgb(15 23 42 / 0.06);
   --shadow-primary: 0 4px 14px -2px hsl(var(--color-primary) / 0.35);
+  --shadow-glow: 0 0 0 1px hsl(var(--color-primary) / 0.12), 0 8px 24px -4px hsl(var(--color-primary) / 0.2);
 
   --focus-ring: 0 0 0 2px hsl(var(--color-background)), 0 0 0 4px hsl(var(--color-primary));
 
   --app-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--color-primary) / 0.12), transparent),
     linear-gradient(180deg, hsl(var(--color-background-subtle)) 0%, hsl(var(--color-background)) 40%);
+  --mesh-gradient: radial-gradient(at 20% 20%, hsl(var(--color-primary) / 0.14) 0, transparent 50%),
+    radial-gradient(at 80% 0%, hsl(var(--color-accent) / 0.1) 0, transparent 45%),
+    radial-gradient(at 50% 100%, hsl(var(--color-primary) / 0.08) 0, transparent 55%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -64,6 +70,7 @@
     --color-background-subtle: 222 47% 8%;
     --color-surface: 222 47% 9%;
     --color-surface-elevated: 222 47% 11%;
+    --color-surface-muted: 222 47% 8%;
     --color-border: 217 19% 20%;
     --color-text-primary: 210 40% 98%;
     --color-text-muted: 215 20% 62%;
@@ -74,9 +81,13 @@
     --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.35);
     --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.45);
     --shadow-primary: 0 4px 14px -2px hsl(var(--color-primary) / 0.25);
+    --shadow-glow: 0 0 0 1px hsl(var(--color-primary) / 0.2), 0 8px 24px -4px hsl(var(--color-primary) / 0.15);
 
     --app-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--color-primary) / 0.18), transparent),
       linear-gradient(180deg, hsl(var(--color-background-subtle)) 0%, hsl(var(--color-background)) 40%);
+    --mesh-gradient: radial-gradient(at 20% 20%, hsl(var(--color-primary) / 0.22) 0, transparent 50%),
+      radial-gradient(at 80% 0%, hsl(var(--color-accent) / 0.14) 0, transparent 45%),
+      radial-gradient(at 50% 100%, hsl(var(--color-primary) / 0.12) 0, transparent 55%);
   }
 }
 
@@ -96,6 +107,7 @@
   --color-background-subtle: 222 47% 8%;
   --color-surface: 222 47% 9%;
   --color-surface-elevated: 222 47% 11%;
+  --color-surface-muted: 222 47% 8%;
   --color-border: 217 19% 20%;
   --color-text-primary: 210 40% 98%;
   --color-text-muted: 215 20% 62%;
@@ -106,7 +118,11 @@
   --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.35);
   --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.45);
   --shadow-primary: 0 4px 14px -2px hsl(var(--color-primary) / 0.25);
+  --shadow-glow: 0 0 0 1px hsl(var(--color-primary) / 0.2), 0 8px 24px -4px hsl(var(--color-primary) / 0.15);
 
   --app-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--color-primary) / 0.18), transparent),
     linear-gradient(180deg, hsl(var(--color-background-subtle)) 0%, hsl(var(--color-background)) 40%);
+  --mesh-gradient: radial-gradient(at 20% 20%, hsl(var(--color-primary) / 0.22) 0, transparent 50%),
+    radial-gradient(at 80% 0%, hsl(var(--color-accent) / 0.14) 0, transparent 45%),
+    radial-gradient(at 50% 100%, hsl(var(--color-primary) / 0.12) 0, transparent 55%);
 }

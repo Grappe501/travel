@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { AccountExportPanel } from '@/components/settings/DataPrivacyPanel';
+import { LocationSettingsPanel } from '@/components/settings/LocationSettingsPanel';
 import { ButtonLink, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';
 
@@ -25,6 +26,8 @@ export default async function DataPrivacySettingsPage() {
       }
     >
       <AccountExportPanel />
+
+      <LocationSettingsPanel />
 
       <Card>
         <CardHeader>

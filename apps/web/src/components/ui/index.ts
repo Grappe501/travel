@@ -16,6 +16,7 @@ export { Modal } from './Modal';
 export { ConfirmDeleteDialog } from './ConfirmDeleteDialog';
 export { ToastProvider, useToast } from './ToastProvider';
 export { PageHeader } from './PageHeader';
+export { SectionHeader } from './SectionHeader';
 export { RemoveEntryButton } from './RemoveEntryButton';
 export { Select } from './Select';
 export { StatCard, QuickActionGrid } from './StatCard';

@@ -4,13 +4,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useOffline } from '@/components/offline/OfflineProvider';
+import { GpsTrackingToggle } from '@/components/trips/GpsTrackingToggle';
 import { Alert, Badge, Button, ButtonLink, Card, CardContent, Input, RemoveEntryButton, Select } from '@/components/ui';
 import { UpgradeLimitAlert } from '@/components/billing/UpgradeLimitAlert';
+import { captureCurrentCoordinate } from '@/lib/location/use-trip-gps-tracker';
 import { enqueueOfflineTripStart } from '@/lib/offline/queue';
 import { isBrowserOnline } from '@/lib/offline/connectivity';
 import type { SerializedBusiness, SerializedClient, SerializedProject, SerializedTrip, SerializedVehicle } from '@/lib/types/core';
 
 export { ActiveTripBanner } from '@/components/trips/ActiveTripBanner';
+export { TripActiveTracking } from '@/components/trips/TripActiveTracking';
+export { TripRouteSection } from '@/components/trips/TripRouteSection';
 
 type TripStartFormProps = {
   businesses: SerializedBusiness[];
@@ -37,6 +41,20 @@ export function TripStartForm({ businesses, vehicles, activeTrip }: TripStartFor
   const [error, setError] = useState<string | null>(null);
   const [errorCode, setErrorCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [trackingEnabled, setTrackingEnabled] = useState(false);
+  const [locating, setLocating] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
+
+  useEffect(() => {
+    void fetch('/api/settings/location')
+      .then((response) => response.json())
+      .then((result) => {
+        const defaultPref = result.data?.gpsTrackingDefault as string | undefined;
+        if (defaultPref === 'on') setTrackingEnabled(true);
+        if (defaultPref === 'off') setTrackingEnabled(false);
+      })
+      .catch(() => undefined);
+  }, []);
 
   useEffect(() => {
     if (!businessId) {
@@ -69,7 +87,21 @@ export function TripStartForm({ businesses, vehicles, activeTrip }: TripStartFor
     e.preventDefault();
     setError(null);
     setErrorCode(null);
+    setLocationError(null);
     setLoading(true);
+
+    let startLatitude: number | undefined;
+    let startLongitude: number | undefined;
+
+    if (trackingEnabled) {
+      try {
+        const coordinate = await captureCurrentCoordinate();
+        startLatitude = coordinate.latitude;
+        startLongitude = coordinate.longitude;
+      } catch {
+        setLocationError('Location permission denied — starting trip without GPS.');
+      }
+    }
 
     const payload = {
       businessId,
@@ -80,6 +112,8 @@ export function TripStartForm({ businesses, vehicles, activeTrip }: TripStartFor
       ...(startOdometer ? { startOdometer: Number(startOdometer) } : {}),
       ...(clientId ? { clientId } : {}),
       ...(projectId ? { projectId } : {}),
+      ...(trackingEnabled ? { trackingEnabled: true } : {}),
+      ...(startLatitude != null ? { startLatitude, startLongitude } : {}),
     };
 
     if (!isBrowserOnline()) {
@@ -233,13 +267,41 @@ export function TripStartForm({ businesses, vehicles, activeTrip }: TripStartFor
             maxLength={500}
           />
 
-          <Input
-            label="Start location (optional)"
-            id="trip-start-location"
-            value={startLocation}
-            onChange={(e) => setStartLocation(e.target.value)}
-            maxLength={500}
-          />
+          <div className="space-y-2">
+            <Input
+              label="Start location (optional)"
+              id="trip-start-location"
+              value={startLocation}
+              onChange={(e) => setStartLocation(e.target.value)}
+              maxLength={500}
+            />
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              disabled={locating}
+              onClick={async () => {
+                setLocating(true);
+                setLocationError(null);
+                try {
+                  const coordinate = await captureCurrentCoordinate();
+                  setStartLocation(
+                    `${coordinate.latitude.toFixed(5)}, ${coordinate.longitude.toFixed(5)}`
+                  );
+                } catch {
+                  setLocationError('Could not get current location');
+                } finally {
+                  setLocating(false);
+                }
+              }}
+            >
+              {locating ? 'Locating…' : 'Use current location'}
+            </Button>
+          </div>
+
+          {locationError ? <Alert variant="warning">{locationError}</Alert> : null}
+
+          <GpsTrackingToggle checked={trackingEnabled} onChange={setTrackingEnabled} disabled={loading} />
 
           <Input
             label="Starting odometer (optional)"
@@ -271,18 +333,47 @@ export function TripEndForm({ trip }: TripEndFormProps) {
   const [notes, setNotes] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [gpsPreview, setGpsPreview] = useState<number | null>(null);
+
+  const odometerRequired = !trip.trackingEnabled;
+
+  useEffect(() => {
+    if (!trip.trackingEnabled) return;
+    void fetch(`/api/trips/${trip.id}/route-summary`)
+      .then((response) => response.json())
+      .then((result) => {
+        setGpsPreview(result.data?.gpsMiles ?? null);
+      })
+      .catch(() => undefined);
+  }, [trip.id, trip.trackingEnabled]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setLoading(true);
 
+    let endLatitude: number | undefined;
+    let endLongitude: number | undefined;
+
+    if (trip.trackingEnabled) {
+      try {
+        const coordinate = await captureCurrentCoordinate();
+        endLatitude = coordinate.latitude;
+        endLongitude = coordinate.longitude;
+      } catch {
+        setError('Could not capture end location. Enter ending odometer or allow location access.');
+        setLoading(false);
+        return;
+      }
+    }
+
     const response = await fetch(`/api/trips/${trip.id}/end`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        endOdometer: Number(endOdometer),
+        ...(endOdometer ? { endOdometer: Number(endOdometer) } : {}),
         ...(endLocation ? { endLocation } : {}),
+        ...(endLatitude != null ? { endLatitude, endLongitude } : {}),
         ...(notes ? { notes } : {}),
       }),
     });
@@ -312,19 +403,28 @@ export function TripEndForm({ trip }: TripEndFormProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           {error ? <Alert variant="error">{error}</Alert> : null}
 
+          {trip.trackingEnabled && gpsPreview != null ? (
+            <Alert variant="info">
+              GPS estimate so far: ~{gpsPreview.toLocaleString()} mi. Odometer still takes precedence when
+              provided.
+            </Alert>
+          ) : null}
+
           <Input
-            label="Ending odometer"
+            label={odometerRequired ? 'Ending odometer' : 'Ending odometer (optional)'}
             id="trip-end-odometer"
             type="number"
             step="0.1"
             min={trip.startOdometer ?? 0}
-            required
+            required={odometerRequired}
             value={endOdometer}
             onChange={(e) => setEndOdometer(e.target.value)}
             hint={
               trip.startOdometer !== null
-                ? `Must be ≥ ${trip.startOdometer.toLocaleString()} mi`
-                : undefined
+                ? `Must be ≥ ${trip.startOdometer.toLocaleString()} mi when provided`
+                : trip.trackingEnabled
+                  ? 'Leave blank to use GPS mileage'
+                  : undefined
             }
           />
 
@@ -481,7 +581,7 @@ export function TripList({ trips: initialTrips }: TripListProps) {
     <div className="space-y-4">
       <h2 className="text-section-title text-foreground">Trip history</h2>
       {completed.map((trip) => (
-        <Card key={trip.id}>
+        <Card key={trip.id} variant="elevated" interactive>
           <CardContent className="flex flex-wrap items-start justify-between gap-4 pt-4">
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
@@ -569,6 +669,21 @@ export function TripDetailCard({ trip }: { trip: SerializedTrip }) {
             <div>
               <dt className="text-caption text-muted">End odometer</dt>
               <dd>{trip.endOdometer.toLocaleString()} mi</dd>
+            </div>
+          ) : null}
+          {trip.gpsMiles !== null ? (
+            <div>
+              <dt className="text-caption text-muted">GPS miles</dt>
+              <dd>
+                {trip.gpsMiles.toLocaleString()} mi
+                {trip.mileageReviewRequired ? ' · review suggested' : ''}
+              </dd>
+            </div>
+          ) : null}
+          {trip.mileageSource ? (
+            <div>
+              <dt className="text-caption text-muted">Mileage source</dt>
+              <dd>{trip.mileageSource}</dd>
             </div>
           ) : null}
           {trip.miles !== null ? (

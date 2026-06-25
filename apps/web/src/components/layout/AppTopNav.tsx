@@ -21,13 +21,13 @@ export function AppTopNav() {
         className="glass-nav sticky top-0 z-40 hidden border-b md:block"
         aria-label="Primary navigation"
       >
-        <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-6 py-3">
+        <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-6 py-3">
           <Link
             href="/dashboard"
-            className="flex items-center gap-2 text-subheading font-semibold text-foreground transition-colors hover:text-primary"
+            className="group flex items-center gap-2.5 text-subheading font-semibold text-foreground transition-colors hover:text-primary"
           >
             <span
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground shadow-primary"
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-hover text-sm font-bold text-primary-foreground shadow-primary transition-transform group-hover:scale-105"
               aria-hidden
             >
               M
@@ -44,10 +44,8 @@ export function AppTopNav() {
                     <Link
                       href={item.href}
                       className={cn(
-                        'rounded-xl px-3 py-2 text-caption transition-colors focus-visible:outline-none',
-                        active
-                          ? 'bg-primary/10 font-semibold text-primary'
-                          : 'text-muted hover:bg-hover hover:text-foreground'
+                        'rounded-xl px-3 py-2 text-caption transition-all duration-150 focus-visible:outline-none',
+                        active ? 'nav-link-active' : 'text-muted hover:bg-hover hover:text-foreground'
                       )}
                       aria-current={active ? 'page' : undefined}
                     >
