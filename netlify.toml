@@ -17,6 +17,7 @@
   # DATABASE_URL, DIRECT_URL, and Supabase public keys: set in Netlify UI only
   # (do not commit secret values — see docs/execution/PRODUCTION-CHECKLIST.md)
   SECRETS_SCAN_OMIT_PATHS = "apps/web/src/lib/supabase/config.ts,apps/web/src/lib/monitoring/config.test.ts,.github/workflows/ci.yml"
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_APP_NAME"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "pnpm@9.15.0",
   "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
     "@prisma/client": "^6.19.3"
   },
   "scripts": {
