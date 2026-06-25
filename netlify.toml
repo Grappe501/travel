@@ -1,5 +1,5 @@
 # Mileage & Expense Copilot — Netlify configuration
-# DEC-001: Netlify + Next.js 15 (OpenNext adapter — do not pin legacy v4 plugin)
+# DEC-001: Netlify + Next.js 15 — use plugin v5 (v4 causes AsyncLocalStorage snapshot errors)
 
 [build]
   command = "pnpm install && pnpm db:generate && pnpm build"
@@ -13,6 +13,9 @@
   DATABASE_URL = "postgresql://build:build@localhost:5432/mileage_copilot"
   NEXT_PUBLIC_SUPABASE_URL = "https://placeholder.supabase.co"
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "placeholder-anon-key"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [[headers]]
   for = "/*"
