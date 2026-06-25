@@ -1,5 +1,10 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { getDependencyFlags, getSentryDsn, isSentryEnabled } from '@/lib/monitoring/config';
+import {
+  getDependencyFlags,
+  getSentryDsn,
+  isCiBuildDatabaseUrl,
+  isSentryEnabled,
+} from '@/lib/monitoring/config';
 
 describe('monitoring config', () => {
   const originalEnv = { ...process.env };
@@ -19,8 +24,9 @@ describe('monitoring config', () => {
     expect(isSentryEnabled()).toBe(true);
   });
 
-  it('flags build placeholder database as not configured', () => {
-    process.env.DATABASE_URL = 'postgresql://build:build@localhost:5432/mileage_copilot';
+  it('flags CI build database URL as not configured', () => {
+    process.env.DATABASE_URL = 'postgresql://ci:ci@127.0.0.1:5432/ci_build';
+    expect(isCiBuildDatabaseUrl(process.env.DATABASE_URL)).toBe(true);
     const flags = getDependencyFlags();
     expect(flags.databaseConfigured).toBe(false);
   });

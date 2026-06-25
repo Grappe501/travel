@@ -13,8 +13,8 @@ importers:
         version: 6.19.3(prisma@6.19.3(magicast@0.3.5)(typescript@5.9.3))(typescript@5.9.3)
     devDependencies:
       '@netlify/plugin-nextjs':
-        specifier: 5.15.11
-        version: 5.15.11
+        specifier: 5.15.12
+        version: 5.15.12
       prettier:
         specifier: ^3.4.2
         version: 3.8.4
@@ -27,6 +27,9 @@ importers:
       '@mileage-copilot/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@opentelemetry/api':
+        specifier: ^1.9.1
+        version: 1.9.1
       '@prisma/client':
         specifier: ^6.19.3
         version: 6.19.3(prisma@6.19.3(magicast@0.3.5)(typescript@5.9.3))(typescript@5.9.3)
@@ -622,8 +625,8 @@ packages:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
 
-  '@netlify/plugin-nextjs@5.15.11':
-    resolution: {integrity: sha512-cx7yoJFYDBFRecGqJaEUuvnHvU+vs9ISn7DUXyijPheaqtbyRy4+z7Mjre9swEJ19ItVeFhuGuXUkl6X5nfJeA==}
+  '@netlify/plugin-nextjs@5.15.12':
+    resolution: {integrity: sha512-eydPd4gtc/OJOx9IbIJ5CRrC5K3rLxfEQS/S/fRNEAAT0qFvPoQVy23VdK3jRXKFJWXdCRl6ZudWLEZECQPSRQ==}
     engines: {node: '>=18.0.0'}
 
   '@next/env@15.5.19':
@@ -4145,7 +4148,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.3
     optional: true
 
-  '@netlify/plugin-nextjs@5.15.11': {}
+  '@netlify/plugin-nextjs@5.15.12': {}
 
   '@next/env@15.5.19': {}
 

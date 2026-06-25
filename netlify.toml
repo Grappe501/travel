@@ -13,10 +13,9 @@
   NODE_VERSION = "22"
   NPM_FLAGS = "--version"
   PNPM_VERSION = "9"
-  # Prisma generate at build time (no live DB required)
-  DATABASE_URL = "postgresql://build:build@localhost:5432/mileage_copilot"
-  NEXT_PUBLIC_SUPABASE_URL = "https://placeholder.supabase.co"
-  NEXT_PUBLIC_SUPABASE_ANON_KEY = "placeholder-anon-key"
+  # DATABASE_URL, DIRECT_URL, and Supabase public keys: set in Netlify UI only
+  # (do not commit secret values — see docs/execution/PRODUCTION-CHECKLIST.md)
+  SECRETS_SCAN_OMIT_PATHS = "apps/web/src/lib/supabase/config.ts,apps/web/src/lib/monitoring/config.test.ts,.github/workflows/ci.yml"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

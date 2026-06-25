@@ -4,8 +4,15 @@ function isPlaceholder(value: string | undefined): boolean {
     value.includes('placeholder') ||
     value.includes('...') ||
     value.includes('your-') ||
-    value.includes('change-me')
+    value.includes('change-me') ||
+    value.includes('unconfigured')
   );
+}
+
+/** CI/Netlify build URLs that must not count as production database config. */
+export function isCiBuildDatabaseUrl(url: string | undefined): boolean {
+  if (!url) return true;
+  return url.includes('@127.0.0.1:5432/ci_build') || url.includes('build:build@localhost');
 }
 
 export function getSentryDsn(): string | undefined {
@@ -44,7 +51,7 @@ export function getDependencyFlags(): DependencyFlags {
   const directUrl = process.env.DIRECT_URL;
 
   return {
-    databaseConfigured: Boolean(databaseUrl && !databaseUrl.includes('build:build@localhost')),
+    databaseConfigured: Boolean(databaseUrl && !isCiBuildDatabaseUrl(databaseUrl)),
     directDatabaseConfigured: Boolean(directUrl && !isPlaceholder(directUrl)),
     supabaseConfigured: Boolean(
       process.env.NEXT_PUBLIC_SUPABASE_URL &&

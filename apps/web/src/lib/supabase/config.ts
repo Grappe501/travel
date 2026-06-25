@@ -8,8 +8,8 @@ export function getPublicSupabaseConfig() {
 
   if (!url || !anonKey) {
     return {
-      url: 'https://placeholder.supabase.co',
-      anonKey: 'placeholder-anon-key',
+      url: 'https://app-unconfigured.invalid',
+      anonKey: 'app-unconfigured-anon-key',
       isConfigured: false,
     };
   }
