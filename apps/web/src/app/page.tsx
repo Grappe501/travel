@@ -1,4 +1,5 @@
 import { APP_NAME, APP_TAGLINE } from '@mileage-copilot/shared';
+import { InstallAppPrompt } from '@/components/pwa/InstallAppPrompt';
 import { ButtonLink } from '@/components/ui';
 import { APP_RELEASE } from '@/lib/app-release';
 import { env } from '@/lib/env';
@@ -16,6 +17,12 @@ export default function HomePage() {
         <p className="animate-fade-in mt-4 text-body-lg text-muted">{APP_TAGLINE}</p>
 
         <ul className="animate-fade-in mt-8 space-y-3 text-body text-muted">
+          <li className="flex items-start gap-3">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary/10 text-sm">
+              📲
+            </span>
+            Install on your phone — works offline, syncs when connected
+          </li>
           <li className="flex items-start gap-3">
             <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary/10 text-sm">
               🚗
@@ -36,7 +43,11 @@ export default function HomePage() {
           </li>
         </ul>
 
-        <div className="animate-fade-in mt-10 flex flex-wrap gap-3">
+        <div className="animate-fade-in mt-8">
+          <InstallAppPrompt variant="banner" />
+        </div>
+
+        <div className="animate-fade-in mt-8 flex flex-wrap gap-3">
           <ButtonLink href="/login" size="lg">
             Log in
           </ButtonLink>

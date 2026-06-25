@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { LogoutButton } from '@/components/auth/LogoutButton';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { ActiveTripBanner } from '@/components/trips/ActiveTripBanner';
+import { InstallAppPrompt } from '@/components/pwa/InstallAppPrompt';
 import {
   Alert,
   Badge,
@@ -106,6 +107,8 @@ export default async function DashboardPage() {
       {statsError ? <Alert variant="error">{statsError}</Alert> : null}
 
       {activeTrip ? <ActiveTripBanner trip={activeTrip} /> : null}
+
+      <InstallAppPrompt variant="banner" />
 
       {showSetupPrompt ? (
         <Card interactive>

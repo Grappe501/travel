@@ -33,6 +33,7 @@ export const STATIC_APP_ROUTES = [
   '/settings/account',
   '/settings/appearance',
   '/settings/security',
+  '/settings/install',
   '/settings/notifications',
   '/settings/mileage',
   '/settings/privacy',

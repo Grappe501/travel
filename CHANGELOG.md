@@ -13,6 +13,24 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.10.0] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.10.0 (STEP-069)**
+
+PWA install — home screen app with custom icon and offline shell.
+
+### Added
+- **Web app manifest** — Installable standalone app with teal MEC icon
+- **Service worker** — Offline fallback, static asset cache, visited-page cache
+- **Install prompts** — Home, dashboard, and Settings → Install app
+- **iOS guidance** — Add to Home Screen instructions for Safari
+
+### Changed
+- **CSP** — `worker-src` and `manifest-src` for service worker support
+- **Offline UX** — Branded offline page when network unavailable
+
+---
+
 ## [1.9.2] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.9.2 (STEP-068)**

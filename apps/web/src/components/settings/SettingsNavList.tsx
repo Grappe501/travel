@@ -45,6 +45,12 @@ export const SETTINGS_ACCOUNT_GROUP: SettingsNavItem[] = [
     icon: '👤',
   },
   {
+    href: '/settings/install',
+    title: 'Install app',
+    description: 'Add to home screen for offline field use',
+    icon: '📲',
+  },
+  {
     href: '/settings/appearance',
     title: 'Appearance',
     description: 'Light, dark, or system theme',
