@@ -58,7 +58,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-051 | 2026-06-25 | B | MEC-V1-S019 — AdminOS minimum customer lookup + health | `cbc3d09` | [STEP-051](docs/build-steps/STEP-051-mec-v1-s019-admin-minimum.md) |
 | STEP-052 | 2026-06-25 | H | MEC-V1-S020 — GA gates, catalog audit, v1.0.0 | `5e6d99c` | [STEP-052](docs/build-steps/STEP-052-mec-v1-s020-launch-ga.md) |
 | STEP-053 | 2026-06-25 | B | MEC-V1-S021 — Offline sync queue (trips + receipts) | `1db24a5` | [STEP-053](docs/build-steps/STEP-053-mec-v1-s021-offline-sync.md) |
-| STEP-054 | 2026-06-25 | B | MEC-V1-S022 — AI duplicate receipt detection | — | [STEP-054](docs/build-steps/STEP-054-mec-v1-s022-duplicate-detection.md) |
+| STEP-054 | 2026-06-25 | B | MEC-V1-S022 — AI duplicate receipt detection | `0dd3661` | [STEP-054](docs/build-steps/STEP-054-mec-v1-s022-duplicate-detection.md) |
 
 ---
 
