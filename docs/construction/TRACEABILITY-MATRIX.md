@@ -2,7 +2,7 @@
 
 **Master Build Index** · Volume 21
 
-Expand rows as features ship. Full matrix lives here; [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) links registries.
+Expand rows as features ship. Full matrix lives here; [MASTER-EXECUTION-INDEX.md](../MASTER-EXECUTION-INDEX.md) and [mei/MEI-TRACEABILITY.md](../mei/MEI-TRACEABILITY.md) link registries.
 
 | FR-ID | SCR-ID | API-ID | Table(s) | SM-ID | EVT-ID | WAVE |
 |-------|--------|--------|----------|-------|--------|------|

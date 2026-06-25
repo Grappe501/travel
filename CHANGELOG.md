@@ -47,6 +47,7 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Master Build Index updated to v1.3 — Volume 23 integration — STEP-027
 - Volume 24 added as **Product Constitution & Experience DNA** with DNA registry (35 chapters) — STEP-028
 - Master Execution Index updated to v1.4 — Volume 24 integration — STEP-028
+- **Master Execution Index (MEI) v2.0** — 25-section construction constitution, MRID traceability, BUILD slice registry — STEP-029
 
 ## [0.0.0] — 2026-06-24
 

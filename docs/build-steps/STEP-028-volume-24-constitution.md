@@ -47,4 +47,4 @@ Add **Volume 24 — Product Constitution, Design Language & Experience DNA** —
 
 ## Next step
 
-Blueprint sign-off → **STEP-029 Phase A / WAVE-001**
+Blueprint sign-off → **STEP-029 MEI** → **STEP-030 Phase A / WAVE-001**

@@ -25,11 +25,11 @@
 17. **Volume 22** is the *Platform Constitution* — PLT-IDs, 10-year evolution without rewrite.
 18. **Volume 23** is the *Product Factory* — FCT-IDs, every feature from idea to improvement.
 19. **Volume 24** is the *Product Constitution* — DNA-IDs, design language, permanent identity.
-20. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is the *master execution index* — registries, traceability, status.
+20. **[Master Execution Index (MEI)](../MASTER-EXECUTION-INDEX.md)** is the *construction schedule* — registries, traceability, build status. (Volumes 0–24 are the *library*.)
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–24 + Master Execution Index complete (v1.4). **Blueprint phase complete.** Sign off → WAVE-001 / Phase A.
+**Blueprint status:** Volumes 0–24 + MEI v2.0 complete. **Blueprint phase complete.** Sign off → WAVE-001 / Phase A (**STEP-030**).
 
 ---
 
@@ -63,7 +63,7 @@
 | **23** | [Product Factory & Engineering Excellence](23-product-factory.md) | FCT-IDs, feature lifecycle, testing/release factory |
 | **24** | [Product Constitution & Experience DNA](24-product-constitution.md) | DNA-IDs, design language, Constitution Statement — **permanent identity** |
 
-**Meta:** [Master Build Index — Master Execution Index](../MASTER-BUILD-INDEX.md)
+**Meta:** [Master Execution Index (MEI)](../MASTER-EXECUTION-INDEX.md)
 
 ---
 
@@ -91,7 +91,8 @@
 | [DNA-INDEX.md](../constitution/DNA-INDEX.md) | Product constitution (Volume 24) |
 | [VOCABULARY.md](../constitution/VOCABULARY.md) | UI vocabulary (Volume 24) |
 | [TRACEABILITY-MATRIX.md](../construction/TRACEABILITY-MATRIX.md) | FR ↔ SCR ↔ API matrix (Volume 21) |
-| [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) | **Control tower** — status & registries |
+| [MASTER-EXECUTION-INDEX.md](../MASTER-EXECUTION-INDEX.md) | **Construction schedule** — status & registries |
+| [mei/README.md](../mei/README.md) | MEI supporting catalogs (MRID, BUILD, Kanban) |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
 | [Root README](../../README.md) | Project overview and quick start |
 
@@ -192,4 +193,4 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 | Product | | | ☐ |
 | Engineering | | | ☐ |
 
-Once signed off ([Master Execution Index](../MASTER-BUILD-INDEX.md)), proceed to **WAVE-001 / Phase A** (STEP-029).
+Once signed off ([Master Execution Index](../MASTER-EXECUTION-INDEX.md)), proceed to **WAVE-001 / Phase A** (STEP-030).

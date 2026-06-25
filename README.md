@@ -10,7 +10,7 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 **Phase: Blueprint complete (Volumes 0–24) — sign off → build**
 
-**25 planning documents** (Volumes 0–24 + [Master Execution Index](docs/MASTER-BUILD-INDEX.md)). Identity: [Volume 24](docs/blueprint/24-product-constitution.md). Build: [Volume 21](docs/blueprint/21-construction-manual.md) WAVE-001 after sign-off (**STEP-029**).
+**25 planning documents** (Volumes 0–24) + **[Master Execution Index](docs/MASTER-EXECUTION-INDEX.md)** (the construction schedule). Identity: [Volume 24](docs/blueprint/24-product-constitution.md). Build: [Volume 21](docs/blueprint/21-construction-manual.md) WAVE-001 after sign-off (**STEP-030**).
 
 ---
 
@@ -30,7 +30,7 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 
 | Document | Purpose |
 |----------|---------|
-| [Master Build Index](docs/MASTER-BUILD-INDEX.md) | **Master execution index** — control tower |
+| [Master Execution Index (MEI)](docs/MASTER-EXECUTION-INDEX.md) | **Construction schedule** — open this while building |
 | [Volume 24 — Product Constitution](docs/blueprint/24-product-constitution.md) | **Permanent identity** — design DNA |
 | [Blueprint Index](docs/blueprint/README.md) | All 23 planning documents (Volumes 0–22) |
 | [Volume 0 — Product Doctrine](docs/blueprint/00-product-doctrine.md) | Design constitution — read first |
