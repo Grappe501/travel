@@ -20,12 +20,12 @@
 12. **Volume 17** is *AdminOS* — the company operating system: roles, dashboards, runbooks, and internal workflows.
 13. **Volume 18** is the *Mobile Field Experience* — offline-first PWA, camera, thumb-zone UX, and the Field Productivity Standard.
 14. **Volume 19** is the *Operations Bible* — DevOps, SRE, deployments, monitoring, backups, and production readiness.
-15. **Volume 20** is the *Product Evolution Roadmap* — versions, feature admission, and strategic growth.
-16. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is *The Constitution* — execution guide, registries, build order, and status.
+15. **Volume 21** is the *Construction Manual* — WAVE-IDs, AI build protocol, Definition of Done, quality gates.
+16. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is the *control tower* — registries, traceability, build status.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–20 + Master Build Index complete (v1.0). Ready for sign-off → Phase A.
+**Blueprint status:** Volumes 0–21 + Master Build Index complete (v1.1). Ready for sign-off → WAVE-001 / Phase A.
 
 ---
 
@@ -54,8 +54,9 @@
 | **18** | [Mobile Experience, Offline & Field Productivity](18-mobile-field-experience.md) | MOB-IDs, offline queue, camera, field workflows, device matrix, Field Productivity Standard |
 | **19** | [Production Operations, DevOps & SRE](19-production-sre.md) | OPS-IDs, environments, SLOs, deployment pipeline, runbooks, Reliability Standard |
 | **20** | [Product Evolution & Strategic Growth](20-product-evolution-roadmap.md) | ROAD-IDs, version strategy, feature admission, Product Evolution Standard |
+| **21** | [Construction Manual & AI Build Protocol](21-construction-manual.md) | WAVE-IDs, build waves, AI handoff, DoD, launch phases — **start building here** |
 
-**Meta:** [Master Build Index — The Constitution](../MASTER-BUILD-INDEX.md) — cross-reference all volumes, registries, implementation order, build status.
+**Meta:** [Master Build Index — Control Tower](../MASTER-BUILD-INDEX.md) — registries, traceability matrix, build status.
 
 ---
 
@@ -75,7 +76,9 @@
 | [DEVICE-MATRIX.md](../mobile/DEVICE-MATRIX.md) | Device compatibility matrix (Volume 18 Ch. 36) |
 | [OPS-INDEX.md](../ops/OPS-INDEX.md) | Operations & SRE registry (Volume 19) |
 | [ROAD-INDEX.md](../roadmap/ROAD-INDEX.md) | Product roadmap registry (Volume 20) |
-| [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) | **The Constitution** — execution guide |
+| [WAVE-INDEX.md](../construction/WAVE-INDEX.md) | Implementation waves (Volume 21) |
+| [TRACEABILITY-MATRIX.md](../construction/TRACEABILITY-MATRIX.md) | FR ↔ SCR ↔ API matrix (Volume 21) |
+| [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) | **Control tower** — status & registries |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
 | [Root README](../../README.md) | Project overview and quick start |
 
@@ -176,4 +179,4 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 | Product | | | ☐ |
 | Engineering | | | ☐ |
 
-Once signed off (including [Master Build Index](../MASTER-BUILD-INDEX.md)), proceed to **Phase A: Repo scaffold** (STEP-025).
+Once signed off ([Master Build Index](../MASTER-BUILD-INDEX.md) + [Volume 21](21-construction-manual.md)), proceed to **WAVE-001 / Phase A** (STEP-026).

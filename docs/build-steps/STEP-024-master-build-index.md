@@ -40,4 +40,4 @@ Add **Master Build Index** — single execution guide cross-referencing all 21 v
 
 ## Next step
 
-Blueprint sign-off → **STEP-025 Phase A: Repo scaffold**
+Blueprint complete → sign-off → **STEP-026 Phase A / WAVE-001**

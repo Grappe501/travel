@@ -651,7 +651,7 @@ The ideal roadmap is not measured by feature count. It is measured by how much *
 
 ## Blueprint Complete
 
-Volumes **0–20** define the product and the company. **Implementation begins** with [Master Build Index](../MASTER-BUILD-INDEX.md) sign-off → Phase A (STEP-025).
+Volumes **0–21** define the product, operations, evolution, and construction. **Implementation begins** with sign-off → [Volume 21](21-construction-manual.md) WAVE-001 → [Master Build Index](../MASTER-BUILD-INDEX.md).
 
 ---
 
@@ -668,4 +668,4 @@ Volumes **0–20** define the product and the company. **Implementation begins**
 
 ---
 
-*Previous: [Volume 19 — Production SRE](19-production-sre.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*
+*Previous: [Volume 19 — Production SRE](19-production-sre.md) | Next: [Volume 21 — Construction Manual](21-construction-manual.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*

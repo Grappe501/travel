@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This document is the **single table of contents** for the entire product. Volumes 0–20 define *what* to build and *how* it operates and evolves. The Master Build Index defines **how to execute** — cross-references, registries, dependencies, implementation order, and build status.
+This document is the **control tower** for the entire product. Volumes 0–20 define *what* to build and *how* it operates and evolves. **[Volume 21 — Construction Manual](blueprint/21-construction-manual.md)** defines *how to build it* (waves, AI protocol, gates). The Master Build Index tracks **status, traceability, and registries**.
 
 > **When this index is signed off, development shifts from invention to execution.**
 
@@ -24,24 +24,26 @@ This document is the **single table of contents** for the entire product. Volume
 
 | Status | Value |
 |--------|-------|
-| Planning volumes | **0–20 complete** |
-| Master Build Index | **v1.0** |
+| Planning volumes | **0–21 complete** |
+| Master Build Index | **v1.1** |
+| Construction Manual | Volume 21 |
 | Application code | **Not started** |
-| Next step | **STEP-025 — Phase A: Repo scaffold** |
+| Next step | **STEP-026 — Phase A / WAVE-001** |
 
 ### Sign-off
 
 | Gate | Owner | Date | ✓ |
 |------|-------|------|---|
-| Blueprint Volumes 0–20 | Product | | ☐ |
+| Blueprint Volumes 0–21 | Product | | ☐ |
 | Master Build Index | Engineering | | ☐ |
-| Begin Phase A | Both | | ☐ |
+| Construction Manual (Vol 21) | Engineering | | ☐ |
+| Begin Phase A / WAVE-001 | Both | | ☐ |
 
 ---
 
 # Part I — Volume Map
 
-## All 21 planning documents
+## All planning documents
 
 | Vol | Document | Domain | Canonical for |
 |-----|----------|--------|---------------|
@@ -66,7 +68,8 @@ This document is the **single table of contents** for the entire product. Volume
 | **18** | [Mobile Field Experience](blueprint/18-mobile-field-experience.md) | Mobile | MOB-IDs, offline |
 | **19** | [Production SRE](blueprint/19-production-sre.md) | Platform ops | OPS-IDs, runbooks |
 | **20** | [Product Evolution](blueprint/20-product-evolution-roadmap.md) | Roadmap | ROAD-IDs, versions |
-| — | **This document** | Execution | Build order, status |
+| **21** | [Construction Manual](blueprint/21-construction-manual.md) | **Build** | WAVE-IDs, AI protocol, DoD, gates |
+| — | **This document** | Control tower | Status, traceability, registries |
 
 ---
 
@@ -90,8 +93,11 @@ Every implementable artifact has an ID. **Update tracker status as work ships.**
 | Operations | [ops/OPS-INDEX.md](ops/OPS-INDEX.md) | OPS-* | 19 |
 | Runbooks | [runbooks/README.md](runbooks/README.md) | OPS-RB-* | 19 |
 | Roadmap | [roadmap/ROAD-INDEX.md](roadmap/ROAD-INDEX.md) | ROAD-* | 20 |
+| Waves | [construction/WAVE-INDEX.md](construction/WAVE-INDEX.md) | WAVE-*, BLD-* | 21 |
+| Traceability | [construction/TRACEABILITY-MATRIX.md](construction/TRACEABILITY-MATRIX.md) | FR↔SCR↔API | 21 |
+| AI handoff | [construction/AI-HANDOFF-TEMPLATE.md](construction/AI-HANDOFF-TEMPLATE.md) | BLD-AI-HANDOFF | 21 |
 
-**PR convention:** Every PR lists affected IDs: `SCR-IDs: … API-IDs: … SM-IDs: …`
+**PR convention:** Every PR lists affected IDs: `WAVE-IDs: … SCR-IDs: … API-IDs: … Step: STEP-NNN`
 
 ---
 
@@ -133,19 +139,19 @@ Canonical: Volume 4. Migration order in Phase B.
 
 # Part IV — Implementation Order
 
-## Phase overview
+## Phase overview (maps to WAVE-001–010)
 
-| Phase | STEP | Scope | Key volumes | Status |
-|-------|------|-------|-------------|--------|
-| **Blueprint** | 001–024 | Volumes 0–20 + this index | All | ☑ |
-| **A** | 025+ | Repo scaffold, CI, Netlify | 6, 19 | ☐ |
-| **B** | | Supabase schema, auth, RLS | 4, 8, 12 | ☐ |
-| **C** | | Core trip flow | 3, 11, 13, 18 | ☐ |
-| **D** | | Receipt OCR pipeline | 5, 16, 13 | ☐ |
-| **E** | | Reports + exports | 3, 11, 12 | ☐ |
-| **F** | | Stripe + tier limits | 3, 7, 13 | ☐ |
-| **G** | | Polish, PWA, admin, onboarding | 10, 17, 18 | ☐ |
-| **H** | | Beta launch | 7, 9, 19, 20 | ☐ |
+| Phase | WAVE | STEP | Scope | Status |
+|-------|------|------|-------|--------|
+| **Blueprint** | — | 001–025 | Volumes 0–21 + this index | ☑ |
+| **A** | WAVE-001 | 026+ | Repo, CI, Netlify, auth shell | ☐ |
+| **B** | WAVE-001–002 | | Schema, RLS, core entities | ☐ |
+| **C** | WAVE-003 | | Trip flow | ☐ |
+| **D** | WAVE-004 | | Receipt + OCR pipeline | ☐ |
+| **E** | WAVE-006 | | Reports + exports | ☐ |
+| **F** | WAVE-007 | | Stripe + limits | ☐ |
+| **G** | WAVE-002,008,009 | | Onboarding, AI polish, admin, PWA | ☐ |
+| **H** | WAVE-010 | | Beta launch + hardening | ☐ |
 
 ## Screen waves (Volume 11)
 
@@ -220,7 +226,7 @@ Update this section at each STEP during implementation.
 
 | Metric | Count | Done |
 |--------|-------|------|
-| Blueprint volumes | 21 | 21 |
+| Blueprint volumes | 22 | 22 |
 | Screens (SCR) | 60 | 0 |
 | APIs documented | 70+ | 0 impl |
 | State machines | 10 | 0 |
@@ -269,7 +275,11 @@ Sourced from volume non-negotiables chapters — **never waive without ADR**.
 
 | I need to… | Go to |
 |------------|-------|
-| Start coding | Phase A → `PROJECT-STRUCTURE.md` |
+| **How to build (start here)** | [Volume 21 Construction Manual](blueprint/21-construction-manual.md) |
+| Current wave | [WAVE-INDEX](construction/WAVE-INDEX.md) |
+| AI task setup | [AI-HANDOFF-TEMPLATE](construction/AI-HANDOFF-TEMPLATE.md) |
+| FR ↔ SCR ↔ API trace | [TRACEABILITY-MATRIX](construction/TRACEABILITY-MATRIX.md) |
+| Start coding | WAVE-001 → `PROJECT-STRUCTURE.md` |
 | Add a screen | SCR-INDEX → Volume 11 spec → Volume 10 components |
 | Add an API | API-INDEX → Volume 12 → SM if workflow |
 | Add AI behavior | PROMPT-INDEX → Volume 16 → golden set |
@@ -301,4 +311,4 @@ When tempted to add V2 scope to V1 → re-read Volume 20 Ch. 4 and Ch. 34.
 
 *Blueprint: [README](blueprint/README.md) · Roadmap: [Volume 20](blueprint/20-product-evolution-roadmap.md) · Build log: [BUILD-LOG.md](../BUILD-LOG.md)*
 
-*Last updated: STEP-024 — Master Build Index v1.0*
+*Last updated: STEP-025 — Volume 21 Construction Manual · Master Build Index v1.1*

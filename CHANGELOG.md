@@ -39,6 +39,8 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 - Volume 19 added as **Production Operations, DevOps & SRE** with OPS registry and runbook library (37 chapters) — STEP-022
 - Volume 20 added as **Product Evolution & Strategic Growth** with ROAD registry (35 chapters) — STEP-023
 - Master Build Index added as **The Constitution** — execution guide for all volumes and registries — STEP-024
+- Volume 21 added as **Construction Manual & AI Build Protocol** with WAVE registry (35 chapters) — STEP-025
+- Master Build Index updated to v1.1 — control tower + Volume 21 integration — STEP-025
 
 ## [0.0.0] — 2026-06-24
 

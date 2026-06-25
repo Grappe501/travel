@@ -808,7 +808,7 @@ Design V1 to avoid blocking:
 
 # Chapter 31 — Cursor / Agent Build Instructions
 
-When generating code for this repository:
+When generating code for this repository, follow **[Volume 21 — Construction Manual](21-construction-manual.md)** (waves, AI protocol) and use [`AI-HANDOFF-TEMPLATE.md`](../construction/AI-HANDOFF-TEMPLATE.md) for every task.
 
 1. **Build modularly** — one module slice per PR/step
 2. **Never mix** UI + DB + business logic in one file

@@ -8,9 +8,9 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Phase: Blueprint complete — ready for sign-off → implementation**
+**Phase: Blueprint complete (Volumes 0–21) — ready for sign-off → WAVE-001**
 
-No application code has been written yet. This repository contains the complete **Volumes 0–20** design constitution, **[Master Build Index](docs/MASTER-BUILD-INDEX.md)** (The Constitution), and master build plan. Implementation begins after blueprint sign-off (STEP-025 Phase A).
+No application code has been written yet. This repository contains **22 planning documents** (Volumes 0–21 + [Master Build Index](docs/MASTER-BUILD-INDEX.md)). **[Volume 21 — Construction Manual](docs/blueprint/21-construction-manual.md)** is where implementation begins after sign-off (STEP-026 / WAVE-001).
 
 ---
 
@@ -33,7 +33,7 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 | [Master Build Index](docs/MASTER-BUILD-INDEX.md) | **The Constitution** — execution guide, registries, build order |
 | [Blueprint Index](docs/blueprint/README.md) | All 21 planning volumes (0–20) |
 | [Volume 0 — Product Doctrine](docs/blueprint/00-product-doctrine.md) | Design constitution — read first |
-| [Volume 20 — Product Evolution](docs/blueprint/20-product-evolution-roadmap.md) | Version roadmap & growth strategy |
+| [Volume 21 — Construction Manual](docs/blueprint/21-construction-manual.md) | **How to build** — waves, AI protocol, gates |
 | [Project Structure](docs/PROJECT-STRUCTURE.md) | H: drive filesystem layout |
 | [Technical Architecture & Production Infrastructure](docs/blueprint/06-technical-architecture.md) | Stack, deploy, Cursor build rules |
 
