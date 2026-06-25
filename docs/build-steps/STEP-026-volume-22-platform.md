@@ -50,4 +50,4 @@ Add **Volume 22 — Platform Architecture, Ecosystem & Long-Term Evolution** —
 
 ## Next step
 
-Blueprint sign-off → **STEP-027 Phase A / WAVE-001**
+**STEP-027** — Volume 23 Product Factory

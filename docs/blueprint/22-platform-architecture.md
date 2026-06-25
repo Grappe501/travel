@@ -702,8 +702,8 @@ Plus **[Master Build Index](../MASTER-BUILD-INDEX.md)** as control tower.
 
 > From this point forward: **execute, validate, and improve** a well-defined vision.
 
-**Begin:** Sign off → [Volume 21](21-construction-manual.md) WAVE-001 → STEP-027.
+**Begin:** Sign off → [Volume 21](21-construction-manual.md) WAVE-001 → STEP-028. **Every feature after V1:** [Volume 23](23-product-factory.md).
 
 ---
 
-*Previous: [Volume 21 — Construction Manual](21-construction-manual.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*
+*Previous: [Volume 21 — Construction Manual](21-construction-manual.md) | Next: [Volume 23 — Product Factory](23-product-factory.md) | [Master Build Index](../MASTER-BUILD-INDEX.md) | [Blueprint Index](README.md)*

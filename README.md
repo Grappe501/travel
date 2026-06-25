@@ -8,9 +8,9 @@ AI-assisted travel expense and mileage documentation for self-employed professio
 
 ## Status
 
-**Phase: Blueprint complete (Volumes 0–22) — ready for sign-off → WAVE-001**
+**Phase: Blueprint complete (Volumes 0–23) — ready for sign-off → WAVE-001**
 
-No application code has been written yet. **23 planning documents** (Volumes 0–22 + [Master Build Index](docs/MASTER-BUILD-INDEX.md)). Build via [Volume 21](docs/blueprint/21-construction-manual.md); platform guardrails in [Volume 22](docs/blueprint/22-platform-architecture.md). Implementation begins after sign-off (**STEP-027 / WAVE-001**).
+No application code yet. **24 planning documents** (Volumes 0–23 + [Master Build Index](docs/MASTER-BUILD-INDEX.md)). First build: [Volume 21](docs/blueprint/21-construction-manual.md). Every future feature: [Volume 23](docs/blueprint/23-product-factory.md). Start after sign-off (**STEP-028 / WAVE-001**).
 
 ---
 
@@ -33,8 +33,9 @@ Every step is versioned on GitHub with a commit, ledger entry, and detail doc.
 | [Master Build Index](docs/MASTER-BUILD-INDEX.md) | **The Constitution** — execution guide, registries, build order |
 | [Blueprint Index](docs/blueprint/README.md) | All 23 planning documents (Volumes 0–22) |
 | [Volume 0 — Product Doctrine](docs/blueprint/00-product-doctrine.md) | Design constitution — read first |
-| [Volume 21 — Construction Manual](docs/blueprint/21-construction-manual.md) | **How to build** — waves, AI protocol, gates |
-| [Volume 22 — Platform Architecture](docs/blueprint/22-platform-architecture.md) | **Platform constitution** — 10-year evolution |
+| [Volume 21 — Construction Manual](docs/blueprint/21-construction-manual.md) | **First build** — waves, AI protocol |
+| [Volume 23 — Product Factory](docs/blueprint/23-product-factory.md) | **Factory OS** — every feature lifecycle |
+| [Volume 22 — Platform Architecture](docs/blueprint/22-platform-architecture.md) | Platform constitution — 10-year evolution |
 | [Project Structure](docs/PROJECT-STRUCTURE.md) | H: drive filesystem layout |
 | [Technical Architecture & Production Infrastructure](docs/blueprint/06-technical-architecture.md) | Stack, deploy, Cursor build rules |
 

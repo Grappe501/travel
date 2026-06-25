@@ -679,15 +679,17 @@ Every feature should be:
 
 ---
 
-## Blueprint + Constitution Complete
+## Blueprint Stack
 
 | Document | Role |
 |----------|------|
 | Volumes 0–20 | **What** to build and operate |
-| **Volume 21** (this) | **How** to build |
-| [Master Build Index](../MASTER-BUILD-INDEX.md) | **Control tower** — status, traceability, registries |
+| **Volume 21** (this) | **First build** (WAVE-001–010) |
+| [Volume 22](22-platform-architecture.md) | **Platform** (10-year evolution) |
+| [Volume 23](23-product-factory.md) | **Factory** (every feature forever) |
+| [Master Build Index](../MASTER-BUILD-INDEX.md) | **Control tower** |
 
-**Begin implementation:** Sign off → **STEP-027** WAVE-001.
+**Begin implementation:** Sign off → **STEP-028** WAVE-001. Post-V1 features → Volume 23.
 
 ---
 

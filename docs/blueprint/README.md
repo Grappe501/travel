@@ -20,13 +20,15 @@
 12. **Volume 17** is *AdminOS* — the company operating system: roles, dashboards, runbooks, and internal workflows.
 13. **Volume 18** is the *Mobile Field Experience* — offline-first PWA, camera, thumb-zone UX, and the Field Productivity Standard.
 14. **Volume 19** is the *Operations Bible* — DevOps, SRE, deployments, monitoring, backups, and production readiness.
-15. **Volume 21** is the *Construction Manual* — WAVE-IDs, AI build protocol, Definition of Done, quality gates.
-16. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is the *control tower* — registries, traceability, build status.
-17. **Volume 22** is the *Platform Constitution* — layers, domains, modules, and 10-year evolution without rewrite.
+15. **Volume 20** is the *Product Evolution Roadmap* — versions, feature admission, strategic growth.
+16. **Volume 21** is the *Construction Manual* — WAVE-IDs, first build, AI handoff protocol.
+17. **Volume 22** is the *Platform Constitution* — PLT-IDs, 10-year evolution without rewrite.
+18. **Volume 23** is the *Product Factory* — FCT-IDs, every feature from idea to improvement.
+19. **[Master Build Index](../MASTER-BUILD-INDEX.md)** is the *control tower* — registries, traceability, status.
 
 **No application code is written until this blueprint is reviewed and signed off.**
 
-**Blueprint status:** Volumes 0–22 + Master Build Index complete (v1.2). Ready for sign-off → WAVE-001 / Phase A.
+**Blueprint status:** Volumes 0–23 + Master Build Index complete (v1.3). Ready for sign-off → WAVE-001 / Phase A.
 
 ---
 
@@ -56,9 +58,10 @@
 | **19** | [Production Operations, DevOps & SRE](19-production-sre.md) | OPS-IDs, environments, SLOs, deployment pipeline, runbooks, Reliability Standard |
 | **20** | [Product Evolution & Strategic Growth](20-product-evolution-roadmap.md) | ROAD-IDs, version strategy, feature admission, Product Evolution Standard |
 | **21** | [Construction Manual & AI Build Protocol](21-construction-manual.md) | WAVE-IDs, build waves, AI handoff, DoD, launch phases — **start building here** |
-| **22** | [Platform Architecture & Long-Term Evolution](22-platform-architecture.md) | PLT-IDs, domains, modules, ecosystem, Platform Standard — **10-year constitution** |
+| **22** | [Platform Architecture & Long-Term Evolution](22-platform-architecture.md) | PLT-IDs, domains, ecosystem, Platform Standard |
+| **23** | [Product Factory & Engineering Excellence](23-product-factory.md) | FCT-IDs, feature lifecycle, testing/release factory, Product Factory Standard |
 
-**Meta:** [Master Build Index — Control Tower](../MASTER-BUILD-INDEX.md) — registries, traceability matrix, build status.
+**Meta:** [Master Build Index — Control Tower](../MASTER-BUILD-INDEX.md)
 
 ---
 
@@ -80,6 +83,9 @@
 | [ROAD-INDEX.md](../roadmap/ROAD-INDEX.md) | Product roadmap registry (Volume 20) |
 | [WAVE-INDEX.md](../construction/WAVE-INDEX.md) | Implementation waves (Volume 21) |
 | [PLT-INDEX.md](../platform/PLT-INDEX.md) | Platform registry (Volume 22) |
+| [FCT-INDEX.md](../factory/FCT-INDEX.md) | Product factory registry (Volume 23) |
+| [FEATURE-PROPOSAL-TEMPLATE.md](../factory/FEATURE-PROPOSAL-TEMPLATE.md) | Feature intake (Volume 23) |
+| [RISK-REGISTER.md](../factory/RISK-REGISTER.md) | Risk register (Volume 23) |
 | [TRACEABILITY-MATRIX.md](../construction/TRACEABILITY-MATRIX.md) | FR ↔ SCR ↔ API matrix (Volume 21) |
 | [MASTER-BUILD-INDEX.md](../MASTER-BUILD-INDEX.md) | **Control tower** — status & registries |
 | [docs/runbooks/](../runbooks/) | Runbook library — OPS-RB-* (Volume 19 Ch. 28) |
@@ -182,4 +188,4 @@ Use this as the implementation gate. Each item maps to Volume 3 requirements.
 | Product | | | ☐ |
 | Engineering | | | ☐ |
 
-Once signed off ([Master Build Index](../MASTER-BUILD-INDEX.md) + Volumes 21–22), proceed to **WAVE-001 / Phase A** (STEP-027).
+Once signed off ([Master Build Index](../MASTER-BUILD-INDEX.md) + Volumes 21–23), proceed to **WAVE-001 / Phase A** (STEP-028).

@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This document is the **control tower** for the entire product. Volumes 0–20 define *what* to build and *how* it operates and evolves. **Volume 21** defines *how to build it*. **Volume 22** defines *how it becomes a 10-year platform*. The Master Build Index tracks **status, traceability, and registries**.
+This document is the **control tower** for the entire product. Volumes 0–20 define *what* to build. **Volume 21** defines the *first build*. **Volume 22** defines the *10-year platform*. **Volume 23** defines the *product factory* for every feature forever. The Master Build Index tracks **status, traceability, and registries**.
 
 > **When this index is signed off, development shifts from invention to execution.**
 
@@ -24,21 +24,23 @@ This document is the **control tower** for the entire product. Volumes 0–20 de
 
 | Status | Value |
 |--------|-------|
-| Planning volumes | **0–22 complete** |
-| Master Build Index | **v1.2** |
-| Construction Manual | Volume 21 |
+| Planning volumes | **0–23 complete** |
+| Master Build Index | **v1.3** |
+| Construction Manual | Volume 21 (first build) |
 | Platform Constitution | Volume 22 |
+| Product Factory | Volume 23 |
 | Application code | **Not started** |
-| Next step | **STEP-027 — Phase A / WAVE-001** |
+| Next step | **STEP-028 — Phase A / WAVE-001** |
 
 ### Sign-off
 
 | Gate | Owner | Date | ✓ |
 |------|-------|------|---|
-| Blueprint Volumes 0–22 | Product + Eng | | ☐ |
+| Blueprint Volumes 0–23 | Product + Eng | | ☐ |
 | Master Build Index | Engineering | | ☐ |
 | Construction Manual (Vol 21) | Engineering | | ☐ |
 | Platform Architecture (Vol 22) | Engineering | | ☐ |
+| Product Factory (Vol 23) | Engineering | | ☐ |
 | Begin Phase A / WAVE-001 | Both | | ☐ |
 
 ---
@@ -71,7 +73,8 @@ This document is the **control tower** for the entire product. Volumes 0–20 de
 | **19** | [Production SRE](blueprint/19-production-sre.md) | Platform ops | OPS-IDs, runbooks |
 | **20** | [Product Evolution](blueprint/20-product-evolution-roadmap.md) | Roadmap | ROAD-IDs, versions |
 | **21** | [Construction Manual](blueprint/21-construction-manual.md) | **Build** | WAVE-IDs, AI protocol, DoD, gates |
-| **22** | [Platform Architecture](blueprint/22-platform-architecture.md) | **Platform** | PLT-IDs, domains, modules, 10-year evolution |
+| **22** | [Platform Architecture](blueprint/22-platform-architecture.md) | **Platform** | PLT-IDs, domains, 10-year evolution |
+| **23** | [Product Factory](blueprint/23-product-factory.md) | **Factory** | FCT-IDs, feature lifecycle, release factory |
 | — | **This document** | Control tower | Status, traceability, registries |
 
 ---
@@ -99,6 +102,8 @@ Every implementable artifact has an ID. **Update tracker status as work ships.**
 | Waves | [construction/WAVE-INDEX.md](construction/WAVE-INDEX.md) | WAVE-*, BLD-* | 21 |
 | Traceability | [construction/TRACEABILITY-MATRIX.md](construction/TRACEABILITY-MATRIX.md) | FR↔SCR↔API | 21 |
 | Platform | [platform/PLT-INDEX.md](platform/PLT-INDEX.md) | PLT-* | 22 |
+| Factory | [factory/FCT-INDEX.md](factory/FCT-INDEX.md) | FCT-* | 23 |
+| Risk register | [factory/RISK-REGISTER.md](factory/RISK-REGISTER.md) | RISK-* | 23 |
 | AI handoff | [construction/AI-HANDOFF-TEMPLATE.md](construction/AI-HANDOFF-TEMPLATE.md) | BLD-AI-HANDOFF | 21 |
 
 **PR convention:** Every PR lists affected IDs: `WAVE-IDs: … SCR-IDs: … API-IDs: … Step: STEP-NNN`
@@ -147,8 +152,8 @@ Canonical: Volume 4. Migration order in Phase B.
 
 | Phase | WAVE | STEP | Scope | Status |
 |-------|------|------|-------|--------|
-| **Blueprint** | — | 001–026 | Volumes 0–22 + this index | ☑ |
-| **A** | WAVE-001 | 027+ | Repo, CI, Netlify, auth shell | ☐ |
+| **Blueprint** | — | 001–027 | Volumes 0–23 + this index | ☑ |
+| **A** | WAVE-001 | 028+ | Repo, CI, Netlify, auth shell | ☐ |
 | **B** | WAVE-001–002 | | Schema, RLS, core entities | ☐ |
 | **C** | WAVE-003 | | Trip flow | ☐ |
 | **D** | WAVE-004 | | Receipt + OCR pipeline | ☐ |
@@ -230,7 +235,7 @@ Update this section at each STEP during implementation.
 
 | Metric | Count | Done |
 |--------|-------|------|
-| Blueprint volumes | 23 | 23 |
+| Blueprint volumes | 24 | 24 |
 | Screens (SCR) | 60 | 0 |
 | APIs documented | 70+ | 0 impl |
 | State machines | 10 | 0 |
@@ -279,7 +284,9 @@ Sourced from volume non-negotiables chapters — **never waive without ADR**.
 
 | I need to… | Go to |
 |------------|-------|
-| **How to build (start here)** | [Volume 21 Construction Manual](blueprint/21-construction-manual.md) |
+| **How to build (first time)** | [Volume 21 Construction Manual](blueprint/21-construction-manual.md) |
+| **Every feature forever** | [Volume 23 Product Factory](blueprint/23-product-factory.md) |
+| Feature proposal | [FEATURE-PROPOSAL-TEMPLATE](factory/FEATURE-PROPOSAL-TEMPLATE.md) |
 | Current wave | [WAVE-INDEX](construction/WAVE-INDEX.md) |
 | AI task setup | [AI-HANDOFF-TEMPLATE](construction/AI-HANDOFF-TEMPLATE.md) |
 | FR ↔ SCR ↔ API trace | [TRACEABILITY-MATRIX](construction/TRACEABILITY-MATRIX.md) |
@@ -316,4 +323,4 @@ When tempted to add V2 scope to V1 → re-read Volume 20 Ch. 4 and Ch. 34.
 
 *Blueprint: [README](blueprint/README.md) · Roadmap: [Volume 20](blueprint/20-product-evolution-roadmap.md) · Build log: [BUILD-LOG.md](../BUILD-LOG.md)*
 
-*Last updated: STEP-026 — Volume 22 Platform Architecture · Master Build Index v1.2*
+*Last updated: STEP-027 — Volume 23 Product Factory · Master Build Index v1.3*
