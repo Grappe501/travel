@@ -17,3 +17,7 @@ export function getStorageConfig() {
 export function buildReceiptStoragePath(userId: string, receiptId: string, ext: string) {
   return `${userId}/${receiptId}/original.${ext}`;
 }
+
+export function buildReportStoragePath(userId: string, reportId: string, ext: string) {
+  return `${userId}/reports/${reportId}/export.${ext}`;
+}

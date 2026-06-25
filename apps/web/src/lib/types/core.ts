@@ -102,3 +102,19 @@ export type SerializedReceiptWithOcr = SerializedReceipt & {
   ocrResult: SerializedOcrResult | null;
   expenseId: string | null;
 };
+
+export type SerializedReport = {
+  id: string;
+  businessId: string | null;
+  reportType: string;
+  format: string;
+  dateRangeStart: string;
+  dateRangeEnd: string;
+  filters: unknown;
+  status: string;
+  fileSizeBytes: number | null;
+  errorMessage: string | null;
+  generatedAt: string | null;
+  expiresAt: string | null;
+  createdAt: string;
+};

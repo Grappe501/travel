@@ -4,6 +4,7 @@ export * from './auth';
 export * from './business-vehicle';
 export * from './trip';
 export * from './receipt';
+export * from './report';
 
 export const businessCreateSchema = z.object({
   name: z.string().min(1).max(100),

@@ -40,4 +40,4 @@ Requires `OPENAI_API_KEY`, Supabase Storage (signed URL for Vision), and at leas
 
 ## Next step
 
-**STEP-041** — [MEC-V1-S009 Reports](../execution/slices/MEC-V1-S009-reports.md)
+**STEP-042** — [MEC-V1-S010 Billing & Limits](../execution/slices/MEC-V1-S010-billing.md)
