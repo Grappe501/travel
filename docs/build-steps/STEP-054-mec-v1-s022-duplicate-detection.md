@@ -36,4 +36,4 @@ pnpm test            # pass (includes duplicate-detection.test.ts)
 
 ## Next step
 
-V1.1 backlog — category AI suggestions (MRID-000018) or client/project modules
+V1.1 backlog — client/project modules or AI feedback (API-AI-003)

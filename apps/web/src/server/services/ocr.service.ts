@@ -9,6 +9,7 @@ import { prisma } from '@/lib/db/prisma';
 import { getOwnedBusiness } from '@/server/services/business.service';
 import { createExpenseFromReceipt } from '@/server/services/expense.service';
 import { assertNoBlockingDuplicates, resolveDuplicateSuggestion } from '@/server/services/duplicate-detection.service';
+import { resolveCategorySuggestion, suggestCategoryForReceipt } from '@/server/services/category-suggestion.service';
 import { getOwnedReceipt, getReceiptSignedUrl } from '@/server/services/receipt.service';
 import { getOwnedTrip } from '@/server/services/trip.service';
 
@@ -230,6 +231,8 @@ export async function runReceiptOcr(userId: string, receiptId: string) {
       return receiptUpdate;
     });
 
+    void suggestCategoryForReceipt(userId, receiptId).catch(() => undefined);
+
     return serializeReceiptWithOcr(updated);
   } catch (error) {
     await prisma.receipt.update({
@@ -339,6 +342,8 @@ export async function approveReceipt(userId: string, receiptId: string, input: R
   if (!data.acknowledgeDuplicate) {
     await resolveDuplicateSuggestion(userId, receiptId, 'dismissed');
   }
+
+  await resolveCategorySuggestion(userId, receiptId, data.categorySlug);
 
   return {
     ...serializeReceiptWithOcr(result.receipt),

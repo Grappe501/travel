@@ -69,7 +69,7 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 | API-NOT-002 | Mark Read | PATCH | notifications | — | notification | user | ☐ | ☐ | ☑ |
 | API-NOT-003 | Preferences | PATCH | profiles | — | notification | user | ☐ | ☐ | ☑ |
 | API-SRH-001 | Unified Search | GET | search | — | search | user | ☐ | ☐ | ☑ |
-| API-AI-001 | Category Suggestion | POST | suggest-category | — | ai | user | ☐ | ☐ | ☑ |
+| API-AI-001 | Category Suggestion | POST | suggest-category | `POST /api/receipts/[id]/suggest-category` | ai | user | ☑ | ☑ | ☑ |
 | API-AI-002 | Duplicate Detection | POST | check-duplicate | `POST /api/receipts/[id]/check-duplicate` | ai | user | ☑ | ☑ | ☑ |
 | API-AI-003 | AI Feedback | POST | ai_interaction_log | — | ai | user | ☐ | ☐ | ☑ |
 | API-EXP-010 | Account Export | POST | export-account | — | export | user | ☐ | ☐ | ☑ |
@@ -81,6 +81,6 @@ PR convention: `API-IDs: API-TRIP-001, API-TRIP-002`
 
 **Onboarding (V1):** `GET/POST /api/onboarding/status|complete|skip` — not in Volume 12 catalog; covered by SCR-008.
 
-**V1 summary:** 44 Dev ☑ · 28 Tests ☑ · 28 Tests ◐ · 27 not implemented (post-GA / V1.1)
+**V1 summary:** 45 Dev ☑ · 29 Tests ☑ · 28 Tests ◐ · 26 not implemented (post-GA / V1.1)
 
 **Tests legend:** ☑ = unit, integration, or SEC test; ◐ = E2E or partial coverage.

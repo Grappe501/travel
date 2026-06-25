@@ -5,7 +5,12 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { Alert, Badge, Button, Card, CardContent, Input, Select } from '@/components/ui';
 import { formatDuplicateMessage, type DuplicateMatch } from '@/lib/ai/duplicate-detection';
-import { getExpenseCategoryOptions } from '@/lib/receipts/categories';
+import {
+  formatCategorySuggestionMessage,
+  shouldShowCategoryAlternatives,
+} from '@/lib/ai/category-intelligence';
+import { formatCategoryLabel, getExpenseCategoryOptions } from '@/lib/receipts/categories';
+import type { CategorySuggestionResult } from '@mileage-copilot/shared';
 import type { SerializedBusiness, SerializedReceiptWithOcr } from '@/lib/types/core';
 
 type ReceiptReviewPanelProps = {
@@ -24,6 +29,11 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
   const [duplicates, setDuplicates] = useState<DuplicateMatch[]>([]);
   const [duplicateLoading, setDuplicateLoading] = useState(false);
   const [acknowledgeDuplicate, setAcknowledgeDuplicate] = useState(false);
+  const [categorySuggestion, setCategorySuggestion] = useState<CategorySuggestionResult | null>(
+    null
+  );
+  const [categoryLoading, setCategoryLoading] = useState(false);
+  const [categoryTouched, setCategoryTouched] = useState(false);
 
   const [merchant, setMerchant] = useState(receipt.merchant ?? receipt.ocrResult?.merchant ?? '');
   const [receiptDate, setReceiptDate] = useState(
@@ -67,6 +77,8 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
     setTax(String(updated.tax ?? updated.ocrResult?.tax ?? ''));
     setTotal(String(updated.total ?? updated.ocrResult?.total ?? ''));
     setCategorySlug(updated.ocrResult?.suggestedCategorySlug ?? 'other');
+    setCategoryTouched(false);
+    setCategorySuggestion(null);
     setOcrRunning(false);
     router.refresh();
   }, [current.id, router]);
@@ -134,6 +146,70 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
     }, 400);
     return () => window.clearTimeout(timer);
   }, [checkDuplicates, isApproved]);
+
+  const loadCategorySuggestion = useCallback(
+    async (payload?: { merchant?: string; amount?: number }) => {
+      if (isApproved) return;
+
+      const merchantValue = payload?.merchant ?? merchant.trim();
+      if (!merchantValue) {
+        setCategorySuggestion(null);
+        return;
+      }
+
+      setCategoryLoading(true);
+      const totalNum = payload?.amount ?? Number(total);
+      const response = await fetch(`/api/receipts/${current.id}/suggest-category`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          merchant: merchantValue,
+          ...(Number.isFinite(totalNum) && totalNum > 0 ? { amount: totalNum } : {}),
+          ...(receipt.ocrResult?.suggestedCategorySlug
+            ? { ocrCategorySlug: receipt.ocrResult.suggestedCategorySlug }
+            : {}),
+        }),
+      });
+      const result = await response.json();
+      setCategoryLoading(false);
+
+      if (!response.ok || !result.data?.suggestion) return;
+
+      const suggestion = result.data.suggestion as CategorySuggestionResult;
+      setCategorySuggestion(suggestion);
+      if (!categoryTouched) {
+        setCategorySlug(suggestion.primary.slug);
+      }
+    },
+    [
+      categoryTouched,
+      current.id,
+      isApproved,
+      merchant,
+      receipt.ocrResult?.suggestedCategorySlug,
+      total,
+    ]
+  );
+
+  useEffect(() => {
+    if (isApproved) return;
+
+    void fetch(`/api/receipts/${current.id}/suggest-category`)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.data?.suggestion) {
+          setCategorySuggestion(result.data.suggestion as CategorySuggestionResult);
+        }
+      });
+  }, [current.id, isApproved]);
+
+  useEffect(() => {
+    if (isApproved) return;
+    const timer = window.setTimeout(() => {
+      void loadCategorySuggestion();
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [isApproved, loadCategorySuggestion]);
 
   async function handleApprove(e: React.FormEvent) {
     e.preventDefault();
@@ -238,6 +314,35 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
 
       {duplicateLoading ? <Alert variant="info">Checking for duplicates…</Alert> : null}
 
+      {categorySuggestion && !isApproved ? (
+        <Alert variant="info" title="AI category suggestion">
+          {formatCategorySuggestionMessage(categorySuggestion)}
+          <p className="mt-1 text-caption text-muted">
+            Confidence: {Math.round(categorySuggestion.primary.confidence * 100)}%
+          </p>
+          {shouldShowCategoryAlternatives(categorySuggestion) ? (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {[categorySuggestion.primary, ...categorySuggestion.alternatives].map((option) => (
+                <Button
+                  key={option.slug}
+                  type="button"
+                  size="sm"
+                  variant={categorySlug === option.slug ? 'primary' : 'secondary'}
+                  onClick={() => {
+                    setCategoryTouched(true);
+                    setCategorySlug(option.slug);
+                  }}
+                >
+                  {formatCategoryLabel(option.slug)}
+                </Button>
+              ))}
+            </div>
+          ) : null}
+        </Alert>
+      ) : null}
+
+      {categoryLoading ? <Alert variant="info">Suggesting category…</Alert> : null}
+
       <div className="grid gap-6 lg:grid-cols-2">
         {signedUrl && isImage ? (
           <Card>
@@ -338,7 +443,10 @@ export function ReceiptReviewPanel({ receipt, signedUrl, businesses }: ReceiptRe
                 label="Category (suggestion only until you approve)"
                 id="review-category"
                 value={categorySlug}
-                onChange={(e) => setCategorySlug(e.target.value)}
+                onChange={(e) => {
+                  setCategoryTouched(true);
+                  setCategorySlug(e.target.value);
+                }}
                 options={categoryOptions}
                 disabled={isApproved}
               />
