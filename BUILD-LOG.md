@@ -20,7 +20,7 @@ Chronological ledger of every documented build step for **Mileage & Expense Copi
 | STEP-013 | 2026-06-24 | Blueprint | Volume 10 — Design System & Component Library (44 chapters) | `1fbca9e` | [STEP-013](docs/build-steps/STEP-013-volume-10-design-system.md) |
 | STEP-014 | 2026-06-24 | Blueprint | Volume 11 — Screen Bible & SCR catalog (60 screens) | `3e87abb` | [STEP-014](docs/build-steps/STEP-014-volume-11-screen-bible.md) |
 | STEP-015 | 2026-06-24 | Blueprint | Volume 12 — API Architecture & Constitution (70+ APIs) | `36379c5` | [STEP-015](docs/build-steps/STEP-015-volume-12-api.md) |
-| STEP-016 | 2026-06-24 | Blueprint | Volume 13 — State Machines & Workflow Logic (10 SM-IDs) | *pending* | [STEP-016](docs/build-steps/STEP-016-volume-13-state-machines.md) |
+| STEP-016 | 2026-06-24 | Blueprint | Volume 13 — State Machines & Workflow Logic (10 SM-IDs) | `0ea6a9a` | [STEP-016](docs/build-steps/STEP-016-volume-13-state-machines.md) |
 
 ---
 
