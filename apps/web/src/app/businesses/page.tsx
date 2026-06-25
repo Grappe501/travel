@@ -1,13 +1,34 @@
-import { ShellPage } from '@/components/layout/ShellPage';
+import { redirect } from 'next/navigation';
+import { BusinessForm, BusinessList } from '@/components/businesses/BusinessManager';
+import { DashboardShell } from '@/components/layout/DashboardShell';
 import { EmptyState } from '@/components/ui';
+import { requireSessionUser } from '@/lib/auth/server';
+import * as businessService from '@/server/services/business.service';
 
-export default function BusinessesPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function BusinessesPage() {
+  const user = await requireSessionUser();
+  if (!user) {
+    redirect('/login');
+  }
+
+  const businesses = await businessService.listBusinesses(user.id);
+
   return (
-    <ShellPage title="Businesses" description="Business profiles — MEC-V1-S005.">
-      <EmptyState
-        title="No businesses yet"
-        description="Create business profiles to organize trips, rates, and reports."
-      />
-    </ShellPage>
+    <DashboardShell
+      title="Businesses"
+      description="Create and manage business profiles for trips and reports."
+    >
+      <BusinessForm />
+      {businesses.length === 0 ? (
+        <EmptyState
+          title="No businesses yet"
+          description="Add your first business using the form above."
+        />
+      ) : (
+        <BusinessList businesses={businesses} />
+      )}
+    </DashboardShell>
   );
 }

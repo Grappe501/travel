@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export * from './auth';
+export * from './business-vehicle';
 
 export const businessCreateSchema = z.object({
   name: z.string().min(1).max(100),
