@@ -36,8 +36,8 @@ Connect the local H: drive repository to [github.com/Grappe501/travel](https://g
 - [x] STEP-001 detail doc created retroactively
 - [x] Git init + initial commit
 - [x] Remote added
-- [ ] Push to GitHub succeeds
-- [ ] Tag `v0.0.0` pushed
+- [x] Push to GitHub succeeds
+- [x] Tag `v0.0.0` pushed
 
 ## Next step
 
