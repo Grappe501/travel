@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Alert, Badge, Button, Card, CardContent, Input, Select } from '@/components/ui';
+import { Alert, Badge, Button, Card, CardContent, Input, RemoveEntryButton, Select } from '@/components/ui';
 import type { SerializedBusiness, SerializedClient, SerializedProject } from '@/lib/types/core';
 
 type ClientFormProps = {
@@ -125,26 +125,8 @@ type ClientListProps = {
 };
 
 export function ClientList({ clients }: ClientListProps) {
-  const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleDelete(id: string) {
-    if (!window.confirm('Delete this client? Linked trips keep the name snapshot.')) return;
-
-    const response = await fetch(`/api/clients/${id}`, { method: 'DELETE' });
-    const result = await response.json();
-
-    if (!response.ok) {
-      setError(result.error ?? 'Could not delete client');
-      return;
-    }
-
-    router.refresh();
-  }
-
   return (
     <div className="space-y-3">
-      {error ? <Alert variant="error">{error}</Alert> : null}
       {clients.map((client) => (
         <Card key={client.id}>
           <CardContent className="flex flex-wrap items-center justify-between gap-4 pt-4">
@@ -157,11 +139,16 @@ export function ClientList({ clients }: ClientListProps) {
                 {client.tripCount} trip{client.tripCount === 1 ? '' : 's'}
               </p>
             </div>
-            <div className="flex gap-2">
-              <Button type="button" variant="secondary" size="sm" onClick={() => void handleDelete(client.id)}>
-                Delete
-              </Button>
-            </div>
+            <RemoveEntryButton
+              apiUrl={`/api/clients/${client.id}`}
+              entityType="client"
+              entityLabel="Client"
+              title="Delete this client?"
+              description="Linked trips keep the client name snapshot. You can undo for a few seconds."
+              label="Delete"
+              confirmLabel="Delete"
+              variant="destructive"
+            />
           </CardContent>
         </Card>
       ))}
@@ -283,26 +270,8 @@ type ProjectListProps = {
 };
 
 export function ProjectList({ clientId, projects }: ProjectListProps) {
-  const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
-
-  async function handleDelete(id: string) {
-    if (!window.confirm('Delete this project?')) return;
-
-    const response = await fetch(`/api/projects/${id}`, { method: 'DELETE' });
-    const result = await response.json();
-
-    if (!response.ok) {
-      setError(result.error ?? 'Could not delete project');
-      return;
-    }
-
-    router.refresh();
-  }
-
   return (
     <div className="space-y-3">
-      {error ? <Alert variant="error">{error}</Alert> : null}
       {projects.map((project) => (
         <Card key={project.id}>
           <CardContent className="flex flex-wrap items-center justify-between gap-4 pt-4">
@@ -320,9 +289,16 @@ export function ProjectList({ clientId, projects }: ProjectListProps) {
                 </span>
               </div>
             </div>
-            <Button type="button" variant="secondary" size="sm" onClick={() => void handleDelete(project.id)}>
-              Delete
-            </Button>
+            <RemoveEntryButton
+              apiUrl={`/api/projects/${project.id}`}
+              entityType="project"
+              entityLabel="Project"
+              title="Delete this project?"
+              description="Trips linked to this project will be unlinked. You can undo for a few seconds."
+              label="Delete"
+              confirmLabel="Delete"
+              variant="destructive"
+            />
           </CardContent>
         </Card>
       ))}

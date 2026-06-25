@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Alert, Badge, Button, Card, CardContent, Input, Select } from '@/components/ui';
+import { Alert, Badge, Button, Card, CardContent, Input, RemoveEntryButton, Select } from '@/components/ui';
 import type { SerializedBusiness, SerializedVehicle } from '@/lib/types/core';
 
 type VehicleFormProps = {
@@ -150,30 +150,9 @@ type VehicleListProps = {
 
 export function VehicleList({ vehicles, businesses }: VehicleListProps) {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const businessName = (id: string | null) =>
     businesses.find((b) => b.id === id)?.name ?? null;
-
-  async function handleDelete(id: string) {
-    if (!confirm('Delete this vehicle?')) return;
-
-    setDeletingId(id);
-    setError(null);
-
-    const response = await fetch(`/api/vehicles/${id}`, { method: 'DELETE' });
-    const result = await response.json();
-
-    if (!response.ok) {
-      setError(result.error ?? 'Could not delete vehicle');
-      setDeletingId(null);
-      return;
-    }
-
-    router.refresh();
-    setDeletingId(null);
-  }
 
   if (vehicles.length === 0) {
     return null;
@@ -181,7 +160,6 @@ export function VehicleList({ vehicles, businesses }: VehicleListProps) {
 
   return (
     <div className="space-y-4">
-      {error ? <Alert variant="error">{error}</Alert> : null}
       {vehicles.map((vehicle) => (
         <Card key={vehicle.id}>
           <CardContent className="flex flex-wrap items-start justify-between gap-4 pt-4">
@@ -208,14 +186,16 @@ export function VehicleList({ vehicles, businesses }: VehicleListProps) {
               >
                 Edit
               </Button>
-              <Button
+              <RemoveEntryButton
+                apiUrl={`/api/vehicles/${vehicle.id}`}
+                entityType="vehicle"
+                entityLabel="Vehicle"
+                title="Delete this vehicle?"
+                description="You can undo for a few seconds after confirming."
+                label="Delete"
+                confirmLabel="Delete"
                 variant="destructive"
-                size="sm"
-                disabled={deletingId === vehicle.id}
-                onClick={() => handleDelete(vehicle.id)}
-              >
-                {deletingId === vehicle.id ? 'Deleting…' : 'Delete'}
-              </Button>
+              />
             </div>
           </CardContent>
         </Card>

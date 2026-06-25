@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Alert, Badge, Button, Card, CardContent, Select } from '@/components/ui';
+import { Alert, Badge, Button, Card, CardContent, RemoveEntryButton, Select } from '@/components/ui';
 import { nativeFieldClassName } from '@/lib/a11y/form-styles';
 import type { SerializedBusiness, SerializedReport, SerializedVehicle } from '@/lib/types/core';
 
@@ -210,6 +210,14 @@ export function ReportList({ reports }: ReportListProps) {
                 Download
               </a>
             ) : null}
+            <RemoveEntryButton
+              apiUrl={`/api/reports/${report.id}`}
+              entityType="report"
+              entityLabel="Report"
+              title="Remove this report?"
+              description="The generated file will be deleted. You can undo for a few seconds."
+              label="Remove"
+            />
           </CardContent>
         </Card>
       ))}
@@ -269,6 +277,15 @@ export function ReportDetailCard({ report }: ReportDetailProps) {
             Download {report.format.toUpperCase()}
           </a>
         ) : null}
+
+        <RemoveEntryButton
+          apiUrl={`/api/reports/${report.id}`}
+          entityType="report"
+          entityLabel="Report"
+          title="Remove this report?"
+          description="The generated file will be deleted. You can undo for a few seconds."
+          redirectTo="/reports"
+        />
       </CardContent>
     </Card>
   );

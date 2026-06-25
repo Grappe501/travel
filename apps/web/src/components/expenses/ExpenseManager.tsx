@@ -138,7 +138,10 @@ export function ExpenseList({ expenses: initialExpenses }: ExpenseListProps) {
                 </ButtonLink>
                 <RemoveEntryButton
                   apiUrl={`/api/expenses/${expense.id}`}
-                  confirmMessage="Remove this expense? This cannot be undone."
+                  entityType="expense"
+                  entityLabel="Expense"
+                  title="Remove this expense?"
+                  description="You can undo for a few seconds after confirming."
                   errorDisplay="alert"
                   onRemoved={() =>
                     setExpenses((items) => items.filter((item) => item.id !== expense.id))
@@ -408,7 +411,10 @@ export function ExpenseDetailCard({ expense }: { expense: SerializedExpense }) {
             </ButtonLink>
             <RemoveEntryButton
               apiUrl={`/api/expenses/${expense.id}`}
-              confirmMessage="Remove this expense? This cannot be undone."
+              entityType="expense"
+              entityLabel="Expense"
+              title="Remove this expense?"
+              description="You can undo for a few seconds after confirming."
               redirectTo="/expenses"
             />
           </div>

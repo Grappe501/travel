@@ -379,3 +379,50 @@ export async function getReportDownload(
   const { buffer } = await buildReportFile(reportData, report.format);
   return { buffer, mimeType, filename };
 }
+
+export async function deleteReport(userId: string, reportId: string) {
+  const report = await getOwnedReport(userId, reportId);
+  const storagePath = report.storagePath;
+
+  await prisma.$transaction(async (tx) => {
+    await tx.auditLog.create({
+      data: {
+        userId,
+        entityType: 'report',
+        entityId: reportId,
+        action: 'delete',
+        oldValues: {
+          report: {
+            id: report.id,
+            userId: report.userId,
+            businessId: report.businessId,
+            reportType: report.reportType,
+            dateRangeStart: report.dateRangeStart.toISOString(),
+            dateRangeEnd: report.dateRangeEnd.toISOString(),
+            format: report.format,
+            filters: report.filters,
+            storagePath: report.storagePath,
+            fileHash: report.fileHash,
+            fileSizeBytes: report.fileSizeBytes,
+            status: report.status,
+            errorMessage: report.errorMessage,
+            generatedAt: report.generatedAt?.toISOString() ?? null,
+            expiresAt: report.expiresAt?.toISOString() ?? null,
+            createdAt: report.createdAt.toISOString(),
+          },
+        },
+        source: 'web',
+      },
+    });
+
+    await tx.report.delete({ where: { id: reportId } });
+  });
+
+  const { bucket, isConfigured } = getStorageConfig();
+  if (isConfigured && storagePath) {
+    const supabase = getSupabaseAdmin();
+    await supabase.storage.from(bucket).remove([storagePath]).catch(() => undefined);
+  }
+
+  return { id: reportId, deleted: true };
+}

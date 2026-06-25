@@ -508,7 +508,10 @@ export function TripList({ trips: initialTrips }: TripListProps) {
               </ButtonLink>
               <RemoveEntryButton
                 apiUrl={`/api/trips/${trip.id}`}
-                confirmMessage="Remove this trip? Linked expenses and receipts will be kept but unlinked."
+                entityType="trip"
+                entityLabel="Trip"
+                title="Remove this trip?"
+                description="Linked expenses and receipts stay in your account but will be unlinked from this trip."
                 errorDisplay="alert"
                 onRemoved={() => setTrips((items) => items.filter((item) => item.id !== trip.id))}
               />

@@ -117,6 +117,11 @@ export async function updateProject(userId: string, projectId: string, input: Pr
 export async function deleteProject(userId: string, projectId: string) {
   await getOwnedProject(userId, projectId);
 
+  const linkedTrips = await prisma.trip.findMany({
+    where: { projectId, userId },
+    select: { id: true },
+  });
+
   await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     await tx.project.update({
       where: { id: projectId },
@@ -127,9 +132,20 @@ export async function deleteProject(userId: string, projectId: string) {
       where: { projectId, userId },
       data: { projectId: null },
     });
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        entityType: 'project',
+        entityId: projectId,
+        action: 'delete',
+        oldValues: { tripIds: linkedTrips.map((item) => item.id) },
+        source: 'web',
+      },
+    });
   });
 
-  return { ok: true };
+  return { id: projectId, deleted: true };
 }
 
 export async function getProjectDetail(userId: string, projectId: string) {

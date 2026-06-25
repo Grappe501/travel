@@ -255,7 +255,6 @@ export async function getReceiptSignedUrl(userId: string, receiptId: string, exp
 export async function deleteReceipt(userId: string, receiptId: string) {
   const receipt = await getOwnedReceipt(userId, receiptId);
   const tripId = receipt.tripId;
-  const storagePath = receipt.storagePath;
 
   const linkedExpenses = await prisma.expense.findMany({
     where: { receiptId, userId, recordStatus: 'active' },
@@ -288,7 +287,7 @@ export async function deleteReceipt(userId: string, receiptId: string) {
         oldValues: {
           merchant: receipt.merchant,
           tripId: receipt.tripId,
-          linkedExpenseCount: linkedExpenses.length,
+          linkedExpenseIds: linkedExpenses.map((item) => item.id),
         },
         source: 'web',
       },
@@ -303,12 +302,6 @@ export async function deleteReceipt(userId: string, receiptId: string) {
 
   for (const id of tripIds) {
     await recalculateTripExpenseTotal(userId, id);
-  }
-
-  const { bucket, isConfigured } = getStorageConfig();
-  if (isConfigured && storagePath) {
-    const supabase = getSupabaseAdmin();
-    await supabase.storage.from(bucket).remove([storagePath]).catch(() => undefined);
   }
 
   return { id: receiptId, deleted: true };

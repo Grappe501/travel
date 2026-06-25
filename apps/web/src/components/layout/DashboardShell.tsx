@@ -7,6 +7,7 @@ import { ConditionalGlobalSearchBar } from '@/components/search/ConditionalGloba
 import { OfflineBanner } from '@/components/offline/OfflineBanner';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { AppFooter } from '@/components/layout/AppFooter';
+import { ToastProvider } from '@/components/ui/ToastProvider';
 import { cn } from '@/lib/utils/cn';
 
 type DashboardShellProps = {
@@ -27,7 +28,8 @@ export function DashboardShell({
   className,
 }: DashboardShellProps) {
   return (
-    <div className="min-h-screen bg-background">
+    <ToastProvider>
+      <div className="min-h-screen bg-background">
       <SkipLink />
       <AppTopNav />
       <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pb-12 md:pt-8">
@@ -47,5 +49,6 @@ export function DashboardShell({
       </div>
       <BottomNav />
     </div>
+    </ToastProvider>
   );
 }

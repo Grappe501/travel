@@ -108,6 +108,15 @@ export async function updateClient(userId: string, clientId: string, input: Clie
 export async function deleteClient(userId: string, clientId: string) {
   await getOwnedClient(userId, clientId);
 
+  const linkedTrips = await prisma.trip.findMany({
+    where: { clientId, userId },
+    select: { id: true },
+  });
+  const linkedProjects = await prisma.project.findMany({
+    where: { clientId, userId },
+    select: { id: true },
+  });
+
   await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     await tx.client.update({
       where: { id: clientId },
@@ -123,9 +132,23 @@ export async function deleteClient(userId: string, clientId: string) {
       where: { clientId, userId },
       data: { clientId: null },
     });
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        entityType: 'client',
+        entityId: clientId,
+        action: 'delete',
+        oldValues: {
+          tripIds: linkedTrips.map((item) => item.id),
+          projectIds: linkedProjects.map((item) => item.id),
+        },
+        source: 'web',
+      },
+    });
   });
 
-  return { ok: true };
+  return { id: clientId, deleted: true };
 }
 
 export async function getClientDetail(userId: string, clientId: string) {

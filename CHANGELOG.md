@@ -13,6 +13,24 @@ Build steps are traceable via [BUILD-LOG.md](BUILD-LOG.md).
 
 ---
 
+## [1.8.1] — 2026-06-25
+
+**Mileage & Expense Copilot — V1.8.1 (STEP-064)**
+
+Delete UX v2 — modal confirmation and undo toast across all remove flows.
+
+### Added
+- **ConfirmDeleteDialog** — accessible remove confirmation modal (SCR-057)
+- **Undo toast** — 5-second undo after delete via `POST /api/restore`
+- **Report delete** — `DELETE /api/reports/[id]` with list and detail remove actions
+- **Restore service** — soft-undelete for trips, expenses, receipts, reports, clients, projects, businesses, vehicles
+
+### Changed
+- **RemoveEntryButton** — modal + undo replaces `window.confirm` everywhere
+- **Receipt delete** — defers storage file removal so undo can restore
+
+---
+
 ## [1.8.0] — 2026-06-25
 
 **Mileage & Expense Copilot — V1.8 (STEP-063)**

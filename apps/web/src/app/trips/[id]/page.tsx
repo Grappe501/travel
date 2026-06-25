@@ -2,7 +2,7 @@ import { notFound, redirect } from 'next/navigation';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { ShellNavActions } from '@/components/layout/ShellNavActions';
 import { TripDetailCard } from '@/components/trips/TripManager';
-import { TripDetailActions } from '@/components/trips/TripEndChecklist';
+import { TripDetailActions } from '@/components/trips/TripDetailActions';
 import { TripExpenseLinkPanel, TripExpensesList } from '@/components/expenses/ExpenseManager';
 import { ButtonLink } from '@/components/ui';
 import { requireSessionUser } from '@/lib/auth/server';

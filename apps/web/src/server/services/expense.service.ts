@@ -348,7 +348,10 @@ export async function deleteExpense(userId: string, expenseId: string) {
         entityType: 'expense',
         entityId: expenseId,
         action: 'delete',
-        oldValues: { amount: Number(existing.amount) },
+        oldValues: {
+          amount: Number(existing.amount),
+          tripId: existing.tripId,
+        },
         source: 'web',
       },
     });

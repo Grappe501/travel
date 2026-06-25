@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Alert, Badge, Button, Card, CardContent, Input } from '@/components/ui';
+import { Alert, Badge, Button, Card, CardContent, Input, RemoveEntryButton } from '@/components/ui';
 import type { SerializedBusiness } from '@/lib/types/core';
 
 type BusinessFormProps = {
@@ -117,27 +117,6 @@ type BusinessListProps = {
 
 export function BusinessList({ businesses }: BusinessListProps) {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
-
-  async function handleDelete(id: string) {
-    if (!confirm('Delete this business?')) return;
-
-    setDeletingId(id);
-    setError(null);
-
-    const response = await fetch(`/api/businesses/${id}`, { method: 'DELETE' });
-    const result = await response.json();
-
-    if (!response.ok) {
-      setError(result.error ?? 'Could not delete business');
-      setDeletingId(null);
-      return;
-    }
-
-    router.refresh();
-    setDeletingId(null);
-  }
 
   if (businesses.length === 0) {
     return null;
@@ -145,7 +124,6 @@ export function BusinessList({ businesses }: BusinessListProps) {
 
   return (
     <div className="space-y-4">
-      {error ? <Alert variant="error">{error}</Alert> : null}
       {businesses.map((business) => (
         <Card key={business.id}>
           <CardContent className="flex flex-wrap items-start justify-between gap-4 pt-4">
@@ -169,14 +147,16 @@ export function BusinessList({ businesses }: BusinessListProps) {
               >
                 Edit
               </Button>
-              <Button
+              <RemoveEntryButton
+                apiUrl={`/api/businesses/${business.id}`}
+                entityType="business"
+                entityLabel="Business"
+                title="Delete this business?"
+                description="Existing trips and expenses keep their data. You can undo for a few seconds."
+                label="Delete"
+                confirmLabel="Delete"
                 variant="destructive"
-                size="sm"
-                disabled={deletingId === business.id}
-                onClick={() => handleDelete(business.id)}
-              >
-                {deletingId === business.id ? 'Deleting…' : 'Delete'}
-              </Button>
+              />
             </div>
           </CardContent>
         </Card>

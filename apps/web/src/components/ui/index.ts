@@ -13,6 +13,8 @@ export { EmptyState } from './EmptyState';
 export { FormField, Input, Textarea } from './Input';
 export { LoadingSkeleton, LoadingState } from './LoadingState';
 export { Modal } from './Modal';
+export { ConfirmDeleteDialog } from './ConfirmDeleteDialog';
+export { ToastProvider, useToast } from './ToastProvider';
 export { PageHeader } from './PageHeader';
 export { RemoveEntryButton } from './RemoveEntryButton';
 export { Select } from './Select';

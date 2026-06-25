@@ -130,7 +130,18 @@ export async function deleteBusiness(userId: string, businessId: string) {
         });
       }
     }
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        entityType: 'business',
+        entityId: businessId,
+        action: 'delete',
+        oldValues: { isDefault: business.isDefault },
+        source: 'web',
+      },
+    });
   });
 
-  return { ok: true };
+  return { id: businessId, deleted: true };
 }

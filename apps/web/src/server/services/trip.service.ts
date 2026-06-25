@@ -402,6 +402,15 @@ export async function deleteTrip(userId: string, tripId: string) {
     throw new ValidationError('Draft trips cannot be deleted from the app');
   }
 
+  const unlinkedExpenses = await prisma.expense.findMany({
+    where: { tripId, userId, recordStatus: 'active' },
+    select: { id: true },
+  });
+  const unlinkedReceipts = await prisma.receipt.findMany({
+    where: { tripId, userId, recordStatus: 'active' },
+    select: { id: true },
+  });
+
   await prisma.$transaction(async (tx) => {
     await tx.trip.update({
       where: { id: tripId },
@@ -428,7 +437,12 @@ export async function deleteTrip(userId: string, tripId: string) {
         entityType: 'trip',
         entityId: tripId,
         action: 'delete',
-        oldValues: { status: trip.status, purpose: trip.purpose },
+        oldValues: {
+          status: trip.status,
+          purpose: trip.purpose,
+          unlinkedExpenseIds: unlinkedExpenses.map((item) => item.id),
+          unlinkedReceiptIds: unlinkedReceipts.map((item) => item.id),
+        },
         source: 'web',
       },
     });

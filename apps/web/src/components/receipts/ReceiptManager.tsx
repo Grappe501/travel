@@ -271,7 +271,10 @@ export function ReceiptList({ receipts: initialReceipts }: ReceiptListProps) {
               </ButtonLink>
               <RemoveEntryButton
                 apiUrl={`/api/receipts/${receipt.id}`}
-                confirmMessage="Remove this receipt? Any linked expense will also be removed."
+                entityType="receipt"
+                entityLabel="Receipt"
+                title="Remove this receipt?"
+                description="Any linked expense will also be removed. You can undo for a few seconds after confirming."
                 errorDisplay="alert"
                 onRemoved={() =>
                   setReceipts((items) => items.filter((item) => item.id !== receipt.id))
@@ -397,7 +400,10 @@ export function ReceiptDetailCard({ receipt, signedUrl }: ReceiptDetailProps) {
 
       <RemoveEntryButton
         apiUrl={`/api/receipts/${receipt.id}`}
-        confirmMessage="Remove this receipt? Any linked expense will also be removed."
+        entityType="receipt"
+        entityLabel="Receipt"
+        title="Remove this receipt?"
+        description="Any linked expense will also be removed. You can undo for a few seconds after confirming."
         redirectTo="/receipts"
       />
     </div>

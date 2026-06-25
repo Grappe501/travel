@@ -133,7 +133,18 @@ export async function deleteVehicle(userId: string, vehicleId: string) {
         });
       }
     }
+
+    await tx.auditLog.create({
+      data: {
+        userId,
+        entityType: 'vehicle',
+        entityId: vehicleId,
+        action: 'delete',
+        oldValues: { isDefault: vehicle.isDefault },
+        source: 'web',
+      },
+    });
   });
 
-  return { ok: true };
+  return { id: vehicleId, deleted: true };
 }
