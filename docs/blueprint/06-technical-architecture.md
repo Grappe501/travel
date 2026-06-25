@@ -16,10 +16,10 @@ Volume 6 is the **technical spine** — build instructions for Cursor, engineers
 |----------|---------------------|
 | **Cursor / AI agents** | Follow Chapter 31 build rules without improvising stack |
 | **Engineers** | Scaffold modules, deploy, and harden production |
-| **DevOps** | Environments, CI gates, monitoring |
+| **DevOps** | Environments, CI gates, monitoring — **Volume 19** is the Operations Bible |
 | **QA** | Test targets tied to architecture (Chapter 25) |
 
-**Related:** [PROJECT-STRUCTURE.md](../PROJECT-STRUCTURE.md) · [Volume 4 — Data](04-database-architecture.md) · [Volume 5 — AI](05-ai-design.md)
+**Related:** [PROJECT-STRUCTURE.md](../PROJECT-STRUCTURE.md) · [Volume 4 — Data](04-database-architecture.md) · [Volume 5 — AI](05-ai-design.md) · [Volume 19 — Production SRE](19-production-sre.md)
 
 ---
 

@@ -794,4 +794,4 @@ This standard guides every mobile screen, workflow, and interaction for the life
 
 ---
 
-*Previous: [Volume 17 — AdminOS](17-admin-operating-system.md) | Return to [Blueprint Index](README.md)*
+*Previous: [Volume 17 — AdminOS](17-admin-operating-system.md) | Next: [Volume 19 — Production SRE](19-production-sre.md) | [Blueprint Index](README.md)*

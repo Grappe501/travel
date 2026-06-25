@@ -18,10 +18,10 @@ Volume 9 is the **final gate before Version 1 ships**. Most teams stop at featur
 | **QA** | Test matrices, exploratory sessions, sign-off |
 | **Product** | Definition of Done, exit criteria, beta program |
 | **Design** | UX validation, accessibility gates |
-| **Operations** | Observability, DR validation, post-launch monitoring |
+| **Operations** | Observability, DR validation, post-launch monitoring — **Volume 19** |
 | **Leadership** | Launch certification (Ch. 31), scorecard (Ch. 30) |
 
-**Related:** [Volume 3 — Functional Requirements](03-functional-requirements.md) · [Volume 6 — Technical Architecture](06-technical-architecture.md) · [Volume 8 — Security](08-security.md)
+**Related:** [Volume 3 — Functional Requirements](03-functional-requirements.md) · [Volume 6 — Technical Architecture](06-technical-architecture.md) · [Volume 8 — Security](08-security.md) · [Volume 19 — Production SRE](19-production-sre.md)
 
 ---
 

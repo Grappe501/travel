@@ -437,7 +437,7 @@ Designed for **Monday leadership review** (Volume 14 Ch. 19).
 
 ## Chapter 22 — Incident Response
 
-**Runbook:** `docs/runbooks/incident-response.md`
+**Runbook:** [`docs/runbooks/incident-response.md`](../runbooks/incident-response.md) (OPS-RB-001). Full SRE spec: **Volume 19**.
 
 ```
 issue_detected → severity (P1–P4) → owner → customer_impact →
@@ -505,7 +505,7 @@ Each job: retry policy, alert on failure, logged in `scheduled_jobs` table.
 
 ## Chapter 26 — Operations Runbooks
 
-Maintain in `docs/runbooks/`:
+Maintain in `docs/runbooks/` — index and OPS-RB-IDs in **Volume 19 Ch. 28**.
 
 | Runbook | Status |
 |---------|--------|
